@@ -1,0 +1,32 @@
+{
+  "name": "decontex-gatsby",
+  "version": "1.0.0",
+  "private": true,
+  "description": "decontex-gatsby",
+  "author": "Glecko",
+  "keywords": [
+    "gatsby"
+  ],
+  "scripts": {
+    "develop": "gatsby develop",
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "babel-plugin-styled-components": "^2.0.7",
+    "gatsby": "^4.11.2",
+    "gatsby-plugin-styled-components": "^5.11.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "styled-components": "^5.3.5"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.23",
+    "@types/react": "^17.0.44",
+    "@types/react-dom": "^17.0.15",
+    "typescript": "^4.6.3"
+  }
+}
