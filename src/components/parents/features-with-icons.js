@@ -1,36 +1,35 @@
 import React from "react"
+import { StructuredText } from "react-datocms"
 import styled from "styled-components"
 import { Container } from '../../styles/style'
 
-export default function FeaturesWithIcons() {
+export default function FeaturesWithIcons({ data: { title, rightText, leftText, benefits } }) {
     return (
         <Wrapper>
             <Container>
                 <Content>
-                    <h2 className="h1">
-                        Decontamination of protective <u>CLOTHING</u>.
-                    </h2>
-                    <div>
-                        <p className="big-m">
-                            The decontamination of protective clothing
-                            is the removal of <i>toxic substances</i> from it.
-                            <br /><br />
-                            Decontamination with liquid carbon dioxide (<u>CO2</u>) effectively removes contamination without damaging fabrics.
-                        </p>
-                        <p className="big-m">
-                            Decontex decontamination in the <u>Decontex technology</u> guarantees cleanliness and preservation of protective properties.
-                        </p>
-                    </div>
+                    <StructuredText data={title} />
+                    <Flex>
+                        <span>
+                            <StructuredText data={leftText} />
+                        </span>
+                        <span>
+                            <StructuredText data={rightText} />
+                        </span>
+                    </Flex>
                     <Icons>
-                        <div>
-                            <img />
-                            <p className="big-m">
-
-                            </p>
-                            <p>
-
-                            </p>
-                        </div>
+                        {benefits.map(el => (
+                            <div>
+                                {/* <GatsbyImage image={el.icon.gatsbyImageData} /> */}
+                                <img src={el.icon.url} alt={el.icon.alt} />
+                                <p className="big-m">
+                                    {el.name}
+                                </p>
+                                <p>
+                                    {el.text}
+                                </p>
+                            </div>
+                        ))}
                     </Icons>
                 </Content>
             </Container>
@@ -46,14 +45,30 @@ const Content = styled.div`
     h2{
         max-width: 870px;
         margin: 0 auto 100px auto;
+        font-weight: 800;
+        font-size: 72px;
+        line-height: 82px;
+        letter-spacing: -0.015em;
+        text-transform: uppercase;
+        text-align: center;
     }
 
-    div{
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-gap: 40px;
-        margin-bottom: clamp(100px, 8.33vw, 160px);
+`
+
+const Flex = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 40px;
+    margin-bottom: clamp(100px, 8.33vw, 160px);
+
+    p{
+        font-weight: 500;
+        font-size: 32px;
+        line-height: 42px;
+        letter-spacing: unset;
+
     }
+
 `
 
 const Icons = styled.div`
@@ -67,8 +82,12 @@ const Icons = styled.div`
         flex-direction: column;
         align-items: center;
 
-        p{
-            
+        img{
+            margin-bottom: 32px;
+        }
+
+        p + p{
+            margin-top: 12px;
         }
     }
 `

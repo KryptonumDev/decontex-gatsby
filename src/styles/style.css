@@ -6,8 +6,10 @@
     --color-red: #CE2029;
     --color-gold: #B39673;
 
+    --color-light-blue: #53A4DB;
+
     --animation-fast: all .3s cubic-bezier(.7, 0, .3, 1);
-    --animation-primary: all .5s cubic-bezier(.7, 0, .3, 1);
+    --animation-primary: .5s cubic-bezier(.7, 0, .3, 1);
     --animation-smooth: all .7s cubic-bezier(.7, 0, .3, 1);
     --animation-slow: all .9s cubic-bezier(.7, 0, .3, 1);
 }
@@ -45,6 +47,7 @@
     font-weight: 700;
     font-size: 40px;
     line-height: 52px;
+    text-transform: uppercase;
 }
 
 .h6 {
@@ -68,6 +71,13 @@ button {
     line-height: 29px;
     letter-spacing: 0.0125em;
     text-transform: uppercase;
+}
+
+span{
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    letter-spacing: 0.005em;
 }
 
 p {
@@ -95,17 +105,19 @@ p.big-m {
 u {
     text-decoration: none;
     color: var(--color-blue);
+    font-weight: bolder;
 }
 
 /* italic */
-i {
+em {
     font-style: normal;
     color: var(--color-red);
+    font-weight: bolder;
 }
 
 /* bold */
-b {
-    font-weight: inherit;
+strong {
+    font-weight: bolder;
     color: var(--color-yellow);
 }
 

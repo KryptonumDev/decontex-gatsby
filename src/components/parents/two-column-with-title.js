@@ -1,12 +1,13 @@
 import React from "react"
 import { StructuredText } from "react-datocms"
 import styled from "styled-components"
-import { ButtonBlack, Container } from "../../styles/style"
+import { Container } from "../../styles/style"
 
-export default function FeaturedWithButton({ data: { leftText, rightText, link } }) {
+export default function TwoColumnWithTitle({ data: { title, leftText, rightText } }) {
     return (
         <Wrapper>
             <Container>
+                <StructuredText data={title} />
                 <Content>
                     <div>
                         <StructuredText data={leftText} />
@@ -15,7 +16,6 @@ export default function FeaturedWithButton({ data: { leftText, rightText, link }
                         <StructuredText data={rightText} />
                     </div>
                 </Content>
-                <ButtonBlack to={link[0].slug}>{link[0].name}</ButtonBlack>
             </Container>
         </Wrapper>
     )
@@ -23,26 +23,27 @@ export default function FeaturedWithButton({ data: { leftText, rightText, link }
 
 const Wrapper = styled.div`
     margin-top: clamp(100px, 8.33vw, 160px);
-    padding-top: clamp(90px, 6.25vw, 120px);
-    padding-bottom: clamp(60px, 4.68vw, 90px);
-    background-color: var(--color-yellow);
 
-    a{
-        margin: 0 auto;
+    h1,h2,h3,h4,h5,h6{
+        text-align: center;
+        margin-bottom: 96px;
+        font-weight: 900;
+        font-size: 72px;
+        line-height: 82px;
+        text-align: center;
+        letter-spacing: -0.015em;
+        text-transform: uppercase;
     }
 `
 
 const Content = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
-    justify-content: space-between;
-    gap: 40px;
-    margin-bottom: 75px;
-    
+    grid-gap: 40px;
+
     p{
-        font-size: 39px;
-        font-weight: 700;
-        line-height: 52px;
-        color: #111315;
+        font-weight: 500;
+        font-size: 32px;
+        line-height: 42px;
     }
 `
