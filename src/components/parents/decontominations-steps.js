@@ -3,13 +3,11 @@ import React, { useState } from "react"
 import { StructuredText } from "react-datocms"
 import styled from "styled-components"
 import { Container } from "../../styles/style"
-import { useInView } from 'react-intersection-observer';
+import DecontominationStep from "../childrens/decontomination-step"
 
 export default function DecontominationSteps({ data: { bottomAnnotation, outfits, steps, subTitle, title } }) {
 
     const [activeImg, setActiveImg] = useState(1)
-
-    const { ref, inView, entry } = useInView()
 
     return (
         <Wrapper>
@@ -35,18 +33,8 @@ export default function DecontominationSteps({ data: { bottomAnnotation, outfits
                     </OutfitView>
                     <StepView>
                         <div className="track">
-                            {steps.map(el => (
-                                <div key={el.icon.url} className="item">
-                                    <img src={el.icon.url} alt={el.icon.alt} />
-                                    <div>
-                                        <div className="title">
-                                            <StructuredText data={el.title} />
-                                        </div>
-                                        <div className="text">
-                                            <StructuredText data={el.subTitle} />
-                                        </div>
-                                    </div>
-                                </div>
+                            {steps.map((el, index) => (
+                                <DecontominationStep activeImg={activeImg} setActiveImg={setActiveImg} el={el} index={index} />
                             ))}
                         </div>
                     </StepView>
