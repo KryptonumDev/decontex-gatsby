@@ -6,19 +6,27 @@ import { ButtonBlack, Container } from "../../styles/style"
 
 export default function FeaturedWithImg({ data: { backgroundImage, button, leftText } }) {
     return (
-        <Wrapper>
-            <LocContainer>
-                <Content>
-                    <div className="texts">
-                        <StructuredText data={leftText} />
-                    </div>
-                    <ButtonBlack to={button[0].slug}>{button[0].name}</ButtonBlack>
-                </Content>
-            </LocContainer>
-            <Image image={backgroundImage.gatsbyImageData} alt={backgroundImage.alt}/>
-        </Wrapper>
+        <OuterWrapper>
+            <Wrapper>
+                <LocContainer>
+                    <Content>
+                        <div className="texts">
+                            <StructuredText data={leftText} />
+                        </div>
+                        <ButtonBlack to={button[0].slug}>{button[0].name}</ButtonBlack>
+                    </Content>
+                </LocContainer>
+                <Image image={backgroundImage.gatsbyImageData} alt={backgroundImage.alt} />
+            </Wrapper>
+        </OuterWrapper>
     )
 }
+
+const OuterWrapper = styled.div`
+    max-width: 1920px;
+    margin: 0 auto;
+
+`
 
 const Wrapper = styled.div`
     margin-top: clamp(100px, 8.33vw, 160px);

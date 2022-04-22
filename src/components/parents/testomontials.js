@@ -60,6 +60,8 @@ export default function Testomontials({ data: { backgroundImage, countries, left
 }
 
 const Wrapper = styled.div`
+    max-width: 1920px;
+    margin: 0 auto;
     margin-top: clamp(100px, 8.33vw, 160px);
     padding-top: clamp(100px, 8.33vw, 160px);
     padding-bottom: clamp(100px, 8.33vw, 160px);

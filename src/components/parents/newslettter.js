@@ -18,6 +18,8 @@ export default function Newsletter({ data: { title, backgroundImage } }) {
 }
 
 const Wrapper = styled.div`
+    max-width: 1920px;
+    margin: 0 auto;
     margin-top: clamp(100px, 8.33vw, 160px);
     padding: 100px 0;
     background-color: var(--color-black);

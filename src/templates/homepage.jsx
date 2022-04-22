@@ -14,6 +14,7 @@ import Testomontials from "../components/parents/testomontials"
 import OneColumnGrid from "../components/parents/one-column-grid"
 import News from "../components/parents/news"
 import Blog from "../components/parents/blog"
+import DecontominationSteps from "../components/parents/decontominations-steps"
 
 const IndexPage = ({ data: { datoCmsHomepage } }) => {
   return (
@@ -28,11 +29,11 @@ const IndexPage = ({ data: { datoCmsHomepage } }) => {
       <HowItWork data={datoCmsHomepage.howLayersWorks[0]} />
       <Faq data={datoCmsHomepage.faq[0]} />
       <FeaturedWithImg data={datoCmsHomepage.featuredWithImg[0]} />
-      section steps
+      <DecontominationSteps data={datoCmsHomepage.decontominationSteps[0]} />
       <Testomontials data={datoCmsHomepage.testomontials[0]} />
       <OneColumnGrid data={datoCmsHomepage.oneColumnGrid[0]} />
-      <News />
-      <Blog />
+      <News data={datoCmsHomepage.news[0]} />
+      <Blog data={datoCmsHomepage.blog[0]} />
     </main>
   )
 }
@@ -40,8 +41,8 @@ const IndexPage = ({ data: { datoCmsHomepage } }) => {
 export default IndexPage
 
 export const query = graphql`
-  {
-    datoCmsHomepage {
+  query HomePageQuery($locale: String!){
+    datoCmsHomepage (locale: { eq: $locale }){
       hero {
         title {
           value
@@ -194,6 +195,39 @@ export const query = graphql`
           }
         }
       }
+      decontominationSteps {
+        title {
+          value
+        }
+        subTitle {
+          value
+        }
+        bottomAnnotation {
+          value
+        }
+        steps {
+          title {
+            value
+          }
+          subTitle {
+            value
+          }
+          outfitViewId
+          icon {
+            alt
+            url
+          }
+        }
+        outfits {
+          viewName {
+            value
+          }
+          img {
+            alt
+            gatsbyImageData
+          }
+        }
+      }
       testomontials {
         backgroundImage{
           alt
@@ -242,6 +276,30 @@ export const query = graphql`
         backgroundImage {
           alt
           gatsbyImageData
+        }
+      }
+      news {
+        title {
+          value
+        }
+        subTitle {
+          value
+        }
+        link {
+          slug
+          name
+        }
+      }
+      blog {
+        title {
+          value
+        }
+        subTitle {
+          value
+        }
+        link {
+          slug
+          name
         }
       }
     }

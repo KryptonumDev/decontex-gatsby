@@ -22,6 +22,8 @@ export default function FeaturedWithButton({ data: { leftText, rightText, link }
 }
 
 const Wrapper = styled.div`
+    max-width: 1920px;
+    margin: 0 auto;
     margin-top: clamp(100px, 8.33vw, 160px);
     padding-top: clamp(90px, 6.25vw, 120px);
     padding-bottom: clamp(60px, 4.68vw, 90px);

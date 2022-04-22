@@ -8,10 +8,10 @@
 
     --color-light-blue: #53A4DB;
 
-    --animation-fast: all .3s cubic-bezier(.7, 0, .3, 1);
+    --animation-fast:  .3s cubic-bezier(.7, 0, .3, 1);
     --animation-primary: .5s cubic-bezier(.7, 0, .3, 1);
-    --animation-smooth: all .7s cubic-bezier(.7, 0, .3, 1);
-    --animation-slow: all .9s cubic-bezier(.7, 0, .3, 1);
+    --animation-smooth:  .7s cubic-bezier(.7, 0, .3, 1);
+    --animation-slow:  .9s cubic-bezier(.7, 0, .3, 1);
 }
 
 .h1 {
@@ -128,6 +128,7 @@ strong {
     font-family: 'Inter', sans-serif;
     box-sizing: border-box;
     color: var(--color-black);
+    list-style: none;
 }
 
 html{
