@@ -1,19 +1,18 @@
 import React from "react"
-import { StructuredText } from "react-datocms"
 import styled from "styled-components"
 import { ButtonBlue, Container } from "../../styles/style"
 
-export default function News({ data: { title, subTitle, link } }) {
+export default function News({ data: { title, text, link } }) {
     return (
         <Wrapper>
             <Container>
-                <Title><StructuredText data={title} /></Title>
+                <Title dangerouslySetInnerHTML={{ __html: title }} />
                 <Content>
 
                 </Content>
                 <Link>
-                    <StructuredText data={subTitle} />
-                    <ButtonBlue to={link[0].slug}>{link[0].name}</ButtonBlue>
+                    <div dangerouslySetInnerHTML={{ __html: text }} />
+                    <ButtonBlue to={link.url.url}>{link.text}</ButtonBlue>
                 </Link>
             </Container>
         </Wrapper>

@@ -4,13 +4,19 @@ import styled from "styled-components"
 import { Container } from "../../styles/style"
 import NewsletterForm from "../childrens/forms/newsletter-form"
 
-export default function Newsletter({ data: { title, backgroundImage } }) {
+export default function Newsletter({ data: { title, firstNamePlaceholder, emailPlaceholdere, agreementText, buttonText, backgroundImage } }) {
     return (
         <Wrapper>
-            <Image image={backgroundImage.gatsbyImageData} alt={backgroundImage.alt}/>
+            <Image layout='constrained' image={backgroundImage.localFile.childImageSharp.gatsbyImageData} alt={backgroundImage.altText} />
             <Container>
                 <Content>
-                    <NewsletterForm title={title} />
+                    <NewsletterForm
+                        title={title}
+                        firstNamePlaceholder={firstNamePlaceholder}
+                        emailPlaceholdere={emailPlaceholdere}
+                        agreementText={agreementText}
+                        buttonText={buttonText}
+                    />
                 </Content>
             </Container>
         </Wrapper>

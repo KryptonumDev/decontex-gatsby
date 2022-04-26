@@ -1,6 +1,5 @@
 import { GatsbyImage } from "gatsby-plugin-image"
 import React, { useState } from "react"
-import { StructuredText } from "react-datocms"
 import styled from "styled-components"
 import { Container } from "../../styles/style"
 import DecontominationStep from "../childrens/decontomination-step"
@@ -8,26 +7,20 @@ import DecontominationStep from "../childrens/decontomination-step"
 export default function DecontominationSteps({ data: { bottomAnnotation, outfits, steps, subTitle, title } }) {
 
     const [activeImg, setActiveImg] = useState(1)
-
+    
     return (
         <Wrapper>
             <Container>
                 <Title>
-                    <div className="title">
-                        <StructuredText data={title} />
-                    </div>
-                    <div className="sub-title">
-                        <StructuredText data={subTitle} />
-                    </div>
+                    <div className="title" dangerouslySetInnerHTML={{ __html: title }} />
+                    <div className="sub-title" dangerouslySetInnerHTML={{ __html: subTitle }} />
                 </Title>
                 <Slider>
                     <OutfitView activeImg={activeImg}>
                         {outfits.map(el => (
-                            <div key={el.alt} className="item">
-                                <div className="text">
-                                    <StructuredText data={el.viewName} />
-                                </div>
-                                <OutfitImage image={el.img.gatsbyImageData} alt={el.alt} />
+                            <div key={el.altText} className="item">
+                                <div className="text" dangerouslySetInnerHTML={{ __html: el.viewName }} />
+                                <OutfitImage image={el.img.localFile.childImageSharp.gatsbyImageData} alt={el.altText} />
                             </div>
                         ))}
                     </OutfitView>
@@ -39,9 +32,7 @@ export default function DecontominationSteps({ data: { bottomAnnotation, outfits
                         </div>
                     </StepView>
                 </Slider>
-                <Annotation>
-                    <StructuredText data={bottomAnnotation} />
-                </Annotation>
+                <Annotation dangerouslySetInnerHTML={{ __html: bottomAnnotation }} />
             </Container>
         </Wrapper>
     )

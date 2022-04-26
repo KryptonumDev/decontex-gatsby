@@ -3,16 +3,15 @@ import styled from "styled-components"
 import { ButtonBlue } from "../../../styles/style"
 import { useForm } from "react-hook-form";
 import { Link } from "gatsby";
-import { StructuredText } from "react-datocms";
 
-export default function FooterForm({ data: { formTitle, switchVariant1, switchVariant2 } }) {
+export default function FooterForm({ data: { switchTitle, switchVariant1, switchVariant2, emailPlaceholder, firstNamePlaceholder, messagePlaceholder, phonePlaceholder, agreementText, submitText } }) {
 
     const { register, handleSubmit } = useForm()
     const onSubmit = data => console.log(data)
 
     return (
         <Wrapper onSubmit={handleSubmit(onSubmit)}>
-            <h3>{formTitle}</h3>
+            <div className="title" dangerouslySetInnerHTML={{ __html: switchTitle }} />
             <div className="flex">
                 <label className="radio">
                     <span>{switchVariant1}</span>
@@ -25,25 +24,25 @@ export default function FooterForm({ data: { formTitle, switchVariant1, switchVa
             </div>
             <label className="input">
                 <span>First name</span>
-                <input {...register("firstName")} placeholder='First name*' />
+                <input {...register("firstName")} placeholder={firstNamePlaceholder} />
             </label>
             <label className="input">
                 <span>Email Adress</span>
-                <input {...register("phone")} placeholder='Phone*' />
+                <input {...register("phone")} placeholder={phonePlaceholder} />
             </label>
             <label className="input">
                 <span>Email Adress</span>
-                <input {...register("email")} placeholder='Email Adress*' />
+                <input {...register("email")} placeholder={emailPlaceholder} />
             </label>
             <label className="text-area">
                 <span>Email Adress</span>
-                <textarea rows='6' {...register("email")} placeholder='Message*' />
+                <textarea rows='6' {...register("email")} placeholder={messagePlaceholder} />
             </label>
             <label className="checkbox">
                 <input type='checkbox' />
-                <span>I agree to the <Link to='#'>Privacy Policy</Link></span>
+                <span dangerouslySetInnerHTML={{ __html: agreementText }} />
             </label>
-            <ButtonBlue as='button' type="submit">Sign up</ButtonBlue>
+            <ButtonBlue as='button' type="submit">{submitText}</ButtonBlue>
         </Wrapper>
     )
 }
@@ -51,13 +50,15 @@ export default function FooterForm({ data: { formTitle, switchVariant1, switchVa
 const Wrapper = styled.form`
     width: 100%;
 
-    h1,h2,h3,h4,h5,h6,p{
-        color: var(--color-white);
-        font-weight: 700;
-        font-size: 40px;
-        line-height: 52px;
-        text-align: center;
-        
+    .title{
+        h1,h2,h3,h4,h5,h6,p{
+            color: var(--color-white);
+            font-weight: 700;
+            font-size: 40px;
+            line-height: 52px;
+            text-align: center;
+            text-transform: unset;
+        }
     }
 
     .flex{
@@ -140,13 +141,21 @@ const Wrapper = styled.form`
 
                 }
 
-                a{
-                    color: var(--color-light-blue);
-                    font-weight: inherit;
-                    font-size: inherit;
-                    line-height: inherit;
-                    letter-spacing: inherit;
-                    text-transform: inherit;
+                h1,h2,h3,h4,h5,h6,p{
+                    font-weight: 400;
+                    font-size: 20px;
+                    line-height: 30px;
+                    letter-spacing: 0.005em;
+                    color: var(--color-white);
+
+                    a{
+                        color: var(--color-light-blue);
+                        font-weight: inherit;
+                        font-size: inherit;
+                        line-height: inherit;
+                        letter-spacing: inherit;
+                        text-transform: inherit;
+                    }
                 }
             }
         }

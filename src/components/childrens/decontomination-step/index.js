@@ -1,5 +1,4 @@
 import React, { useEffect } from "react"
-import { StructuredText } from "react-datocms";
 import { useInView } from 'react-intersection-observer';
 
 export default function ({ el, index, setActiveImg, activeImg }) {
@@ -15,16 +14,12 @@ export default function ({ el, index, setActiveImg, activeImg }) {
     }, [inView])
 
     return (
-        <div ref={ref} key={el.icon.url} className="item">
-            <img src={el.icon.url} alt={el.icon.alt} />
+        <div ref={ref} key={el.icon.sourceUrl} className="item">
+            <img src={el.icon.sourceUrl} alt={el.icon.altText} />
             <div>
-                <div className="title">
-                    <StructuredText data={el.title} />
-                </div>
-                <div className="text">
-                    <StructuredText data={el.subTitle} />
-                    {inView}
-                </div>
+                <div className="title" dangerouslySetInnerHTML={{ __html: el.title }} />
+                <div className="text" dangerouslySetInnerHTML={{ __html: el.subTitle }} />
+                <div>{inView}</div>
             </div>
         </div>
     )

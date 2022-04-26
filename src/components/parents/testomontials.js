@@ -1,39 +1,29 @@
 import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
-import { StructuredText } from "react-datocms"
 import styled from "styled-components"
 import { Container } from "../../styles/style"
 
-export default function Testomontials({ data: { backgroundImage, countries, leftText, persons, rightText, subTitle, title } }) {
+export default function Testomontials({ data: { helmetImg, countries, leftText, persons, rightText, subTitle, title } }) {
     return (
         <Wrapper>
             <Container>
-                <Helmet image={backgroundImage.gatsbyImageData} alt={backgroundImage.alt} />
+                {helmetImg
+                    ? <Helmet image={helmetImg.localFile.childImageSharp.gatsbyImageData} alt={helmetImg.altText} />
+                    : null
+                }
                 <Content>
-                    <div className="title">
-                        <StructuredText data={title} />
-                    </div>
+                    <div className="title" dangerouslySetInnerHTML={{ __html: title }} />
                     <div className="grid">
-                        <div>
-                            <StructuredText data={leftText} />
-                        </div>
-                        <div>
-                            <StructuredText data={rightText} />
-                        </div>
+                        <div className="text" dangerouslySetInnerHTML={{ __html: leftText }} />
+                        <div className="text" dangerouslySetInnerHTML={{ __html: rightText }} />
                     </div>
-                    <div className="sub-title">
-                        <StructuredText data={subTitle} />
-                    </div>
+                    <div className="sub-title" dangerouslySetInnerHTML={{ __html: subTitle }} />
                     <Grid>
                         <Countries>
                             {countries.map(el => (
                                 <div>
-                                    <div className="countries-title">
-                                        <StructuredText data={el.title} />
-                                    </div>
-                                    <div className="countries-sub-title">
-                                        <StructuredText data={el.subTitle} />
-                                    </div>
+                                    <div className="countries-title" dangerouslySetInnerHTML={{ __html: el.title }} />
+                                    <div className="countries-sub-title" dangerouslySetInnerHTML={{ __html: el.text }} />
                                 </div>
                             ))}
                         </Countries>
@@ -41,14 +31,10 @@ export default function Testomontials({ data: { backgroundImage, countries, left
                             {persons.map(el => (
                                 <div>
                                     <div className="flex">
-                                        <Image image={el.img.gatsbyImageData} alt={el.img.alt} />
-                                        <div className='person-title'>
-                                            <StructuredText data={el.title} />
-                                        </div>
+                                        <Image image={el.img.localFile.childImageSharp.gatsbyImageData} alt={el.img.altText} />
+                                        <div className='person-title' dangerouslySetInnerHTML={{ __html: el.title }} />
                                     </div>
-                                    <div className='person-sub-title'>
-                                        <StructuredText data={el.subTitle} />
-                                    </div>
+                                    <div className='person-sub-title' dangerouslySetInnerHTML={{ __html: el.text }} />
                                 </div>
                             ))}
                         </Persons>

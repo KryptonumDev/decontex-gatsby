@@ -1,24 +1,19 @@
 import React from "react"
-import { StructuredText } from "react-datocms"
 import styled from "styled-components"
 import { Container } from "../../styles/style"
 import FooterForm from "../childrens/forms/footer-form"
 
-export default function Contact({ data: {title, otherInformation, formTitle, switchVariant1, switchVariant2} }) {
+export default function Contact({ data: { title, text, form } }) {
     return (
         <Wrapper>
             <Container>
                 <Content>
                     <div>
-                        <div className="title">
-                            <StructuredText data={title}/>
-                        </div>
-                        <div className="other">
-                            <StructuredText data={otherInformation}/>
-                        </div>
+                        <div className="title" dangerouslySetInnerHTML={{ __html: title }}/>
+                        <div className="other" dangerouslySetInnerHTML={{ __html: text }}/>
                     </div>
                     <div className="form">
-                        <FooterForm data={{formTitle, switchVariant1, switchVariant2}}/>
+                        <FooterForm data={form} />
                     </div>
                 </Content>
             </Container>

@@ -1,33 +1,24 @@
+import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
-import { StructuredText } from "react-datocms"
 import styled from "styled-components"
 import { Container } from '../../styles/style'
 
-export default function FeaturesWithIcons({ data: { title, rightText, leftText, benefits } }) {
+export default function FeaturesWithIcons({ data: { title, rightText, leftText, icons } }) {
     return (
         <Wrapper>
             <Container>
                 <Content>
-                    <StructuredText data={title} />
+                    <div className='title' dangerouslySetInnerHTML={{ __html: title }} />
                     <Flex>
-                        <span>
-                            <StructuredText data={leftText} />
-                        </span>
-                        <span>
-                            <StructuredText data={rightText} />
-                        </span>
+                        <div dangerouslySetInnerHTML={{ __html: rightText }} />
+                        <div dangerouslySetInnerHTML={{ __html: leftText }} />
                     </Flex>
                     <Icons>
-                        {benefits.map(el => (
+                        {icons.map(el => (
                             <div>
-                                {/* <GatsbyImage image={el.icon.gatsbyImageData} /> */}
-                                <img src={el.icon.url} alt={el.icon.alt} />
-                                <p className="big-m">
-                                    {el.name}
-                                </p>
-                                <p>
-                                    {el.text}
-                                </p>
+                                <img src={el.icon.sourceUrl} alt={el.icon.altText} />
+                                <div className="big" dangerouslySetInnerHTML={{ __html: el.name }} />
+                                <div className="small" dangerouslySetInnerHTML={{ __html: el.text }} />
                             </div>
                         ))}
                     </Icons>
@@ -42,17 +33,18 @@ const Wrapper = styled.div`
 `
 
 const Content = styled.div`
-    h2{
-        max-width: 870px;
-        margin: 0 auto 100px auto;
-        font-weight: 800;
-        font-size: 72px;
-        line-height: 82px;
-        letter-spacing: -0.015em;
-        text-transform: uppercase;
-        text-align: center;
+    .title{
+        h1,h2,h3,h4,h5,h6,p{
+            max-width: 870px;
+            margin: 0 auto 100px auto;
+            font-weight: 800;
+            font-size: 72px;
+            line-height: 82px;
+            letter-spacing: -0.015em;
+            text-transform: uppercase;
+            text-align: center;
+        }
     }
-
 `
 
 const Flex = styled.div`
@@ -61,7 +53,7 @@ const Flex = styled.div`
     grid-gap: 40px;
     margin-bottom: clamp(100px, 8.33vw, 160px);
 
-    p{
+    h1,h2,h3,h4,h5,h6,p{
         font-weight: 500;
         font-size: 32px;
         line-height: 42px;
@@ -86,8 +78,24 @@ const Icons = styled.div`
             margin-bottom: 32px;
         }
 
-        p + p{
+        .big{
+            h1,h2,h3,h4,h5,h6,p{
+                font-weight: 700;
+                font-size: 32px;
+                line-height: 42px;
+                text-align: center;
+            }
+        }
+
+        .small{
             margin-top: 12px;
+            h1,h2,h3,h4,h5,h6,p{
+                font-weight: 400;
+                font-size: 20px;
+                line-height: 30px;
+                text-align: center;
+                letter-spacing: 0.005em;
+            }
         }
     }
 `

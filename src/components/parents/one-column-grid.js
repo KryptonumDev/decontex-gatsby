@@ -1,21 +1,16 @@
 import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
-import { StructuredText } from "react-datocms"
 import styled from "styled-components"
 import { Container } from "../../styles/style"
 
-export default function OneColumnGrid({ data: { backgroundImage, title, subTitle } }) {
+export default function OneColumnGrid({ data: { img, title, text } }) {
     return (
         <Wrapper>
             <Container>
                 <Content>
-                    <div className="title">
-                        <StructuredText data={title}/>
-                    </div>
-                    <div className="subTitle">
-                        <StructuredText data={subTitle}/>
-                    </div>
-                    <Image image={backgroundImage.gatsbyImageData} alt={backgroundImage.alt} />
+                    <div className="title" dangerouslySetInnerHTML={{ __html: title }} />
+                    <div className="subTitle" dangerouslySetInnerHTML={{ __html: text }} />
+                    <Image image={img.localFile.childImageSharp.gatsbyImageData} alt={img.altText} />
                 </Content>
             </Container>
         </Wrapper>

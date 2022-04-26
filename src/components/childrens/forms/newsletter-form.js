@@ -3,42 +3,43 @@ import styled from "styled-components"
 import { ButtonBlue } from "../../../styles/style"
 import { useForm } from "react-hook-form";
 import { Link } from "gatsby";
-import { StructuredText } from "react-datocms";
 
-export default function NewsletterForm({ title }) {
+export default function NewsletterForm({ title, firstNamePlaceholder, emailPlaceholdere, agreementText, buttonText }) {
 
     const { register, handleSubmit } = useForm()
     const onSubmit = data => console.log(data)
 
     return (
         <Wrapper onSubmit={handleSubmit(onSubmit)}>
-            <StructuredText data={title}/>
+            <div className="title" dangerouslySetInnerHTML={{ __html: title }} />
             <label className="input">
                 <span>First name</span>
-                <input {...register("firstName")} placeholder='First name' />
+                <input {...register("firstName")} placeholder={firstNamePlaceholder} />
             </label>
             <label className="input">
                 <span>Email Adress</span>
-                <input {...register("email")} placeholder='Email Adress' />
+                <input {...register("email")} placeholder={emailPlaceholdere} />
             </label>
             <label className="checkbox">
                 <input type='checkbox' />
-                <span>I agree to the <Link to='#'>Privacy Policy</Link></span>
+                <span dangerouslySetInnerHTML={{ __html: agreementText }} />
             </label>
-            <ButtonBlue as='button' type="submit">Sign up</ButtonBlue>
+            <ButtonBlue as='button' type="submit">{buttonText}</ButtonBlue>
         </Wrapper>
     )
 }
 
 const Wrapper = styled.form`
 
-    h1,h2,h3,h4,h5,h6,p{
-        color: var(--color-white);
-        margin-bottom: 40px;
-        font-weight: 700;
-        font-size: 40px;
-        line-height: 52px;
-        text-transform: uppercase;
+    .title{    
+        h1,h2,h3,h4,h5,h6,p{
+            color: var(--color-white);
+            margin-bottom: 40px;
+            font-weight: 700;
+            font-size: 40px;
+            line-height: 52px;
+            text-transform: uppercase;
+        }
     }
 
     label{
@@ -105,12 +106,15 @@ const Wrapper = styled.form`
             }
 
             span{
-                color: var(--color-white);
                 margin-left: 12px;
                 position: relative;
 
                 &::before{
 
+                }
+
+                p{
+                    color: var(--color-white);
                 }
 
                 a{

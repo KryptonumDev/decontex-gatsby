@@ -1,6 +1,5 @@
 import { GatsbyImage } from "gatsby-plugin-image"
 import React, { useEffect } from "react"
-import { StructuredText } from "react-datocms"
 import styled from "styled-components"
 import { Container } from "../../styles/style"
 
@@ -21,32 +20,24 @@ export default function HowItWork({ data: { title, subTitle, backgroundImage, la
             <Container>
                 <Content>
                     <div>
-                        <div className="main-title">
-                            <StructuredText data={title} />
-                        </div>
-                        <div className="sub-title">
-                            <StructuredText data={subTitle} />
-                        </div>
+                        <div className="main-title" dangerouslySetInnerHTML={{ __html: title }} />
+                        <div className="sub-title" dangerouslySetInnerHTML={{ __html: subTitle }} />
                         <LayersButtons>
                             {layers.map((el, index) => (
-                                <button className={'tabs tabs-' + index} id={el.name.replace(/\s+/g, '-') + '-tab'} onClick={() => { changeCurrentTab(el.name.replace(/\s+/g, '-')) }}><div><img src={el.icon.url} alt={el.icon.alt} /></div>{el.name}</button>
+                                <button className={'tabs tabs-' + index} id={el.name.replace(/\s+/g, '-') + '-tab'} onClick={() => { changeCurrentTab(el.name.replace(/\s+/g, '-')) }}><div><img src={el.icon.sourceUrl} alt={el.icon.altText} /></div>{el.name}</button>
                             ))}
                         </LayersButtons>
                         <LayersContent>
                             {layers.map((el, index) => (
                                 <div className={'tabs tabs-' + index} id={el.name.replace(/\s+/g, '-')}>
-                                    <div className="main-title">
-                                        <StructuredText data={el.layerTitle} />
-                                    </div>
-                                    <div className="sub-title">
-                                        <StructuredText data={el.layerText} />
-                                    </div>
+                                    <div className="main-title" dangerouslySetInnerHTML={{ __html: el.title }} />
+                                    <div className="sub-title" dangerouslySetInnerHTML={{ __html: el.text }} />
                                 </div>
                             ))}
                         </LayersContent>
                     </div>
                     <div>
-                        <GatsbyImage image={backgroundImage.gatsbyImageData} alt={backgroundImage.alt} />
+                        <GatsbyImage image={backgroundImage.localFile.childImageSharp.gatsbyImageData} alt={backgroundImage.altText} />
                     </div>
                 </Content>
             </Container>

@@ -1,8 +1,11 @@
 import React from "react"
 import styled from "styled-components"
 import { ButtonOutlined, Container } from "../../styles/style"
+import { graphql, useStaticQuery } from "gatsby"
 
 export default function Header() {
+
+
     return (
         <Wrapper>
             <Container>

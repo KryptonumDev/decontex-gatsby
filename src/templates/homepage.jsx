@@ -16,24 +16,25 @@ import News from "../components/parents/news"
 import Blog from "../components/parents/blog"
 import DecontominationSteps from "../components/parents/decontominations-steps"
 
-const IndexPage = ({ data: { datoCmsHomepage } }) => {
+const IndexPage = ({ data: { allWpPage } }) => {
+  let { homepage } = allWpPage.nodes[0]
   return (
     <main>
-      <Hero data={datoCmsHomepage.hero[0]} />
-      <FeaturesWithIcons data={datoCmsHomepage.featuresWithIcons[0]} />
-      <FeaturedWithButton data={datoCmsHomepage.featuredWithButton[0]} />
-      <DecontominationBenefits data={datoCmsHomepage.decontominationAdvantages[0]} />
-      <Newsletter data={datoCmsHomepage.newsletter[0]} />
-      <TwoColumnGrid data={datoCmsHomepage.twoColumnGrid[0]} />
-      <TwoColumnWithTitle data={datoCmsHomepage.twoColumnWithTitle[0]} />
-      <HowItWork data={datoCmsHomepage.howLayersWorks[0]} />
-      <Faq data={datoCmsHomepage.faq[0]} />
-      <FeaturedWithImg data={datoCmsHomepage.featuredWithImg[0]} />
-      <DecontominationSteps data={datoCmsHomepage.decontominationSteps[0]} />
-      <Testomontials data={datoCmsHomepage.testomontials[0]} />
-      <OneColumnGrid data={datoCmsHomepage.oneColumnGrid[0]} />
-      <News data={datoCmsHomepage.news[0]} />
-      <Blog data={datoCmsHomepage.blog[0]} />
+      <Hero data={homepage.hero} />
+      <FeaturesWithIcons data={homepage.featuredWithIcon} />
+      <FeaturedWithButton data={homepage.featuredWithButton} />
+      <DecontominationBenefits data={homepage.decontominationAdvantages} />
+      <Newsletter data={homepage.newsletter} />
+      <TwoColumnGrid data={homepage.twoColumnGrid} />
+      <TwoColumnWithTitle data={homepage.twoColumnWithTitle} />
+      <HowItWork data={homepage.howItWorks} />
+      <Faq data={homepage.faq} />
+      <FeaturedWithImg data={homepage.featuredWithImg} />
+      <DecontominationSteps data={homepage.decontominationSteps} />
+      <Testomontials data={homepage.testomontials} />
+      <OneColumnGrid data={homepage.oneColumnGrid} />
+      <News data={homepage.news} />
+      <Blog data={homepage.blog} />
     </main>
   )
 }
@@ -41,265 +42,240 @@ const IndexPage = ({ data: { datoCmsHomepage } }) => {
 export default IndexPage
 
 export const query = graphql`
-  query HomePageQuery($locale: String!){
-    datoCmsHomepage (locale: { eq: $locale }){
-      hero {
-        title {
-          value
-        }
-        subTitle {
-          value
-        }
-        backgroundImage {
-          alt
-          gatsbyImageData
-        }
-        links {
-          slug
-          name
-        }
-      }
-      featuresWithIcons {
-        title {
-          value
-        }
-        rightText {
-          value
-        }
-        leftText {
-          value
-        }
-        benefits {
-          text
-          name
-          icon {
-            alt
-            url
-          }
-        }
-      }
-      featuredWithButton {
-        rightText {
-          value
-        }
-        leftText {
-          value
-        }
-        link {
-          slug
-          name
-        }
-      }
-      decontominationAdvantages {
-        table {
-          row {
-            ... on DatoCmsElementTableBoolCell {
-              __typename
-              isIncluded
+  query HomePageQuery($id: String!){
+    allWpPage(filter: {id: {eq: $id}}) {
+      nodes {
+        homepage {
+          hero {
+            title
+            subTitle
+            link {
+              text
+              link {
+                url
+              }
             }
-            ... on DatoCmsElementTableNamedCell {
-              __typename
+            backgroundImage {
+              altText
+              localFile {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
+            }
+          }
+          featuredWithIcon {
+            title
+            rightText
+            leftText
+            icons {
+              text
               name
+              icon {
+                sourceUrl
+                altText
+              }
             }
           }
-        }
-        link {
-          slug
-          name
-        }
-      }
-      newsletter{
-        title{
-          value
-        }
-        backgroundImage{
-          alt
-          gatsbyImageData
-        }
-      }
-      twoColumnGrid {
-        title {
-          value
-        }
-        subTitle {
-          value
-        }
-        backgroundImage {
-          alt
-          gatsbyImageData
-        }
-      }
-      twoColumnWithTitle {
-        title {
-          value
-        }
-        rightText {
-          value
-        }
-        leftText {
-          value
-        }
-      }
-      howLayersWorks {
-        title {
-          value
-        }
-        subTitle {
-          value
-        }
-        backgroundImage{
-          alt
-          gatsbyImageData
-        }
-        layers {
-          name
-          icon{
-            alt
-            url
+          featuredWithButton {
+            leftText
+            rightText
+            link {
+              text
+              url {
+                url
+              }
+            }
           }
-          layerTitle {
-            value
+          decontominationAdvantages {
+            table {
+              row {
+                cell {
+                  name
+                  isincluded
+                  textOrSymbol
+                }
+              }
+            }
+            link {
+              url {
+                url
+              }
+              text
+            }
           }
-          layerText {
-            value
+          newsletter {
+            title
+            firstNamePlaceholder
+            emailPlaceholdere
+            agreementText
+            buttonText
+            backgroundImage {
+              altText
+              localFile {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
+            }
           }
-        }
-      }
-      featuredWithImg {
-        backgroundImage {
-          alt
-          gatsbyImageData
-        }
-        button {
-          slug
-          name
-        }
-        leftText {
-          value
-        }
-      }
-      faq {
-        backgroundImage {
-          alt
-          gatsbyImageData
-        }
-        bottomAnnotation {
-          value
-        }
-        faq {
-          answer {
-            value
+          twoColumnGrid {
+            title
+            text
+            backgroundImage {
+              altText
+              localFile {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
+            }
           }
-          question {
-            value
+          twoColumnWithTitle {
+            title
+            rightText
+            leftText
           }
-        }
-      }
-      decontominationSteps {
-        title {
-          value
-        }
-        subTitle {
-          value
-        }
-        bottomAnnotation {
-          value
-        }
-        steps {
-          title {
-            value
+          howItWorks {
+            title
+            subTitle
+            layers {
+              title
+              text
+              name
+              icon {
+                altText
+                sourceUrl
+              }
+            }
+            backgroundImage {
+              altText
+              localFile {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
+            }
           }
-          subTitle {
-            value
+          faq {
+            faq {
+              answer
+              question
+            }
+            bottomAnnotation
+            backgroundImage {
+              altText
+              localFile {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
+            }
           }
-          outfitViewId
-          icon {
-            alt
-            url
+          featuredWithImg {
+            text
+            link {
+              text
+              url {
+                url
+              }
+            }
+            backgroundImage {
+              altText
+              localFile {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
+            }
           }
-        }
-        outfits {
-          viewName {
-            value
+          decontominationSteps {
+            title
+            subTitle
+            bottomAnnotation
+            steps {
+              title
+              subTitle
+              outfitViewId
+              icon {
+                altText
+                sourceUrl
+              }
+            }
+            outfits {
+              viewName
+              img {
+                altText
+                localFile {
+                  childImageSharp {
+                    gatsbyImageData
+                  }
+                }
+              }
+            }
           }
-          img {
-            alt
-            gatsbyImageData
+          testomontials {
+            title
+            leftText
+            rightText
+            subTitle
+            countries {
+              title
+              text
+            }
+            persons {
+              title
+              text
+              img {
+                altText
+                localFile {
+                  childImageSharp {
+                    gatsbyImageData
+                  }
+                }
+              }
+            }
+            helmetImg {
+              altText
+              localFile {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
+            }
           }
-        }
-      }
-      testomontials {
-        backgroundImage{
-          alt
-          gatsbyImageData
-        }
-        title {
-          value
-        }
-        subTitle {
-          value
-        }
-        rightText {
-          value
-        }
-        leftText {
-          value
-        }
-        countries {
-          title {
-            value
+          oneColumnGrid {
+            title
+            text
+            img {
+              altText
+              localFile {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
+            }
           }
-          subTitle {
-            value
+          news {
+            title
+            text
+            link {
+              text
+              url {
+                url
+              }
+            }
           }
-        }
-        persons {
-          title {
-            value
+          blog {
+            title
+            text
+            link {
+              text
+              url {
+                url
+              }
+            }
           }
-          subTitle {
-            value
-          }
-          img {
-            alt
-            gatsbyImageData
-          }
-        }
-      }
-      oneColumnGrid {
-        title {
-          value
-        }
-        subTitle {
-          value
-        }
-        backgroundImage {
-          alt
-          gatsbyImageData
-        }
-      }
-      news {
-        title {
-          value
-        }
-        subTitle {
-          value
-        }
-        link {
-          slug
-          name
-        }
-      }
-      blog {
-        title {
-          value
-        }
-        subTitle {
-          value
-        }
-        link {
-          slug
-          name
         }
       }
     }

@@ -1,5 +1,4 @@
 import React from "react"
-import { StructuredText } from "react-datocms"
 import styled from "styled-components"
 import { ButtonBlack, Container } from "../../styles/style"
 
@@ -8,14 +7,10 @@ export default function FeaturedWithButton({ data: { leftText, rightText, link }
         <Wrapper>
             <Container>
                 <Content>
-                    <div>
-                        <StructuredText data={leftText} />
-                    </div>
-                    <div>
-                        <StructuredText data={rightText} />
-                    </div>
+                    <div dangerouslySetInnerHTML={{ __html: leftText }} />
+                    <div dangerouslySetInnerHTML={{ __html: rightText }} />
                 </Content>
-                <ButtonBlack to={link[0].slug}>{link[0].name}</ButtonBlack>
+                <ButtonBlack to={link.url.url}>{link.text}</ButtonBlack>
             </Container>
         </Wrapper>
     )
@@ -41,7 +36,7 @@ const Content = styled.div`
     gap: 40px;
     margin-bottom: 75px;
     
-    p{
+    h1,h2,h3,h4,h5,h6,p{
         font-size: 39px;
         font-weight: 700;
         line-height: 52px;

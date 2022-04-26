@@ -1,6 +1,5 @@
 import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
-import { StructuredText } from "react-datocms"
 import styled from "styled-components"
 import { Container } from "../../styles/style"
 import { Answer, Question, QuestionWrapper } from "../childrens/faq"
@@ -14,20 +13,18 @@ export default function Faq({ data: { bottomAnnotation, faq, backgroundImage } }
                     <div className="faq">
                         {faq.map(el => (
                             <QuestionWrapper>
-                                <Question>
-                                    <StructuredText data={el.question} />
+                                <Question >
+                                    <div dangerouslySetInnerHTML={{ __html: el.question }} />
                                 </Question>
                                 <Answer>
-                                    <StructuredText data={el.answer} />
+                                    <div dangerouslySetInnerHTML={{ __html: el.answer }} />
                                 </Answer>
                             </QuestionWrapper>
                         ))}
-                        <Annotation>
-                            <StructuredText data={bottomAnnotation} />
-                        </Annotation>
+                        <Annotation dangerouslySetInnerHTML={{ __html: bottomAnnotation }} />
                     </div>
                     <div>
-                        <Image image={backgroundImage.gatsbyImageData} alt={backgroundImage.alt} />
+                        <Image image={backgroundImage.localFile.childImageSharp.gatsbyImageData} alt={backgroundImage.altText} />
                     </div>
                 </Content>
             </Container>

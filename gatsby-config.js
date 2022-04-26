@@ -10,9 +10,9 @@ module.exports = {
   plugins: [
     "gatsby-plugin-postcss",
     {
-      resolve: "gatsby-source-datocms",
+      resolve: "gatsby-source-wordpress",
       options: {
-        apiToken: process.env.DATO_API_TOKEN
+        url: 'http://decontex.adamchrapek.pl/graphql'
       },
     },
     {

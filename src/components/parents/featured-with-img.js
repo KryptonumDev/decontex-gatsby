@@ -1,22 +1,19 @@
 import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
-import { StructuredText } from "react-datocms"
 import styled from "styled-components"
 import { ButtonBlack, Container } from "../../styles/style"
 
-export default function FeaturedWithImg({ data: { backgroundImage, button, leftText } }) {
+export default function FeaturedWithImg({ data: { backgroundImage, link, text } }) {
     return (
         <OuterWrapper>
             <Wrapper>
                 <LocContainer>
                     <Content>
-                        <div className="texts">
-                            <StructuredText data={leftText} />
-                        </div>
-                        <ButtonBlack to={button[0].slug}>{button[0].name}</ButtonBlack>
+                        <div className="texts" dangerouslySetInnerHTML={{ __html: text }} />
+                        <ButtonBlack to={link.url.url}>{link.text}</ButtonBlack>
                     </Content>
                 </LocContainer>
-                <Image image={backgroundImage.gatsbyImageData} alt={backgroundImage.alt} />
+                <Image image={backgroundImage.localFile.childImageSharp.gatsbyImageData} alt={backgroundImage.altText} />
             </Wrapper>
         </OuterWrapper>
     )
@@ -62,7 +59,7 @@ const Content = styled.div`
             font-size: 40px;
             line-height: 52px;
 
-            del{
+            small{
                 font-weight: 500;
                 font-size: 32px;
                 line-height: 42px;

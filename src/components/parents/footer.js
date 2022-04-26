@@ -1,28 +1,102 @@
 import { Link } from "gatsby"
 import React from "react"
-import { StructuredText } from "react-datocms"
 import styled from "styled-components"
 import { Container } from "../../styles/style"
 import Contact from "./contact-footer"
+import { graphql, useStaticQuery } from "gatsby"
+import { activeLanguage } from "../../helpers/activeLanguage"
+import { GatsbyImage } from "gatsby-plugin-image"
 
-export default function Footer({ data }) {
+export default function Footer({ location }) {
 
-    const { copyright, logo, otherInformation, mainLinks, smallLinks, socialLinks } = data.footer[0]
+    const data = useStaticQuery(graphql`
+        query{
+            allWpPage(filter: {template: {templateName: {eq: "Footer"}}}) {
+              nodes {
+                footer {
+                    contact {
+                      title
+                      text
+                      form {
+                        switchTitle
+                        switchVariant1
+                        switchVariant2
+                        firstNamePlaceholder
+                        emailPlaceholder
+                        phonePlaceholder
+                        messagePlaceholder
+                        agreementText
+                        submitText
+                      }
+                    }
+                    footer {
+                      contactInformation
+                      copyright
+                      mainLinks {
+                        linkName
+                        url {
+                          url
+                        }
+                      }
+                      smallLinks {
+                        linkName
+                        url {
+                          url
+                        }
+                      }
+                      socialLinks {
+                        link
+                        ariaLabel
+                        icon {
+                          altText
+                          sourceUrl
+                          localFile {
+                            childImageSharp {
+                              gatsbyImageData
+                            }
+                          }
+                        }
+                      }
+                      logo {
+                        altText
+                        sourceUrl
+                        localFile {
+                          childImageSharp {
+                            gatsbyImageData
+                          }
+                        }
+                      }
+                    }
+                }
+                language {
+                  slug
+                }
+              }
+            }
+        }
+    `)
 
+    const locale = activeLanguage(location)
+    const localeDate = data.allWpPage.nodes.filter(el => el.language.slug === locale)
+    const { contact, footer: { contactInformation, copyright, mainLinks, smallLinks, socialLinks, logo } } = localeDate[0].footer
+        debugger
     return (
         <Wrapper>
-            <Contact data={data.contact[0]} />
+            <Contact data={contact} />
             <MainContent>
                 <Container>
                     <FirstFlex>
                         <div>
-                            <img src={logo.url} alt={logo.alt} />
-                            <StructuredText data={otherInformation} />
+                            {logo.localFile.childImageSharp?.gatsbyImageData
+                                ? <GatsbyImage image={logo.localFile.childImageSharp.gatsbyImageData} alt={logo.altText} />
+                                : <img src={logo.sourceUrl} alt={logo.altText} />
+                            }
+                            <div dangerouslySetInnerHTML={{ __html: contactInformation }} />
                         </div>
                         <ul className="grid">
                             {mainLinks.map((el, index) => (
-                                <li key={el.name}>
-                                    <Link to={el.slug}>{el.name}</Link>
+                                <li key={el.linkName}>
+                                    <Link to={el.url.url}>{el.linkName}</Link>
                                 </li>
                             ))}
                         </ul>
@@ -31,22 +105,25 @@ export default function Footer({ data }) {
                         <ul className="social">
                             {socialLinks.map((el) => (
                                 <li key={el.ariaLabel}>
-                                    <Link aria-label={el.ariaLabel} to={el.slug}><img src={el.icon.url} alt={el.icon.alt} /></Link>
+                                    <Link aria-label={el.ariaLabel} to={el.link}>
+                                        {el.icon.localFile.childImageSharp?.gatsbyImageData
+                                            ? <GatsbyImage image={el.icon.localFile.childImageSharp.gatsbyImageData} alt={el.icon.altText} />
+                                            : <img src={el.icon.sourceUrl} alt={el.icon.altText} />
+                                        }
+                                    </Link>
                                 </li>
                             ))}
                         </ul>
                         <ul className="small">
                             {smallLinks.map((el, index) => (
-                                <li key={el.name}>
-                                    <Link to={el.slug}>{el.name}</Link>
+                                <li key={el.linkName}>
+                                    <Link to={el.url.url}>{el.linkName}</Link>
                                 </li>
                             ))}
                         </ul>
                     </SecondFlex>
                     <ThirdFlex>
-                        <div className="copyright">
-                            <StructuredText data={copyright}/>
-                        </div>
+                        <div className="copyright" dangerouslySetInnerHTML={{ __html: copyright }} />
                     </ThirdFlex>
                 </Container>
             </MainContent>

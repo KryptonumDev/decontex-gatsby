@@ -3,28 +3,24 @@ import styled from "styled-components"
 import { ButtonBlue, Container } from "../../styles/style"
 
 export default function DecontominationBenefits({ data: { table, link } }) {
-
-    // "DatoCmsElementTableNamedCell"
-    // "DatoCmsElementTableBoolCell"
-
     return (
         <Wrapper>
             <Container>
                 <Table>
-                    {table.map(el => (
+                    {table.row.map(el => (
                         <Row>
-                            {el.row.map(innerEl => (
+                            {el.cell.map(innerEl => (
                                 <Cell>
-                                    {innerEl.__typename === 'DatoCmsElementTableNamedCell'
+                                    {innerEl.textOrSymbol === 'text'
                                         ? <span>{innerEl.name}</span>
-                                        : <span className="check">{innerEl.isIncluded ? '✓' : ''}</span>
+                                        : <span className="check">{innerEl.isincluded ? '✓' : ''}</span>
                                     }
                                 </Cell>
                             ))}
                         </Row>
                     ))}
                 </Table>
-                <Button to={link[0].slug}>{link[0].name}</Button>
+                <Button to={link.url.url}>{link.text}</Button>
             </Container >
         </Wrapper >
     )
