@@ -11,7 +11,7 @@ export default function FooterForm({ data: { switchTitle, switchVariant1, switch
 
     return (
         <Wrapper onSubmit={handleSubmit(onSubmit)}>
-            <div className="title" dangerouslySetInnerHTML={{ __html: switchTitle }} />
+            <div className="form-title" dangerouslySetInnerHTML={{ __html: switchTitle }} />
             <div className="flex">
                 <label className="radio">
                     <span>{switchVariant1}</span>
@@ -50,7 +50,7 @@ export default function FooterForm({ data: { switchTitle, switchVariant1, switch
 const Wrapper = styled.form`
     width: 100%;
 
-    .title{
+    .form-title{
         h1,h2,h3,h4,h5,h6,p{
             color: var(--color-white);
             font-weight: 700;

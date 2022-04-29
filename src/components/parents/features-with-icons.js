@@ -39,7 +39,7 @@ const Content = styled.div`
             margin: 0 auto 100px auto;
             font-weight: 800;
             font-size: 72px;
-            line-height: 82px;
+            line-height: 130%;
             letter-spacing: -0.015em;
             text-transform: uppercase;
             text-align: center;

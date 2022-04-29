@@ -5,8 +5,16 @@ export const Container = styled.div`
     width: 100%;
     max-width: 1920px;
     margin: 0 auto;
-    padding: 0 clamp(120px, 12.5vw, 240px);
+    padding: 0 clamp(40px, 12.5vw, 240px);
     position: relative;
+
+    @media(max-width: 1440px){
+        padding: 0 40px;
+    }
+    
+    @media (max-width: 480px) {
+        padding: 0 16px;
+    }
 `
 
 export const ButtonBlue = styled(Link)`

@@ -3,7 +3,7 @@ import React, { useEffect } from "react"
 import styled from "styled-components"
 import { Container } from "../../styles/style"
 
-export default function HowItWork({ data: { title, subTitle, backgroundImage, layers } }) {
+export default function HowItWork({ data: { title, subTitle, layersTitle, desctopImage, mobileImage, layers } }) {
 
     const changeCurrentTab = (tabName) => {
         document.querySelectorAll('.tabs').forEach(el => el.classList.remove('active'))
@@ -22,22 +22,26 @@ export default function HowItWork({ data: { title, subTitle, backgroundImage, la
                     <div>
                         <div className="main-title" dangerouslySetInnerHTML={{ __html: title }} />
                         <div className="sub-title" dangerouslySetInnerHTML={{ __html: subTitle }} />
-                        <LayersButtons>
-                            {layers.map((el, index) => (
-                                <button className={'tabs tabs-' + index} id={el.name.replace(/\s+/g, '-') + '-tab'} onClick={() => { changeCurrentTab(el.name.replace(/\s+/g, '-')) }}><div><img src={el.icon.sourceUrl} alt={el.icon.altText} /></div>{el.name}</button>
-                            ))}
-                        </LayersButtons>
-                        <LayersContent>
-                            {layers.map((el, index) => (
-                                <div className={'tabs tabs-' + index} id={el.name.replace(/\s+/g, '-')}>
-                                    <div className="main-title" dangerouslySetInnerHTML={{ __html: el.title }} />
-                                    <div className="sub-title" dangerouslySetInnerHTML={{ __html: el.text }} />
-                                </div>
-                            ))}
-                        </LayersContent>
+                        <GatsbyImage image={desctopImage.localFile.childImageSharp.gatsbyImageData} alt={desctopImage.altText} />
+                        <div className="layers-title" dangerouslySetInnerHTML={{ __html: layersTitle }} />
+                        <LayersWrapper>
+                            <LayersButtons>
+                                {layers.map((el, index) => (
+                                    <button className={'tabs tabs-' + index} id={el.name.replace(/\s+/g, '-') + '-tab'} onClick={() => { changeCurrentTab(el.name.replace(/\s+/g, '-')) }}><div><img src={el.icon.sourceUrl} alt={el.icon.altText} /></div>{el.name}</button>
+                                ))}
+                            </LayersButtons>
+                            <LayersContent>
+                                {layers.map((el, index) => (
+                                    <div className={'tabs tabs-' + index} id={el.name.replace(/\s+/g, '-')}>
+                                        <div className="title" dangerouslySetInnerHTML={{ __html: el.title }} />
+                                        <div className="text" dangerouslySetInnerHTML={{ __html: el.text }} />
+                                    </div>
+                                ))}
+                            </LayersContent>
+                        </LayersWrapper>
                     </div>
                     <div>
-                        <GatsbyImage image={backgroundImage.localFile.childImageSharp.gatsbyImageData} alt={backgroundImage.altText} />
+                        {/*  */}
                     </div>
                 </Content>
             </Container>
@@ -50,14 +54,12 @@ const Wrapper = styled.div`
 `
 
 const Content = styled.div`
-    display: grid;
-    grid-template-columns: 4fr 3fr;
-    grid-gap: 40px;
 
     .main-title{
-        max-width: 700px;
+        max-width: 1100px;
+        margin: 0 auto;
         h1,h2,h3,h4,h5,h6{
-            text-align: left;
+        text-align: center;
             margin-bottom: 64px;
             font-weight: 700;
             font-size: 64px;
@@ -69,28 +71,51 @@ const Content = styled.div`
     }
 
     .sub-title{
-        max-width: 700px;
+        max-width: 1200px;
+        margin: 0 auto 64px auto;
+        h1,h2,h3,h4,h5,h6,p{
+            font-weight: 700;
+            font-size: 40px;
+            line-height: 52px;
+            text-align: center;
+        }
+    }
+
+    .layers-title{
+        text-align: center;
+        margin-top: 128px;
         h1,h2,h3,h4,h5,h6,p{
             font-weight: 700;
             font-size: 40px;
             line-height: 52px;
         }
+
     }
+`
+
+const LayersWrapper = styled.div`
+    max-width: 1070px;
+    margin: 120px auto 0 auto;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-gap: 56px;
 `
 
 const LayersButtons = styled.div`
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    margin-top: 46px;
+    grid-gap: 56px;
+    height: min-content;
 
     button{
+        height: fit-content;
+        width: 100%;
         display: flex;
+        justify-content: center;
         align-items: center;
         padding: 24px 40px;
         border: 1px solid #111315;
         background-color: transparent;
         box-sizing: border-box;
-        width: max-content;
         div{
             height: 36px;
             display: flex;
@@ -100,10 +125,6 @@ const LayersButtons = styled.div`
                 display: block;
                 margin-right: 12px;
             }
-        }
-
-        :nth-child(2){
-            margin: 0 -1px;
         }
 
         &.active{
@@ -116,22 +137,23 @@ const LayersButtons = styled.div`
 const LayersContent = styled.div`
     position: relative;
 
-    .main-title{
-        margin: 56px 0;
+    .title{
+        margin: 0 0 32px 0;
         h1,h2,h3,h4,h5,h6,p{
-            font-weight: 500;
-            font-size: 32px;
-            line-height: 42px;
+            font-weight: 700;
+            font-size: 40px;
+            line-height: 52px;
+            text-align: left;
         }
 
     }
 
-    .sub-title{
+    .text{
         p{
-            font-weight: 400;
-            font-size: 20px;
-            line-height: 30px;
-            letter-spacing: 0.005em;
+            font-weight: 500;
+            font-size: 32px;
+            line-height: 42px;
+            text-align: left;
 
         }
     }

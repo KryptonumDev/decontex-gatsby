@@ -22,7 +22,7 @@ const IndexPage = ({ data: { allWpPage } }) => {
     <main>
       <Hero data={homepage.hero} />
       <FeaturesWithIcons data={homepage.featuredWithIcon} />
-      <FeaturedWithButton data={homepage.featuredWithButton} />
+      {/* <FeaturedWithButton data={homepage.featuredWithButton} />
       <DecontominationBenefits data={homepage.decontominationAdvantages} />
       <Newsletter data={homepage.newsletter} />
       <TwoColumnGrid data={homepage.twoColumnGrid} />
@@ -34,7 +34,7 @@ const IndexPage = ({ data: { allWpPage } }) => {
       <Testomontials data={homepage.testomontials} />
       <OneColumnGrid data={homepage.oneColumnGrid} />
       <News data={homepage.news} />
-      <Blog data={homepage.blog} />
+      <Blog data={homepage.blog} /> */}
     </main>
   )
 }
@@ -139,6 +139,7 @@ export const query = graphql`
           howItWorks {
             title
             subTitle
+            layersTitle
             layers {
               title
               text
@@ -148,7 +149,15 @@ export const query = graphql`
                 sourceUrl
               }
             }
-            backgroundImage {
+            desctopImage {
+              altText
+              localFile {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
+            }
+            mobileImage {
               altText
               localFile {
                 childImageSharp {
