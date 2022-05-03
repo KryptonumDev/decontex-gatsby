@@ -20,15 +20,15 @@ export default function Blog({ data: { title, text, link } }) {
 }
 
 const Wrapper = styled.div`
-    margin-top: clamp(100px, 8.33vw, 160px);
+    margin-top: clamp(60px, ${120 / 768 * 100}vw, 160px);
 `
 
 const Title = styled.div`
 
     h1,h2,h3,h4,h5,h6,p{
         font-weight: 900;
-        font-size: 72px;
-        line-height: 82px;
+        font-size: clamp(27px, ${48 / 768 * 100}vw, 72px);
+        line-height: 130%;
         letter-spacing: -0.015em;
         text-transform: uppercase;
         text-align: center;
@@ -43,14 +43,13 @@ const Content = styled.div`
 const Link = styled.div`
     h1,h2,h3,h4,h5,h6,p{
         font-weight: 700;
-        font-size: 40px;
-        line-height: 52px;
+        font-size: clamp(21px, ${40 / 768 * 100}vw, 40px);
+        line-height: 130%;
         text-align: center;
     }
 
     a{
         display: block;
-        margin: 32px auto 0 auto;
+        margin: clamp(12px, ${24 / 768 * 100}vw, 32px) auto 0 auto;
     }
-
 `

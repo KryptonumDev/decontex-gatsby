@@ -33,8 +33,8 @@ const IndexPage = ({ data: { allWpPage } }) => {
       {/* <DecontominationSteps data={homepage.decontominationSteps} /> */}
       <Testomontials data={homepage.testomontials} />
       <OneColumnGrid data={homepage.oneColumnGrid} />
-      {/* <News data={homepage.news} />  */}
-      {/* <Blog data={homepage.blog} />  */}
+      <News data={homepage.news} /> 
+      <Blog data={homepage.blog} /> 
     </main>
   )
 }
