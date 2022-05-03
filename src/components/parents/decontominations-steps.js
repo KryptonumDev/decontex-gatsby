@@ -1,5 +1,5 @@
 import { GatsbyImage } from "gatsby-plugin-image"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import { Container } from "../../styles/style"
 import DecontominationStep from "../childrens/decontomination-step"
@@ -7,7 +7,17 @@ import DecontominationStep from "../childrens/decontomination-step"
 export default function DecontominationSteps({ data: { bottomAnnotation, outfits, steps, subTitle, title } }) {
 
     const [activeImg, setActiveImg] = useState(1)
-    
+    const [activeArr, changeActiveArr] = useState([])
+
+    useEffect(() => {
+        console.log(activeArr)
+        if (activeArr[0]) {
+            setActiveImg(activeArr[0])
+        } else {
+            setActiveImg(1)
+        }
+    }, [activeArr])
+
     return (
         <Wrapper>
             <Container>
@@ -27,7 +37,7 @@ export default function DecontominationSteps({ data: { bottomAnnotation, outfits
                     <StepView>
                         <div className="track">
                             {steps.map((el, index) => (
-                                <DecontominationStep activeImg={activeImg} setActiveImg={setActiveImg} el={el} index={index} />
+                                <DecontominationStep changeActiveArr={changeActiveArr} activeArr={activeArr} activeImg={activeImg} setActiveImg={setActiveImg} el={el} index={index} />
                             ))}
                         </div>
                     </StepView>
@@ -41,7 +51,7 @@ export default function DecontominationSteps({ data: { bottomAnnotation, outfits
 const Wrapper = styled.div`
     max-width: 1920px;
     margin: 0 auto;
-    margin-top: clamp(100px, 8.33vw, 160px);
+    margin-top: clamp(60px, ${120 / 768 * 100}vw, 160px);
 `
 
 const Slider = styled.div`
@@ -51,11 +61,13 @@ const Slider = styled.div`
 `
 
 const OutfitImage = styled(GatsbyImage)`
-
+    max-width: 333px;
 `
 
 const OutfitView = styled.div`
-    position: relative;
+    position: sticky;
+    top: clamp(60px, ${120 / 768 * 100}vw, 160px);
+    height: fit-content;
 
     .item{
         position: absolute;
@@ -82,13 +94,9 @@ const OutfitView = styled.div`
 `
 
 const StepView = styled.div`
-    max-height: 840px;
     max-width: 750px;
     width: 100%;
-    overflow-x: scroll;
 
-    -ms-overflow-style: none;
-    scrollbar-width: none; 
     &::-webkit-scrollbar {
         display: none;
     }

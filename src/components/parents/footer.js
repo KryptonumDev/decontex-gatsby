@@ -1,5 +1,5 @@
 import { Link } from "gatsby"
-import React from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
 import { Container } from "../../styles/style"
 import Contact from "./contact-footer"
@@ -66,6 +66,15 @@ export default function Footer({ location }) {
                           }
                         }
                       }
+                      copyrightLogo {
+                        altText
+                        sourceUrl
+                        localFile {
+                          childImageSharp {
+                            gatsbyImageData
+                          }
+                        }
+                      }
                     }
                 }
                 language {
@@ -78,8 +87,24 @@ export default function Footer({ location }) {
 
     const locale = activeLanguage(location)
     const localeDate = data.allWpPage.nodes.filter(el => el.language.slug === locale)
-    const { contact, footer: { contactInformation, copyright, mainLinks, smallLinks, socialLinks, logo } } = localeDate[0].footer
-        debugger
+    const { contact, footer: { contactInformation, copyright, mainLinks, smallLinks, socialLinks, logo, copyrightLogo } } = localeDate[0].footer
+
+    const [linksDivided, changeLinksDivided] = useState(() => {
+        let arr = [[], [], []]
+        mainLinks.forEach((element, index) => {
+            if (index % 3 === 0) {
+                arr[0].push(element)
+            } else if (index % 2 === 0) {
+                arr[1].push(element)
+            } else {
+                arr[2].push(element)
+            }
+
+        })
+        return arr
+    })
+
+
     return (
         <Wrapper>
             <Contact data={contact} />
@@ -93,13 +118,15 @@ export default function Footer({ location }) {
                             }
                             <div dangerouslySetInnerHTML={{ __html: contactInformation }} />
                         </div>
-                        <ul className="grid">
-                            {mainLinks.map((el, index) => (
-                                <li key={el.linkName}>
-                                    <Link to={el.url.url}>{el.linkName}</Link>
-                                </li>
-                            ))}
-                        </ul>
+                        {linksDivided.map((el, index) => (
+                            <ul>
+                                {el.map(innerEl => (
+                                    <li key={innerEl.linkName}>
+                                        <Link to={innerEl.url.url}>{innerEl.linkName}</Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        ))}
                     </FirstFlex>
                     <SecondFlex socLength={socialLinks.length}>
                         <ul className="social">
@@ -124,6 +151,10 @@ export default function Footer({ location }) {
                     </SecondFlex>
                     <ThirdFlex>
                         <div className="copyright" dangerouslySetInnerHTML={{ __html: copyright }} />
+                        {copyrightLogo.localFile.childImageSharp?.gatsbyImageData
+                            ? <GatsbyImage image={copyrightLogo.localFile.childImageSharp.gatsbyImageData} alt={copyrightLogo.altText} />
+                            : <img src={copyrightLogo.sourceUrl} alt={copyrightLogo.altText} />
+                        }
                     </ThirdFlex>
                 </Container>
             </MainContent>
@@ -134,7 +165,7 @@ export default function Footer({ location }) {
 const Wrapper = styled.div`
     max-width: 1920px;
     margin: 0 auto;
-    margin-top: clamp(100px, 8.33vw, 160px);
+    margin-top: clamp(60px, ${120 / 768 * 100}vw, 160px);
 `
 
 
@@ -147,6 +178,7 @@ const MainContent = styled.div`
 const FirstFlex = styled.div`
     display: flex;
     justify-content: space-between;
+    gap: 40px;
 
     img{
         margin-bottom: 48px;
@@ -161,28 +193,54 @@ const FirstFlex = styled.div`
     }
 
     ul{
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 30px 40px;
         li{
             a{
                 font-weight: 700;
-                font-size: 32px;
-                line-height: 42px;
+                font-size: clamp(21px, ${32 / 768 * 100}vw, 32px);
+                line-height: 130%;
                 color: var(--color-white);
-
+                text-transform: unset;
             }
+        }
+
+        li+li{
+            margin-top: 30px;
         }
     }
 
+    @media (max-width: 1240px) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 80px;
+    }
 
+    @media (max-width: 640px){
+        grid-template-columns: 1fr;
+        grid-gap: 40px;
+
+        ul{
+            li{
+                a{
+                    font-weight: 500;
+                }
+            }
+        }
+
+        li+li{
+            margin-top: 40px;
+        }
+
+        h1,h2,h3,h4,h5,h6,p{
+            margin-bottom: 20px;
+        }
+    }
 `
 
 const SecondFlex = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 110px;
+    margin-top: clamp(50px, ${50 / 768 * 100}vw, 110px);
 
     .social{
         display: grid;
@@ -197,22 +255,53 @@ const SecondFlex = styled.div`
 
     .small{
         display: flex;
+        flex-wrap: wrap;
         li{
             margin-left: 30px;
         }
 
         a{
             font-weight: 400;
-            font-size: 20px;
-            line-height: 30px;
+            font-size: clamp(14px, ${20 / 768 * 100}vw, 20px);
+            line-height: 130%;
             letter-spacing: 0.005em;
             color: var(--color-white);
+        }
+    }
+
+    @media (max-width: 1240px) {
+        flex-direction: column-reverse;
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        .small{
+            margin-bottom: 56px;
+            li{
+                margin-right: 30px;
+                margin-left: 0;
+            }
+        }
+    }
+
+    @media (max-width: 640px){
+        .small{
+            flex-direction: column;
+            li{
+                margin-right: 0;
+            }
+
+            li + li {
+                margin-top: 30px;
+            }
         }
     }
 `
 
 const ThirdFlex = styled.div`
-    margin-top: 80px;
+    margin-top: clamp(50px, ${50 / 768 * 100}vw, 80px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
     h1,h2,h3,h4,h5,h6,p{
         font-weight: 400;
@@ -220,6 +309,14 @@ const ThirdFlex = styled.div`
         line-height: 30px;
         letter-spacing: 0.005em;
         color: var(--color-white);
+    }
 
+    @media (max-width: 640px){
+        flex-direction: column-reverse;
+        align-items: flex-start;
+
+        h1,h2,h3,h4,h5,h6,p{
+            margin-top: 16px;
+        }
     }
 `

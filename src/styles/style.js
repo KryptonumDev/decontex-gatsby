@@ -3,14 +3,10 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     width: 100%;
-    max-width: 1920px;
+    max-width: 1520px;
     margin: 0 auto;
-    padding: 0 clamp(40px, 12.5vw, 240px);
+    padding: 0 40px;
     position: relative;
-
-    @media(max-width: 1440px){
-        padding: 0 40px;
-    }
     
     @media (max-width: 480px) {
         padding: 0 16px;
@@ -24,6 +20,14 @@ export const ButtonBlue = styled(Link)`
     color: var(--color-white);
     display: block;
     width: fit-content;
+    @media (max-width: 768px){
+        line-height: 122%;
+        margin: 0 auto;
+        text-align: center;
+        font-size: clamp(14px, ${24 / 768 * 100}vw, 24px);
+        padding: clamp(16px, ${18 / 768 * 100}vw, 18px) clamp(48px, clamp(48px, ${72 / 768 * 100}vw, 72px), 72px);
+        width: fit-content;
+    }
 `
 
 export const ButtonBlack = styled(Link)`
@@ -33,6 +37,14 @@ export const ButtonBlack = styled(Link)`
     color: var(--color-yellow);
     display: block;
     width: fit-content;
+    @media (max-width: 768px){
+        line-height: 122%;
+        margin: 0 auto;
+        text-align: center;
+        font-size: clamp(14px, ${24 / 768 * 100}vw, 24px);
+        padding: clamp(16px, ${18 / 768 * 100}vw, 18px) clamp(48px, clamp(48px, ${72 / 768 * 100}vw, 72px), 72px);
+        width: fit-content;
+    }
 
 `
 
@@ -43,4 +55,12 @@ export const ButtonOutlined = styled(Link)`
     color: var(--color-white);
     display: block;
     width: fit-content;
+    @media (max-width: 768px){
+        line-height: 122%;
+        margin: 0 auto;
+        text-align: center;
+        font-size: clamp(14px, ${24 / 768 * 100}vw, 24px);
+        padding: clamp(16px, ${18 / 768 * 100}vw, 18px) clamp(48px, clamp(48px, ${72 / 768 * 100}vw, 72px), 72px);
+        width: fit-content;
+    }
 `

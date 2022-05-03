@@ -15,8 +15,8 @@ export const Question = ({ children }) => (
     </QuestionComponent>
 )
 
-export const QuestionWrapper = ({ children }) => (
-    <WrapperComponent>
+export const QuestionWrapper = ({ children, isOpen }) => (
+    <WrapperComponent isOpen={isOpen}>
         {children}
     </WrapperComponent>
 )

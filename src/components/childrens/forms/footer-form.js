@@ -42,10 +42,14 @@ export default function FooterForm({ data: { switchTitle, switchVariant1, switch
                 <input type='checkbox' />
                 <span dangerouslySetInnerHTML={{ __html: agreementText }} />
             </label>
-            <ButtonBlue as='button' type="submit">{submitText}</ButtonBlue>
+            <Button as='button' type="submit">{submitText}</Button>
         </Wrapper>
     )
 }
+
+const Button = styled(ButtonBlue)`
+    margin-left: 0 !important;
+`
 
 const Wrapper = styled.form`
     width: 100%;
@@ -54,8 +58,8 @@ const Wrapper = styled.form`
         h1,h2,h3,h4,h5,h6,p{
             color: var(--color-white);
             font-weight: 700;
-            font-size: 40px;
-            line-height: 52px;
+            font-size: clamp(21px, ${40 / 768 * 100}vw, 40px);
+            line-height: 130%;
             text-align: center;
             text-transform: unset;
         }
@@ -64,40 +68,40 @@ const Wrapper = styled.form`
     .flex{
         display: grid;
         grid-template-columns: auto auto;
-        gap: 56px;
-        margin-top: 32px;
-        margin-bottom: 64px;
+        gap: clamp(40px, ${56 / 768 * 100}vw, 56px);
+        margin-top: clamp(16px, ${32 / 768 * 100}vw, 32px);
+        margin-bottom: clamp(30px, ${64 / 768 * 100}vw, 64px);
     }
 
     label{
         display: block;
 
         &.input{
-            margin-bottom: 40px;
+            margin-bottom: clamp(16px, ${32 / 768 * 100}vw, 40px);
 
             span{
                 display: none;
             }
 
             input{
-                padding: 16px 40px;
+                padding: 16px clamp(16px, ${40 / 768 * 100}vw, 40px);
                 font-weight: 400;
-                font-size: 20px;
-                line-height: 30px;
+                font-size: clamp(14px, ${17 / 768 * 100}vw, 20px);
+                line-height: 130%;
                 color: var(--color-black);
                 width: 100%;
 
                 &::placeholder{
                     font-weight: 400;
-                    font-size: 20px;
-                    line-height: 30px;
+                    font-size: clamp(14px, ${17 / 768 * 100}vw, 20px);
+                    line-height: 130%;
                     color: #697075;
                 }
             }
         }
 
         &.checkbox{
-            margin-bottom: 32px;
+            margin-bottom: clamp(24px, ${32 / 768 * 100}vw, 32px);
             display: flex;
             align-items: center;
 
@@ -143,8 +147,8 @@ const Wrapper = styled.form`
 
                 h1,h2,h3,h4,h5,h6,p{
                     font-weight: 400;
-                    font-size: 20px;
-                    line-height: 30px;
+                    font-size: clamp(14px, ${17 / 768 * 100}vw, 20px);
+                    line-height: 130%;
                     letter-spacing: 0.005em;
                     color: var(--color-white);
 
@@ -166,12 +170,16 @@ const Wrapper = styled.form`
             span{
                 color: var(--color-white);
                 font-weight: 700;
-                font-size: 24px;
-                line-height: 29px;
+                font-size: clamp(17px, ${24 / 768 * 100}vw, 24px);
+                line-height: 130%;
                 letter-spacing: 0.0125em;
                 text-transform: uppercase;
                 padding: 0 34px 12px 34px;
                 display: block;
+
+                @media (max-width: 768px) {
+                    padding: 0 0 12px 0;
+                }
             }
 
             input{
@@ -198,17 +206,17 @@ const Wrapper = styled.form`
             }
 
             textarea{
-                padding: 16px 40px;
+                padding: 16px clamp(16px, ${40 / 768 * 100}vw, 40px);
                 font-weight: 400;
-                font-size: 20px;
-                line-height: 30px;
+                font-size: clamp(14px, ${17 / 768 * 100}vw, 20px);
+                line-height: 130%;
                 color: var(--color-black);
                 width: 100%;
 
                 &::placeholder{
                     font-weight: 400;
-                    font-size: 20px;
-                    line-height: 30px;
+                    font-size: clamp(14px, ${17 / 768 * 100}vw, 20px);
+                    line-height: 130%;
                     color: #697075;
                 }
             }

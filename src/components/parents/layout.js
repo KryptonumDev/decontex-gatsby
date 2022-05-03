@@ -8,7 +8,7 @@ export default function Layout({ children, location }) {
         <React.Fragment>
             {/* <Header /> */}
             {children}
-            {/* <Footer location={location} /> */}
+            <Footer location={location} />
         </React.Fragment>
     )
 }

@@ -32,6 +32,7 @@ const Wrapper = styled.div`
     position: relative;
     overflow: hidden;
     position: relative;
+    overflow: hidden;
 
     &::after{
         content: '';
@@ -90,12 +91,8 @@ const ButtonsWrapper = styled.div`
     @media (max-width: 768px){
         margin-bottom: 0;
         a{
-            line-height: 122%;
             padding: clamp(16px, ${18 / 768 * 100}vw, 18px) 0;
             width: 100%;
-            margin: 0 auto;
-            text-align: center;
-            font-size: clamp(14px, ${24 / 768 * 100}vw, 24px);
         }
     }
 `

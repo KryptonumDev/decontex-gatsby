@@ -7,7 +7,6 @@ import NewsletterForm from "../childrens/forms/newsletter-form"
 export default function Newsletter({ data: { title, firstNamePlaceholder, emailPlaceholdere, agreementText, buttonText, backgroundImage } }) {
     return (
         <Wrapper>
-            <Image layout='constrained' image={backgroundImage.localFile.childImageSharp.gatsbyImageData} alt={backgroundImage.altText} />
             <Container>
                 <Content>
                     <NewsletterForm
@@ -19,6 +18,7 @@ export default function Newsletter({ data: { title, firstNamePlaceholder, emailP
                     />
                 </Content>
             </Container>
+            <Image layout='constrained' image={backgroundImage.localFile.childImageSharp.gatsbyImageData} alt={backgroundImage.altText} />
         </Wrapper>
     )
 }
@@ -26,19 +26,54 @@ export default function Newsletter({ data: { title, firstNamePlaceholder, emailP
 const Wrapper = styled.div`
     max-width: 1920px;
     margin: 0 auto;
-    margin-top: clamp(100px, 8.33vw, 160px);
-    padding: 100px 0;
+    margin-top: clamp(60px, ${120 / 768 * 100}vw, 160px);
+    padding: clamp(45px, ${90 / 768 * 100}vw, 90px) 0;
     background-color: var(--color-black);
     position: relative;
+
+    @media (max-width: 768px){
+        padding-bottom: 40px;
+    }
 `
 
 const Content = styled.div`
     max-width: 600px;
     margin-left: auto;
+    position: relative;
+    z-index: 3;
+
+    @media (max-width: 768px) {
+        margin-left: unset;
+    }
 `
 
 const Image = styled(GatsbyImage)`
     position: absolute;
     left: 0;
     bottom: 0;
+
+    @media (max-width: 1360px) {
+        left: -10%;
+    }
+    @media (max-width: 1240px) {
+        left: -20%;
+    }
+    @media (max-width: 1120px) {
+        left: -30%;
+    }
+    @media (max-width: 1000px) {
+        left: -40%;
+    }
+    @media (max-width: 880px) {
+        left: -50%;
+    }
+
+    @media (max-width: 768px) {
+        position: relative;
+        left: 0;
+        bottom: -40px;
+    }
+    @media (max-width: 500px){
+        height: 400px;
+    }
 `

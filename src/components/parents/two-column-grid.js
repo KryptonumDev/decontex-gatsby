@@ -13,7 +13,7 @@ export default function TwoColumnGrid({ data: { title, text, backgroundImage } }
                         <div className="text" dangerouslySetInnerHTML={{ __html: text }} />
                     </div>
                     <div>
-                        <GatsbyImage image={backgroundImage.localFile.childImageSharp.gatsbyImageData} alt={backgroundImage.altText} />
+                        <Image image={backgroundImage.localFile.childImageSharp.gatsbyImageData} alt={backgroundImage.altText} />
                     </div>
                 </Content>
             </Container>
@@ -21,8 +21,20 @@ export default function TwoColumnGrid({ data: { title, text, backgroundImage } }
     )
 }
 
+const Image = styled(GatsbyImage)`
+    min-width: 700px;
+
+    @media (max-width: 1320px) {
+        margin: 0 auto;
+        display: block;
+        width: fit-content;
+        min-width: unset;
+    }
+`
+
 const Wrapper = styled.div`
-    margin-top: clamp(100px, 8.33vw, 160px);
+    margin-top: clamp(60px, ${120 / 768 * 100}vw, 160px);
+    overflow: hidden;
 `
 
 const Content = styled.div`
@@ -34,8 +46,8 @@ const Content = styled.div`
         h1,h2,h3,h4,h5,h6,p{
             margin-bottom: 40px;
             font-weight: 900;
-            font-size: 72px;
-            line-height: 82px;
+            font-size: clamp(27px, ${48 / 1140 * 100}vw, 72px);
+            line-height: 130%;
             letter-spacing: -0.015em;
             text-transform: uppercase;
         }
@@ -44,9 +56,25 @@ const Content = styled.div`
     .text{
         h1,h2,h3,h4,h5,h6,p{
             font-weight: 500;
-            font-size: 32px;
-            line-height: 42px;
+            font-size: clamp(17px, ${27 / 768 * 100}vw, 32px);
+            line-height: 130%;
             color: #111315;
+        }
+    }
+
+    p+p{
+        margin-top: 24px;
+    }
+
+    @media (max-width: 1320px) {
+        grid-template-columns: 1fr;
+        max-width: 1070px;
+        margin: 0 auto;
+
+        .title{
+            h1,h2,h3,h4,h5,h6,p{
+                font-size: clamp(27px, ${48 / 768 * 100}vw, 72px);
+            }
         }
     }
 `

@@ -34,11 +34,11 @@ const Wrapper = styled.form`
     .title{    
         h1,h2,h3,h4,h5,h6,p{
             color: var(--color-white);
-            margin-bottom: 40px;
+            margin-bottom: 32px;
             font-weight: 700;
-            font-size: 40px;
-            line-height: 52px;
-            text-transform: uppercase;
+            font-size: clamp(27px, ${40 / 768 * 100}vw, 40px);
+            line-height: 130%;
+            text-transform: unset;
         }
     }
 
@@ -47,6 +47,10 @@ const Wrapper = styled.form`
 
         &.input{
             margin-bottom: 40px;
+
+            @media (max-width: 500px) {
+                margin-bottom: 32px;
+            }
 
             span{
                 display: none;

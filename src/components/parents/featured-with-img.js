@@ -22,14 +22,13 @@ export default function FeaturedWithImg({ data: { backgroundImage, link, text } 
 const OuterWrapper = styled.div`
     max-width: 1920px;
     margin: 0 auto;
-
 `
 
 const Wrapper = styled.div`
-    margin-top: clamp(100px, 8.33vw, 160px);
+    margin-top: clamp(60px, ${120 / 768 * 100}vw, 160px);
+    padding-top: clamp(40px, ${80 / 768 * 100}vw, 120px);
+    padding-bottom: clamp(48px, ${90 / 768 * 100}vw, 90px);
     margin-right: 280px;
-    padding-top: clamp(60px, 4.68vw, 90px);
-    padding-bottom: clamp(60px, 4.68vw, 90px);
     background-color: var(--color-yellow);
     position: relative;
 
@@ -39,30 +38,29 @@ const Wrapper = styled.div`
 `
 
 const LocContainer = styled(Container)`
-    max-width: 1640px;
-
+    max-width: 1230px;
 `
 
 const Content = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 40px;
+    gap: clamp(40px, ${60 / 768 * 100}vw, 100px);
     
 
     .texts{
         display: grid;
-        grid-gap: 48px;
+        grid-gap: clamp(16px, ${32 / 768 * 100}vw, 48px);
 
         h1,h2,h3,h4,h5,h6,p{
             font-weight: 700;
-            font-size: 40px;
-            line-height: 52px;
+            font-size: clamp(21px, ${39 / 768 * 100}vw, 39px);
+            line-height: 130%;
 
             small{
                 font-weight: 500;
-                font-size: 32px;
-                line-height: 42px;
+                font-size: clamp(21px, ${32 / 768 * 100}vw, 32px);
+                line-height: 130%;
 
             }
         }
@@ -76,7 +74,7 @@ const Content = styled.div`
 
 const Image = styled(GatsbyImage)`
     position: absolute;
-    right: -280px;
+    right: -424px;
     top: -128px;
     bottom: -128px;
 `

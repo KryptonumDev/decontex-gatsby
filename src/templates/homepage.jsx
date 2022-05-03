@@ -22,19 +22,19 @@ const IndexPage = ({ data: { allWpPage } }) => {
     <main>
       <Hero data={homepage.hero} />
       <FeaturesWithIcons data={homepage.featuredWithIcon} />
-      {/* <FeaturedWithButton data={homepage.featuredWithButton} />
+      <FeaturedWithButton data={homepage.featuredWithButton} />
       <DecontominationBenefits data={homepage.decontominationAdvantages} />
       <Newsletter data={homepage.newsletter} />
       <TwoColumnGrid data={homepage.twoColumnGrid} />
       <TwoColumnWithTitle data={homepage.twoColumnWithTitle} />
       <HowItWork data={homepage.howItWorks} />
       <Faq data={homepage.faq} />
-      <FeaturedWithImg data={homepage.featuredWithImg} />
-      <DecontominationSteps data={homepage.decontominationSteps} />
+      {/* <FeaturedWithImg data={homepage.featuredWithImg} /> */}
+      {/* <DecontominationSteps data={homepage.decontominationSteps} /> */}
       <Testomontials data={homepage.testomontials} />
       <OneColumnGrid data={homepage.oneColumnGrid} />
-      <News data={homepage.news} />
-      <Blog data={homepage.blog} /> */}
+      {/* <News data={homepage.news} />  */}
+      {/* <Blog data={homepage.blog} />  */}
     </main>
   )
 }
@@ -205,7 +205,6 @@ export const query = graphql`
             steps {
               title
               subTitle
-              outfitViewId
               icon {
                 altText
                 sourceUrl

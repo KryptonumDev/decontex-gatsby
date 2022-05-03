@@ -1,7 +1,7 @@
 :root {
     --color-black: #111315;
     --color-white: #F3F3F3;
-    --color-yellow: #D8EF78;
+    --color-yellow: #E8D07B;
     --color-blue: #1A6AE1;
     --color-red: #CE2029;
     --color-gold: #B39673;
@@ -133,4 +133,5 @@ strong {
 
 html{
     background-color: var(--color-white);
+    overflow-x: hidden;
 }

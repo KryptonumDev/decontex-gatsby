@@ -18,19 +18,19 @@ export default function OneColumnGrid({ data: { img, title, text } }) {
 }
 
 const Wrapper = styled.div`
-    margin-top: clamp(100px, 8.33vw, 160px);
+    margin-top: clamp(60px, ${120 / 768 * 100}vw, 160px);
 `
 
 const Content = styled.div`
     .title{
         max-width: 800px;
-        margin: 0 auto 64px auto;
+        margin: 0 auto clamp(16px, ${48 / 768 * 100}vw, 64px) auto;
 
         h1,h2,h3,h4,h5,h6,p{
             max-width: 770px;
             font-weight: 900;
-            font-size: 72px;
-            line-height: 82px;
+            font-size: clamp(27px, ${48 / 768 * 100}vw, 72px);
+            line-height: 130%;
             letter-spacing: -0.015em;
             text-transform: uppercase;
             text-align: center;
@@ -42,15 +42,15 @@ const Content = styled.div`
         margin: 0 auto;
         h1,h2,h3,h4,h5,h6,p{
             font-weight: 700;
-            font-size: 48px;
-            line-height: 60px;
+            font-size: clamp(21px, ${40 / 768 * 100}vw, 40px);
+            line-height: 130%;
             text-align: center;
         }
     }
 `
 
 const Image = styled(GatsbyImage)`
-    margin: clamp(100px, 8.33vw, 160px) auto 0 auto;
+    margin: clamp(50px, ${60 / 768 * 100}vw, 160px) auto 0 auto;
     display: block;
     width: fit-content;
 `
