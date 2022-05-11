@@ -20,7 +20,7 @@ export default function Blog({ data: { title, text, link } }) {
 }
 
 const Wrapper = styled.div`
-    margin-top: clamp(60px, ${120 / 768 * 100}vw, 160px);
+    margin-top: var(--section-margin);
 `
 
 const Title = styled.div`

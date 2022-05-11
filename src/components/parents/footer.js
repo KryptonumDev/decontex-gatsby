@@ -2,7 +2,6 @@ import { Link } from "gatsby"
 import React, { useState } from "react"
 import styled from "styled-components"
 import { Container } from "../../styles/style"
-import Contact from "./contact-footer"
 import { graphql, useStaticQuery } from "gatsby"
 import { activeLanguage } from "../../helpers/activeLanguage"
 import { GatsbyImage } from "gatsby-plugin-image"
@@ -14,21 +13,6 @@ export default function Footer({ location }) {
             allWpPage(filter: {template: {templateName: {eq: "Footer"}}}) {
               nodes {
                 footer {
-                    contact {
-                      title
-                      text
-                      form {
-                        switchTitle
-                        switchVariant1
-                        switchVariant2
-                        firstNamePlaceholder
-                        emailPlaceholder
-                        phonePlaceholder
-                        messagePlaceholder
-                        agreementText
-                        submitText
-                      }
-                    }
                     footer {
                       contactInformation
                       copyright
@@ -87,7 +71,7 @@ export default function Footer({ location }) {
 
     const locale = activeLanguage(location)
     const localeDate = data.allWpPage.nodes.filter(el => el.language.slug === locale)
-    const { contact, footer: { contactInformation, copyright, mainLinks, smallLinks, socialLinks, logo, copyrightLogo } } = localeDate[0].footer
+    const { footer: { contactInformation, copyright, mainLinks, smallLinks, socialLinks, logo, copyrightLogo } } = localeDate[0].footer
 
     const [linksDivided, changeLinksDivided] = useState(() => {
         let arr = [[], [], []]
@@ -107,7 +91,6 @@ export default function Footer({ location }) {
 
     return (
         <Wrapper>
-            <Contact data={contact} />
             <MainContent>
                 <Container>
                     <FirstFlex>
@@ -165,7 +148,6 @@ export default function Footer({ location }) {
 const Wrapper = styled.div`
     max-width: 1920px;
     margin: 0 auto;
-    margin-top: clamp(60px, ${120 / 768 * 100}vw, 160px);
 `
 
 

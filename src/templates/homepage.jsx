@@ -15,26 +15,29 @@ import OneColumnGrid from "../components/parents/one-column-grid"
 import News from "../components/parents/news"
 import Blog from "../components/parents/blog"
 import DecontominationSteps from "../components/parents/decontominations-steps"
+import Contact from "../components/parents/contact-footer"
 
 const IndexPage = ({ data: { allWpPage } }) => {
   let { homepage } = allWpPage.nodes[0]
+  debugger
   return (
     <main>
-      <Hero data={homepage.hero} />
+      <Hero data={homepage.heroHomepage} />
       <FeaturesWithIcons data={homepage.featuredWithIcon} />
       <FeaturedWithButton data={homepage.featuredWithButton} />
       <DecontominationBenefits data={homepage.decontominationAdvantages} />
       <Newsletter data={homepage.newsletter} />
       <TwoColumnGrid data={homepage.twoColumnGrid} />
-      <TwoColumnWithTitle data={homepage.twoColumnWithTitle} />
+      <TwoColumnWithTitle data={homepage.twoColumnWTitle} />
       <HowItWork data={homepage.howItWorks} />
       <Faq data={homepage.faq} />
-      {/* <FeaturedWithImg data={homepage.featuredWithImg} /> */}
-      {/* <DecontominationSteps data={homepage.decontominationSteps} /> */}
+      <FeaturedWithImg data={homepage.featuredWithImg} />
+      <DecontominationSteps data={homepage.decontominationSteps} />
       <Testomontials data={homepage.testomontials} />
       <OneColumnGrid data={homepage.oneColumnGrid} />
-      <News data={homepage.news} /> 
-      <Blog data={homepage.blog} /> 
+      <News data={homepage.news} />
+      <Blog data={homepage.blog} />
+      <Contact data={homepage.contact} />
     </main>
   )
 }
@@ -46,7 +49,7 @@ export const query = graphql`
     allWpPage(filter: {id: {eq: $id}}) {
       nodes {
         homepage {
-          hero {
+          heroHomepage {
             title
             subTitle
             link {
@@ -131,7 +134,7 @@ export const query = graphql`
               }
             }
           }
-          twoColumnWithTitle {
+          twoColumnWTitle {
             title
             rightText
             leftText
@@ -282,6 +285,21 @@ export const query = graphql`
               url {
                 url
               }
+            }
+          }
+          contact {
+            title
+            text
+            form {
+              switchTitle
+              switchVariant1
+              switchVariant2
+              firstNamePlaceholder
+              emailPlaceholder
+              phonePlaceholder
+              messagePlaceholder
+              agreementText
+              submitText
             }
           }
         }

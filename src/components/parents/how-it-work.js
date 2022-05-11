@@ -65,7 +65,7 @@ export default function HowItWork({ data: { title, subTitle, layersTitle, descto
 }
 
 const Wrapper = styled.div`
-    margin-top: clamp(60px, ${120 / 768 * 100}vw, 160px);
+    margin-top: var(--section-margin);
 `
 
 const Content = styled.div`

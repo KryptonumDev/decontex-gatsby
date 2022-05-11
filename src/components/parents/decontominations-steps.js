@@ -51,7 +51,7 @@ export default function DecontominationSteps({ data: { bottomAnnotation, outfits
 const Wrapper = styled.div`
     max-width: 1920px;
     margin: 0 auto;
-    margin-top: clamp(60px, ${120 / 768 * 100}vw, 160px);
+    margin-top: var(--section-margin);
 `
 
 const Slider = styled.div`
@@ -66,7 +66,7 @@ const OutfitImage = styled(GatsbyImage)`
 
 const OutfitView = styled.div`
     position: sticky;
-    top: clamp(60px, ${120 / 768 * 100}vw, 160px);
+    top: var(--section-margin);
     height: fit-content;
 
     .item{

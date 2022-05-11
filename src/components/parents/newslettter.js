@@ -26,7 +26,7 @@ export default function Newsletter({ data: { title, firstNamePlaceholder, emailP
 const Wrapper = styled.div`
     max-width: 1920px;
     margin: 0 auto;
-    margin-top: clamp(60px, ${120 / 768 * 100}vw, 160px);
+    margin-top: var(--section-margin);
     padding: clamp(45px, ${90 / 768 * 100}vw, 90px) 0;
     background-color: var(--color-black);
     position: relative;

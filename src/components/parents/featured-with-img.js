@@ -25,7 +25,7 @@ const OuterWrapper = styled.div`
 `
 
 const Wrapper = styled.div`
-    margin-top: clamp(60px, ${120 / 768 * 100}vw, 160px);
+    margin-top: var(--section-margin);
     padding-top: clamp(40px, ${80 / 768 * 100}vw, 120px);
     padding-bottom: clamp(48px, ${90 / 768 * 100}vw, 90px);
     margin-right: 280px;

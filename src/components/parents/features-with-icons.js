@@ -29,7 +29,7 @@ export default function FeaturesWithIcons({ data: { title, rightText, leftText, 
 }
 
 const Wrapper = styled.div`
-    padding-top: clamp(60px, ${120 / 768 * 100}vw, 160px);
+    padding-top: var(--section-margin);
 `
 
 const Content = styled.div`
@@ -56,7 +56,7 @@ const Flex = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 40px;
-    margin-bottom: clamp(60px, ${120 / 768 * 100}vw, 160px);
+    margin-bottom: var(--section-margin);
 
     h1,h2,h3,h4,h5,h6,p{
         font-weight: 500;

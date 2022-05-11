@@ -8,10 +8,12 @@
 
     --color-light-blue: #53A4DB;
 
-    --animation-fast:  .3s cubic-bezier(.7, 0, .3, 1);
+    --animation-fast: .3s cubic-bezier(.7, 0, .3, 1);
     --animation-primary: .5s cubic-bezier(.7, 0, .3, 1);
-    --animation-smooth:  .7s cubic-bezier(.7, 0, .3, 1);
-    --animation-slow:  .9s cubic-bezier(.7, 0, .3, 1);
+    --animation-smooth: .7s cubic-bezier(.7, 0, .3, 1);
+    --animation-slow: .9s cubic-bezier(.7, 0, .3, 1);
+
+    --section-margin: clamp(60px, 15.625vw, 160px);
 }
 
 .h1 {
@@ -73,7 +75,7 @@ button {
     text-transform: uppercase;
 }
 
-span{
+span {
     font-weight: 400;
     font-size: 20px;
     line-height: 30px;
@@ -131,7 +133,7 @@ strong {
     list-style: none;
 }
 
-html{
+html {
     background-color: var(--color-white);
     overflow-x: hidden;
 }

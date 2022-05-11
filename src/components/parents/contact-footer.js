@@ -22,6 +22,7 @@ export default function Contact({ data: { title, text, form } }) {
 }
 
 const Wrapper = styled.div`
+    margin-top: var(--section-margin);
     padding-top: clamp(36px, ${72 / 768 * 100}vw, 160px);
     padding-bottom: clamp(48px, ${120 / 768 * 100}vw, 160px);
     background-color: var(--color-black);

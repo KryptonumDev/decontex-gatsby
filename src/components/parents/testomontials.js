@@ -48,7 +48,7 @@ export default function Testomontials({ data: { helmetImg, countries, leftText, 
 const Wrapper = styled.div`
     max-width: 1920px;
     margin: 0 auto;
-    margin-top: clamp(60px, ${120 / 768 * 100}vw, 160px);
+    margin-top: var(--section-margin);
     padding-top: clamp(60px, ${80 / 768 * 100}vw, 160px);
     padding-bottom: clamp(45px, ${90 / 768 * 100}vw, 160px);
     background-color: var(--color-black);
