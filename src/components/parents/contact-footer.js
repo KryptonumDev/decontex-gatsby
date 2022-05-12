@@ -22,6 +22,8 @@ export default function Contact({ data: { title, text, form } }) {
 }
 
 const Wrapper = styled.div`
+    max-width: 1920px;
+    margin: 0 auto;
     margin-top: var(--section-margin);
     padding-top: clamp(36px, ${72 / 768 * 100}vw, 160px);
     padding-bottom: clamp(48px, ${120 / 768 * 100}vw, 160px);

@@ -21,43 +21,38 @@ export default function HowItWork({ data: { title, subTitle, layersTitle, descto
         <Wrapper>
             <Container>
                 <Content>
-                    <div>
-                        <div className="main-title" dangerouslySetInnerHTML={{ __html: title }} />
-                        <div className="sub-title" dangerouslySetInnerHTML={{ __html: subTitle }} />
-                        <GatsbyImage image={desctopImage.localFile.childImageSharp.gatsbyImageData} alt={desctopImage.altText} />
-                        <div className="layers-title" dangerouslySetInnerHTML={{ __html: layersTitle }} />
-                        <LayersWrapper>
-                            <LayersButtons>
-                                {layers.map((el, index) => (
-                                    <button className={'tabs tabs-' + index} id={el.name.replace(/\s+/g, '-') + '-tab'} onClick={() => { changeCurrentTab(el.name.replace(/\s+/g, '-')) }}><div><img src={el.icon.sourceUrl} alt={el.icon.altText} /></div>{el.name}</button>
-                                ))}
-                            </LayersButtons>
-                            <LayersContent>
-                                {layers.map((el, index) => (
-                                    <div className={'tabs tabs-' + index} id={el.name.replace(/\s+/g, '-')}>
-                                        <div className="title" dangerouslySetInnerHTML={{ __html: el.title }} />
-                                        <div className="text" dangerouslySetInnerHTML={{ __html: el.text }} />
-                                    </div>
-                                ))}
-                            </LayersContent>
-                        </LayersWrapper>
-                        <MobileLayers>
+                    <div className="main-title" dangerouslySetInnerHTML={{ __html: title }} />
+                    <div className="sub-title" dangerouslySetInnerHTML={{ __html: subTitle }} />
+                    <GatsbyImage image={desctopImage.localFile.childImageSharp.gatsbyImageData} alt={desctopImage.altText} />
+                    <div className="layers-title" dangerouslySetInnerHTML={{ __html: layersTitle }} />
+                    <LayersWrapper>
+                        <LayersButtons>
                             {layers.map((el, index) => (
-                                <QuestionWrapper isOpen={index === 0}>
-                                    <Question>
-                                        <div dangerouslySetInnerHTML={{ __html: el.name }} />
-                                    </Question>
-                                    <Answer>
-                                        <div className="tab-title" dangerouslySetInnerHTML={{ __html: el.title }} />
-                                        <div className="tab-text" dangerouslySetInnerHTML={{ __html: el.text }} />
-                                    </Answer>
-                                </QuestionWrapper>
+                                <button className={'tabs tabs-' + index} id={el.name.replace(/\s+/g, '-') + '-tab'} onClick={() => { changeCurrentTab(el.name.replace(/\s+/g, '-')) }}><div><img src={el.icon.sourceUrl} alt={el.icon.altText} /></div>{el.name}</button>
                             ))}
-                        </MobileLayers>
-                    </div>
-                    <div>
-                        {/*  */}
-                    </div>
+                        </LayersButtons>
+                        <LayersContent>
+                            {layers.map((el, index) => (
+                                <div className={'tabs tabs-' + index} id={el.name.replace(/\s+/g, '-')}>
+                                    <div className="title" dangerouslySetInnerHTML={{ __html: el.title }} />
+                                    <div className="text" dangerouslySetInnerHTML={{ __html: el.text }} />
+                                </div>
+                            ))}
+                        </LayersContent>
+                    </LayersWrapper>
+                    <MobileLayers>
+                        {layers.map((el, index) => (
+                            <QuestionWrapper isOpen={index === 0}>
+                                <Question>
+                                    <div dangerouslySetInnerHTML={{ __html: el.name }} />
+                                </Question>
+                                <Answer>
+                                    <div className="tab-title" dangerouslySetInnerHTML={{ __html: el.title }} />
+                                    <div className="tab-text" dangerouslySetInnerHTML={{ __html: el.text }} />
+                                </Answer>
+                            </QuestionWrapper>
+                        ))}
+                    </MobileLayers>
                 </Content>
             </Container>
         </Wrapper>
@@ -173,7 +168,6 @@ const LayersButtons = styled.div`
         &.active{
             border: 5px solid #CE2029;
             padding: 20px clamp(17px, ${17 / 768 * 100}vw, 36px);
-            font-weight: 700;
             color: #CE2029;
         }
     }
