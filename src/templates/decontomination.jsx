@@ -4,19 +4,20 @@ import Hero from '../components/parents/hero-decontomination'
 import WhatIsDecontomination from '../components/parents/what-is-decontomination'
 import DecontominationProcess from '../components/parents/decontomination-process'
 import FeaturedOneColumn from '../components/parents/featured-one-column'
-import AboutLCO2 from '../components/parents/about-lco2'
 import DecontominationSubject from '../components/parents/decontomination-subjects'
+
+
+import DecontominationBenefits from "../components/parents/decontominations-advantages" // new
+import DecontominationSteps from "../components/parents/decontominations-steps" // another suit slider
 
 export default function Decontomination({ data: { allWpPage } }) {
   let { decontomination } = allWpPage.nodes[0]
-  debugger
   return (
     <main>
       <Hero data={decontomination.heroDecontomination} />
       <WhatIsDecontomination data={decontomination.about} />
       <DecontominationProcess data={decontomination.process} />
       <FeaturedOneColumn data={decontomination.featuredOneColumn} />
-      <AboutLCO2 data={decontomination.aboutLco2} />
       <DecontominationSubject data={decontomination.decontominationSubject} />
     </main>
   )
@@ -71,20 +72,6 @@ export const query = graphql`
                 name
                 link
               }
-            }
-            aboutLco2{
-              title
-              leftText
-              rightText
-              repeater{
-                img{
-                  altText
-                  sourceUrl
-                }
-                title
-                text
-              }
-
             }
             decontominationSubject {
               title

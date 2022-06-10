@@ -25,7 +25,7 @@ export default function Content({ data: { title, text }, posts }) {
 const Wrapper = styled.section`
     padding-top: 360px;
     background-color: var(--color-black);
-
+    min-height: 100vh;
 `
 
 const TextPart = styled.div`

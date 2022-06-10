@@ -37,7 +37,7 @@ const Wrapper = styled.section`
 `
 
 const Content = styled.div`
-    max-width: 820px;
+    max-width: 1124px;
     position: absolute;
     z-index: 1;
 
@@ -75,4 +75,7 @@ const Content = styled.div`
 
 const ImageWrapper = styled(GatsbyImage)`
     z-index: 0;
+    position: absolute;
+    right: 0;
+    bottom: 0;
 `

@@ -4,8 +4,6 @@ import Hero from "../components/parents/hero-decontomination"
 import TwoColumnWithTitleAndImage from "../components/parents/two-column-with-title-image"
 import DecontominationSubjectsMini from "../components/parents/decontomination-subjects-mini"
 import Technologies from "../components/parents/technologies"
-import TwoColumnWithTitleAndList from "../components/parents/two-column-with-title-list"
-import Institutions from "../components/parents/institutions"
 
 export default function About({ data: { allWpPage } }) {
   let { about } = allWpPage.nodes[0]
@@ -15,8 +13,6 @@ export default function About({ data: { allWpPage } }) {
       <TwoColumnWithTitleAndImage data={about.twoColumnWithTitle} />
       <DecontominationSubjectsMini data={about.decontominationSubjects} />
       <Technologies data={about.technologies} />
-      <TwoColumnWithTitleAndList data={about.twoColumnWithList} />
-      <Institutions data={about.institutions}/>
     </main>
   )
 }
@@ -65,30 +61,6 @@ export const query = graphql`
                 img{
                   sourceUrl
                   altText
-                }
-              }
-            }
-            twoColumnWithList {
-              title
-              subTitle
-              text
-              img {
-                altText
-                localFile {
-                  childImageSharp {
-                    gatsbyImageData
-                  }
-                }
-              }
-            }
-            institutions {
-              title
-              map {
-                altText
-                localFile {
-                  childImageSharp {
-                    gatsbyImageData
-                  }
                 }
               }
             }

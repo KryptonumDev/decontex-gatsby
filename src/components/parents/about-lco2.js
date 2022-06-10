@@ -26,7 +26,6 @@ export default function AboutLCO2({ data: { title, leftText, rightText, repeater
                         </div>
                     ))}
                 </Repeater>
-
             </Container>
         </Wrapper>
     )
@@ -34,6 +33,7 @@ export default function AboutLCO2({ data: { title, leftText, rightText, repeater
 
 const Wrapper = styled.section`
     margin-top: var(--section-margin);
+    margin-bottom: var(--section-margin);
 `
 
 const Content = styled.div`

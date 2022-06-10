@@ -1,14 +1,16 @@
 import React from "react"
 import { graphql } from "gatsby"
 import PrivacyContent from "../components/parents/privacy-content"
+import Hero from "../components/parents/hero-decontomination"
 
 export default function PrivacyPolice({ data: { allWpPage } }) {
-    let { privacyPolice } = allWpPage.nodes[0]
-    return (
-        <main>
-            <PrivacyContent data={privacyPolice} />
-        </main>
-    )
+  let { privacyPolice } = allWpPage.nodes[0]
+  return (
+    <main>
+      <Hero data={privacyPolice.heroPrivacy} />
+      <PrivacyContent data={privacyPolice.columns} />
+    </main>
+  )
 }
 
 export const query = graphql`
@@ -16,7 +18,18 @@ export const query = graphql`
     allWpPage(filter: {id: {eq: $id}}) {
       nodes {
         privacyPolice{
-            title
+            heroPrivacy{
+                title
+                subTitle
+                background {
+                    altText
+                    localFile {
+                        childImageSharp {
+                            gatsbyImageData
+                        }
+                    }
+                }
+            }
             columns{
                 leftColumn
                 rightColumn

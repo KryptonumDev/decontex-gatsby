@@ -2,21 +2,19 @@ import React from "react"
 import styled from "styled-components"
 import { ButtonBlue, ButtonOutlined, Container } from './../../styles/style'
 import { GatsbyImage } from 'gatsby-plugin-image'
+import { Link } from "gatsby"
 
 export default function Hero({ data: { title, subTitle, link, backgroundImage } }) {
     return (
         <Wrapper>
             <Container>
                 <Content>
-                    <div className="title" dangerouslySetInnerHTML={{ __html: title }}></div>
-                    <div className="subTitle" dangerouslySetInnerHTML={{ __html: subTitle }}></div>
                     <ButtonsWrapper>
-                        {link.map((el, index) => {
-                            if (index === 0) {
-                                return <ButtonBlue to={el.link.url}>{el.text}</ButtonBlue>
-                            }
-                            return <ButtonOutlined to={el.link.url}>{el.text}</ButtonOutlined>
-                        })}
+                        {link.map((el, index) => (
+                            <Item key={el.link} to={el.link} ariaLabel={el.ariaLabel}>
+                                <GatsbyImage className="image" image={el.image.localFile.childImageSharp.gatsbyImageData} alt={el.image.altText}/>
+                            </Item>
+                        ))}
                     </ButtonsWrapper>
                 </Content>
             </Container>
@@ -28,21 +26,12 @@ export default function Hero({ data: { title, subTitle, link, backgroundImage } 
 const Wrapper = styled.div`
     max-width: 1920px;
     margin: 0 auto;
-    background-color: #111315;   
+    background-color: #f3f3f3;   
     position: relative;
     overflow: hidden;
     position: relative;
     overflow: hidden;
-
-    &::after{
-        content: '';
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        top: 0;
-        background-color: #00000070;
-    }
+    min-height: 1080px;
 `
 
 const Content = styled.div`
@@ -83,10 +72,10 @@ const Content = styled.div`
 `
 
 const ButtonsWrapper = styled.div`
-    margin-top: clamp(30px, ${60 / 768 * 100}vw, 120px);
-    margin-bottom: clamp(120px, ${120 / 768 * 100}vw, 240px);
+    margin-top: 320px;
+    margin-bottom: 220px;
     display: flex;
-    gap: clamp(14px, ${40 / 768 * 100}vw, 40px);
+    gap: 48px;
 
     @media (max-width: 768px){
         margin-bottom: 0;
@@ -97,22 +86,17 @@ const ButtonsWrapper = styled.div`
     }
 `
 
+const Item = styled(Link)`
+    max-width: 500px;
+    width: 100%;
+    height: 500px;
+`
+
 const ImageWrapper = styled(GatsbyImage)`
     position: absolute;
-    right: -260px;
+    right: 0;
     bottom: 0;
+    left: 0;
+    top: 0;
     z-index: 0;
-
-    @media (max-width: 768px){
-        position: relative;
-        left: clamp(-80px, ${80 / 768 * -100}vw, -40px);
-        bottom: clamp(-160px, ${160 / 768 * -100}vw, -10px);
-        margin-top: clamp(-154px, ${154 / 768 * -100}vw, -10px);
-        width: calc(100% + clamp(80px, ${240 / 768 * 100}vw, 240px));
-    }
-
-    @media (max-width: 480px) {
-        bottom: -10px;
-        margin-top: -4px;
-    }
 `

@@ -9,7 +9,7 @@ export default function Blog({ data: { title, text, link } }) {
                 <Title dangerouslySetInnerHTML={{ __html: title }} />
                 <Content>
 
-                </Content>
+                </Content> 
                 <Link>
                     <div dangerouslySetInnerHTML={{ __html: text }} />
                     <ButtonBlue to={link.url.url}>{link.text}</ButtonBlue>
