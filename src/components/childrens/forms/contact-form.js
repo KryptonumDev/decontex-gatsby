@@ -4,7 +4,7 @@ import { ButtonBlue } from "../../../styles/style"
 import { useForm } from "react-hook-form";
 import { Link } from "gatsby";
 
-export default function FooterForm({ data: { switchTitle, switchVariant1, switchVariant2, emailPlaceholder, firstNamePlaceholder, messagePlaceholder, phonePlaceholder, agreementText, submitText } }) {
+export default function ContactForm({ data: { switchTitle, switchVariant1, switchVariant2, emailPlaceholder, firstNamePlaceholder, messagePlaceholder, phonePlaceholder, agreementText, submitText } }) {
 
     const { register, handleSubmit } = useForm()
     const onSubmit = data => console.log(data)

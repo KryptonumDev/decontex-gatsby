@@ -23,8 +23,7 @@ const Wrapper = styled.section`
     background-color: #111315;   
     position: relative;
     overflow: hidden;
-    position: relative;
-    overflow: hidden;
+    min-height: 1080px;
 
     /* &::after{
         content: '';
@@ -63,10 +62,6 @@ const Content = styled.div`
             margin-top: clamp(12px, ${12 / 768 * 100}vw, 32px);
             max-width: 600px;
             color: var(--color-white);
-        }
-
-        h1,h2,h3,h4,h5,h6,p + h1,h2,h3,h4,h5,h6,p{
-
         }
     }
 

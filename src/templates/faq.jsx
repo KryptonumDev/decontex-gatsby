@@ -5,7 +5,6 @@ import Content from "../components/parents/faq-content"
 
 export default function Faq({ data: { allWpPage } }) {
     let { faq } = allWpPage.nodes[0]
-    debugger
     return (
         <main>
             <Hero data={faq.heroFaq} />
@@ -33,6 +32,13 @@ export const query = graphql`
             }
             content {
                 title
+                text
+                link{
+                  name
+                  url{
+                    url
+                  }
+                }
                 repeater{
                     question
                     answer

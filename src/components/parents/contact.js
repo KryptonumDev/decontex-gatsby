@@ -1,19 +1,19 @@
 import React from "react"
 import styled from "styled-components"
 import { Container } from "../../styles/style"
-import FooterForm from "../childrens/forms/footer-form"
+import ContactForm from "../childrens/forms/contact-form"
 
-export default function Contact({ data: { title, text, form } }) {
+export default function Contact({ data: { title, text, form }, contactPage }) {
     return (
-        <Wrapper>
+        <Wrapper contactPage={contactPage}>
             <Container>
                 <Content>
                     <div>
-                        <div className="title" dangerouslySetInnerHTML={{ __html: title }}/>
-                        <div className="other" dangerouslySetInnerHTML={{ __html: text }}/>
+                        <div className="title" dangerouslySetInnerHTML={{ __html: title }} />
+                        <div className="other" dangerouslySetInnerHTML={{ __html: text }} />
                     </div>
                     <div className="form">
-                        <FooterForm data={form} />
+                        <ContactForm data={form} />
                     </div>
                 </Content>
             </Container>
@@ -24,8 +24,8 @@ export default function Contact({ data: { title, text, form } }) {
 const Wrapper = styled.div`
     max-width: 1920px;
     margin: 0 auto;
-    margin-top: var(--section-margin);
-    padding-top: clamp(36px, ${72 / 768 * 100}vw, 160px);
+    margin-top: ${props => props.contactPage ? 'none' : 'var(--section-margin)'};
+    padding-top:  ${props => props.contactPage ? `300px` : `clamp(36px, ${72 / 768 * 100}vw, 160px)`};
     padding-bottom: clamp(48px, ${120 / 768 * 100}vw, 160px);
     background-color: var(--color-black);
 `

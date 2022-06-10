@@ -15,11 +15,10 @@ import OneColumnGrid from "../components/parents/one-column-grid"
 import News from "../components/parents/news"
 import Blog from "../components/parents/blog"
 import DecontominationSteps from "../components/parents/decontominations-steps"
-import Contact from "../components/parents/contact-footer"
+import Contact from "../components/parents/contact"
 
 const IndexPage = ({ data: { allWpPage } }) => {
   let { homepage } = allWpPage.nodes[0]
-  debugger
   return (
     <main>
       <Hero data={homepage.heroHomepage} />

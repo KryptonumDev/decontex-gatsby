@@ -52,7 +52,7 @@ const Content = styled.div`
     ul{
         display: grid;
         grid-gap: 32px;
-        h1,h2,h3,h4,h5,h6,p,li{
+        li{
             padding-left: 50px;
             font-weight: 500;
             font-size: clamp(17px, ${27 / 768 * 100}vw, 32px);
