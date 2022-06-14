@@ -59,8 +59,12 @@ export const query = graphql`
               repeater {
                 text
                 img{
-                  sourceUrl
                   altText
+                  localFile {
+                    childImageSharp {
+                        gatsbyImageData
+                    }
+                  }
                 }
               }
             }

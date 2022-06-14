@@ -70,8 +70,8 @@ export default function Footer({ location }) {
     `)
 
     const locale = activeLanguage(location)
-    const localeDate = data.allWpPage.nodes.filter(el => el.language.slug === locale)
-    const { footer: { contactInformation, copyright, mainLinks, smallLinks, socialLinks, logo, copyrightLogo } } = localeDate[0].footer
+    const localeData = data.allWpPage.nodes.filter(el => el.language.slug === locale)
+    const { footer: { contactInformation, copyright, mainLinks, smallLinks, socialLinks, logo, copyrightLogo } } = localeData[0].footer
 
     const [linksDivided, changeLinksDivided] = useState(() => {
         let arr = [[], [], []]

@@ -173,8 +173,8 @@ const Grid = styled.div`
         box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
                 
         font-weight: 600;
-        font-size: 24px;
-        line-height: 32px;
+        font-size: clamp(19px, ${21 / 768 * 100}vw, 24px);
+        line-height: 125%;
         color: var(--color-white);
         width: 200%;
     }
@@ -186,6 +186,23 @@ const Grid = styled.div`
         .brown{
             width: fit-content;
             margin:  40px -40px 0 auto;
+            padding: clamp(16px, ${32 / 768 * 100}vw, 48px);
+        }
+    }
+
+    @media (max-width: 600px) {
+        grid-gap: 60px;
+    }
+
+    @media (max-width: 480px) {
+        width: 100vw;
+        transform: translateX(-16px);
+
+        .brown{
+            width: 100vw;
+            transform: translateX(-40px);
+            text-align: center;
+            box-sizing: border-box;
         }
     }
 `
@@ -220,6 +237,11 @@ const MarkerButton = styled.button`
                 background-color: var(--color-blue)
             }
         ` : null}
+
+        @media (max-width: 800px) {
+            font-size: 11px;
+            padding: 0 5px;
+        }
 `
 
 const MarkWrapper = styled.div`
@@ -241,10 +263,22 @@ const MarkWrapper = styled.div`
             left: 50%;
             transform: translateX(-50%);
             bottom: calc(100% + var(--height));
+
+            @media (max-width: 800px) {
+                transform: translateX(-50%) scale(0.6) translateY(40%);
+            }
         }
 
         @media (max-width: 1024px) {
             --height: 68px;
+        }
+
+        @media (max-width: 800px) {
+            --height: 54px;
+        }
+
+        @media (max-width: 520px) {
+            --height: 25px;
         }
     }
 
@@ -262,10 +296,23 @@ const MarkWrapper = styled.div`
             left: 50%;
             transform: translateX(-50%);
             bottom: calc(100% + var(--height)); 
+
+            @media (max-width: 800px) {
+                transform: translateX(-50%) scale(0.6) translateY(40%);
+            }
         }
 
         @media (max-width: 1024px) {
             --height: 138px;
+        }
+
+        @media (max-width: 800px) {
+            --height: 109px;
+        }
+
+        @media (max-width: 520px) {
+            --height: 60px;
+            bottom: -12%;
         }
     }
 
@@ -283,10 +330,23 @@ const MarkWrapper = styled.div`
             left: 50%;
             transform: translateX(-50%);
             bottom: calc(100% + var(--height));
+
+            @media (max-width: 800px) {
+                transform: translateX(-50%) scale(0.6) translateY(40%);
+            }
         }
 
         @media (max-width: 1024px) {
             --height: 62px;
+        }
+
+        @media (max-width: 800px) {
+            --height: 56px;
+        }
+
+        @media (max-width: 520px) {
+            --height: 25px;
+            right: 23%;
         }
     }
 
@@ -304,10 +364,23 @@ const MarkWrapper = styled.div`
             left: 50%;
             transform: translateX(-50%);
             bottom: calc(100% + var(--height));
+
+            @media (max-width: 800px) {
+                transform: translateX(-50%) scale(0.6) translateY(40%);
+            }
         }
 
         @media (max-width: 1024px) {
             --height: 75px;
+        }
+
+        @media (max-width: 800px) {
+            --height: 65px;
+        }
+
+        @media (max-width: 520px) {
+            --height: 30px;
+            right: 36%;
         }
     }
 
@@ -325,10 +398,24 @@ const MarkWrapper = styled.div`
             left: 50%;
             transform: translateX(-50%);
             bottom: calc(100% + var(--height));
+
+            @media (max-width: 800px) {
+                transform: translateX(-50%) scale(0.6) translateY(40%);
+            }
         }
 
         @media (max-width: 1024px) {
             --height: 158px;
+        }
+
+        @media (max-width: 800px) {
+            --height: 127px;
+        }
+
+        @media (max-width: 520px) {
+            --height: 75px;
+            right: 40%;
+            bottom: -12%;
         }
     }
 
@@ -346,10 +433,24 @@ const MarkWrapper = styled.div`
             left: 50%;
             transform: translateX(-50%);
             bottom: calc(100% + var(--height));
+
+            @media (max-width: 800px) {
+                transform: translateX(-50%) scale(0.6) translateY(40%);
+            }
         }
 
         @media (max-width: 1024px) {
             --height: 140px;
+        }
+
+        @media (max-width: 800px) {
+            --height: 110px;
+        }
+
+        @media (max-width: 520px) {
+            --height: 72px;
+            right: 43%;
+            bottom: -24%;
         }
     }
 
@@ -367,10 +468,23 @@ const MarkWrapper = styled.div`
             left: 50%;
             transform: translateX(-50%);
             bottom: calc(100% + var(--height));
+
+            @media (max-width: 800px) {
+                transform: translateX(-50%) scale(0.6) translateY(40%);
+            }
         }
 
         @media (max-width: 1024px) {
             --height: 93px;
+        }
+
+        @media (max-width: 800px) {
+            --height: 78px;
+        }
+
+        @media (max-width: 520px) {
+            --height: 40px;
+            right: 52%;
         }
     }
 
@@ -388,10 +502,23 @@ const MarkWrapper = styled.div`
             left: 50%;
             transform: translateX(-50%);
             bottom: calc(100% + var(--height));
+
+            @media (max-width: 800px) {
+                transform: translateX(-50%) scale(0.6) translateY(40%);
+            }
         }
 
         @media (max-width: 1024px) {
             --height: 220px;
+        }
+
+        @media (max-width: 800px) {
+            --height: 160px;
+        }
+
+        @media (max-width: 520px) {
+            --height: 90px;
+            right: 59%;
         }
     }
 
@@ -409,10 +536,23 @@ const MarkWrapper = styled.div`
             left: 50%;
             transform: translateX(-50%);
             bottom: calc(100% + var(--height));
+
+            @media (max-width: 800px) {
+                transform: translateX(-50%) scale(0.6) translateY(40%);
+            }
         }
 
         @media (max-width: 1024px) {
             --height: 85px;
+        }
+
+        @media (max-width: 800px) {
+            --height: 65px;
+        }
+
+        @media (max-width: 520px) {
+            --height: 35px;
+            right: 79%;
         }
     }
 
@@ -432,10 +572,23 @@ const MarkWrapper = styled.div`
             left: 50%;
             transform: translateX(-50%);
             top: calc(100% + var(--height));
+
+            @media (max-width: 800px) {
+                transform: translateX(-50%) scale(0.6) translateY(-40%);
+            }
         }
 
         @media (max-width: 1024px) {
             --height: 180px;
+        }
+
+        @media (max-width: 800px) {
+            --height: 135px;
+        }
+
+        @media (max-width: 520px) {
+            --height: 70px;
+            right: 82%;
         }
     }
 
@@ -455,10 +608,23 @@ const MarkWrapper = styled.div`
             left: 50%;
             transform: translateX(-50%);
             top: calc(100% + var(--height));
+
+            @media (max-width: 800px) {
+                transform: translateX(-50%) scale(0.6) translateY(-40%);
+            }
         }
 
         @media (max-width: 1024px) {
             --height: 165px;
+        }
+
+        @media (max-width: 800px) {
+            --height: 118px;
+        }
+
+        @media (max-width: 520px) {
+            --height: 66px;
+            right: 77%;
         }
     }
 
@@ -478,10 +644,23 @@ const MarkWrapper = styled.div`
             left: 50%;
             transform: translateX(-50%);
             top: calc(100% + var(--height));
+
+            @media (max-width: 800px) {
+                transform: translateX(-50%) scale(0.6) translateY(-40%);
+            }
         }
 
         @media (max-width: 1024px) {
             --height: 140px;
+        }
+
+        @media (max-width: 800px) {
+            --height: 110px;
+        }
+
+        @media (max-width: 520px) {
+            --height: 57px;
+            right: 67%;
         }
     }
 
@@ -501,10 +680,23 @@ const MarkWrapper = styled.div`
             left: 50%;
             transform: translateX(-50%);
             top: calc(100% + var(--height));
+
+            @media (max-width: 800px) {
+                transform: translateX(-50%) scale(0.6) translateY(-40%);
+            }
         }
 
         @media (max-width: 1024px) {
             --height: 62px;
+        }
+
+        @media (max-width: 800px) {
+            --height: 54px;
+        }
+
+        @media (max-width: 520px) {
+            --height: 25px;
+            right: 42%;
         }
     }
 
@@ -524,10 +716,23 @@ const MarkWrapper = styled.div`
             left: 50%;
             transform: translateX(-50%);
             top: calc(100% + var(--height));
+
+            @media (max-width: 800px) {
+                transform: translateX(-50%) scale(0.6) translateY(-40%);
+            }
         }
 
         @media (max-width: 1024px) {
             --height: 190px;
+        }
+
+        @media (max-width: 800px) {
+            --height: 147px;
+        }
+
+        @media (max-width: 520px) {
+            --height: 80px;
+            right: 22%;
         }
     }
 
@@ -547,10 +752,23 @@ const MarkWrapper = styled.div`
             left: 50%;
             transform: translateX(-50%);
             top: calc(100% + var(--height));
+
+            @media (max-width: 800px) {
+                transform: translateX(-50%) scale(0.6) translateY(-40%);
+            }
         }
 
         @media (max-width: 1024px) {
             --height: 143px;
+        }
+
+        @media (max-width: 800px) {
+            --height: 116px;
+        }
+
+        @media (max-width: 520px) {
+            --height: 62px;
+            right: 12%;
         }
     }
 `
@@ -574,7 +792,19 @@ const ItemWrapper = styled.div`
     }
 
     @media (max-width: 600px) {
+        width: calc(100vw + 40px);
+        transform: translateX(-20px);
+    }
+
+    @media (max-width: 550px) {
+        width: calc(100% + 80px);
+        transform: translateX(-40px);
+    }
+
+    @media (max-width: 520px) {
         max-width: 320px;
+        width: 100%;
+        transform: unset;
     }
 `
 
@@ -600,6 +830,15 @@ const CardWrapper = styled.div`
         height: unset;
         margin: 0 auto;
     }
+
+    @media (max-width: 600px) {
+        min-height: 250px;
+    }
+
+    @media (max-width: 480px) {
+        min-height: 210px;
+    }
+
 `
 
 const Card = styled.div`
@@ -615,24 +854,31 @@ const Card = styled.div`
     pointer-events: ${props => props.active === props.index ? 'all' : 'none'};
     opacity: ${props => props.active === props.index ? '1' : '0'};
 
+    @media (max-width: 600px) {
+        padding: clamp(16px, ${32 / 768 * 100}vw, 32px);
+    }
+
     &:last-child{
         background: #928367;
     }
 
     h3{
         color: var(--color-white);
-        margin-bottom: 16px;
+        margin-bottom: clamp(6px, ${11 / 768 * 100}vw, 16px);
+        font-weight: 700;
+        font-size: clamp(17px, ${24 / 768 * 100}vw, 32px);
+        line-height: 125%;
     }
 
     .content{
         display: grid;
-        grid-gap: 16px;
+        grid-gap: clamp(8px, ${12 / 768 * 100}vw, 16px);
         grid-template-columns: auto 1fr;
 
         .image{
             width: fit-content;
             height: fit-content;
-            max-width: 50px;
+            max-width: clamp(20px, ${40 / 768 * 100}vw, 50px);
         }
 
         p{
@@ -641,14 +887,14 @@ const Card = styled.div`
 
             &.main{
                 font-weight: 700;
-                font-size: 20px;
+                font-size: clamp(14px, ${17 / 768 * 100}vw, 20px);
                 line-height: 140%;
                 letter-spacing: 0.005em;
             }
 
             &.sub{
                 font-weight: 400;
-                font-size: 13px;
+                font-size: clamp(11px, ${12 / 768 * 100}vw, 13px);
                 line-height: 146%;
                 letter-spacing: 0.005em;
             }
@@ -666,6 +912,18 @@ const Card = styled.div`
             border: none;
             height: 40px;
             width: 40px;
+        }
+
+        *{
+            margin: 0 !important;
+        }
+
+        @media (max-width: 480px) {
+            height: 54px;
+
+            .button{
+                transform: scale(0.8);
+            }
         }
     }
 `
@@ -709,6 +967,10 @@ const Wrapper = styled.section`
 
         @media (max-width: 768px) {
             grid-template-columns: 1fr;
+        }
+
+        @media (max-width: 600px) {
+            margin-bottom: 60px;
         }
     }
 

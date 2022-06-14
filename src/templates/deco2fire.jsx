@@ -1,16 +1,22 @@
 import React from "react"
 import { graphql } from "gatsby"
+import Hero from '../components/parents/hero-decontomination'
 import SuitDescription from "../components/parents/suit-description"
 import DecontominationBenefits from "../components/parents/decontomination-benefits"
 import Cleanroom from "../components/parents/cleanroom"
+import FeaturedOneColumn from "../components/parents/featured-one-column"
+import OtherTechnologies from "../components/parents/other-technologies"
 
 export default function Deco2fire({ data: { allWpPage } }) {
   let { deco2fire } = allWpPage.nodes[0]
   return (
     <main>
+      <Hero data={deco2fire.heroDeco2fire}/>
       <SuitDescription data={deco2fire.suitDescription} />
       <DecontominationBenefits data={deco2fire.decontominationBenefits} />
       <Cleanroom data={deco2fire.decontexCleanroom} />
+      <FeaturedOneColumn data={deco2fire.featuredOneColumn} />
+      <OtherTechnologies data={deco2fire.otherTechnologies} />
     </main>
   )
 }
@@ -20,6 +26,21 @@ export const query = graphql`
     allWpPage(filter: {id: {eq: $id}}) {
       nodes {
         deco2fire{
+          heroDeco2fire{
+                title
+                links{
+                  link
+                  name
+                }
+                background {
+                    altText
+                    localFile {
+                        childImageSharp {
+                            gatsbyImageData
+                        }
+                    }
+                }
+            }
           suitDescription {
             sectionTitle
             text
@@ -31,6 +52,7 @@ export const query = graphql`
               balaclava {
                 title
                 text
+
               }
               harness {
                 title
@@ -123,6 +145,35 @@ export const query = graphql`
               phone
               email
               address
+            }
+          }
+          featuredOneColumn{
+            text
+            link{
+              link
+              name
+            }
+          }
+          otherTechnologies{
+            link{
+              image{
+                altText
+                localFile {
+                  childImageSharp {
+                    gatsbyImageData
+                  }
+                }
+              }
+              link
+              ariaLabel
+            }
+            image{
+              altText
+              localFile {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
             }
           }
         }

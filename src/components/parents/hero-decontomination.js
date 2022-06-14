@@ -3,13 +3,25 @@ import styled from "styled-components"
 import { ButtonBlue, ButtonOutlined, Container } from './../../styles/style'
 import { GatsbyImage } from 'gatsby-plugin-image'
 
-export default function Hero({ data: { title, subTitle, background } }) {
+export default function Hero({ data: { title, subTitle, background, links } }) {
     return (
         <Wrapper>
             <Container>
                 <Content>
                     <div className="title" dangerouslySetInnerHTML={{ __html: title }}></div>
-                    <div className="subTitle" dangerouslySetInnerHTML={{ __html: subTitle }}></div>
+                    {subTitle
+                        ? <div className="subTitle" dangerouslySetInnerHTML={{ __html: subTitle }}></div>
+                        : null}
+                    {links
+                        ? <Buttons>
+                            {links.map((el, index) => {
+                                if (index === 0) {
+                                    return <ButtonBlue to={el.link}>{el.name}</ButtonBlue>
+                                }
+                                return <ButtonOutlined to={el.link}>{el.name}</ButtonOutlined>
+                            })}
+                        </Buttons>
+                        : null}
                 </Content>
             </Container>
             <ImageWrapper image={background.localFile.childImageSharp.gatsbyImageData} alt={background.altText} />
@@ -23,7 +35,7 @@ const Wrapper = styled.section`
     background-color: #111315;   
     position: relative;
     overflow: hidden;
-    min-height: 1080px;
+    min-height: clamp(640px, ${1080 / 768 * 100}vw, 1080px);
 
     /* &::after{
         content: '';
@@ -34,6 +46,22 @@ const Wrapper = styled.section`
         top: 0;
         background-color: #00000070;
     } */
+`
+
+const Buttons = styled.div`
+    display: grid;
+    width: fit-content;
+    grid-gap: clamp(16px, ${28 / 768 * 100}vw, 40px);
+    margin-top: clamp(32px, ${56 / 768 * 100}vw, 80px);
+    grid-template-columns: auto auto;
+
+    @media (max-width: 360px) {
+        grid-template-columns: 1fr;
+
+        a{
+            margin: 0;
+        }
+    }
 `
 
 const Content = styled.div`
@@ -76,6 +104,8 @@ const Content = styled.div`
 const ImageWrapper = styled(GatsbyImage)`
     z-index: 0;
     position: absolute;
+    top: 0;
+    left: 0;
     right: 0;
     bottom: 0;
 `

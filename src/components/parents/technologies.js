@@ -1,3 +1,4 @@
+import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
 import { ButtonBlack, Container } from "../../styles/style"
@@ -10,7 +11,7 @@ export default function Technologies({ data: { title, repeater } }) {
                 <Repeater>
                     {repeater.map(el => (
                         <Item >
-                            <img src={el.img.sourceUrl} alt={el.img.altText} />
+                            <GatsbyImage image={el.img.localFile.childImageSharp.gatsbyImageData} alt={el.img.altText} />
                             <div dangerouslySetInnerHTML={{ __html: el.text }} />
                         </Item>
                     ))}

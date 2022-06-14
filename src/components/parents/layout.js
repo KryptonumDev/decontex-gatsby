@@ -6,7 +6,7 @@ export default function Layout({ children, location }) {
 
     return (
         <React.Fragment>
-            {/* <Header /> */}
+            <Header location={location} />
             {children}
             <Footer location={location} />
         </React.Fragment>

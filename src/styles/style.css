@@ -16,6 +16,10 @@
     --section-margin: clamp(60px, 15.625vw, 160px);
 }
 
+html{
+    scroll-behavior: smooth;
+}
+
 .h1 {
     font-weight: 800;
     font-size: 72px;
