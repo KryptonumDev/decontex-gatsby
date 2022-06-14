@@ -2,23 +2,21 @@ import * as React from 'react'
 import { graphql } from "gatsby"
 import Hero from '../components/parents/hero-decontomination'
 import WhatIsDecontomination from '../components/parents/what-is-decontomination'
-import DecontominationProcess from '../components/parents/decontomination-process'
-import FeaturedOneColumn from '../components/parents/featured-one-column'
-import DecontominationSubject from '../components/parents/decontomination-subjects'
-
-
 import DecontominationBenefits from "../components/parents/decontominations-advantages" // new
-import DecontominationSteps from "../components/parents/decontominations-steps" // another suit slider
+import DecontomiantionBenefits from '../components/parents/decontomination-benefits-black'
+import TwoColumnWithTitle from '../components/parents/two-column-with-title'
+import FeaturedJackets from '../components/parents/featured-jackets'
 
 export default function Decontomination({ data: { allWpPage } }) {
   let { decontomination } = allWpPage.nodes[0]
   return (
     <main>
       <Hero data={decontomination.heroDecontomination} />
-      <WhatIsDecontomination data={decontomination.about} />
-      <DecontominationProcess data={decontomination.process} />
-      <FeaturedOneColumn data={decontomination.featuredOneColumn} />
-      <DecontominationSubject data={decontomination.decontominationSubject} />
+      <WhatIsDecontomination data={decontomination.decontexTechnology} />
+      <DecontomiantionBenefits data={decontomination.decontominationBenefitsDecon}/>
+      <TwoColumnWithTitle data={decontomination.twoColumnsWithTitle}/>
+      <DecontominationBenefits data={decontomination.decontominationAdvantages}/>
+      <FeaturedJackets data={decontomination.featuredWithJackets}/>
     </main>
   )
 }
@@ -40,67 +38,86 @@ export const query = graphql`
                     }
                 }
             }
-            about{
+            decontexTechnology{
               title
-              leftText
-              rightText
-              repeater{
-                img{
-                  altText
-                  sourceUrl
-                }
-                title
-              }
-            }
-            process{
-              title
-              leftText
-              rightText
-              repeater{
-                img{
-                  altText
-                  sourceUrl
-                }
-                title
-                text
-              }
-
-            }
-            featuredOneColumn{
-              text
-              link{
-                name
-                link
-              }
-            }
-            decontominationSubject {
-              title
-              text
-              repeater {
-                title
-                text
-                img {
-                  altText
-                  localFile {
-                    childImageSharp {
-                      gatsbyImageData
-                    }
-                  }
-                }
-              }
-              repeaterLastElement {
-                text
-                link {
-                  name
-                  link
-                }
-              }
-              img {
+              image{
                 altText
                 localFile {
-                  childImageSharp {
-                    gatsbyImageData
+                    childImageSharp {
+                        gatsbyImageData
+                    }
+                }
+              }
+              benefitsTitle
+              repeater{
+                img{
+                    altText
+                    localFile {
+                        childImageSharp {
+                            gatsbyImageData
+                        }
+                    }
+                }
+                title
+              }
+            }
+            decontominationAdvantages{
+              table{
+                row{
+                  cell{
+                    textOrSymbol
+                    name
+                    isincluded
                   }
+                }
+              }
+              link{
+                url
+                text
+              }
+            }
+            decontominationBenefitsDecon{
+              benefit{
+                title
+                text
+                icon{
+                  altText
+                  localFile {
+                      childImageSharp {
+                          gatsbyImageData
+                      }
+                  }
+                }
+              }
+            }
+            twoColumnsWithTitle{
+              sectionTitle
+              leftText
+              rightText
+              button{
+                url
+                name
+              }
+            }
+            featuredWithJackets{
+              leftText
+              rightText
+              textFirst
+              textSecond
+              firstJacket{
+                altText
+                localFile {
+                    childImageSharp {
+                        gatsbyImageData
+                    }
+                }
+              }
+              secondJacket{
+                altText
+                localFile {
+                    childImageSharp {
+                        gatsbyImageData
+                    }
                 }
               }
             }

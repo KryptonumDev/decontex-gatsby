@@ -10,7 +10,7 @@ export default function TwoColumnWithTitleAndImage({ data: { title, subTitle, te
                 <div className="title" dangerouslySetInnerHTML={{ __html: title }} />
                 <div className="subTitle" dangerouslySetInnerHTML={{ __html: subTitle }} />
                 <Content>
-                    <GatsbyImage image={img.localFile.childImageSharp.gatsbyImageData} />
+                    <GatsbyImage className="image" image={img.localFile.childImageSharp.gatsbyImageData} />
                     <div dangerouslySetInnerHTML={{ __html: text }} />
                 </Content>
             </Container>
@@ -18,11 +18,11 @@ export default function TwoColumnWithTitleAndImage({ data: { title, subTitle, te
     )
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.section`
     margin-top: var(--section-margin);
 
     .title{
-        margin-bottom: 64px;
+        margin-bottom: clamp(8px, ${32 / 768 * 100}vw, 64px);
         h1,h2,h3,h4,h5,h6,p{
             font-weight: 900;
             font-size: clamp(27px, ${48 / 768 * 100}vw, 72px);
@@ -33,7 +33,7 @@ const Wrapper = styled.div`
     }    
 
     .subTitle{
-        margin-bottom: 128px;
+        margin-bottom: clamp(16px, ${64 / 768 * 100}vw, 128px);
         h1,h2,h3,h4,h5,h6,p{
             font-weight: 700;
             font-size: clamp(27px, ${40 / 768 * 100}vw, 40px);
@@ -48,15 +48,26 @@ const Content = styled.div`
     grid-template-columns: 1fr 1fr;
     grid-gap: 40px;
 
+    .image{
+        max-width: 620px;
+        width: 100%;
+        height: fit-content;
+        min-width: 280px;
+    }
+
     h1,h2,h3,h4,h5,h6,p{
-        margin-bottom: 32px;
+        margin-bottom: clamp(16px, ${24 / 768 * 100}vw, 32px);
         font-weight: 500;
-        font-size: clamp(17px, ${27 / 768 * 100}vw, 32px);
+        font-size: clamp(17px, ${17 / 768 * 100}vw, 32px);
         line-height: 130%;
 
         &:last-child{
             font-weight: 700;
-            font-size: clamp(27px, ${39 / 768 * 100}vw, 39px);
+            font-size: clamp(17px, ${17 / 768 * 100}vw, 32px);
         }
+    }
+
+    @media (max-width: 640px) {
+        grid-template-columns: 1fr;
     }
 `

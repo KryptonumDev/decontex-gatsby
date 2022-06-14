@@ -11,7 +11,7 @@ export default function Technologies({ data: { title, repeater } }) {
                 <Repeater>
                     {repeater.map(el => (
                         <Item >
-                            <GatsbyImage image={el.img.localFile.childImageSharp.gatsbyImageData} alt={el.img.altText} />
+                            <GatsbyImage className="image" image={el.img.localFile.childImageSharp.gatsbyImageData} alt={el.img.altText} />
                             <div dangerouslySetInnerHTML={{ __html: el.text }} />
                         </Item>
                     ))}
@@ -33,12 +33,12 @@ const Wrapper = styled.section`
     .title{
         margin: 0 auto;
         text-align: center;
-        margin-bottom: 72px;
+        margin-bottom: clamp(36px, ${36 / 768 * 100}vw, 128px);
         h1,h2,h3,h4,h5,h6,p{
             color: var(--color-white);
             text-transform: uppercase;
             font-weight: 900;
-            font-size: clamp(27px, ${48 / 768 * 100}vw, 72px);
+            font-size: clamp(27px, ${44 / 768 * 100}vw, 72px);
             line-height: 130%;
             letter-spacing: -0.015em;
         }
@@ -51,6 +51,13 @@ const Repeater = styled.div`
     flex-wrap: wrap;
     justify-content: center;
     gap: 50px 40px;
+
+    .image{
+        max-width: clamp(64px, ${80 / 768 * 100}vw, 90px);
+        width: fit-content;
+        margin: 0 auto;
+        display: block;
+    }
 `
 
 const Item = styled.div`
@@ -58,7 +65,7 @@ const Item = styled.div`
     h1,h2,h3,h4,h5,h6,p{
         margin-top: 32px;
         font-weight: 400;
-        font-size: clamp(17px, ${27 / 1140 * 100}vw, 32px);
+        font-size: clamp(17px, ${24 / 1140 * 100}vw, 32px);
         color: var(--color-white);
         line-height: 130%;
         text-align: center;
@@ -67,4 +74,12 @@ const Item = styled.div`
         display: block;
         margin: 0 auto;
     }
+
+        @media (max-width: 800px) {
+            width: calc(${100 / 2}% - 20px);
+        }
+
+        @media (max-width: 480px) {
+            width: 100%;
+        }
 `

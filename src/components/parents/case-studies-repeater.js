@@ -32,24 +32,34 @@ const Wrapper = styled.section`
 const Grid = styled.div`
     display: grid;
     grid-template-columns: 1fr;
-    grid-gap: 120px;
+    grid-gap: clamp(48px, ${60 / 768 * 100}vw, 120px);
 `
 
 const Item = styled.div`
     display: grid;
     grid-template-columns: auto 1fr;
-    grid-gap: 72px;
+    grid-gap: clamp(24px, ${44 / 768 * 100}vw, 64px);
+
+    @media (max-width: 640px) {
+        grid-template-columns: 1fr;
+    }
 
     .image{
-        max-width: 400px;
-        height: fit-content;
+        width: clamp(200px, ${200 / 768 * 100}vw, 400px);
+        height: 400px;
+
+        @media (max-width: 640px){
+            width: 100%;
+            max-width: 400px;
+            height: fit-content;
+        }
     }
 
     .title{
-        margin-bottom: 48px;
+        margin-bottom: clamp(8px, ${8 / 768 * 100}vw, 40px);
         h1,h2,h3,h4,h5,h6,p{
             font-weight: 800;
-            font-size: 56px;
+            font-size: clamp(21px, ${38 / 768 * 100}vw, 56px);
             line-height: 114%;
             letter-spacing: -0.005em;
             text-transform: uppercase;
@@ -57,10 +67,10 @@ const Item = styled.div`
     }
 
     .sub{
-        margin-bottom: 24px;
+        margin-bottom: clamp(4px, ${12 / 768 * 100}vw, 24px);
         h1,h2,h3,h4,h5,h6,p{
             font-weight: 700;
-            font-size: 40px;
+            font-size: clamp(17px, ${27 / 768 * 100}vw, 40px);
             line-height: 120%;
         }
     }
@@ -68,7 +78,7 @@ const Item = styled.div`
     .bold{
         h1,h2,h3,h4,h5,h6,p{
             font-weight: 700;
-            font-size: 32px;
+            font-size: clamp(13px, ${21 / 768 * 100}vw, 32px);
             line-height: 125%;
         }
     }
@@ -76,10 +86,10 @@ const Item = styled.div`
     .plain{
         h1,h2,h3,h4,h5,h6,p{
             font-weight: 500;
-            font-size: 32px;
+            font-size: clamp(14px, ${17 / 768 * 100}vw, 32px);
             line-height: 130%;
             
-            margin-top: 32px;
+            margin-top: clamp(16px, ${24 / 768 * 100}vw, 32px);
         }
     }
 `

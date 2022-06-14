@@ -8,7 +8,7 @@ export default function PrivacyPolice({ data: { allWpPage } }) {
   return (
     <main>
       <Hero data={privacyPolice.heroPrivacy} />
-      <PrivacyContent data={privacyPolice.columns} />
+      <PrivacyContent data={privacyPolice} />
     </main>
   )
 }
@@ -33,6 +33,10 @@ export const query = graphql`
             columns{
                 leftColumn
                 rightColumn
+            }
+            contactPrivacy{
+              contactText
+              contactMail
             }
         }
       }

@@ -65,7 +65,7 @@ const Buttons = styled.div`
 `
 
 const Content = styled.div`
-    max-width: 1124px;
+    max-width: 980px;
     position: absolute;
     z-index: 1;
 

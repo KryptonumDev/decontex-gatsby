@@ -3,7 +3,6 @@ import { graphql } from "gatsby"
 
 export default function NewsPost({ data: { allWpNews } }) {
     let post = allWpNews.nodes[0]
-    debugger
     return (
         <main>
         </main>

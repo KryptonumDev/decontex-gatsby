@@ -66,7 +66,7 @@ const Wrapper = styled.section`
 
     .title{
         max-width: 1200px;
-        margin: 0 auto 64px auto;
+        margin: 0 auto clamp(32px, ${48 / 768 * 100}vw, 64px) auto;
         h1,h2,h3,h4,h5,h6,p {
             text-align: center;
             font-weight: 700;
@@ -79,7 +79,7 @@ const Wrapper = styled.section`
 
     .text{
         max-width: 1300px;
-        margin: 0 auto 48px auto;
+        margin: 0 auto clamp(24px, ${36 / 768 * 100}vw, 48px) auto;
         h1,h2,h3,h4,h5,h6,p {
             font-weight: 700;
             font-size: clamp(21px, ${27 / 768 * 100}vw, 48px);
@@ -98,13 +98,17 @@ const Table = styled.div`
     margin-top: clamp(48px, ${96 / 768 * 100}vw, 120px);
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 48px;
+    grid-gap: clamp(18px, ${18 / 768 * 100}vw, 48px);
+
+    @media (max-width: 680px) {
+        grid-template-columns: 1fr;
+    }
 `
 
 const Column = styled.div`
     display: grid;
     grid-template-columns: 1fr;
-    grid-gap: 40px;
+    grid-gap: clamp(18px, ${18 / 768 * 100}vw, 48px);
     height: fit-content;
 
     details{
@@ -115,7 +119,7 @@ const Column = styled.div`
                     ::after{
                         transform: rotateX(180deg);
 
-                        @media (max-width: 640px){
+                        @media (max-width: 1024px){
                             transform: translateY(-3px) rotateX(180deg) scale(.8);
                         }
                     }
@@ -148,10 +152,10 @@ const Column = styled.div`
 
                 h1,h2,h3,h4,h5,h6,p{
                     font-weight: 700;
-                    font-size: clamp(21px, ${28 / 768 * 100}vw, 32px);
+                    font-size: clamp(17px, ${17 / 1024 * 100}vw, 32px);
                     line-height: 130%;
                     color: #111315;
-
+                    margin-bottom: 0;
                 }
 
                 ::after{
@@ -164,14 +168,14 @@ const Column = styled.div`
                     transition: transform .2s cubic-bezier(0.215, 0.610, 0.355, 1);
                     transform: rotateX(0);
 
-                    @media (max-width: 640px){
+                    @media (max-width: 1024px){
                         left: 0;
                         top: 0;
                         transform: rotateX(0) scale(.8);
                     }
                 }
 
-                @media (max-width: 640px) {
+                @media (max-width: 1024px) {
                     padding-left: 40px;
                 }
             }
@@ -183,9 +187,13 @@ const Column = styled.div`
 
             h1,h2,h3,h4,h5,h6,p{
                 font-weight: 500;
-                font-size: clamp(17px, ${27 / 768 * 100}vw, 32px);
+                font-size: clamp(17px, ${17 / 1024 * 100}vw, 32px);
                 line-height: 130%;
                 color: #111315;
+
+                @media (max-width: 680px) {
+                    margin-bottom: 15px;
+                }
             }
 
             ul, ol{
@@ -194,7 +202,7 @@ const Column = styled.div`
                 li{
                     padding-left: 50px;
                     font-weight: 500;
-                    font-size: clamp(17px, ${27 / 768 * 100}vw, 32px);
+                    font-size: clamp(17px, ${17 / 1024 * 100}vw, 32px);
                     line-height: 130%;
                     position: relative;
 
@@ -203,6 +211,16 @@ const Column = styled.div`
                         position: absolute;
                         left: 0;
                         top: 6px;
+
+                        @media (max-width: 1440px) {
+                            top: 0;
+                            transform: scale(.8);
+                        }
+
+                        @media (max-width: 1240px) {
+                            transform: scale(.7);
+                            top: -6px;
+                        }
                     }
                 }
             }

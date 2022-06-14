@@ -12,7 +12,7 @@ export default function DecontominationBenefits({ data: { table, link } }) {
                             {el.cell.map(innerEl => (
                                 <Cell>
                                     {innerEl.textOrSymbol === 'text'
-                                        ? <span>{innerEl.name}</span>
+                                        ? <span className="name">{innerEl.name}</span>
                                         : <span className="check">{innerEl.isincluded ? '✓' : ''}</span>
                                     }
                                 </Cell>
@@ -37,6 +37,7 @@ const LocContainer = styled(Container)`
 
 const Table = styled.table`
     border-spacing: 0;
+    width: 100%;
 `
 
 const Cell = styled.th`
@@ -68,6 +69,11 @@ const Cell = styled.th`
         }
     }
 
+    :nth-child(1){
+        max-width: 300px;
+        box-sizing: content-box;
+    }
+
     :nth-child(n + 2){
         text-align: center;
     }
@@ -97,7 +103,7 @@ const Cell = styled.th`
 
 const Row = styled.tr`
 
-    :nth-child(2n + 1){
+    :nth-child(2n){
         background-color: #ECECEC;
         
 
@@ -105,6 +111,14 @@ const Row = styled.tr`
             :nth-child(3){
                 background-color: #1764D9;
             }
+        }
+    }
+
+    :nth-child(2){
+        background-color: #FFC5C5;
+
+        .name{
+            color: #CE2029 !important;
         }
     }
 
