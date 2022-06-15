@@ -17,16 +17,14 @@ export default function Footer({ location }) {
                       contactInformation
                       copyright
                       mainLinks {
-                        linkName
-                        url {
-                          url
+                        row{
+                            linkName
+                            url 
                         }
                       }
                       smallLinks {
                         linkName
-                        url {
-                          url
-                        }
+                        url 
                       }
                       socialLinks {
                         link
@@ -73,21 +71,6 @@ export default function Footer({ location }) {
     const localeData = data.allWpPage.nodes.filter(el => el.language.slug === locale)
     const { footer: { contactInformation, copyright, mainLinks, smallLinks, socialLinks, logo, copyrightLogo } } = localeData[0].footer
 
-    const [linksDivided, changeLinksDivided] = useState(() => {
-        let arr = [[], [], []]
-        mainLinks.forEach((element, index) => {
-            if (index % 3 === 0) {
-                arr[0].push(element)
-            } else if (index % 2 === 0) {
-                arr[1].push(element)
-            } else {
-                arr[2].push(element)
-            }
-
-        })
-        return arr
-    })
-
 
     return (
         <Wrapper>
@@ -101,11 +84,11 @@ export default function Footer({ location }) {
                             }
                             <div dangerouslySetInnerHTML={{ __html: contactInformation }} />
                         </div>
-                        {linksDivided.map((el, index) => (
+                        {mainLinks.map((el, index) => (
                             <ul>
-                                {el.map(innerEl => (
+                                {el.row.map(innerEl => (
                                     <li key={innerEl.linkName}>
-                                        <Link to={innerEl.url.url}>{innerEl.linkName}</Link>
+                                        <Link to={innerEl.url}>{innerEl.linkName}</Link>
                                     </li>
                                 ))}
                             </ul>
@@ -127,7 +110,7 @@ export default function Footer({ location }) {
                         <ul className="small">
                             {smallLinks.map((el, index) => (
                                 <li key={el.linkName}>
-                                    <Link to={el.url.url}>{el.linkName}</Link>
+                                    <Link to={el.url}>{el.linkName}</Link>
                                 </li>
                             ))}
                         </ul>
