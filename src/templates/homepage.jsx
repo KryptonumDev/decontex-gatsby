@@ -17,7 +17,7 @@ const IndexPage = ({ data: { allWpPage } }) => {
       <Hero data={homepage.heroHomepage} />
       <CleanerSaferHealthier data={homepage.cleanerSaferHealthier} />
       <DecontominationExperts data={homepage.decontominationExperts}/>
-      <InteractiveMap />
+      <InteractiveMap data={homepage.interactiveMap}/>
       <Partners data={homepage.partners} />
       <Newsletter data={homepage.newsletter} />
       <News data={homepage.news} />
@@ -34,6 +34,18 @@ export const query = graphql`
     allWpPage(filter: {id: {eq: $id}}) {
       nodes {
         homepage {
+          interactiveMap{
+            sectionTitle
+            text
+            next
+            country{
+              countryName
+              countryPhone
+              countryEmail
+              countryAddress
+              countryCode
+            }
+          }
           heroHomepage {
             link {
               image{

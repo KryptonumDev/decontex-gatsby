@@ -12,7 +12,7 @@ export default function Hero({ data: { title, subTitle, link, backgroundImage } 
                     <ButtonsWrapper>
                         {link.map((el, index) => (
                             <Item key={el.link} to={el.link} ariaLabel={el.ariaLabel}>
-                                <GatsbyImage className="image" image={el.image.localFile.childImageSharp.gatsbyImageData} alt={el.image.altText}/>
+                                <GatsbyImage className="image" image={el.image.localFile.childImageSharp.gatsbyImageData} alt={el.image.altText} />
                             </Item>
                         ))}
                     </ButtonsWrapper>
@@ -31,7 +31,7 @@ const Wrapper = styled.div`
     overflow: hidden;
     position: relative;
     overflow: hidden;
-    min-height: 1080px;
+    min-height: clamp(640px, ${1080 / 768 * 100}vw, 1080px);
 `
 
 const Content = styled.div`
@@ -72,10 +72,10 @@ const Content = styled.div`
 `
 
 const ButtonsWrapper = styled.div`
-    margin-top: 320px;
+    margin-top: clamp(100px, ${210 / 768 * 100}vw, 320px);
     margin-bottom: 220px;
     display: flex;
-    gap: 48px;
+    gap: clamp(18px, ${18 / 768 * 100}vw, 48px);
 
     @media (max-width: 768px){
         margin-bottom: 0;
@@ -89,7 +89,6 @@ const ButtonsWrapper = styled.div`
 const Item = styled(Link)`
     max-width: 500px;
     width: 100%;
-    height: 500px;
 `
 
 const ImageWrapper = styled(GatsbyImage)`

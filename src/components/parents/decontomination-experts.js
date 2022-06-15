@@ -4,7 +4,7 @@ import styled from "styled-components"
 import { ButtonBlue, ButtonOutlined, Container } from "../../styles/style"
 import Mark from './../../resources/list-mark.svg'
 
-export default function DecontominationExperts({ data: {title, list, image, textAboveButtons, buttons} }) {
+export default function DecontominationExperts({ data: { title, list, image, textAboveButtons, buttons } }) {
     return (
         <Wrapper>
             <Container>
@@ -16,7 +16,7 @@ export default function DecontominationExperts({ data: {title, list, image, text
                 <div className="sub" dangerouslySetInnerHTML={{ __html: textAboveButtons }} />
                 <Buttons>
                     {buttons.map((el, index) => {
-                        if(index === 0){
+                        if (index === 0) {
                             return <ButtonBlue to={el.url}>{el.text}</ButtonBlue>
                         }
                         return <ButtonOutlined className='black' to={el.url}>{el.text}</ButtonOutlined>
@@ -32,9 +32,9 @@ const Wrapper = styled.section`
 
     .title{
         h1,h2,h3,h4,h5,h6,p{
-            margin-bottom: 80px;
+            margin-bottom: clamp(24px, ${48 / 768 * 100}vw, 80px);
             font-weight: 900;
-            font-size: 64px;
+            font-size: clamp(27px, ${48 / 768 * 100}vw, 64px);
             line-height: 112%;
             text-align: center;
             letter-spacing: -0.015em;
@@ -44,10 +44,10 @@ const Wrapper = styled.section`
 
     .sub{
         h1,h2,h3,h4,h5,h6,p{
-            margin-top: 80px;
-            margin-bottom: 40px;
+            margin-top: clamp(24px, ${48 / 768 * 100}vw, 80px);
+            margin-bottom: clamp(16px, ${24 / 768 * 100}vw, 40px);
             font-weight: 700;
-            font-size: 40px;
+            font-size: clamp(17px, ${32 / 768 * 100}vw, 40px);
             line-height: 120%;
             text-align: center;
         }
@@ -57,17 +57,17 @@ const Wrapper = styled.section`
 const Flex = styled.div`
     display: flex;
     justify-content: space-between;
-    gap: 64px;
+    gap: clamp(40px, ${40 / 768 * 100}vw, 64px);
 
     ul{
         display: grid;
         grid-gap: 48px;
         max-width: 750px;
-        min-width: 500px;
+        min-width: 425px;
         li{
             font-weight: 500;
-            font-size: 32px;
-            line-height: 42px;
+            font-size: clamp(14px, ${25 / 768 * 100}vw, 32px);
+            line-height: 120%;
             padding-left: 50px;
             position: relative;
             &::before{
@@ -84,6 +84,35 @@ const Flex = styled.div`
         max-width: 600px;
         height: fit-content;
     }
+
+    @media (max-width: 1024px) {
+        flex-direction: column-reverse;
+
+        ul{
+            margin: 0 auto;
+            min-width: unset;
+        }
+
+        .image{
+            max-width: 750px;
+            margin: 0 auto;
+            max-height: 368px;
+        }
+    }
+
+    @media (max-width: 640px) {
+        ul{
+            li{
+                padding-left: 38px;
+
+                &::before{
+                    transform: scale(.8);
+                    top: -6px;
+                    left: -6px;
+                }
+            }
+        }
+    }
 `
 
 const Buttons = styled.div`
@@ -95,5 +124,14 @@ const Buttons = styled.div`
     .black{
         border-color: black;
         color: black;
+    }
+
+    a{
+        margin: 0 !important;
+    }
+
+    @media (max-width: 520px) {
+        flex-direction: column;
+        gap: 24px;
     }
 `

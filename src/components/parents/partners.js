@@ -19,10 +19,10 @@ const Wrapper = styled.section`
 `
 
 const Title = styled.div`
-margin-bottom: 64px;
+    margin-bottom: clamp(32px, ${48 / 768 * 100}vw, 64px);
     h1,h2,h3,h4,h5,h6,p{
         font-weight: 900;
-        font-size: 64px;
+        font-size: clamp(27px, ${48 / 768 * 100}vw, 64px);
         line-height: 112%;
         letter-spacing: -0.015em;
         text-transform: uppercase;
