@@ -1,10 +1,16 @@
 import React from "react"
 import { graphql } from "gatsby"
 import Content from "../components/parents/blog-archive-content"
+import { toTop } from './../helpers/scrollToTop'
 
 export default function Archive({ data: { allWpPage, allWpPost } }) {
     let { blogArchive, language } = allWpPage.nodes[0]
     let posts = allWpPost.nodes
+
+    React.useEffect(() => {
+      toTop()
+    }, [])
+    
     return (
         <main>
             <Content data={blogArchive} posts={posts} />

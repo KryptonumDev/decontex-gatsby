@@ -69,7 +69,7 @@ export default function Cleanroom({ data: { brownPlateText, nextButton, cleanroo
                                             </button>}
                                         {index === arr.length - 1
                                             ? <span />
-                                            : <ButtonOutlined as='button' onClick={() => { setActiveItem(activeItem + 1) }}>{nextButton}</ButtonOutlined>}
+                                            : <ButtonOutlined className="cta" as='button' onClick={() => { setActiveItem(activeItem + 1) }}>{nextButton}</ButtonOutlined>}
                                     </div>
                                 </Card>
                             ))}
@@ -866,7 +866,7 @@ const Card = styled.div`
         color: var(--color-white);
         margin-bottom: clamp(6px, ${11 / 768 * 100}vw, 16px);
         font-weight: 700;
-        font-size: clamp(17px, ${24 / 768 * 100}vw, 32px);
+        font-size: clamp(17px, ${24 / 768 * 100}vw, 30px);
         line-height: 125%;
     }
 
@@ -906,6 +906,11 @@ const Card = styled.div`
         display: flex;
         justify-content: space-between;
         align-items: center;
+
+        .cta{
+            color: var(--color-white);
+            border-color: var(--color-white);
+        }
 
         .button{
             background-color: transparent;

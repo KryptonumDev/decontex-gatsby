@@ -1,9 +1,9 @@
 import React from "react"
 import styled from "styled-components"
-import { ButtonBlue, ButtonOutlined, Container } from './../../styles/style'
+import { ButtonBlue, ButtonOutlined, Container, ButtonOutlinedOuter, ButtonBlueOuter } from './../../styles/style'
 import { GatsbyImage } from 'gatsby-plugin-image'
 
-export default function Hero({ data: { title, subTitle, background, links } }) {
+export default function     Hero({ data: { title, subTitle, background, links }, position, parent }) {
     return (
         <Wrapper>
             <Container>
@@ -16,15 +16,21 @@ export default function Hero({ data: { title, subTitle, background, links } }) {
                         ? <Buttons>
                             {links.map((el, index) => {
                                 if (index === 0) {
+                                    if (links.isouter === null) {
+                                        return <ButtonBlueOuter href={el.link}>{el.name}</ButtonBlueOuter>
+                                    }
                                     return <ButtonBlue to={el.link}>{el.name}</ButtonBlue>
                                 }
-                                return <ButtonOutlined to={el.link}>{el.name}</ButtonOutlined>
+                                if (links.isouter === null) {
+                                    return <ButtonOutlinedOuter className="outline" href={el.link}>{el.name}</ButtonOutlinedOuter>
+                                }
+                                return <ButtonOutlined className="outline" to={el.link}>{el.name}</ButtonOutlined>
                             })}
                         </Buttons>
                         : null}
                 </Content>
             </Container>
-            <ImageWrapper image={background.localFile.childImageSharp.gatsbyImageData} alt={background.altText} />
+            <ImageWrapper parent={parent} position={position} imgClassName='image' image={background.localFile.childImageSharp.gatsbyImageData} alt={background.altText} />
         </Wrapper>
     )
 }
@@ -54,6 +60,11 @@ const Buttons = styled.div`
     grid-gap: clamp(16px, ${28 / 768 * 100}vw, 40px);
     margin-top: clamp(32px, ${56 / 768 * 100}vw, 80px);
     grid-template-columns: auto auto;
+
+    .outline{
+        border-color: var(--color-white) !important;
+        color: var(--color-white) !important;
+    }
 
     @media (max-width: 360px) {
         grid-template-columns: 1fr;
@@ -95,8 +106,6 @@ const Content = styled.div`
 
     @media (max-width: 768px) {
         h1,h2,h3,h4,h5,h6,p{
-            margin: 0 auto;
-            text-align: center;
         }
     }
 `
@@ -108,4 +117,13 @@ const ImageWrapper = styled(GatsbyImage)`
     left: 0;
     right: 0;
     bottom: 0;
+
+
+    @media (max-width: 1800px) {
+        ${props => props.parent}
+    }
+
+    .image{
+        object-position: ${props => props.position};
+    }
 `

@@ -6,12 +6,18 @@ import DecontominationBenefits from "../components/parents/decontominations-adva
 import DecontomiantionBenefits from '../components/parents/decontomination-benefits-black'
 import TwoColumnWithTitle from '../components/parents/two-column-with-title'
 import FeaturedJackets from '../components/parents/featured-jackets'
+import { toTop } from './../helpers/scrollToTop'
 
 export default function Decontomination({ data: { allWpPage } }) {
   let { decontomination } = allWpPage.nodes[0]
+
+  React.useEffect(() => {
+    toTop()
+  }, [])
+  
   return (
     <main>
-      <Hero data={decontomination.heroDecontomination} />
+      <Hero data={decontomination.heroDecontomination} position={'50%'}/>
       <WhatIsDecontomination data={decontomination.decontexTechnology} />
       <DecontomiantionBenefits data={decontomination.decontominationBenefitsDecon}/>
       <TwoColumnWithTitle data={decontomination.twoColumnsWithTitle}/>
@@ -28,7 +34,11 @@ export const query = graphql`
         decontomination {
           heroDecontomination {
                 title
-                subTitle
+                links{
+                  link
+                  name
+                  isouter
+                }
                 background {
                     altText
                     localFile {

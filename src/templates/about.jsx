@@ -4,12 +4,18 @@ import Hero from "../components/parents/hero-decontomination"
 import TwoColumnWithTitleAndImage from "../components/parents/two-column-with-title-image"
 import DecontominationSubjectsMini from "../components/parents/decontomination-subjects-mini"
 import Technologies from "../components/parents/technologies"
+import { toTop } from './../helpers/scrollToTop'
 
 export default function About({ data: { allWpPage } }) {
   let { about } = allWpPage.nodes[0]
+
+  React.useEffect(() => {
+    toTop()
+  }, [])
+
   return (
     <main>
-      <Hero data={about.hero} />
+      <Hero data={about.hero} position={'90%'} parent={'top: 30%;'} />
       <TwoColumnWithTitleAndImage data={about.twoColumnWithTitle} />
       <DecontominationSubjectsMini data={about.decontominationSubjects} />
       <Technologies data={about.technologies} />

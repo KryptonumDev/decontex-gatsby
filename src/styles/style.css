@@ -70,6 +70,13 @@ blockquote {
     letter-spacing: 0.005em;
 }
 
+u, em, strong, span{
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    color: inherit;
+}
+
 a,
 button {
     font-weight: 700;
@@ -77,13 +84,6 @@ button {
     line-height: 29px;
     letter-spacing: 0.0125em;
     text-transform: uppercase;
-}
-
-span {
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 30px;
-    letter-spacing: 0.005em;
 }
 
 p {
@@ -107,24 +107,8 @@ p.big-m {
     letter-spacing: unset;
 }
 
-/* underline */
-u {
-    text-decoration: none;
-    color: var(--color-blue);
-    font-weight: bolder;
-}
-
-/* italic */
-em {
-    font-style: normal;
-    color: var(--color-red);
-    font-weight: bolder;
-}
-
-/* bold */
-strong {
-    font-weight: bolder;
-    color: var(--color-yellow);
+button{
+    cursor: pointer;
 }
 
 * {

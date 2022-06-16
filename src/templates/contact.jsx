@@ -1,9 +1,15 @@
 import React from "react"
 import { graphql } from "gatsby"
 import ContactForm from "../components/parents/contact"
+import { toTop } from './../helpers/scrollToTop'
 
 export default function Contact({ data: { allWpPage } }) {
     let { contact } = allWpPage.nodes[0]
+
+    React.useEffect(() => {
+      toTop()
+    }, [])
+    
     return (
         <main>
             <ContactForm data={contact} contactPage={true}/>
@@ -28,6 +34,10 @@ export const query = graphql`
               messagePlaceholder
               agreementText
               submitText
+              firstNameErrorText
+              emailErrorText
+              messageErrorText
+              agreementErrorText
             }
         }
       }

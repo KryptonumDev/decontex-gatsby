@@ -36,7 +36,6 @@ module.exports = {
         icon: `src/resources/icon.png`,
       },
     },
-    'gatsby-plugin-offline',
     "gatsby-plugin-sharp",
     "gatsby-plugin-react-helmet",
     `gatsby-plugin-image`,

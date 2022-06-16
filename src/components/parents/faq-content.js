@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import styled from "styled-components"
 import { ButtonBlue, Container } from "../../styles/style"
 import { Answer, Question, QuestionWrapper } from "../childrens/faq"
-import FaqArrow from './../../resources/faq.svg'
+import FaqArrow from './../../resources/faq-white.svg'
 import Mark from './../../resources/list-mark.svg'
 
 export default function Content({ data: { title, text, link, repeater } }) {
@@ -27,7 +27,7 @@ export default function Content({ data: { title, text, link, repeater } }) {
                 <div className="title" dangerouslySetInnerHTML={{ __html: title }} />
                 <div className="text" dangerouslySetInnerHTML={{ __html: text }} />
                 <div className="button">
-                    <ButtonBlue to={link.url.url}>{link.name}</ButtonBlue>
+                    <ButtonBlue to={link.url}>{link.name}</ButtonBlue>
                 </div>
                 <Table>
                     <Column>
@@ -154,7 +154,7 @@ const Column = styled.div`
                     font-weight: 700;
                     font-size: clamp(17px, ${17 / 1024 * 100}vw, 32px);
                     line-height: 130%;
-                    color: #111315;
+                    color: var(--color-white);
                     margin-bottom: 0;
                 }
 

@@ -6,12 +6,18 @@ import DecontominationBenefits from "../components/parents/decontomination-benef
 import Cleanroom from "../components/parents/cleanroom"
 import FeaturedOneColumn from "../components/parents/featured-one-column"
 import OtherTechnologies from "../components/parents/other-technologies"
+import { toTop } from './../helpers/scrollToTop'
 
 export default function Deco2fire({ data: { allWpPage } }) {
   let { deco2fire } = allWpPage.nodes[0]
+
+  React.useEffect(() => {
+    toTop()
+  }, [])
+  
   return (
     <main>
-      <Hero data={deco2fire.heroDeco2fire}/>
+      <Hero data={deco2fire.heroDeco2fire} position={'50%'}/>
       <SuitDescription data={deco2fire.suitDescription} />
       <DecontominationBenefits data={deco2fire.decontominationBenefits} />
       <Cleanroom data={deco2fire.decontexCleanroom} />

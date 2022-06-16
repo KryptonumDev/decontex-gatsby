@@ -37,6 +37,7 @@ export const ButtonBlue = styled(Link)`
     color: var(--color-white);
     display: block;
     width: fit-content;
+    transition: background-color .2s cubic-bezier(0.23, 1, 0.320, 1);
     @media (max-width: 768px){
         line-height: 122%;
         margin: 0 auto;
@@ -44,16 +45,44 @@ export const ButtonBlue = styled(Link)`
         font-size: clamp(14px, ${24 / 768 * 100}vw, 24px);
         padding: clamp(16px, ${18 / 768 * 100}vw, 18px) clamp(48px, clamp(48px, ${72 / 768 * 100}vw, 72px), 72px);
         width: fit-content;
+    }
+    &:hover{
+        background-color: #0864A6;
+    }
+`
+
+export const ButtonBlueOuter = styled.a`
+    padding: 23px 100px;
+    border: 2px solid var(--color-blue);
+    background-color: var(--color-blue);
+    color: var(--color-white);
+    display: block;
+    width: fit-content;
+    transition: background-color .2s cubic-bezier(0.23, 1, 0.320, 1);
+    @media (max-width: 768px){
+        line-height: 122%;
+        margin: 0 auto;
+        text-align: center;
+        font-size: clamp(14px, ${24 / 768 * 100}vw, 24px);
+        padding: clamp(16px, ${18 / 768 * 100}vw, 18px) clamp(48px, clamp(48px, ${72 / 768 * 100}vw, 72px), 72px);
+        width: fit-content;
+    }
+    &:hover{
+        background-color: #0864A6;
     }
 `
 
 export const ButtonBlack = styled(Link)`
     padding: 23px 100px;
-    border: 2px solid var(--color-black);
     background-color: var(--color-black);
+    box-sizing: border-box;
     color: var(--color-yellow);
     display: block;
     width: fit-content;
+    transition: background-color .2s cubic-bezier(0.23, 1, 0.320, 1);
+    &:hover{
+        background-color: #33383D;
+    }
     @media (max-width: 768px){
         line-height: 122%;
         margin: 0 auto;
@@ -62,22 +91,62 @@ export const ButtonBlack = styled(Link)`
         padding: clamp(16px, ${18 / 768 * 100}vw, 18px) clamp(48px, clamp(48px, ${72 / 768 * 100}vw, 72px), 72px);
         width: fit-content;
     }
-
 `
 
-export const ButtonOutlined = styled(Link)`
+export const ButtonOutlinedOuter = styled.a`
     padding: 23px 100px;
-    border: 2px solid var(--color-white);
+    border: 2px solid var(--color-black);
     background-color: transparent;
-    color: var(--color-white);
+    color: var(--color-black);
+    box-sizing: border-box;
     display: block;
     width: fit-content;
+    transition: border .12s linear,  padding .12s linear;
+    &:hover{
+        border: 6px solid var(--color-black);
+        padding: 19px 96px;
+    }
     @media (max-width: 768px){
         line-height: 122%;
         margin: 0 auto;
         text-align: center;
         font-size: clamp(14px, ${24 / 768 * 100}vw, 24px);
-        padding: clamp(16px, ${18 / 768 * 100}vw, 18px) clamp(48px, clamp(48px, ${72 / 768 * 100}vw, 72px), 72px);
+        padding: clamp(16px, ${18 / 768 * 100}vw, 18px) clamp(48px, ${72 / 768 * 100}vw, 72px);
         width: fit-content;
+
+        &:hover{
+            border: 6px solid var(--color-black);
+            padding: clamp(12px, ${14 / 768 * 100}vw, 14px) clamp(44px, ${68 / 768 * 100}vw, 68px);
+
+        }
+    }
+`
+
+export const ButtonOutlined = styled(Link)`
+    padding: 23px 100px;
+    border: 2px solid var(--color-black);
+    background-color: transparent;
+    color: var(--color-black);
+    box-sizing: border-box;
+    display: block;
+    width: fit-content;
+    transition: border .12s linear,  padding .12s linear;
+    &:hover{
+        border: 6px solid var(--color-black);
+        padding: 19px 96px;
+    }
+    @media (max-width: 768px){
+        line-height: 122%;
+        margin: 0 auto;
+        text-align: center;
+        font-size: clamp(14px, ${24 / 768 * 100}vw, 24px);
+        padding: clamp(16px, ${18 / 768 * 100}vw, 18px) clamp(48px, ${72 / 768 * 100}vw, 72px);
+        width: fit-content;
+
+        &:hover{
+            border: 6px solid var(--color-black);
+            padding: clamp(12px, ${14 / 768 * 100}vw, 14px) clamp(44px, ${68 / 768 * 100}vw, 68px);
+
+        }
     }
 `

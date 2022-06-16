@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import styled from "styled-components"
-import { ButtonOutlined, Container } from "../../styles/style"
+import { ButtonOutlined, ButtonOutlinedOuter, Container } from "../../styles/style"
 import { graphql, Link, useStaticQuery } from "gatsby"
 import { activeLanguage } from "../../helpers/activeLanguage"
 import { GatsbyImage } from "gatsby-plugin-image"
@@ -20,6 +20,7 @@ export default function Header({ location }) {
                       link {
                         link
                         name
+                        isouter
                       }
                       navigation {
                         navigationItem {
@@ -74,26 +75,28 @@ export default function Header({ location }) {
 
   useEffect(() => {
     if (isBrowser) {
+      changeIsScroled(window.scrollY > 0 ? true : false)
       document.addEventListener('scroll', (e) => {
         changeIsScroled(window.scrollY > 0 ? true : false)
       })
     }
     return null
-  }, [])
+  }, [isBrowser])
 
   return (
     <Wrapper isDark={isDark} isScrolled={isScrolled}>
       <LocContainer>
         <Content>
           <Link to={urls.homepage[locale]}>
-            {isScrolled
+            {(isScrolled || isDark)
               ? <LogoDark />
-              : isDark
-                ? <LogoDark />
-                : <LogoWhite />}
+              : <LogoWhite />}
           </Link>
 
-          <ButtonOutlined className="cta" to={link.url}>{link.name}</ButtonOutlined>
+          {link.isouter === null
+            ? <ButtonOutlined className="cta" to={link.url}>{link.name}</ButtonOutlined>
+            : <ButtonOutlinedOuter className="cta" href={link.url}>{link.name}</ButtonOutlinedOuter>}
+
 
           {/* <LanguageChoice>
             {data.allWpPage.nodes.map(el => {
@@ -251,6 +254,7 @@ const Navigation = styled.nav`
           font-weight: 700;
           font-size: clamp(13px, ${24 / 768 * 100}vw, 32px);
           line-height: 130%;
+          text-transform: unset;
 
           &.small{
             font-weight: 400;
@@ -382,9 +386,14 @@ const Wrapper = styled.header`
     box-shadow: ${props => props.isScrolled ? '4px 4px 7px rgba(0, 0, 0, 0.35)' : 'unset'};
 
     .cta{
+      border-color: var(--color-white) !important;
+      color: var(--color-white) !important;
+    }
+
+    .cta{
       ${props => (props.isScrolled || props.isDark) ? `
-        border-color: var(--color-black);
-        color: var(--color-black);
+        border-color: var(--color-black) !important;
+        color: var(--color-black) !important;
       ` : null}
     }
 

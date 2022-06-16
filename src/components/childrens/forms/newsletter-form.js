@@ -1,13 +1,15 @@
 import React from "react"
 import styled from "styled-components"
 import { ButtonBlue } from "../../../styles/style"
-import { useForm } from "react-hook-form";
-import { Link } from "gatsby";
+import { useForm } from "react-hook-form"
+import { motion } from 'framer-motion'
 
-export default function NewsletterForm({ title, firstNamePlaceholder, emailPlaceholdere, agreementText, buttonText }) {
+export default function NewsletterForm({ title, firstNamePlaceholder, emailPlaceholdere, agreementText, buttonText, emailErrorText, agreementErrorText }) {
 
-    const { register, handleSubmit } = useForm()
-    const onSubmit = data => console.log(data)
+    const { register, handleSubmit, reset, formState: { errors } } = useForm()
+    const onSubmit = data => {
+        console.log(data)
+    }
 
     return (
         <Wrapper onSubmit={handleSubmit(onSubmit)}>
@@ -18,11 +20,33 @@ export default function NewsletterForm({ title, firstNamePlaceholder, emailPlace
             </label>
             <label className="input">
                 <span>Email Adress</span>
-                <input {...register("email")} placeholder={emailPlaceholdere} />
+                <input className={errors.email ? 'error' : null} {...register("email", { required: true, pattern: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ })} placeholder={emailPlaceholdere} />
+                {errors.email && (
+                    <motion.p
+                        initial={{ opacity: 0, bottom: -6 }}
+                        animate={{ opacity: 1, bottom: 0 }}
+                        exit={{ opacity: 1, bottom: -6 }}
+                        transition={{ type: 'spring', duration: 0.4 }}
+                        className="errorText"
+                    >
+                        {emailErrorText}
+                    </motion.p>
+                )}
             </label>
-            <label className="checkbox">
-                <input type='checkbox' />
+            <label className="checkbox">    
+                <input className={errors.checkbox ? 'error' : null} type='checkbox' {...register("checkbox", { required: true })} />
                 <span dangerouslySetInnerHTML={{ __html: agreementText }} />
+                {errors.checkbox && (
+                    <motion.p
+                        initial={{ opacity: 0, bottom: -6 }}
+                        animate={{ opacity: 1, bottom: 0 }}
+                        exit={{ opacity: 1, bottom: -6 }}
+                        transition={{ type: 'spring', duration: 0.4 }}
+                        className="errorText"
+                    >
+                        {agreementErrorText}
+                    </motion.p>
+                )}
             </label>
             <ButtonBlue as='button' type="submit">{buttonText}</ButtonBlue>
         </Wrapper>
@@ -42,7 +66,20 @@ const Wrapper = styled.form`
         }
     }
 
+    .errorText{
+        position: absolute;
+        bottom: 0;
+        transform: translateY(100%);
+        left: 0;
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 146%;
+        letter-spacing: 0.005em;
+        color: #FF6870;
+    }
+
     label{
+        position: relative;
         display: block;
 
         &.input{
@@ -64,6 +101,10 @@ const Wrapper = styled.form`
                 color: var(--color-black);
                 width: 100%;
 
+                &.error{
+                    background-color: #FFC5C5;
+                }
+
                 &::placeholder{
                     font-weight: 400;
                     font-size: 20px;
@@ -78,6 +119,12 @@ const Wrapper = styled.form`
             display: flex;
             align-items: center;
 
+            &.error{
+                span{
+                    background-color: #FFC5C5;
+                }
+            }
+
             input{
                 position: relative;
                 appearance: none;
@@ -87,6 +134,9 @@ const Wrapper = styled.form`
                 width: 40px;
                 height: 40px;
 
+                &.error{
+                    background-color: #FFC5C5;
+                }
 
                 &::after {
                     content: '✓';

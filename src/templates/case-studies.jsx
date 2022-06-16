@@ -2,13 +2,19 @@ import React from "react"
 import { graphql } from "gatsby"
 import Hero from '../components/parents/hero-decontomination'
 import CaseStudiesRepeater from "../components/parents/case-studies-repeater"
+import { toTop } from './../helpers/scrollToTop'
 
 export default function CaseStudies({ data: { allWpPage } }) {
     let { caseStudies } = allWpPage.nodes[0]
+
+    React.useEffect(() => {
+        toTop()
+    }, [])
+
     return (
         <main>
-            <Hero data={caseStudies.heroCasestudies} />
-            <CaseStudiesRepeater data={caseStudies.cases}/>
+            <Hero data={caseStudies.heroCasestudies} position={'90%'} parent={'top: 20%;'} />
+            <CaseStudiesRepeater data={caseStudies.cases} />
         </main>
     )
 }

@@ -9,19 +9,25 @@ import Partners from "../components/parents/partners"
 import InteractiveMap from "../components/parents/interactive-map"
 import CleanerSaferHealthier from "../components/parents/cleaner-safer-healthier"
 import DecontominationExperts from "../components/parents/decontomination-experts"
+import { toTop } from './../helpers/scrollToTop'
 
 const IndexPage = ({ data: { allWpPage } }) => {
   let { homepage } = allWpPage.nodes[0]
+
+  React.useEffect(() => {
+    toTop()
+  }, [])
+
   return (
     <main>
       <Hero data={homepage.heroHomepage} />
       <CleanerSaferHealthier data={homepage.cleanerSaferHealthier} />
-      <DecontominationExperts data={homepage.decontominationExperts}/>
-      <InteractiveMap data={homepage.interactiveMap}/>
+      <DecontominationExperts data={homepage.decontominationExperts} />
+      <InteractiveMap data={homepage.interactiveMap} />
       <Partners data={homepage.partners} />
       <Newsletter data={homepage.newsletter} />
-      <News data={homepage.news} />
-      <Blog data={homepage.blog} />
+      {/* <News data={homepage.news} />
+      <Blog data={homepage.blog} /> */}
       <Contact data={homepage.contact} />
     </main>
   )
@@ -119,7 +125,9 @@ export const query = graphql`
           newsletter {
             title
             firstNamePlaceholder
+            emailErrorText
             emailPlaceholdere
+            agreementErrorText
             agreementText
             buttonText
             backgroundImage {
@@ -164,6 +172,10 @@ export const query = graphql`
               messagePlaceholder
               agreementText
               submitText
+              firstNameErrorText
+              emailErrorText
+              messageErrorText
+              agreementErrorText
             }
           }
         }

@@ -59,7 +59,14 @@ export default function SuitDescription({ data: { sectionTitle, text, suit } }) 
 const Wrapper = styled.section`
     padding: var(--section-margin) 0;
     background-color: var(--color-black);
-    overflow: hidden;
+    max-width: 1920px;
+    margin: 0 auto;
+
+    @media (max-width: 1024px) {
+        overflow: hidden;
+
+        padding-bottom: clamp(120px, ${240 / 768 * 100}vw, 240px);
+    }
 
     .title{
         h1,h2,h3,h4,h5,h6,p{
