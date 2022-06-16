@@ -1,5 +1,5 @@
 import { GatsbyImage } from "gatsby-plugin-image"
-import React, { useRef } from "react"
+import React, { useEffect, useRef } from "react"
 import styled from "styled-components"
 import { Container } from "../../styles/style"
 
@@ -13,19 +13,40 @@ const Card = ({ className, suit }) => {
         })
     }
 
-    const addClass = () => {
-        document.querySelectorAll('.card').forEach(el => {
-            el.classList.remove('active')
-        })
+    const addClass = (e) => {
+        if (e.key) {
+            if (e.key === 'Enter' || e.keyCode === 32) {
+                document.querySelectorAll('.card').forEach(el => {
+                    el.classList.remove('active')
+                })
 
-        parent.current.classList.add('active')
+                parent.current.classList.add('active')
+            }
+        } else {
+            document.querySelectorAll('.card').forEach(el => {
+                el.classList.remove('active')
+            })
+
+            parent.current.classList.add('active')
+        }
     }
+
+    useEffect(() => {
+        document.addEventListener('keydown', (e) => {
+            if (e.keyCode === 27) {
+                document.querySelectorAll('.card').forEach(el => {
+                    el.classList.remove('active')
+                })
+            }
+        })
+        return null
+    }, [])
 
     return (
         <div ref={parent} className={"card " + className + (className === 'overall' ? ' active' : '')}>
             <div>
                 <button onClick={(e) => { closeAll(e) }} />
-                <h3 onClick={addClass}>{suit.title}</h3>
+                <h3 tabIndex='0' onKeyDown={(key) => { addClass(key) }} onClick={addClass}>{suit.title}</h3>
                 <p>{suit.text}</p>
             </div>
         </div>

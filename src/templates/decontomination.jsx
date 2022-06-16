@@ -7,22 +7,24 @@ import DecontomiantionBenefits from '../components/parents/decontomination-benef
 import TwoColumnWithTitle from '../components/parents/two-column-with-title'
 import FeaturedJackets from '../components/parents/featured-jackets'
 import { toTop } from './../helpers/scrollToTop'
+import Seo from '../components/parents/seo'
 
 export default function Decontomination({ data: { allWpPage } }) {
-  let { decontomination } = allWpPage.nodes[0]
+  let { decontomination, language, seo } = allWpPage.nodes[0]
 
   React.useEffect(() => {
     toTop()
   }, [])
-  
+
   return (
     <main>
-      <Hero data={decontomination.heroDecontomination} position={'50%'}/>
+      <Seo data={seo} lang={language.slug} />
+      <Hero data={decontomination.heroDecontomination} position={'50%'} />
       <WhatIsDecontomination data={decontomination.decontexTechnology} />
-      <DecontomiantionBenefits data={decontomination.decontominationBenefitsDecon}/>
-      <TwoColumnWithTitle data={decontomination.twoColumnsWithTitle}/>
-      <DecontominationBenefits data={decontomination.decontominationAdvantages}/>
-      <FeaturedJackets data={decontomination.featuredWithJackets}/>
+      <DecontomiantionBenefits data={decontomination.decontominationBenefitsDecon} />
+      <TwoColumnWithTitle data={decontomination.twoColumnsWithTitle} />
+      <DecontominationBenefits data={decontomination.decontominationAdvantages} />
+      <FeaturedJackets data={decontomination.featuredWithJackets} />
     </main>
   )
 }
@@ -31,6 +33,13 @@ export const query = graphql`
   query DecontominationPageQuery($id: String!){
     allWpPage(filter: {id: {eq: $id}}) {
       nodes {
+        language {
+          slug
+        }
+        seo {
+          title
+          fullHead
+        }
         decontomination {
           heroDecontomination {
                 title

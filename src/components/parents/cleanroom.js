@@ -62,7 +62,7 @@ export default function Cleanroom({ data: { brownPlateText, nextButton, cleanroo
                                     <div className="buttons">
                                         {index === 0
                                             ? <span />
-                                            : <button className="button" onClick={() => { setActiveItem(activeItem - 1) }}>
+                                            : <button ariaLabel="previously item" className="button" onClick={() => { setActiveItem(activeItem - 1) }}>
                                                 <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M20 40L0 20L20 0L22.625 2.625L7.125 18.125H40V21.875H7.125L22.625 37.375L20 40Z" fill="#F3F3F3" />
                                                 </svg>

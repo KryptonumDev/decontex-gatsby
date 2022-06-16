@@ -19,16 +19,16 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
-        host: 'https://akademiapanakrolika.pl',
-        sitemap: 'https://akademiapanakrolika.pl/sitemap/sitemap-index.xml',
+        host: 'https://decontex-holding.netlify.app/',
+        sitemap: 'https://decontex-holding.netlify.app/sitemap/sitemap-index.xml',
         policy: [{ userAgent: '*', allow: '/' }],
       },
     },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Akademia Pana Królika`,
-        short_name: `Akademia Pana Królika`,
+        name: `Decontex Holding`,
+        short_name: `Decontex`,
         start_url: `/`,
         background_color: `#FFFFFF`,
         theme_color: `#FDF2F8`,

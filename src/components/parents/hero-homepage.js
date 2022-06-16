@@ -18,7 +18,7 @@ export default function Hero({ data: { title, subTitle, link, backgroundImage } 
                     </ButtonsWrapper>
                 </Content>
             </Container>
-            <ImageWrapper image={backgroundImage.localFile.childImageSharp.gatsbyImageData} alt={backgroundImage.altText} />
+            <ImageWrapper imgClassName='image' image={backgroundImage.localFile.childImageSharp.gatsbyImageData} alt={backgroundImage.altText} />
         </Wrapper>
     )
 }
@@ -98,4 +98,8 @@ const ImageWrapper = styled(GatsbyImage)`
     left: 0;
     top: 0;
     z-index: 0;
+
+    .image{
+        object-position: 100%;
+    }
 `

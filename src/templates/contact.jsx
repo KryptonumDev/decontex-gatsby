@@ -2,25 +2,34 @@ import React from "react"
 import { graphql } from "gatsby"
 import ContactForm from "../components/parents/contact"
 import { toTop } from './../helpers/scrollToTop'
+import Seo from "../components/parents/seo"
 
 export default function Contact({ data: { allWpPage } }) {
-    let { contact } = allWpPage.nodes[0]
+  let { contact, language, seo } = allWpPage.nodes[0]
 
-    React.useEffect(() => {
-      toTop()
-    }, [])
-    
-    return (
-        <main>
-            <ContactForm data={contact} contactPage={true}/>
-        </main>
-    )
+  React.useEffect(() => {
+    toTop()
+  }, [])
+
+  return (
+    <main>
+      <Seo data={seo} lang={language.slug} />
+      <ContactForm data={contact} contactPage={true} />
+    </main>
+  )
 }
 
 export const query = graphql`
   query ContactPageQuery($id: String!){
     allWpPage(filter: {id: {eq: $id}}) {
       nodes {
+        language {
+          slug
+        }
+        seo {
+          title
+          fullHead
+        }
         contact{
             title
             text

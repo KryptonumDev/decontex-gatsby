@@ -108,7 +108,7 @@ export default function Header({ location }) {
             })}
           </LanguageChoice> */}
 
-          <Button isScrolled={isScrolled} isDark={isDark} isMenuOpened={isMenuOpened} onClick={() => { changeIsMenuOpened(!isMenuOpened) }}>
+          <Button ariaLabel='open or close mobile menu' isScrolled={isScrolled} isDark={isDark} isMenuOpened={isMenuOpened} onClick={() => { changeIsMenuOpened(!isMenuOpened) }}>
             <span />
           </Button>
 

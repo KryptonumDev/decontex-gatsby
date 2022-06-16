@@ -11,7 +11,7 @@ exports.createPages = async ({
 
   const defaultLocale = 'en';
 
-  const secondaryLanguages = ['ge', 'fr', 'nl'];
+  const secondaryLanguages = ['de', 'fr', 'nl'];
 
   secondaryLanguages.forEach((language) => {
     const langCode = language.split('-')[0];

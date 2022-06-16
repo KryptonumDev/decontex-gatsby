@@ -10,9 +10,10 @@ import InteractiveMap from "../components/parents/interactive-map"
 import CleanerSaferHealthier from "../components/parents/cleaner-safer-healthier"
 import DecontominationExperts from "../components/parents/decontomination-experts"
 import { toTop } from './../helpers/scrollToTop'
+import Seo from "../components/parents/seo"
 
 const IndexPage = ({ data: { allWpPage } }) => {
-  let { homepage } = allWpPage.nodes[0]
+  let { homepage, language, seo } = allWpPage.nodes[0]
 
   React.useEffect(() => {
     toTop()
@@ -20,6 +21,7 @@ const IndexPage = ({ data: { allWpPage } }) => {
 
   return (
     <main>
+      <Seo data={seo} lang={language.slug}/>
       <Hero data={homepage.heroHomepage} />
       <CleanerSaferHealthier data={homepage.cleanerSaferHealthier} />
       <DecontominationExperts data={homepage.decontominationExperts} />
@@ -39,6 +41,13 @@ export const query = graphql`
   query HomePageQuery($id: String!){
     allWpPage(filter: {id: {eq: $id}}) {
       nodes {
+        language {
+          slug
+        }
+        seo {
+          title
+          fullHead
+        }
         homepage {
           interactiveMap{
             sectionTitle
