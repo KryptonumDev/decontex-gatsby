@@ -87,16 +87,15 @@ export default function Header({ location }) {
     <Wrapper isDark={isDark} isScrolled={isScrolled}>
       <LocContainer>
         <Content>
-          <Link to={urls.homepage[locale]}>
+          <Link aria-label="homepage" to={urls.homepage[locale]}>
             {(isScrolled || isDark)
               ? <LogoDark />
               : <LogoWhite />}
           </Link>
 
           {link.isouter === null
-            ? <ButtonOutlined className="cta" to={link.url}>{link.name}</ButtonOutlined>
-            : <ButtonOutlinedOuter className="cta" href={link.url}>{link.name}</ButtonOutlinedOuter>}
-
+            ? <ButtonOutlined className="cta" to={link.link}>{link.name}</ButtonOutlined>
+            : <ButtonOutlinedOuter className="cta" href={link.link}>{link.name}</ButtonOutlinedOuter>}
 
           {/* <LanguageChoice>
             {data.allWpPage.nodes.map(el => {
@@ -108,7 +107,7 @@ export default function Header({ location }) {
             })}
           </LanguageChoice> */}
 
-          <Button ariaLabel='open or close mobile menu' isScrolled={isScrolled} isDark={isDark} isMenuOpened={isMenuOpened} onClick={() => { changeIsMenuOpened(!isMenuOpened) }}>
+          <Button aria-label='open or close mobile menu' isScrolled={isScrolled} isDark={isDark} isMenuOpened={isMenuOpened} onClick={() => { changeIsMenuOpened(!isMenuOpened) }}>
             <span />
           </Button>
 
@@ -139,7 +138,7 @@ export default function Header({ location }) {
               <ul className="social">
                 {socialLinks.map(el => (
                   <li>
-                    <Link to={el.link} ariaLabel={el.ariaLabel}>
+                    <Link to={el.link} aria-label={el.ariaLabel}>
                       <GatsbyImage className="image" image={el.icon.localFile.childImageSharp.gatsbyImageData} alt={el.icon.altText} />
                     </Link>
                   </li>

@@ -10,7 +10,7 @@ export default function OtherTechnologies({ data: { link, image } }) {
             <Container>
                 <Grid>
                     {link.map(el => (
-                        <Item to={el.link} ariaLabel={el.ariaLabel}>
+                        <Item to={el.link} aria-label={el.ariaLabel}>
                             <GatsbyImage image={el.image.localFile.childImageSharp.gatsbyImageData} alt={el.image.altText} />
                         </Item>
                     ))}

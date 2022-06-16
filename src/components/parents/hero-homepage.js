@@ -11,7 +11,7 @@ export default function Hero({ data: { title, subTitle, link, backgroundImage } 
                 <Content>
                     <ButtonsWrapper>
                         {link.map((el, index) => (
-                            <Item key={el.link} to={el.link} ariaLabel={el.ariaLabel}>
+                            <Item key={el.link} to={el.link} aria-label={el.ariaLabel}>
                                 <GatsbyImage className="image" image={el.image.localFile.childImageSharp.gatsbyImageData} alt={el.image.altText} />
                             </Item>
                         ))}
