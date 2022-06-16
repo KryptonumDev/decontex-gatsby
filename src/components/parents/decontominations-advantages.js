@@ -8,13 +8,10 @@ export default function DecontominationBenefits({ data: { table, link } }) {
             <LocContainer>
                 <Table>
                     {table.row.map(el => (
-                        <Row>
-                            {el.cell.map(innerEl => (
+                        <Row red={el.isRed}>
+                            {el.cell.map((innerEl, index) => (
                                 <Cell>
-                                    {innerEl.textOrSymbol === 'text'
-                                        ? <span className="name">{innerEl.name}</span>
-                                        : <span className="check">{innerEl.isincluded ? '✓' : ''}</span>
-                                    }
+                                    <span className={index === 0 ? "name" : ''}>{innerEl.name}</span>
                                 </Cell>
                             ))}
                         </Row>
@@ -114,13 +111,14 @@ const Row = styled.tr`
         }
     }
 
-    :nth-child(2){
-        background-color: #FFC5C5;
+    ${props => props.red ? `
+        background-color: #FFC5C5 !important;
 
         .name{
             color: #CE2029 !important;
+            font-weight: 700 !important; 
         }
-    }
+    ` : null}
 
     :first-child{
         background-color: unset;

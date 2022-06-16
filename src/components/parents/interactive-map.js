@@ -7,12 +7,20 @@ import { Map } from './../childrens/map/map'
 export default function InteractiveMap({ data: { sectionTitle, text, country, next } }) {
 
     const [isOpened, setIsOpened] = useState(false)
-    const [whichOpened, setWhichOpened] = useState(country[0].countryCode)
-
-    const [cord, setCord] = useState({ x: 0, y: 0 })
+    const [whichOpened, setWhichOpened] = useState(() => {
+        if (typeof window !== "undefined") {
+            if (window.innerWidth < 640) {
+                return country[0].countryCode
+            }
+        }
+        return null
+    })
 
     const mapEl = useRef()
     const itemEl = useRef()
+
+    const [cord, setCord] = useState({ x: 0, y: 0 })
+
 
     const open = (num) => {
         let x = window.event.pageX - (itemEl.current.clientWidth / 2)

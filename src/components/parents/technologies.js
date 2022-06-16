@@ -38,7 +38,7 @@ const Wrapper = styled.section`
             color: var(--color-white);
             text-transform: uppercase;
             font-weight: 900;
-            font-size: clamp(27px, ${44 / 768 * 100}vw, 72px);
+            font-size: clamp(27px, ${44 / 768 * 100}vw, 64px);
             line-height: 130%;
             letter-spacing: -0.015em;
         }

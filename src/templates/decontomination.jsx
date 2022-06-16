@@ -64,10 +64,9 @@ export const query = graphql`
             decontominationAdvantages{
               table{
                 row{
+                  isRed
                   cell{
-                    textOrSymbol
                     name
-                    isincluded
                   }
                 }
               }

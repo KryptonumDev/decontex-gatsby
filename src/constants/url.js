@@ -1,95 +1,95 @@
 export const urls = {
     homepage: {
         en: '/',
-        ge: '',
+        de: '/de/',
         fr: '/fr/',
         nl: '/nl/'
     },
     service: {
         en: '/deco2fire/',
-        ge: '',
+        de: '/de/deco2fire/',
         fr: '/fr/deco2fire/',
         nl: '/nl/deco2fire/'
     },
     solution: {
         en: '/decon-solution/',
-        ge: '',
+        de: '/de/dekon-losung/',
         fr: '/fr/decon-solution/',
         nl: '/nl/decon-solution/'
     },
     about: {
         en: '/about-us/',
-        ge: '',
-        fr: '/fr/a-propos-de-nous/',
-        nl: '/nl/om-os/'
+        de: '/de/uber-uns/',
+        fr: '/fr/about-us/',
+        nl: '/nl/about-us/'
     },
     casestudies: {
         en: '/case-studies/',
-        ge: '',
-        fr: '/fr/etudes-de-cas/',
-        nl: '/nl/casestudier/'
+        de: '/de/fallstudien/',
+        fr: '/fr/case-studies/',
+        nl: '/nl/case-studies/'
     },
     lco2: { 
-        en: '/liquid-co2/', 
-        ge: '', 
-        fr: '/fr/co2-liquide/', 
-        nl: '/nl/flydende-co2/' 
+        en: '/pressurized-co2/', 
+        de: '/de/druck-co2/', 
+        fr: '/fr/pressurized-co2/', 
+        nl: '/nl/pressurized-co2/' 
     },
     faq: { 
         en: '/faq/', 
-        ge: '', 
+        de: '/de/faq/', 
         fr: '/fr/faq/', 
         nl: '/nl/faq/' 
     },
     contact: { 
         en: '/contact/', 
-        ge: '', 
-        fr: '/fr/contactez/',
-        nl: '/nl/kontakt/' 
+        de: '/de/kontakt/', 
+        fr: '/fr/contact/',
+        nl: '/nl/contact/' 
     },
     freebies: { 
         en: '/download/', 
-        ge: '', 
+        de: '/de/download/', 
         fr: '/fr/download/', 
-        nl: '/nl/hent/' 
+        nl: '/nl/download/' 
     },
 
     privacyPolice: { 
         en: '/cookie-policy/', 
-        ge: '', 
-        fr: '/fr/politique-relative-aux-cookies/', 
-        nl: '/nl/cookie-politik/' 
+        de: '/de/cookie-richtlinie/', 
+        fr: '/fr/cookie-policy/', 
+        nl: '/nl/cookie-policy/' 
     },
     termsAndConditions: { 
         en: '/privacy-statement/', 
-        ge: '', 
-        fr: '/fr/declaration-de-condidentialite/', 
-        nl: '/nl/fortrolighedserklaerin/' 
+        de: '/de/datenschutzerklaerung/', 
+        fr: '/fr/privacy-statement/', 
+        nl: '/nl/privacy-statement/' 
     },
 
     blog: { 
         en: '/blog/', 
-        ge: '', 
+        de: '/de/blog/', 
         fr: '/fr/blog/', 
         nl: '/nl/blog/' 
     },
     blogPost: { 
         en: '/blog/', 
-        ge: '', 
+        de: '/de/blog/', 
         fr: '/fr/blog/', 
         nl: '/nl/blog/' 
     },
 
     news: { 
         en: '/news/', 
-        ge: '', 
-        fr: '/fr/nouvellas/', 
-        nl: '/nl/nyheder/' 
+        de: '/de/nachrichten/', 
+        fr: '/fr/news/', 
+        nl: '/nl/news/' 
     },
     newsPost: { 
         en: '/news/', 
-        ge: '', 
-        fr: '/fr/nouvellas/', 
-        nl: '/nl/nyheder/' 
+        de: '/de/nachrichten/', 
+        fr: '/fr/news/', 
+        nl: '/nl/news/' 
     },
 }
