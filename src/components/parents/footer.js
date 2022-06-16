@@ -39,15 +39,6 @@ export default function Footer({ location }) {
                           }
                         }
                       }
-                      logo {
-                        altText
-                        sourceUrl
-                        localFile {
-                          childImageSharp {
-                            gatsbyImageData
-                          }
-                        }
-                      }
                       copyrightLogo {
                         altText
                         sourceUrl
