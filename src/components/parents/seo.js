@@ -4,11 +4,18 @@ import parse from 'html-react-parser';
 
 export default function Seo({ data, lang }) {
 
-    const fullHead = parse(data.fullHead);
+
+    let fullHead
+
+    if (data) {
+        fullHead = parse(data.fullHead)
+    }
 
     return (
         <Helmet htmlAttributes={{ lang: lang }}>
-            <title>{data.title}</title>
+            {data?.title
+                ? <title>{data.title}</title>
+                : null}
             {fullHead}
         </Helmet>
     )
