@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import styled from "styled-components"
 import { ButtonOutlined, Container } from "../../styles/style"
 import { Austria, Belgium, France, Germany, Luxemburg, Netherlands, Poland, Spain, Switzerland } from "../childrens/map/countries"
@@ -7,22 +7,34 @@ import { Map } from './../childrens/map/map'
 export default function InteractiveMap({ data: { sectionTitle, text, country, next } }) {
 
     const [isOpened, setIsOpened] = useState(false)
-    const [whichOpened, setWhichOpened] = useState(() => {
-        if (typeof window !== "undefined") {
-            if (window.innerWidth < 640) {
-                return country[0].countryCode
-            }
-        }
-        return null
-    })
+    const [whichOpened, setWhichOpened] = useState(country[0].countryCode)
+    const [openedIndex, setOpenedIndex] = useState(0)
 
     const mapEl = useRef()
     const itemEl = useRef()
 
     const [cord, setCord] = useState({ x: 0, y: 0 })
 
+    useEffect(() => {
+        setCord({ x: mapEl.current.offsetLeft, y: (mapEl.current.offsetTop + mapEl.current.clientHeight / 2) })
+        setTimeout(() => {
+            setIsOpened(true)
+        }, 100)
+    }, [])
+
+    const mobileOpen = (num) => {
+        let currentItem = country.filter(el => el.countryCode === num)
+        let currentItemIndex = country.indexOf(currentItem[0])
+
+        setWhichOpened(num)
+        setOpenedIndex(currentItemIndex)
+    }
+
 
     const open = (num) => {
+        let currentItem = country.filter(el => el.countryCode === num)
+        let currentItemIndex = country.indexOf(currentItem[0])
+
         let x = window.event.pageX - (itemEl.current.clientWidth / 2)
         let y = window.event.pageY - (itemEl.current.clientHeight / 2)
 
@@ -35,6 +47,7 @@ export default function InteractiveMap({ data: { sectionTitle, text, country, ne
         setCord({ x: x, y: y })
         setIsOpened(true)
         setWhichOpened(num)
+        setOpenedIndex(currentItemIndex)
     }
 
     return (
@@ -56,23 +69,24 @@ export default function InteractiveMap({ data: { sectionTitle, text, country, ne
                 </MapWrapper>
 
                 <Plate ref={itemEl} cord={cord} isOpened={isOpened} whichOpened={whichOpened}>
-                    {country.map((el, index, arr) => (
-                        <PlateItem index={el.countryCode} whichOpened={whichOpened}>
+                    <Close onClick={() => { setIsOpened(false) }} />
+                    {country.map((el) => (
+                        <PlateItem isOpened={isOpened} index={el.countryCode} whichOpened={whichOpened}>
                             <div className="mobile-flex">
                                 <h3>{el.countryName}</h3>
                                 <div>
-                                    <p>
+                                    <a href={'tel:' + el.countryPhone}>
                                         <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M24.375 26C21.438 26 18.519 25.2778 15.6181 23.8333C12.7171 22.3889 10.1111 20.5111 7.8 18.2C5.48889 15.8889 3.61111 13.2829 2.16667 10.3819C0.722222 7.48102 0 4.56204 0 1.625C0 1.16759 0.156482 0.782407 0.469445 0.469445C0.782407 0.156482 1.16759 0 1.625 0H6.68056C7.01759 0 7.3125 0.114352 7.56528 0.343055C7.81806 0.571759 7.98056 0.878704 8.05278 1.26389L9.02778 5.81389C9.07593 6.15093 9.06991 6.45787 9.00972 6.73472C8.94954 7.01157 8.82315 7.2463 8.63056 7.43889L5.01944 11.0861C6.36759 13.325 7.87824 15.275 9.55139 16.9361C11.2245 18.5972 13.1204 20.0056 15.2389 21.1611L18.6694 17.6222C18.9102 17.3574 19.187 17.1708 19.5 17.0625C19.813 16.9542 20.1259 16.9361 20.4389 17.0083L24.7361 17.9472C25.0972 18.0194 25.3981 18.2 25.6389 18.4889C25.8796 18.7778 26 19.1148 26 19.5V24.375C26 24.8324 25.8435 25.2176 25.5306 25.5306C25.2176 25.8435 24.8324 26 24.375 26ZM3.93611 9.1L6.86111 6.13889L6.03056 2.16667H2.16667C2.16667 3.10556 2.31111 4.13472 2.6 5.25417C2.88889 6.37361 3.33426 7.65556 3.93611 9.1ZM23.8333 23.8333V19.9694L20.1139 19.2111L17.2611 22.2083C18.2481 22.6657 19.3194 23.0389 20.475 23.3278C21.6306 23.6167 22.75 23.7852 23.8333 23.8333Z" fill="white" />
                                         </svg>
                                         <span>{el.countryPhone}</span>
-                                    </p>
-                                    <p>
+                                    </a>
+                                    <a href={'mailto:' + el.countryEmail}>
                                         <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M14 28C12.0633 28 10.2433 27.6325 8.54 26.8975C6.83667 26.1625 5.355 25.165 4.095 23.905C2.835 22.645 1.8375 21.1633 1.1025 19.46C0.3675 17.7567 0 15.9367 0 14C0 12.0633 0.3675 10.2433 1.1025 8.54C1.8375 6.83667 2.835 5.355 4.095 4.095C5.355 2.835 6.83667 1.8375 8.54 1.1025C10.2433 0.3675 12.0633 0 14 0C15.9367 0 17.7567 0.3675 19.46 1.1025C21.1633 1.8375 22.645 2.835 23.905 4.095C25.165 5.355 26.1625 6.83667 26.8975 8.54C27.6325 10.2433 28 12.0633 28 14V15.855C28 17.1617 27.5392 18.2642 26.6175 19.1625C25.6958 20.0608 24.57 20.51 23.24 20.51C22.4 20.51 21.6067 20.3058 20.86 19.8975C20.1133 19.4892 19.5417 18.9117 19.145 18.165C18.5383 18.9583 17.78 19.5475 16.87 19.9325C15.96 20.3175 15.0033 20.51 14 20.51C12.18 20.51 10.6342 19.88 9.3625 18.62C8.09083 17.36 7.455 15.82 7.455 14C7.455 12.18 8.09083 10.6283 9.3625 9.345C10.6342 8.06167 12.18 7.42 14 7.42C15.82 7.42 17.3658 8.06167 18.6375 9.345C19.9092 10.6283 20.545 12.18 20.545 14V15.855C20.545 16.5783 20.8075 17.185 21.3325 17.675C21.8575 18.165 22.4933 18.41 23.24 18.41C23.9633 18.41 24.5875 18.165 25.1125 17.675C25.6375 17.185 25.9 16.5783 25.9 15.855V14C25.9 10.6867 24.745 7.875 22.435 5.565C20.125 3.255 17.3133 2.1 14 2.1C10.6867 2.1 7.875 3.255 5.565 5.565C3.255 7.875 2.1 10.6867 2.1 14C2.1 17.3133 3.255 20.125 5.565 22.435C7.875 24.745 10.6867 25.9 14 25.9H21.49V28H14ZM14 18.41C15.2367 18.41 16.2867 17.9842 17.15 17.1325C18.0133 16.2808 18.445 15.2367 18.445 14C18.445 12.74 18.0133 11.6783 17.15 10.815C16.2867 9.95167 15.2367 9.52 14 9.52C12.7633 9.52 11.7133 9.95167 10.85 10.815C9.98667 11.6783 9.555 12.74 9.555 14C9.555 15.2367 9.98667 16.2808 10.85 17.1325C11.7133 17.9842 12.7633 18.41 14 18.41Z" fill="white" />
                                         </svg>
                                         <span>{el.countryEmail}</span>
-                                    </p>
+                                    </a>
                                     {el.countryAddress
                                         ? <p>
                                             <svg width="20" height="30" viewBox="0 0 20 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -83,16 +97,17 @@ export default function InteractiveMap({ data: { sectionTitle, text, country, ne
                                         : null}
                                 </div>
                             </div>
-                            <div className="buttons">
-                                <button className="button" onClick={() => { setWhichOpened(index === 0 ? arr[arr.length - 1].countryCode : arr[index - 1].countryCode) }}>
-                                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M20 40L0 20L20 0L22.625 2.625L7.125 18.125H40V21.875H7.125L22.625 37.375L20 40Z" fill="#F3F3F3" />
-                                    </svg>
-                                </button>
-                                <ButtonOutlined as='button' onClick={() => { setWhichOpened(index === arr.length - 1 ? arr[0].countryCode : arr[index + 1].countryCode) }}>{next}</ButtonOutlined>
-                            </div>
+
                         </PlateItem>
                     ))}
+                    <div className="buttons">
+                        <button className="button" onClick={() => { mobileOpen(openedIndex === 0 ? country[country.length - 1].countryCode : country[openedIndex - 1].countryCode) }}>
+                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 40L0 20L20 0L22.625 2.625L7.125 18.125H40V21.875H7.125L22.625 37.375L20 40Z" fill="#F3F3F3" />
+                            </svg>
+                        </button>
+                        <ButtonOutlined as='button' onClick={() => { mobileOpen(openedIndex === country.length - 1 ? country[0].countryCode : country[openedIndex + 1].countryCode) }}>{next}</ButtonOutlined>
+                    </div>
                 </Plate>
             </LocContainer>
         </Wrapper >
@@ -123,7 +138,7 @@ const Plate = styled.div`
     box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.35);
     top: 0px;
     left: 0px;
-    transition: transform .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+    transition: transform .2s cubic-bezier(0.39, 0.575, 0.565, 1), opacity .2s cubic-bezier(0.39, 0.575, 0.565, 1);
 
     transform: translateX(${props => props.cord.x}px) translateY(${props => props.cord.y}px);
 
@@ -133,6 +148,11 @@ const Plate = styled.div`
         opacity: 0;
         pointer-events: none;
     `}
+
+    .buttons{
+        display: none;
+    }
+
 
     @media (max-width: 639px) {
         width: 100%;
@@ -145,7 +165,92 @@ const Plate = styled.div`
 
         opacity: 1;
         pointer-events: all;
+
+        .buttons{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            position: absolute;
+            bottom: 16px;
+            left: 16px;
+            right: 16px;
+            height: fit-content;
+
+            button{
+                margin: 0!important;
+                color: var(--color-white);
+                border-color: var(--color-white);
+            }
+
+            .button{
+                background-color: transparent;
+                border: none;
+            }
+        }
     }
+`
+
+const Close = styled.div`
+                position: absolute;
+                z-index: 99;
+                right: 24px;
+                top: 32px;
+                border: none;
+                width: 44px;
+                height: 44px;
+                background-color: #CE2029;
+                opacity: 1;
+                pointer-events: all;
+                cursor: pointer;
+                transition: opacity .3s linear;
+
+                &::after{
+                    content: "";
+                    position: absolute;
+                    left: 11px;
+                    top: 10px;
+                    height: 2px;
+                    width: 32px;
+                    transform-origin: 0 0;
+                    transform: rotateZ(45deg);
+                    background-color: white;
+                }
+
+                &::before{
+                    content: "";
+                    position: absolute;
+                    right: 11px;
+                    top: 10px;
+                    height: 2px;
+                    width: 32px;
+                    transform-origin: 100% 0;
+                    transform: rotateZ(-45deg);
+                    background-color: white;
+                }
+
+                @media (max-width: 1024px) {
+                    width: 32px;
+                    height: 32px;
+                    right: 12px;
+                    top: 12px;
+
+                    &::after{
+                        left: 10px;
+                        width: 20px;
+                        top: 9px;
+                    }
+
+                    &::before{
+                        right: 10px;
+                        width: 20px;
+                        top: 9px;
+                    }
+                }
+
+                @media (max-width: 640px) {
+                    display: none;
+                }
 `
 
 const PlateItem = styled.div`
@@ -161,26 +266,24 @@ const PlateItem = styled.div`
     pointer-events: none;
     transition: opacity .15s linear;
 
-    .buttons{
-        display: none;
-    }
 
     h3{
         font-weight: 700;
         font-size: clamp(17px, ${17 / 768 * 100}vw, 32px);
         line-height: 125%;
-        color: var(--color-white);
+        color: #fff;
     }
  
-    p{
+    a, p{
         margin-top: clamp(4px, ${8 / 768 * 100}vw, 24px);
+        text-transform: unset;
         span{
             margin-left: 12px;
             font-weight: 700;
             font-size: clamp(13px, ${13 / 768 * 100}vw, 20px);
             line-height: 140%;
             letter-spacing: 0.005em;
-            color: var(--color-white);
+            color: #fff;
 
             @media (max-width: 1024px) {
                 font-weight: 500;
@@ -202,6 +305,13 @@ const PlateItem = styled.div`
         pointer-events: all;
     `
         : null}
+
+    ${props => props.isOpened
+        ? null
+        : `
+        opacity: 0;
+        pointer-events: none;
+    `}
         
     @media (max-width: 639px) {
         display: flex;
@@ -215,26 +325,14 @@ const PlateItem = styled.div`
             display: flex;
             justify-content: space-between;
         }
-        .buttons{
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 8px;
 
-            button{
-                margin: 0!important;
-            }
-
-            .button{
-                background-color: transparent;
-                border: none;
-            }
-        }
         
     }
 `
 
 const Wrapper = styled.section`
+    max-width: 1920px;
+    margin: 0 auto;
     margin-top: var(--section-margin);
     padding-top: 64px;
     padding-bottom: clamp(40px, ${64 / 768 * 100}vw, 144px);
@@ -243,6 +341,7 @@ const Wrapper = styled.section`
 
     .map{
         pointer-events: none;
+        aspect-ratio: 1.5141955836/1;
     }
     .country{
         pointer-events: none;
@@ -270,6 +369,12 @@ const Wrapper = styled.section`
         rect{
             pointer-events: all;
             cursor: pointer;
+        }
+    }
+
+    @media(min-width: 640px){
+        .country g .main{
+            fill: #53A4DA;
         }
     }
 
@@ -359,6 +464,10 @@ const MapWrapper = styled.div`
         width: 18.6111111111%;
         left: 47%;
         top: 35%;
+
+        @media (max-width: 800px) {
+            top: 34.6%;
+        }
     }
 
     .mark-belgium{

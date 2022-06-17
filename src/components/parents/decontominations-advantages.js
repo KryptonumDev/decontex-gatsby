@@ -17,7 +17,7 @@ export default function DecontominationBenefits({ data: { table, link } }) {
                         </Row>
                     ))}
                 </Table>
-                <Button to={link.url.url}>{link.text}</Button>
+                <Button to={link.url}>{link.text}</Button>
             </LocContainer >
         </Wrapper >
     )

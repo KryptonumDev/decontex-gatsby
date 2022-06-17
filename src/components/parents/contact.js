@@ -5,7 +5,7 @@ import ContactForm from "../childrens/forms/contact-form"
 
 export default function Contact({ data: { title, text, form }, contactPage }) {
     return (
-        <Wrapper contactPage={contactPage}>
+        <Wrapper contactPage={contactPage} id='contact'>
             <Container>
                 <Content>
                     <div>
@@ -25,7 +25,7 @@ const Wrapper = styled.div`
     max-width: 1920px;
     margin: 0 auto;
     /* margin-top: ${props => props.contactPage ? 'none' : 'var(--section-margin)'}; */
-    padding-top:  ${props => props.contactPage ? `300px` : `clamp(36px, ${72 / 768 * 100}vw, 160px)`};
+    padding-top:  ${props => props.contactPage ? `clamp(100px, ${200 / 768 * 100}vw, 300px)` : `clamp(36px, ${72 / 768 * 100}vw, 160px)`};
     padding-bottom: clamp(48px, ${120 / 768 * 100}vw, 160px);
     background-color: var(--color-black);
 `

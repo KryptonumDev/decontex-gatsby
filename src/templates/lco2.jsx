@@ -54,7 +54,11 @@ export const query = graphql`
                     text
                     img{
                         altText
-                        sourceUrl
+                        localFile{
+                          childImageSharp{
+                            gatsbyImageData
+                          }
+                        }
                     }
                 }
             }

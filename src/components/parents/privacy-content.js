@@ -30,7 +30,7 @@ const Wrapper = styled.div`
 
 const Contact = styled.div`
     margin: clamp(32px, ${48 / 768 * 100}vw, 64px) auto 0 auto;
-    max-width: 350px;
+    max-width: 450px;
     p{
         margin-bottom: clamp(0px, ${15 / 768 * 100}vw, 30px);
         font-weight: 700;

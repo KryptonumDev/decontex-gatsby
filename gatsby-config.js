@@ -19,8 +19,8 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
-        host: 'https://decontex-holding.netlify.app/',
-        sitemap: 'https://decontex-holding.netlify.app/sitemap/sitemap-index.xml',
+        host: 'https://decontex.com/',
+        sitemap: 'https://decontex.com/sitemap/sitemap-index.xml',
         policy: [{ userAgent: '*', allow: '/' }],
       },
     },

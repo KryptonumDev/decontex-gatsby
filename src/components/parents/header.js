@@ -50,7 +50,7 @@ export default function Header({ location }) {
         }
     `)
 
-  const whiteWersionPages = ['/', '/de/']
+  const whiteWersionPages = ['/', '/de/', '/fr/', '/nl/']
 
   const locale = activeLanguage(location)
   const localeData = data.allWpPage.nodes.filter(el => el.language.slug === locale)

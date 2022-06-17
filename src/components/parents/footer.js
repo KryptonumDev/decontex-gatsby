@@ -1,10 +1,11 @@
 import { Link } from "gatsby"
-import React, { useState } from "react"
+import React from "react"
 import styled from "styled-components"
 import { Container } from "../../styles/style"
 import { graphql, useStaticQuery } from "gatsby"
 import { activeLanguage } from "../../helpers/activeLanguage"
 import { GatsbyImage } from "gatsby-plugin-image"
+import { urls } from "../../constants/url"
 
 export default function Footer({ location }) {
 
@@ -60,7 +61,7 @@ export default function Footer({ location }) {
 
     const locale = activeLanguage(location)
     const localeData = data.allWpPage.nodes.filter(el => el.language.slug === locale)
-    const { footer: { contactInformation, copyright, mainLinks, smallLinks, socialLinks, logo, copyrightLogo } } = localeData[0].footer
+    const { footer: { contactInformation, copyright, mainLinks, smallLinks, socialLinks, copyrightLogo } } = localeData[0].footer
 
 
     return (
@@ -69,7 +70,9 @@ export default function Footer({ location }) {
                 <Container>
                     <FirstFlex>
                         <div>
-                            <LogoWhite />
+                            <Link className="logo" aria-label="homepage" to={urls.homepage[locale]}>
+                                <LogoWhite />
+                            </Link>
                             <div dangerouslySetInnerHTML={{ __html: contactInformation }} />
                         </div>
                         {mainLinks.map((el, index) => (
@@ -133,8 +136,10 @@ const FirstFlex = styled.div`
     justify-content: space-between;
     gap: 40px;
 
-    svg{
+    .logo{
         margin-bottom: 48px;
+        display: block;
+        width: fit-content;
     }
 
     h1,h2,h3,h4,h5,h6,p{

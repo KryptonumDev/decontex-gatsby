@@ -16,7 +16,7 @@
     --section-margin: clamp(60px, 15.625vw, 160px);
 }
 
-html{
+html {
     scroll-behavior: smooth;
 }
 
@@ -70,7 +70,10 @@ blockquote {
     letter-spacing: 0.005em;
 }
 
-u, em, strong, span{
+u,
+em,
+strong,
+span {
     font-size: inherit;
     font-weight: inherit;
     line-height: inherit;
@@ -107,7 +110,7 @@ p.big-m {
     letter-spacing: unset;
 }
 
-button{
+button {
     cursor: pointer;
 }
 
@@ -124,4 +127,14 @@ button{
 html {
     background-color: var(--color-white);
     overflow-x: hidden;
+}
+
+*:focus {
+    outline: none;
+}
+
+*:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+    border-radius: 8px;
 }

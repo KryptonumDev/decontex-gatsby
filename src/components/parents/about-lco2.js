@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import { Container } from "../../styles/style"
+import { GatsbyImage } from "gatsby-plugin-image"
 
 export default function AboutLCO2({ data: { title, leftText, rightText, repeater } }) {
     return (
@@ -17,7 +18,7 @@ export default function AboutLCO2({ data: { title, leftText, rightText, repeater
                     {repeater.map(el => (
                         <div className="item">
                             <div>
-                                <img className="image" src={el.img.sourceUrl} alt={el.img.altText} />
+                                <GatsbyImage className='image' image={el.img.localFile.childImageSharp.gatsbyImageData} alt={el.img.altText}/>
                             </div>
                             <div>
                                 <div className="title" dangerouslySetInnerHTML={{ __html: el.title }}></div>

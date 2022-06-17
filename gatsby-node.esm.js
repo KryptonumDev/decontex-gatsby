@@ -6,25 +6,8 @@ import { urls } from './src/constants/url'
 
 exports.createPages = async ({
   graphql,
-  actions: { createPage, createRedirect },
+  actions: { createPage },
 }) => {
-
-  const defaultLocale = 'en';
-
-  const secondaryLanguages = ['de', 'fr', 'nl'];
-
-  secondaryLanguages.forEach((language) => {
-    const langCode = language.split('-')[0];
-
-    createRedirect({
-      fromPath: '/',
-      toPath: `/${language}/`,
-      isPermanent: false,
-      conditions: {
-        language: [langCode],
-      },
-    });
-  });
 
   // HOMEPAGE
 
