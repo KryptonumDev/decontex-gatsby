@@ -65,7 +65,6 @@ export default function SuitDescription({ data: { sectionTitle, text, suit } }) 
                     <GatsbyImage className="image" image={suit.image.localFile.childImageSharp.gatsbyImageData} alt={suit.image.altText} />
                     <Card className={'helmet'} suit={suit.helmet} />
                     <Card className={'balaclava'} suit={suit.balaclava} />
-                    <Card className={'harness'} suit={suit.harness} />
                     <Card className={'jacket'} suit={suit.jacket} />
                     <Card className={'gloves'} suit={suit.gloves} />
                     <Card className={'pants'} suit={suit.pants} />
@@ -174,7 +173,6 @@ const Suit = styled.div`
             padding: 36px;
             width: min-content;
             min-width: 420px;
-            max-width: 480px;
             background-color: transparent;
             transition: background-color .3s linear;
             z-index: 3;

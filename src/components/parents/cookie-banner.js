@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { graphql, useStaticQuery } from "gatsby"
 import { activeLanguage } from "../../helpers/activeLanguage"
 import { GatsbyImage } from "gatsby-plugin-image"
-import { ButtonOutlined } from "../../styles/style"
+import { ButtonOutlined, ButtonBlack } from "../../styles/style"
 
 export default function Coockie({ location }) {
 
@@ -68,7 +68,7 @@ export default function Coockie({ location }) {
                 </div>
                 <div className="grid">
                     <ButtonOutlined onClick={rejectCookie} as='button'>{reject}</ButtonOutlined>
-                    <ButtonOutlined onClick={acceptCookie} as='button'>{accept}</ButtonOutlined>
+                    <ButtonBlack className="button" onClick={acceptCookie} as='button'>{accept}</ButtonBlack>
                 </div>
             </Content>
         </Wrapper>
@@ -121,6 +121,16 @@ const Content = styled.div`
 
         @media (max-width: 1280px) {
             grid-template-columns: 1fr;
+        }
+
+        .button{
+            background-color: var(--color-white);
+            color: var(--color-blue) !important;
+            border: none;
+
+            &:hover{
+                background-color: #DAD9DD !important;
+            }
         }
     }
 

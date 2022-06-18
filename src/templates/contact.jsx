@@ -47,6 +47,10 @@ export const query = graphql`
               emailErrorText
               messageErrorText
               agreementErrorText
+              successfulSendTitle
+              successfulSendText
+              sendAgainButtonText
+              errorSendText
             }
         }
       }

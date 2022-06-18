@@ -191,6 +191,14 @@ const Column = styled.div`
                 line-height: 130%;
                 color: #111315;
 
+                a{
+                    font-size: inherit;
+                    line-height: inherit;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    color: var(--color-blue);
+                }
+
                 @media (max-width: 680px) {
                     margin-bottom: 15px;
                 }

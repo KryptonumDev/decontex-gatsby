@@ -88,6 +88,12 @@ export const query = graphql`
                     name
                   }
                 }
+                firstRow{
+                  cell{
+                    topText
+                    bottomText
+                  }
+                }
               }
               link{
                 url

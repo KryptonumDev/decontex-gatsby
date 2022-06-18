@@ -139,6 +139,10 @@ export const query = graphql`
             agreementErrorText
             agreementText
             buttonText
+            successfulSendTitle
+            successfulSendText
+            sendAgainButtonText
+            errorSendText
             backgroundImage {
               altText
               localFile {
@@ -185,6 +189,10 @@ export const query = graphql`
               emailErrorText
               messageErrorText
               agreementErrorText
+              successfulSendTitle
+              successfulSendText
+              sendAgainButtonText
+              errorSendText
             }
           }
         }

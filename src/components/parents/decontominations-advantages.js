@@ -7,6 +7,14 @@ export default function DecontominationBenefits({ data: { table, link } }) {
         <Wrapper>
             <LocContainer>
                 <Table>
+                    <Row>
+                        {table.firstRow.cell.map((el) => (
+                            <Cell>
+                                <span className="top">{el.topText}</span>
+                                <span className="bottom">{el.bottomText}</span>
+                            </Cell>
+                        ))}
+                    </Row>
                     {table.row.map(el => (
                         <Row red={el.isRed}>
                             {el.cell.map((innerEl, index) => (
@@ -41,12 +49,33 @@ const Cell = styled.th`
     padding: clamp(9px, ${12 / 768 * 100}vw, 28px);
     text-align: left;
 
+    .top{
+        white-space: unset;
+        font-size: clamp(7px, ${10 / 768 * 100}vw, 13px);
+        font-weight: 400;
+        margin-bottom: 4px;
+
+        @media (max-width: 360px) {
+            font-size: 6px;
+        }
+    }   
+
+    .bottom{
+        white-space: unset;
+    }
+
     span{
         font-weight: 700;
         font-size: clamp(12px, ${17 / 768 * 100}vw, 32px);
         line-height: 130%;
         white-space: nowrap;
         text-align: left;
+        display: block;
+        text-align: center;
+
+        &.name{
+            text-align: left;
+        }
 
         &.check{
             font-weight: 400;

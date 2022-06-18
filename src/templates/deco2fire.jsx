@@ -67,11 +67,6 @@ export const query = graphql`
               balaclava {
                 title
                 text
-
-              }
-              harness {
-                title
-                text
               }
               jacket {
                 title

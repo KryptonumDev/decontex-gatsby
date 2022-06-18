@@ -11,7 +11,7 @@ export default function Content({ data: { title, text, repeater } }) {
                 <div className="main-title" dangerouslySetInnerHTML={{ __html: title }} />
                 <div className="sub-title" dangerouslySetInnerHTML={{ __html: text }} />
                 <Repeater>
-                    {repeater.map(el => (
+                    {repeater?.map(el => (
                         <Item>
                             <GatsbyImage image={el.img.localFile.childImageSharp.gatsbyImageData} alt={el.img.altText} />
                             <div className="title" dangerouslySetInnerHTML={{ __html: el.title }} />
