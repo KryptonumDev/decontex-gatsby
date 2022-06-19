@@ -413,4 +413,15 @@ const Wrapper = styled.form`
             }
         }
     }
+
+    button{
+        &:disabled{
+            filter: grayscale(1);
+            cursor: not-allowed;
+            
+            &:hover{
+                background-color: var(--color-blue);
+            }
+        }
+    }
 `

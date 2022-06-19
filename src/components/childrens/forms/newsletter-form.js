@@ -65,7 +65,7 @@ export default function NewsletterForm({ title, firstNamePlaceholder, emailPlace
                     </motion.p>
                 )}
             </label>
-            <ButtonBlue as='button' type="submit">{buttonText}</ButtonBlue>
+            <ButtonBlue disabled={sendedCount >= 3} as='button' type="submit">{buttonText}</ButtonBlue>
             {isSended === 'error'
                 ? <motion.p
                     initial={{ opacity: 0, bottom: -6 }}
@@ -275,6 +275,17 @@ const Wrapper = styled.form`
                     letter-spacing: inherit;
                     text-transform: inherit;
                 }
+            }
+        }
+    }
+
+    button{
+        &:disabled{
+            filter: grayscale(1);
+            cursor: not-allowed;
+            
+            &:hover{
+                background-color: var(--color-blue);
             }
         }
     }
