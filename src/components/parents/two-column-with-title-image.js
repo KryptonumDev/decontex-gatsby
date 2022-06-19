@@ -11,7 +11,7 @@ export default function TwoColumnWithTitleAndImage({ data: { title, subTitle, te
                 <div className="subTitle" dangerouslySetInnerHTML={{ __html: subTitle }} />
                 <Content>
                     <GatsbyImage className="image" image={img.localFile.childImageSharp.gatsbyImageData} />
-                    <div dangerouslySetInnerHTML={{ __html: text }} />
+                    <div dangerouslySetInnerHTML={{ __html: text }} /> 
                 </Content>
             </Container>
         </Wrapper>
