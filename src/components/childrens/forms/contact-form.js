@@ -73,7 +73,7 @@ export default function ContactForm({ data:
             </label>
             <label className="input">
                 <span>Phone</span>
-                <input type='phone' {...register("phone")} placeholder={phonePlaceholder} />
+                <input type='tel' {...register("phone")} placeholder={phonePlaceholder} />
             </label>
             <label className="input">
                 <span>Email Adress</span>
@@ -147,10 +147,10 @@ const Plate = styled.div`
     position: absolute;
     box-sizing: border-box;
     padding: 16px;
-    left: -2px;
-    right: -2px;
-    top: -2px;
-    bottom: -2px;
+    left: -3px;
+    right: -3px;
+    top: -3px;
+    bottom: -3px;
     background-color: var(--color-black);
     opacity: 0;
     pointer-events: none;
@@ -378,6 +378,7 @@ const Wrapper = styled.form`
                 height: 2px;
                 background-color: transparent;
                 transition: background-color var(--animation-fast);
+                display: block;
 
                 &:checked{
                     background-color: var(--color-blue);

@@ -197,6 +197,10 @@ const LanguageChoice = styled.ul`
     svg{
       transform: scale(.8) !important;
 
+      path{
+        fill: #fff !important;
+      }
+
       ${props => props.isLangChangerOpened ? `
       transform: scale(.8) rotateZ(180deg) !important;
     ` : null}

@@ -414,6 +414,7 @@ const MapWrapper = styled.div`
         z-index: 0;
         width: 100%;
         height: fit-content;
+        display: block;
     }
 
     .mark-poland{
@@ -436,12 +437,8 @@ const MapWrapper = styled.div`
 
     .spain{
         left: 2.51111%;
-        top: 60.8%;
+        top: 61.2%;
         width: 32.5694444444%;
-
-        @media (max-width: 600px) {
-            top: 60.3%;
-        }
     }
 
     .mark-switzerland{
@@ -452,7 +449,7 @@ const MapWrapper = styled.div`
 
     .switzerland{
         right: 49.6%;
-        top: 40.52%;
+        top: 40.82%;
         width: 12.3611111111%;
     }
 
@@ -465,11 +462,7 @@ const MapWrapper = styled.div`
     .austria{
         width: 18.6111111111%;
         left: 47%;
-        top: 35%;
-
-        @media (max-width: 800px) {
-            top: 34.6%;
-        }
+        top: 35.1%;
     }
 
     .mark-belgium{

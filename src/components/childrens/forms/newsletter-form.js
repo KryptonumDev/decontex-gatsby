@@ -94,10 +94,10 @@ const Plate = styled.div`
     position: absolute;
     box-sizing: border-box;
     padding: 16px;
-    left: -2px;
-    right: -2px;
-    top: -2px;
-    bottom: -2px;
+    left: -3px;
+    right: -3px;
+    top: -3px;
+    bottom: -3px;
     background-color: var(--color-black);
     opacity: 0;
     pointer-events: none;
@@ -213,7 +213,7 @@ const Wrapper = styled.form`
         }
 
         &.checkbox{
-            margin-bottom: 24px;
+            margin-bottom: 48px;
             display: flex;
             align-items: center;
 
@@ -282,6 +282,7 @@ const Wrapper = styled.form`
     }
 
     button{
+            margin: 0 !important;
         &:disabled{
             filter: grayscale(1);
             cursor: not-allowed;
