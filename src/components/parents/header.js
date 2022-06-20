@@ -138,7 +138,7 @@ export default function Header({ location }) {
               <ul className="social">
                 {socialLinks.map(el => (
                   <li>
-                    <Link to={el.link} aria-label={el.ariaLabel}>
+                    <Link to={el.link} aria-label={el.ariaLabel} target="_blank">
                       <GatsbyImage className="image" image={el.icon.localFile.childImageSharp.gatsbyImageData} alt={el.icon.altText} />
                     </Link>
                   </li>

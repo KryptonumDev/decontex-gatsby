@@ -99,9 +99,9 @@ export default function Footer({ location }) {
                             ))}
                         </ul>
                         <ul className="small">
-                            {smallLinks.map((el, index) => (
+                            {smallLinks.map((el) => (
                                 <li key={el.linkName}>
-                                    <Link to={el.url}>{el.linkName}</Link>
+                                    <Link to={el.url} aria-label={el.ariaLabel} target="_blank">{el.linkName}</Link>
                                 </li>
                             ))}
                         </ul>

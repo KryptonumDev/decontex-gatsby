@@ -3,8 +3,6 @@ import { Helmet } from "react-helmet"
 import parse from 'html-react-parser';
 
 export default function Seo({ data, lang }) {
-
-
     let fullHead
 
     if (data) {
@@ -17,6 +15,7 @@ export default function Seo({ data, lang }) {
                 ? <title>{data.title}</title>
                 : null}
             {fullHead}
+            <meta name="google-site-verification" content="6ECIlKWTKRV13uT8My_fm4eN2kHfjUuz74nBH7kNXjE" />
         </Helmet>
     )
 }
