@@ -87,6 +87,8 @@ export default function Header({ location }) {
     return null
   }, [isBrowser])
 
+  debugger
+
   return (
     <Wrapper isDark={isDark} isScrolled={isScrolled}>
       <LocContainer>
@@ -101,31 +103,35 @@ export default function Header({ location }) {
             ? <ButtonOutlined className="cta" to={link.link}>{link.name}</ButtonOutlined>
             : <ButtonOutlinedOuter className="cta" href={link.link}>{link.name}</ButtonOutlinedOuter>}
 
-          <LanguageChoice isDark={isDark} isScrolled={isScrolled} isLangChangerOpened={isLangChangerOpened}>
-            {data.allWpPage.nodes.map(el => {
-              if (el.language.slug === locale) {
-                return <li>
-                  <button onClick={() => { changeIsLangChangerOpened(!isLangChangerOpened) }}>
-                    {el.language.name}
-                    <svg width="24" height="15" viewBox="0 0 24 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M12 14.575L0 2.57499L2.15 0.424988L12 10.325L21.85 0.474987L24 2.62499L12 14.575Z" fill={(isScrolled || isDark) ? "#111315" : '#fff'} />
-                    </svg>
-                  </button>
-                </li>
-              }
-              return null
-            })}
-            <li>
-              <ul>
+          {currentPage
+            ? (
+              <LanguageChoice isDark={isDark} isScrolled={isScrolled} isLangChangerOpened={isLangChangerOpened}>
                 {data.allWpPage.nodes.map(el => {
-                  if (el.language.slug !== locale) {
-                    return <li ><Link tabIndex={isLangChangerOpened ? '0' : '-1'} to={currentPage[el.language.slug]} onClick={() => { changeIsLangChangerOpened(!isLangChangerOpened) }}><span />{el.language.name}</Link></li>
+                  if (el.language.slug === locale) {
+                    return <li>
+                      <button onClick={() => { changeIsLangChangerOpened(!isLangChangerOpened) }}>
+                        {el.language.name}
+                        <svg width="24" height="15" viewBox="0 0 24 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 14.575L0 2.57499L2.15 0.424988L12 10.325L21.85 0.474987L24 2.62499L12 14.575Z" fill={(isScrolled || isDark) ? "#111315" : '#fff'} />
+                        </svg>
+                      </button>
+                    </li>
                   }
                   return null
                 })}
-              </ul>
-            </li>
-          </LanguageChoice>
+                <li>
+                  <ul>
+                    {data.allWpPage.nodes.map(el => {
+                      if (el.language.slug !== locale) {
+                        return <li ><Link tabIndex={isLangChangerOpened ? '0' : '-1'} to={currentPage[el.language.slug]} onClick={() => { changeIsLangChangerOpened(!isLangChangerOpened) }}><span />{el.language.name}</Link></li>
+                      }
+                      return null
+                    })}
+                  </ul>
+                </li>
+              </LanguageChoice>
+            )
+            : null}
 
           <Button aria-label='open or close mobile menu' isScrolled={isScrolled} isDark={isDark} isMenuOpened={isMenuOpened} onClick={() => { changeIsMenuOpened(!isMenuOpened) }}>
             <span />
