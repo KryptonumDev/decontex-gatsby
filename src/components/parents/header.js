@@ -87,8 +87,6 @@ export default function Header({ location }) {
     return null
   }, [isBrowser])
 
-  debugger
-
   return (
     <Wrapper isDark={isDark} isScrolled={isScrolled}>
       <LocContainer>

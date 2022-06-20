@@ -19,7 +19,6 @@ export default function ContactForm({ data:
 
 
     const onSubmit = data => {
-        debugger
 
         axios.post('https://hook.eu1.make.com/ztq7nnfn16qimbgi3qsqaf2uwgax5c14', {
             name: data.firstName,
@@ -78,7 +77,7 @@ export default function ContactForm({ data:
             </label>
             <label className="input">
                 <span>Email Adress</span>
-                <input className={errors.email ? 'error' : null} {...register("email", { required: true, pattern: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ })} placeholder={emailPlaceholder} />
+                <input type='email' className={errors.email ? 'error' : null} {...register("email", { required: true, pattern: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ })} placeholder={emailPlaceholder} />
                 {errors.email && (
                     <motion.p
                         initial={{ opacity: 0, bottom: -6 }}
