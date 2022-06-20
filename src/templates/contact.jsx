@@ -14,7 +14,7 @@ export default function Contact({ data: { allWpPage } }) {
   return (
     <main>
       <Seo data={seo} lang={language.slug} />
-      <ContactForm data={contact} contactPage={true} />
+      <ContactForm data={contact} contactPage={true} lang={language.name}/>
     </main>
   )
 }
@@ -25,6 +25,7 @@ export const query = graphql`
       nodes {
         language {
           slug
+          name
         }
         seo {
           title

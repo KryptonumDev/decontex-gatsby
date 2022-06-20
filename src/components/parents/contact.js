@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { Container } from "../../styles/style"
 import ContactForm from "../childrens/forms/contact-form"
 
-export default function Contact({ data: { title, text, form }, contactPage }) {
+export default function Contact({ data: { title, text, form }, contactPage, lang }) {
     return (
         <Wrapper contactPage={contactPage} id='contact'>
             <Container>
@@ -13,7 +13,7 @@ export default function Contact({ data: { title, text, form }, contactPage }) {
                         <div className="other" dangerouslySetInnerHTML={{ __html: text }} />
                     </div>
                     <div className="form">
-                        <ContactForm data={form} />
+                        <ContactForm data={form} lang={lang}/>
                     </div>
                 </Content>
             </Container>

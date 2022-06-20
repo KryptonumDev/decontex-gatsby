@@ -4,7 +4,7 @@ import styled from "styled-components"
 import { Container } from "../../styles/style"
 import NewsletterForm from "../childrens/forms/newsletter-form"
 
-export default function Newsletter({ data: { title, firstNamePlaceholder, emailPlaceholdere, agreementText, buttonText, backgroundImage, emailErrorText, agreementErrorText, successfulSendTitle, successfulSendText, sendAgainButtonText, errorSendText } }) {
+export default function Newsletter({ lang, data: { title, firstNamePlaceholder, emailPlaceholdere, agreementText, buttonText, backgroundImage, emailErrorText, agreementErrorText, successfulSendTitle, successfulSendText, sendAgainButtonText, errorSendText } }) {
     return (
         <Wrapper>
             <Container>
@@ -21,6 +21,7 @@ export default function Newsletter({ data: { title, firstNamePlaceholder, emailP
                         successfulSendText={successfulSendText}
                         sendAgainButtonText={sendAgainButtonText}
                         errorSendText={errorSendText}
+                        lang={lang}
                     />
                 </Content>
             </Container>

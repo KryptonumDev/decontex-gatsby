@@ -27,10 +27,10 @@ const IndexPage = ({ data: { allWpPage } }) => {
       <DecontominationExperts data={homepage.decontominationExperts} />
       <InteractiveMap data={homepage.interactiveMap} />
       <Partners data={homepage.partners} />
-      <Newsletter data={homepage.newsletter} />
+      <Newsletter data={homepage.newsletter} lang={language.name}/>
       {/* <News data={homepage.news} />
       <Blog data={homepage.blog} /> */}
-      <Contact data={homepage.contact} />
+      <Contact data={homepage.contact} lang={language.name}/>
     </main>
   )
 }
@@ -43,6 +43,7 @@ export const query = graphql`
       nodes {
         language {
           slug
+          name
         }
         seo {
           title

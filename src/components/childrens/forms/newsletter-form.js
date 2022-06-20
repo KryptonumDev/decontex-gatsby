@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form"
 import { motion } from 'framer-motion'
 import axios from "axios"
 
-export default function NewsletterForm({ title, firstNamePlaceholder, emailPlaceholdere, agreementText, buttonText, emailErrorText, agreementErrorText, successfulSendTitle, successfulSendText, sendAgainButtonText, errorSendText }) {
+export default function NewsletterForm({ lang, title, firstNamePlaceholder, emailPlaceholdere, agreementText, buttonText, emailErrorText, agreementErrorText, successfulSendTitle, successfulSendText, sendAgainButtonText, errorSendText }) {
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm()
     const [isSended, changeIsSended] = useState(null)
@@ -15,6 +15,7 @@ export default function NewsletterForm({ title, firstNamePlaceholder, emailPlace
         axios.post('https://hook.eu1.make.com/4dqmz50s1oe1a9nlbp58hks17b97m391', {
             name: data.firstName,
             email: data.email,
+            language: lang
         })
             .then((res) => {
                 if (res.status === 200) {

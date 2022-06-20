@@ -11,7 +11,7 @@ export default function ContactForm({ data:
         phonePlaceholder, agreementText, submitText,
         firstNameErrorText, emailErrorText, messageErrorText,
         agreementErrorText, successfulSendTitle, successfulSendText,
-        sendAgainButtonText, errorSendText } }) {
+        sendAgainButtonText, errorSendText }, lang }) {
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm()
     const [isSended, changeIsSended] = useState(null)
@@ -19,8 +19,7 @@ export default function ContactForm({ data:
 
 
     const onSubmit = data => {
-
-        // data.switch  nie działa
+        debugger
 
         axios.post('https://hook.eu1.make.com/ztq7nnfn16qimbgi3qsqaf2uwgax5c14', {
             name: data.firstName,
@@ -28,6 +27,7 @@ export default function ContactForm({ data:
             email: data.email,
             type: data.switch,
             message: data.message,
+            language: lang,
         })
             .then((res) => {
                 if (res.status === 200) {
@@ -50,11 +50,11 @@ export default function ContactForm({ data:
             <div className="flex">
                 <label className="radio">
                     <span>{switchVariant1}</span>
-                    <input {...register("switch")} defaultChecked type="radio" name="type" value={switchVariant1} />
+                    <input defaultChecked {...register("switch", { required: true })} type="radio" value={switchVariant1} />
                 </label>
                 <label className="radio">
                     <span>{switchVariant2}</span>
-                    <input {...register("switch")} type="radio" name="type" value={switchVariant2} />
+                    <input {...register("switch", { required: true })} type="radio" value={switchVariant2} />
                 </label>
             </div>
             <label className="input">
