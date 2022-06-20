@@ -12,7 +12,7 @@ export default function NewsPost({ data: { allWpNews } }) {
 
   return (
     <main>
-      <Seo data={seo} lang={language.slug} />
+      {/* <Seo data={seo} lang={language.slug} /> */}
     </main>
   )
 }

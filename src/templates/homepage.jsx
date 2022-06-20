@@ -12,7 +12,7 @@ import DecontominationExperts from "../components/parents/decontomination-expert
 import { toTop } from './../helpers/scrollToTop'
 import Seo from "../components/parents/seo"
 
-const IndexPage = ({ data: { allWpPage } }) => {
+const IndexPage = ({ data: { allWpPage, alternates }, location }) => {
   let { homepage, language, seo } = allWpPage.nodes[0]
 
   React.useEffect(() => {
@@ -21,7 +21,7 @@ const IndexPage = ({ data: { allWpPage } }) => {
 
   return (
     <main>
-      <Seo data={seo} lang={language.slug}/>
+      <Seo data={seo} lang={language.slug} alternates={alternates} location={location}/>
       <Hero data={homepage.heroHomepage} />
       <CleanerSaferHealthier data={homepage.cleanerSaferHealthier} />
       <DecontominationExperts data={homepage.decontominationExperts} />
@@ -38,7 +38,18 @@ const IndexPage = ({ data: { allWpPage } }) => {
 export default IndexPage
 
 export const query = graphql`
-  query HomePageQuery($id: String!){
+  query HomePageQuery($id: String!, $templateName: String!){
+    alternates : allWpPage(filter: {template: {templateName: {eq: $templateName}}}) {
+      nodes {
+        language {
+          slug
+          name
+        }
+        template {
+          templateName
+        }
+      }
+    }
     allWpPage(filter: {id: {eq: $id}}) {
       nodes {
         language {

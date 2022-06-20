@@ -70,7 +70,7 @@ export default function Footer({ location }) {
                 <Container>
                     <FirstFlex>
                         <div>
-                            <Link className="logo" aria-label="homepage" to={urls.homepage[locale]}>
+                            <Link className="logo" aria-label="homepage" to={urls['Homepage'][locale]}>
                                 <LogoWhite />
                             </Link>
                             <div dangerouslySetInnerHTML={{ __html: contactInformation }} />

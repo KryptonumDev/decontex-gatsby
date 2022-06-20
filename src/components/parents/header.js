@@ -5,6 +5,7 @@ import { graphql, Link, useStaticQuery } from "gatsby"
 import { activeLanguage } from "../../helpers/activeLanguage"
 import { GatsbyImage } from "gatsby-plugin-image"
 import { urls } from "../../constants/url"
+import { getCurrentPage } from "../../helpers/getCurrentPage"
 
 export default function Header({ location }) {
 
@@ -54,11 +55,14 @@ export default function Header({ location }) {
 
   const locale = activeLanguage(location)
   const localeData = data.allWpPage.nodes.filter(el => el.language.slug === locale)
-  const { link, navigation, otherLinks, socialLinks, logo } = localeData[0].header
+  const { link, navigation, otherLinks, socialLinks } = localeData[0].header
 
-  const isBrowser = typeof window !== "undefined"
+  const [isBrowser] = useState(typeof window !== "undefined")
 
   const [isMenuOpened, changeIsMenuOpened] = useState(false)
+  const [isDark, changeIsDark] = useState(whiteWersionPages.includes(location.pathname))
+  const [isLangChangerOpened, changeIsLangChangerOpened] = useState(false)
+  const [currentPage, changeCurrentPage] = useState(getCurrentPage(location, locale))
 
   const [isScrolled, changeIsScroled] = useState(() => {
     if (isBrowser) {
@@ -67,10 +71,10 @@ export default function Header({ location }) {
     return false
   })
 
-  const [isDark, changeIsDark] = useState(whiteWersionPages.includes(location.pathname))
 
   useEffect(() => {
     changeIsDark(whiteWersionPages.includes(location.pathname))
+    changeCurrentPage(getCurrentPage(location, locale))
   }, [location])
 
   useEffect(() => {
@@ -87,7 +91,7 @@ export default function Header({ location }) {
     <Wrapper isDark={isDark} isScrolled={isScrolled}>
       <LocContainer>
         <Content>
-          <Link aria-label="homepage" to={urls.homepage[locale]}>
+          <Link aria-label="homepage" to={urls['Homepage'][locale]}>
             {(isScrolled || isDark)
               ? <LogoDark />
               : <LogoWhite />}
@@ -97,15 +101,31 @@ export default function Header({ location }) {
             ? <ButtonOutlined className="cta" to={link.link}>{link.name}</ButtonOutlined>
             : <ButtonOutlinedOuter className="cta" href={link.link}>{link.name}</ButtonOutlinedOuter>}
 
-          {/* <LanguageChoice>
+          <LanguageChoice isDark={isDark} isScrolled={isScrolled} isLangChangerOpened={isLangChangerOpened}>
             {data.allWpPage.nodes.map(el => {
-              debugger
-              if(el.language.slug === locale){
-                return el.language.name
+              if (el.language.slug === locale) {
+                return <li>
+                  <button onClick={() => { changeIsLangChangerOpened(!isLangChangerOpened) }}>
+                    {el.language.name}
+                    <svg width="24" height="15" viewBox="0 0 24 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 14.575L0 2.57499L2.15 0.424988L12 10.325L21.85 0.474987L24 2.62499L12 14.575Z" fill={(isScrolled || isDark) ? "#111315" : '#fff'} />
+                    </svg>
+                  </button>
+                </li>
               }
               return null
             })}
-          </LanguageChoice> */}
+            <li>
+              <ul>
+                {data.allWpPage.nodes.map(el => {
+                  if (el.language.slug !== locale) {
+                    return <li ><Link tabIndex={isLangChangerOpened ? '0' : '-1'} to={currentPage[el.language.slug]} onClick={() => { changeIsLangChangerOpened(!isLangChangerOpened) }}><span />{el.language.name}</Link></li>
+                  }
+                  return null
+                })}
+              </ul>
+            </li>
+          </LanguageChoice>
 
           <Button aria-label='open or close mobile menu' isScrolled={isScrolled} isDark={isDark} isMenuOpened={isMenuOpened} onClick={() => { changeIsMenuOpened(!isMenuOpened) }}>
             <span />
@@ -161,8 +181,80 @@ export default function Header({ location }) {
   )
 }
 
-const LanguageChoice = styled.div`
+const LanguageChoice = styled.ul`
+  position: relative;
 
+  a, button{
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 120%;
+    letter-spacing: 0.0125em;
+    text-transform: uppercase;
+
+    color: var(--color-white);
+
+    ${props => (props.isScrolled || props.isDark) ? `
+        color: var(--color-black) ;
+      ` : null}
+  }
+
+  a{
+    color: var(--color-black)
+  }
+
+  button{
+    background-color: transparent;
+    border: none;
+
+    svg{
+      margin-left: 4px;
+      transition: transform .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+
+      ${props => props.isLangChangerOpened ? `
+      transform: rotateZ(180deg);
+    ` : null}
+    }
+  }
+
+  ul{
+    position: absolute;
+    margin: 10px 0; 
+    transition: .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+    opacity: 0;
+    pointer-events: none;
+    background-color: var(--color-white);
+    min-width: 220px;
+
+    border: 2px solid black;
+
+    li{
+        border-top: 2px solid black;
+
+      &:nth-child(1){
+        border-top: unset;
+      }
+
+      a{
+        display: flex;
+        align-items: center;
+        padding: 9px 16px;
+
+        span{
+          display: block;
+          width: 16px;
+          height: 16px;
+          box-sizing: border-box;
+          border: 2px solid black;
+          margin-right: 8px;
+        }
+      }
+    }
+
+    ${props => props.isLangChangerOpened ? `
+      opacity: 1;
+      pointer-events: all;
+    ` : null}
+  }
 `
 
 const Navigation = styled.nav`

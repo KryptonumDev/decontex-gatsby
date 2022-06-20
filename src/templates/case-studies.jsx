@@ -5,7 +5,7 @@ import CaseStudiesRepeater from "../components/parents/case-studies-repeater"
 import { toTop } from './../helpers/scrollToTop'
 import Seo from "../components/parents/seo"
 
-export default function CaseStudies({ data: { allWpPage } }) {
+export default function CaseStudies({ data: { allWpPage, alternates }, location  }) {
     let { caseStudies, language, seo } = allWpPage.nodes[0]
 
     React.useEffect(() => {
@@ -14,7 +14,7 @@ export default function CaseStudies({ data: { allWpPage } }) {
 
     return (
         <main>
-            <Seo data={seo} lang={language.slug} />
+            <Seo data={seo} lang={language.slug}  alternates={alternates} location={location}/>
             <Hero data={caseStudies.heroCasestudies} position={'90%'} parent={'top: 20%;'} />
             <CaseStudiesRepeater data={caseStudies.cases} />
         </main>
@@ -22,7 +22,18 @@ export default function CaseStudies({ data: { allWpPage } }) {
 }
 
 export const query = graphql`
-  query CaseStudiesPageQuery($id: String!){
+  query CaseStudiesPageQuery($id: String!, $templateName: String!){
+    alternates : allWpPage(filter: {template: {templateName: {eq: $templateName}}}) {
+      nodes {
+        language {
+          slug
+          name
+        }
+        template {
+          templateName
+        }
+      }
+    }
     allWpPage(filter: {id: {eq: $id}}) {
       nodes {
         language {

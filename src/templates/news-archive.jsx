@@ -4,7 +4,7 @@ import Content from "../components/parents/blog-archive-content"
 import { toTop } from './../helpers/scrollToTop'
 import Seo from "../components/parents/seo"
 
-export default function NewsArchive({ data: { allWpPage, allWpNews } }) {
+export default function NewsArchive({ data: { allWpPage, allWpNews, alternates } , location }) {
   let { blogArchive, language, seo } = allWpPage.nodes[0]
   let posts = allWpNews.nodes
 
@@ -14,14 +14,25 @@ export default function NewsArchive({ data: { allWpPage, allWpNews } }) {
 
   return (
     <main>
-      <Seo data={seo} lang={language.slug} />
+      <Seo data={seo} lang={language.slug} alternates={alternates}  location={location}/>
       <Content data={blogArchive} posts={posts} />
     </main>
   )
 }
 
 export const query = graphql`
-  query NewsArchivePageQuery($id: String!, $slug: String!){
+  query NewsArchivePageQuery($id: String!, $slug: String!, $templateName: String!){
+    alternates : allWpPage(filter: {template: {templateName: {eq: $templateName}}}) {
+      nodes {
+        language {
+          slug
+          name
+        }
+        template {
+          templateName
+        }
+      }
+    }
     allWpPage(filter: {id: {eq: $id}}) {
       nodes {
         language {

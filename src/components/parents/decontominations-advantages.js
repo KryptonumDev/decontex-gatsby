@@ -19,7 +19,7 @@ export default function DecontominationBenefits({ data: { table, link } }) {
                         <Row red={el.isRed}>
                             {el.cell.map((innerEl, index) => (
                                 <Cell>
-                                    <span className={index === 0 ? "name" : ''}>{innerEl.name}</span>
+                                    <span className={index === 0 ? "name" : ''}>{innerEl.name === null ? '0' : innerEl.name}</span>
                                 </Cell>
                             ))}
                         </Row>

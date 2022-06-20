@@ -9,7 +9,7 @@ import OtherTechnologies from "../components/parents/other-technologies"
 import { toTop } from './../helpers/scrollToTop'
 import Seo from "../components/parents/seo"
 
-export default function Deco2fire({ data: { allWpPage } }) {
+export default function Deco2fire({ data: { allWpPage, alternates }, location }) {
   let { deco2fire, language, seo } = allWpPage.nodes[0]
 
   React.useEffect(() => {
@@ -18,7 +18,7 @@ export default function Deco2fire({ data: { allWpPage } }) {
 
   return (
     <main>
-      <Seo data={seo} lang={language.slug} />
+      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} />
       <Hero data={deco2fire.heroDeco2fire} position={'50%'} />
       <SuitDescription data={deco2fire.suitDescription} />
       <DecontominationBenefits data={deco2fire.decontominationBenefits} />
@@ -30,7 +30,18 @@ export default function Deco2fire({ data: { allWpPage } }) {
 }
 
 export const query = graphql`
-  query Deco2FirePageQuery($id: String!){
+  query Deco2FirePageQuery($id: String!, $templateName: String!){
+    alternates : allWpPage(filter: {template: {templateName: {eq: $templateName}}}) {
+      nodes {
+        language {
+          slug
+          name
+        }
+        template {
+          templateName
+        }
+      }
+    }
     allWpPage(filter: {id: {eq: $id}}) {
       nodes {
         language {

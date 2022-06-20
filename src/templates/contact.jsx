@@ -4,7 +4,7 @@ import ContactForm from "../components/parents/contact"
 import { toTop } from './../helpers/scrollToTop'
 import Seo from "../components/parents/seo"
 
-export default function Contact({ data: { allWpPage } }) {
+export default function Contact({ data: { allWpPage, alternates }, location  }) {
   let { contact, language, seo } = allWpPage.nodes[0]
 
   React.useEffect(() => {
@@ -13,14 +13,25 @@ export default function Contact({ data: { allWpPage } }) {
 
   return (
     <main>
-      <Seo data={seo} lang={language.slug} />
+      <Seo data={seo} lang={language.slug}  alternates={alternates} location={location}/>
       <ContactForm data={contact} contactPage={true} lang={language.name}/>
     </main>
   )
 }
 
 export const query = graphql`
-  query ContactPageQuery($id: String!){
+  query ContactPageQuery($id: String!, $templateName: String!){
+    alternates : allWpPage(filter: {template: {templateName: {eq: $templateName}}}) {
+      nodes {
+        language {
+          slug
+          name
+        }
+        template {
+          templateName
+        }
+      }
+    }
     allWpPage(filter: {id: {eq: $id}}) {
       nodes {
         language {

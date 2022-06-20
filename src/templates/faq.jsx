@@ -5,7 +5,7 @@ import Content from "../components/parents/faq-content"
 import { toTop } from './../helpers/scrollToTop'
 import Seo from "../components/parents/seo"
 
-export default function Faq({ data: { allWpPage } }) {
+export default function Faq({ data: { allWpPage, alternates }, location  }) {
   let { faq, language, seo } = allWpPage.nodes[0]
 
   React.useEffect(() => {
@@ -14,7 +14,7 @@ export default function Faq({ data: { allWpPage } }) {
 
   return (
     <main>
-      <Seo data={seo} lang={language.slug} />
+      <Seo data={seo} lang={language.slug}  alternates={alternates} location={location}/>
       <Hero data={faq.heroFaq} position={'70%'} parent={'top: 30%;'} />
       <Content data={faq.content} />
     </main>
@@ -22,7 +22,18 @@ export default function Faq({ data: { allWpPage } }) {
 }
 
 export const query = graphql`
-  query FaqPageQuery($id: String!){
+  query FaqPageQuery($id: String!, $templateName: String!){
+    alternates : allWpPage(filter: {template: {templateName: {eq: $templateName}}}) {
+      nodes {
+        language {
+          slug
+          name
+        }
+        template {
+          templateName
+        }
+      }
+    }
     allWpPage(filter: {id: {eq: $id}}) {
       nodes {
         language {

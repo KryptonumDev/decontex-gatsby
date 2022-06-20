@@ -9,7 +9,7 @@ import FeaturedJackets from '../components/parents/featured-jackets'
 import { toTop } from './../helpers/scrollToTop'
 import Seo from '../components/parents/seo'
 
-export default function Decontomination({ data: { allWpPage } }) {
+export default function Decontomination({ data: { allWpPage, alternates }, location  }) {
   let { decontomination, language, seo } = allWpPage.nodes[0]
 
   React.useEffect(() => {
@@ -18,7 +18,7 @@ export default function Decontomination({ data: { allWpPage } }) {
 
   return (
     <main>
-      <Seo data={seo} lang={language.slug} />
+      <Seo data={seo} lang={language.slug}  alternates={alternates} location={location}/>
       <Hero data={decontomination.heroDecontomination} position={'50%'} />
       <WhatIsDecontomination data={decontomination.decontexTechnology} />
       <DecontomiantionBenefits data={decontomination.decontominationBenefitsDecon} />
@@ -30,7 +30,18 @@ export default function Decontomination({ data: { allWpPage } }) {
 }
 
 export const query = graphql`
-  query DecontominationPageQuery($id: String!){
+  query DecontominationPageQuery($id: String!, $templateName: String!){
+    alternates : allWpPage(filter: {template: {templateName: {eq: $templateName}}}) {
+      nodes {
+        language {
+          slug
+          name
+        }
+        template {
+          templateName
+        }
+      }
+    }
     allWpPage(filter: {id: {eq: $id}}) {
       nodes {
         language {
