@@ -183,12 +183,15 @@ const Suit = styled.div`
                 left: 50%;
                 transform: translate(-50%,-60px);
                 padding: 16px;
-                min-width: unset;
+                min-width: 220px;
+            }
+
+            @media (max-width: 450px) {
             }
             
             h3{
                 margin-right: 52px;
-                margin-bottom: 32px;
+                margin-bottom: clamp(16px, ${24/768*100}vw, 32px);
                 color: white;
                 font-weight: 700;
                 font-size: 32px;
@@ -200,6 +203,10 @@ const Suit = styled.div`
                 @media (max-width: 1024px) {
                 font-size: clamp(17px, ${24 / 768 * 100}vw, 24px);
                 }
+
+                @media (max-width: 450px) {
+                    white-space: normal;
+            }
             }
 
             p{

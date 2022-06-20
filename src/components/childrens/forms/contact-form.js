@@ -73,7 +73,7 @@ export default function ContactForm({ data:
             </label>
             <label className="input">
                 <span>Phone</span>
-                <input {...register("phone")} placeholder={phonePlaceholder} />
+                <input type='phone' {...register("phone")} placeholder={phonePlaceholder} />
             </label>
             <label className="input">
                 <span>Email Adress</span>
@@ -147,10 +147,10 @@ const Plate = styled.div`
     position: absolute;
     box-sizing: border-box;
     padding: 16px;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
+    left: -2px;
+    right: -2px;
+    top: -2px;
+    bottom: -2px;
     background-color: var(--color-black);
     opacity: 0;
     pointer-events: none;
@@ -214,6 +214,7 @@ const Button = styled(ButtonBlue)`
 const Wrapper = styled.form`
     width: 100%;
     position: relative;
+    overflow: hidden;
 
     .errorText{
         position: absolute;
@@ -283,7 +284,7 @@ const Wrapper = styled.form`
         }
 
         &.checkbox{
-            margin-bottom: clamp(24px, ${32 / 768 * 100}vw, 32px);
+            margin-bottom: 48px;
             display: flex;
             align-items: center;
 

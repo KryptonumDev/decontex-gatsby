@@ -101,35 +101,7 @@ export default function Header({ location }) {
             ? <ButtonOutlined className="cta" to={link.link}>{link.name}</ButtonOutlined>
             : <ButtonOutlinedOuter className="cta" href={link.link}>{link.name}</ButtonOutlinedOuter>}
 
-          {currentPage
-            ? (
-              <LanguageChoice isDark={isDark} isScrolled={isScrolled} isLangChangerOpened={isLangChangerOpened}>
-                {data.allWpPage.nodes.map(el => {
-                  if (el.language.slug === locale) {
-                    return <li>
-                      <button onClick={() => { changeIsLangChangerOpened(!isLangChangerOpened) }}>
-                        {el.language.name}
-                        <svg width="24" height="15" viewBox="0 0 24 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M12 14.575L0 2.57499L2.15 0.424988L12 10.325L21.85 0.474987L24 2.62499L12 14.575Z" fill={(isScrolled || isDark) ? "#111315" : '#fff'} />
-                        </svg>
-                      </button>
-                    </li>
-                  }
-                  return null
-                })}
-                <li>
-                  <ul>
-                    {data.allWpPage.nodes.map(el => {
-                      if (el.language.slug !== locale) {
-                        return <li ><Link tabIndex={isLangChangerOpened ? '0' : '-1'} to={currentPage[el.language.slug]} onClick={() => { changeIsLangChangerOpened(!isLangChangerOpened) }}><span />{el.language.name}</Link></li>
-                      }
-                      return null
-                    })}
-                  </ul>
-                </li>
-              </LanguageChoice>
-            )
-            : null}
+          <LangChoice desctop={true} currentPage={currentPage} isDark={isDark} isScrolled={isScrolled} isLangChangerOpened={isLangChangerOpened} data={data} locale={locale} changeIsLangChangerOpened={changeIsLangChangerOpened} />
 
           <Button aria-label='open or close mobile menu' isScrolled={isScrolled} isDark={isDark} isMenuOpened={isMenuOpened} onClick={() => { changeIsMenuOpened(!isMenuOpened) }}>
             <span />
@@ -178,6 +150,7 @@ export default function Header({ location }) {
                 </li>
               ))}
             </ul>
+            <LangChoice desctop={false} currentPage={currentPage} isDark={isDark} isScrolled={isScrolled} isLangChangerOpened={isLangChangerOpened} data={data} locale={locale} changeIsLangChangerOpened={changeIsLangChangerOpened} />
           </Navigation>
         </Content>
       </LocContainer>
@@ -188,9 +161,60 @@ export default function Header({ location }) {
 const LanguageChoice = styled.ul`
   position: relative;
 
+    &.mobile{
+      display: none;
+    }
+
+  @media (max-width: 1024px) {
+    &.desctop{
+      display: none;
+    }
+    &.mobile{
+      display: block !important;
+
+      a,button{
+        color: var(--color-white);
+        text-transform: uppercase;
+      }
+
+      ul{
+        border: unset;
+        background-color: transparent;
+
+        a{
+          width: fit-content;
+          padding: 6px 0;
+        }
+
+        span{
+          display: none;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 550px) {
+    svg{
+      transform: scale(.8) !important;
+
+      ${props => props.isLangChangerOpened ? `
+      transform: scale(.8) rotateZ(180deg) !important;
+    ` : null}
+    }
+  }
+  @media (max-width: 500px) {
+    svg{
+      transform: scale(.8) translateY(3px) !important;
+      
+      ${props => props.isLangChangerOpened ? `
+      transform: scale(.8) translateY(3px) rotateZ(180deg) !important;
+    ` : null}
+    }
+  }
+
   a, button{
     font-weight: 700;
-    font-size: 24px;
+    font-size: clamp(13px, ${24 / 768 * 100}vw, 24px);
     line-height: 120%;
     letter-spacing: 0.0125em;
     text-transform: uppercase;
@@ -230,6 +254,10 @@ const LanguageChoice = styled.ul`
     min-width: 220px;
 
     border: 2px solid black;
+
+    @media (max-width: 1024px) {
+      position: relative;
+    }
 
     li{
         border-top: 2px solid black;
@@ -516,6 +544,40 @@ const Content = styled.div`
       max-width: clamp(120px, ${175 / 768 * 100}vw, 230px);
     }
 `
+
+const LangChoice = ({ desctop, currentPage, isDark, isScrolled, isLangChangerOpened, data, locale, changeIsLangChangerOpened }) => {
+  if (currentPage) {
+    return (
+      <LanguageChoice className={desctop ? 'desctop' : 'mobile'} isDark={isDark} isScrolled={isScrolled} isLangChangerOpened={isLangChangerOpened} >
+        {data.allWpPage.nodes.map(el => {
+          if (el.language.slug === locale) {
+            return <li>
+              <button onClick={() => { changeIsLangChangerOpened(!isLangChangerOpened) }}>
+                {el.language.name}
+                <svg width="24" height="15" viewBox="0 0 24 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 14.575L0 2.57499L2.15 0.424988L12 10.325L21.85 0.474987L24 2.62499L12 14.575Z" fill={(isScrolled || isDark) ? "#111315" : '#fff'} />
+                </svg>
+              </button>
+            </li>
+          }
+          return null
+        })}
+        <li>
+          <ul>
+            {data.allWpPage.nodes.map(el => {
+              if (el.language.slug !== locale) {
+                return <li ><Link tabIndex={isLangChangerOpened ? '0' : '-1'} to={currentPage[el.language.slug]} onClick={() => { changeIsLangChangerOpened(!isLangChangerOpened) }}><span />{el.language.name}</Link></li>
+              }
+              return null
+            })}
+          </ul>
+        </li>
+      </LanguageChoice >
+    )
+  }
+  return null
+}
+
 
 const LogoDark = () => (
   <svg width="231" height="49" viewBox="0 0 231 49" fill="none" xmlns="http://www.w3.org/2000/svg">

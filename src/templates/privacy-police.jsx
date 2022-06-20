@@ -15,7 +15,7 @@ export default function PrivacyPolice({ data: { allWpPage, alternates }, locatio
   return (
     <main>
       <Seo data={seo} lang={language.slug} alternates={alternates}  location={location}/>
-      <Hero data={privacyPolice.heroPrivacy} position={'97%'} parent={'top: 20%;'} />
+      <Hero data={privacyPolice.heroPrivacy} position={'97%'} parent={'top: 30%;'} />
       <PrivacyContent data={privacyPolice} />
     </main>
   )

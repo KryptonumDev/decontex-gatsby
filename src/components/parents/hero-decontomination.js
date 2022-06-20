@@ -66,7 +66,7 @@ const Buttons = styled.div`
         color: var(--color-white) !important;
     }
 
-    @media (max-width: 360px) {
+    @media (max-width: 450px) {
         grid-template-columns: 1fr;
 
         a{
@@ -76,7 +76,8 @@ const Buttons = styled.div`
 `
 
 const Content = styled.div`
-    max-width: 980px;
+    max-width: 996px;
+    margin-right: 16px;
     position: absolute;
     z-index: 1;
 
@@ -88,6 +89,7 @@ const Content = styled.div`
             font-weight: 900;
             font-size: clamp(27px, ${48 / 768 * 100}vw, 72px);
             line-height: 130%;
+            word-break: break-word;
             letter-spacing: -0.015em;
         }
     }

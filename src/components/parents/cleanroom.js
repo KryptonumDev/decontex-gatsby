@@ -836,7 +836,7 @@ const CardWrapper = styled.div`
     }
 
     @media (max-width: 480px) {
-        min-height: 210px;
+        min-height: 240px;
     }
 
 `

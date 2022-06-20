@@ -2,7 +2,8 @@ import React, { useEffect, useRef, useState } from "react"
 import styled from "styled-components"
 import { ButtonOutlined, Container } from "../../styles/style"
 import { Austria, Belgium, France, Germany, Luxemburg, Netherlands, Poland, Spain, Switzerland } from "../childrens/map/countries"
-import { Map } from './../childrens/map/map'
+// import { Map } from './../childrens/map/map'
+import Map from './../../resources/map.png'
 
 export default function InteractiveMap({ data: { sectionTitle, text, country, next } }) {
 
@@ -56,7 +57,8 @@ export default function InteractiveMap({ data: { sectionTitle, text, country, ne
                 <Title dangerouslySetInnerHTML={{ __html: sectionTitle }} />
                 <BrownText>{text}</BrownText>
                 <MapWrapper ref={mapEl}>
-                    <Map />
+                    {/* <Map /> */}
+                    <img src={Map} className="map"/>
                     <Poland open={open} whichOpened={whichOpened} />
                     <Spain open={open} whichOpened={whichOpened} />
                     <Switzerland open={open} whichOpened={whichOpened} />

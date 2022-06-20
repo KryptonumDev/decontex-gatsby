@@ -91,7 +91,7 @@ const Item = styled.div`
     h3{
         font-weight: 700;
         font-size: clamp(13px, ${24 / 768 * 100}vw, 32px);
-        line-height: 42px;
+        line-height: 125%;
         text-align: center;
         color: var(--color-white);
     }
@@ -104,5 +104,9 @@ const Item = styled.div`
         padding: clamp(24px, ${48 / 768 * 100}vw, 90px) clamp(20px, ${25 / 768 * 100}vw, 30px);
         flex-direction: row;
         gap: clamp(8px, ${24 / 768 * 100}vw, 32px);
+
+        h3{
+            text-align: left;
+        }
     }
 `

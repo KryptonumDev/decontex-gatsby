@@ -81,6 +81,7 @@ const Content = styled.div`
             font-size: inherit;
             line-height: inherit;
             color: var(--color-blue);
+            word-break: break-word;
         }
     }
 

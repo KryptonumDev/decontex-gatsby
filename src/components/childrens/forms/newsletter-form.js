@@ -94,10 +94,10 @@ const Plate = styled.div`
     position: absolute;
     box-sizing: border-box;
     padding: 16px;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
+    left: -2px;
+    right: -2px;
+    top: -2px;
+    bottom: -2px;
     background-color: var(--color-black);
     opacity: 0;
     pointer-events: none;
@@ -147,6 +147,7 @@ const Plate = styled.div`
 
 const Wrapper = styled.form`
     position: relative;
+    overflow: hidden;
 
     .title{    
         h1,h2,h3,h4,h5,h6,p{
