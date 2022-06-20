@@ -20,7 +20,7 @@ module.exports = {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
         host: 'https://decontex.com/',
-        sitemap: 'https://decontex.com/sitemap/sitemap-index.xml',
+        sitemap: 'https://decontex.com/sitemap.xml',
         policy: [{ userAgent: '*', allow: '/' }],
       },
     },
