@@ -2,15 +2,15 @@ import * as React from "react"
 import { graphql } from "gatsby"
 import Hero from "../components/parents/hero-homepage"
 import Newsletter from "../components/parents/newslettter"
-import News from "../components/parents/news"
-import Blog from "../components/parents/blog"
 import Contact from "../components/parents/contact"
 import Partners from "../components/parents/partners"
-import InteractiveMap from "../components/parents/interactive-map"
 import CleanerSaferHealthier from "../components/parents/cleaner-safer-healthier"
 import DecontominationExperts from "../components/parents/decontomination-experts"
 import { toTop } from './../helpers/scrollToTop'
 import Seo from "../components/parents/seo"
+// import News from "../components/parents/news"
+// import Blog from "../components/parents/blog"
+// import InteractiveMap from "../components/parents/interactive-map"
 
 const IndexPage = ({ data: { allWpPage, alternates }, location }) => {
   let { homepage, language, seo } = allWpPage.nodes[0]
@@ -25,7 +25,7 @@ const IndexPage = ({ data: { allWpPage, alternates }, location }) => {
       <Hero data={homepage.heroHomepage} />
       <CleanerSaferHealthier data={homepage.cleanerSaferHealthier} />
       <DecontominationExperts data={homepage.decontominationExperts} />
-      <InteractiveMap data={homepage.interactiveMap} />
+      {/* <InteractiveMap data={homepage.interactiveMap} /> */}
       <Partners data={homepage.partners} />
       <Newsletter data={homepage.newsletter} lang={language.name}/>
       {/* <News data={homepage.news} />
