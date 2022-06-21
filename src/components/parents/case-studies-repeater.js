@@ -9,7 +9,7 @@ export default function CaseStudiesRepeater({ data }) {
             <Container>
                 <Grid>
                     {data.map(el => (
-                        <Item>
+                        <Item key={el.caseTitle}>
                             <GatsbyImage className="image" image={el.caseImage.localFile.childImageSharp.gatsbyImageData} alt={el.caseImage.altText} />
                             <div>
                                 <div className="title" dangerouslySetInnerHTML={{ __html: el.caseTitle }} />

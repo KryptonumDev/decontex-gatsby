@@ -113,7 +113,7 @@ export default function Header({ location }) {
                 {navigation.map(el => (
                   <ul>
                     {el.navigationItem.map(innerEl => (
-                      <li>
+                      <li key={innerEl.name}>
                         <Link tabIndex={isMenuOpened ? '0' : '-1'} onClick={() => { changeIsMenuOpened(false) }} to={innerEl.link}>
                           {innerEl.name}
                         </Link>
@@ -123,7 +123,7 @@ export default function Header({ location }) {
                 ))}
                 <ul className="small">
                   {otherLinks.map(el => (
-                    <li>
+                    <li key={el.name}>
                       <Link tabIndex={isMenuOpened ? '0' : '-1'} onClick={() => { changeIsMenuOpened(false) }} className="small" to={el.link}>
                         {el.name}
                       </Link>
@@ -133,7 +133,7 @@ export default function Header({ location }) {
               </div>
               <ul className="social">
                 {socialLinks.map(el => (
-                  <li>
+                  <li key={el.link}>
                     <Link tabIndex={isMenuOpened ? '0' : '-1'} to={el.link} aria-label={el.ariaLabel} target="_blank">
                       <GatsbyImage className="image" image={el.icon.localFile.childImageSharp.gatsbyImageData} alt={el.icon.altText} />
                     </Link>
@@ -143,7 +143,7 @@ export default function Header({ location }) {
             </div>
             <ul className="small mobile">
               {otherLinks.map(el => (
-                <li>
+                <li key={el.name}>
                   <Link tabIndex={isMenuOpened ? '0' : '-1'} onClick={() => { changeIsMenuOpened(false) }} className="small" to={el.link}>
                     {el.name}
                   </Link>
@@ -560,7 +560,7 @@ const LangChoice = ({ isMenuOpened, desctop, currentPage, isDark, isScrolled, is
       <LanguageChoice className={desctop ? 'desctop' : 'mobile'} isDark={isDark} isScrolled={isScrolled} isLangChangerOpened={isLangChangerOpened} >
         {data.allWpPage.nodes.map(el => {
           if (el.language.slug === locale) {
-            return <li>
+            return <li key={el.language.slug}>
               <button tabIndex={(desctop || isMenuOpened) ? '0' : '-1'} onClick={() => { changeIsLangChangerOpened(!isLangChangerOpened) }}>
                 {el.language.name}
                 <svg width="24" height="15" viewBox="0 0 24 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -575,7 +575,7 @@ const LangChoice = ({ isMenuOpened, desctop, currentPage, isDark, isScrolled, is
           <ul>
             {data.allWpPage.nodes.map(el => {
               if (el.language.slug !== locale) {
-                return <li><Link tabIndex={isLangChangerOpened ? '0' : '-1'} to={currentPage[el.language.slug]} onClick={() => { changeIsLangChangerOpened(!isLangChangerOpened) }}><span />{el.language.name}</Link></li>
+                return <li key={el.language.slug}><Link tabIndex={isLangChangerOpened ? '0' : '-1'} to={currentPage[el.language.slug]} onClick={() => { changeIsLangChangerOpened(!isLangChangerOpened) }}><span />{el.language.name}</Link></li>
               }
               return null
             })}

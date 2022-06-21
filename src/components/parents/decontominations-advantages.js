@@ -9,16 +9,16 @@ export default function DecontominationBenefits({ data: { table, link } }) {
                 <Table>
                     <Row>
                         {table.firstRow.cell.map((el) => (
-                            <Cell>
+                            <Cell key={el.topText}>
                                 <span className="top">{el.topText}</span>
                                 <span className="bottom">{el.bottomText}</span>
                             </Cell>
                         ))}
                     </Row>
-                    {table.row.map(el => (
-                        <Row red={el.isRed}>
+                    {table.row.map((el, index) => (
+                        <Row key={index} red={el.isRed}>
                             {el.cell.map((innerEl, index) => (
-                                <Cell>
+                                <Cell key={innerEl.name}>
                                     <span className={index === 0 ? "name" : ''}>{innerEl.name === null ? '0' : innerEl.name}</span>
                                 </Cell>
                             ))}

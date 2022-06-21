@@ -14,7 +14,7 @@ export default function WhatIsDecontomination({ data: { title, image, benefitsTi
                 </Content>
                 <Repeater>
                     {repeater.map(el => (
-                        <div className="item">
+                        <div key={el.title} className="item">
                             <GatsbyImage className="image" image={el.img.localFile.childImageSharp.gatsbyImageData} alt={el.img.altText} />
                             <p>{el.title}</p>
                         </div>

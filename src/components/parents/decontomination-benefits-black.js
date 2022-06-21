@@ -9,7 +9,7 @@ export default function DecontomiantionBenefits({ data: { benefit } }) {
             <Container>
                 <Grid>
                     {benefit.map(el => (
-                        <Item>
+                        <Item key={el.title}>
                             <GatsbyImage className="image" image={el.icon.localFile.childImageSharp.gatsbyImageData} alt={el.icon.altText} />
                             <p className="title">{el.title}</p>
                             <p className="text">{el.text}</p>

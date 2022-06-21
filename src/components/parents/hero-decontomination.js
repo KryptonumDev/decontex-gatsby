@@ -17,14 +17,14 @@ export default function Hero({ data: { title, subTitle, background, links }, pos
                             {links.map((el, index) => {
                                 if (index === 0) {
                                     if (links.isouter === null) {
-                                        return <ButtonBlueOuter href={el.link}>{el.name}</ButtonBlueOuter>
+                                        return <ButtonBlueOuter key={el.name} href={el.link}>{el.name}</ButtonBlueOuter>
                                     }
-                                    return <ButtonBlue to={el.link}>{el.name}</ButtonBlue>
+                                    return <ButtonBlue key={el.name} to={el.link}>{el.name}</ButtonBlue>
                                 }
                                 if (links.isouter === null) {
-                                    return <ButtonOutlinedOuter className="outline" href={el.link}>{el.name}</ButtonOutlinedOuter>
+                                    return <ButtonOutlinedOuter key={el.name} className="outline" href={el.link}>{el.name}</ButtonOutlinedOuter>
                                 }
-                                return <ButtonOutlined className="outline" to={el.link}>{el.name}</ButtonOutlined>
+                                return <ButtonOutlined key={el.name} className="outline" to={el.link}>{el.name}</ButtonOutlined>
                             })}
                         </Buttons>
                         : null}

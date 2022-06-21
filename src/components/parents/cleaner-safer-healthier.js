@@ -11,7 +11,7 @@ export default function CleanerSaferHealthier({ data: { title, text, items, cont
                 <div className="text" dangerouslySetInnerHTML={{ __html: text }} />
                 <Grid>
                     {items.map(el => (
-                        <Item>
+                        <Item key={el.itemName}>
                             <GatsbyImage className="image" image={el.itemImage.localFile.childImageSharp.gatsbyImageData} alt={el.itemImage.altText} />
                             <h3>{el.itemName}</h3>
                         </Item>

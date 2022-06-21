@@ -9,7 +9,7 @@ export default function DecontominationSubjectsMini({ data: { title, repeater } 
                 <div className="title" dangerouslySetInnerHTML={{ __html: title }}></div>
                 <Repeater>
                     {repeater.map(el => (
-                        <Item color={el.backgroundColor} dangerouslySetInnerHTML={{ __html: el.text }} />
+                        <Item key={el.text} color={el.backgroundColor} dangerouslySetInnerHTML={{ __html: el.text }} />
                     ))}
                 </Repeater>
             </Container>

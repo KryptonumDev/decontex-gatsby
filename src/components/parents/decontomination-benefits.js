@@ -11,7 +11,7 @@ export default function DecontominationBenefits({ data: { sectionTitle, text, te
                 <div className="text" dangerouslySetInnerHTML={{__html: text}}/>
                 <Grid>
                     {benefits.map(el => (
-                        <Item>
+                        <Item key={el.benefitText}>
                             <GatsbyImage className="image" image={el.benefitIcon.localFile.childImageSharp.gatsbyImageData} alt={el.benefitIcon.altText}/>
                             <h3>{el.benefitText}</h3>
                         </Item>

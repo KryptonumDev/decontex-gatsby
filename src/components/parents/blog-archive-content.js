@@ -11,8 +11,8 @@ export default function Content({ data: { title, text }, posts }) {
                     <div className="text" dangerouslySetInnerHTML={{ __html: text }}></div>
                 </TextPart>
                 <Grid>
-                    {posts.map(el => (
-                        <Item>
+                    {posts.map((el, index) => (
+                        <Item key={index}>
 
                         </Item>
                     ))}

@@ -30,7 +30,7 @@ export default function Cleanroom({ data: { brownPlateText, nextButton, cleanroo
                     <ItemWrapper>
                         <MarkWrapper>
                             {arr.map((el, index) => (
-                                <MarkerButton onClick={() => { setActiveItem(index + 1) }} active={activeItem} index={index + 1} className={'m' + (index + 1)}>
+                                <MarkerButton key={el} onClick={() => { setActiveItem(index + 1) }} active={activeItem} index={index + 1} className={'m' + (index + 1)}>
                                     <Mark className={'mark'} active={activeItem} index={index} />
                                     {el}
                                 </MarkerButton>
@@ -38,7 +38,7 @@ export default function Cleanroom({ data: { brownPlateText, nextButton, cleanroo
 
                         </MarkWrapper>
                         {cleanroom.map((el, index) => (
-                            <Item index={index + 1} active={activeItem}>
+                            <Item key={index} index={index + 1} active={activeItem}>
                                 <GatsbyImage className="image" image={el.stepView.localFile.childImageSharp.gatsbyImageData} alt={el.stepView.altText} />
                             </Item>
                         ))}
@@ -46,7 +46,7 @@ export default function Cleanroom({ data: { brownPlateText, nextButton, cleanroo
                     <div>
                         <CardWrapper>
                             {cleanroom.map((el, index, arr) => (
-                                <Card isBrown={index + 1 === arr.length} index={index + 1} active={activeItem}>
+                                <Card key={el.stepTitle} isBrown={index + 1 === arr.length} index={index + 1} active={activeItem}>
                                     <div>
                                         <h3>{el.stepTitle}</h3>
                                         <div className="content">
@@ -81,7 +81,7 @@ export default function Cleanroom({ data: { brownPlateText, nextButton, cleanroo
                 </Grid>
                 <Countries>
                     {headquarters.map(el => (
-                        <Country>
+                        <Country key={el.address}>
                             <div>
                                 <GatsbyImage className="flag" image={el.countryFlag.localFile.childImageSharp.gatsbyImageData} alt={el.countryFlag.altText} />
                                 <span className="main">{el.name}</span>

@@ -17,9 +17,9 @@ export default function DecontominationExperts({ data: { title, list, image, tex
                 <Buttons>
                     {buttons.map((el, index) => {
                         if (index === 0) {
-                            return <ButtonBlue to={el.url}>{el.text}</ButtonBlue>
+                            return <ButtonBlue key={el.url} to={el.url}>{el.text}</ButtonBlue>
                         }
-                        return <ButtonOutlined className='black' to={el.url}>{el.text}</ButtonOutlined>
+                        return <ButtonOutlined key={el.url} className='black' to={el.url}>{el.text}</ButtonOutlined>
                     })}
                 </Buttons>
             </Container>

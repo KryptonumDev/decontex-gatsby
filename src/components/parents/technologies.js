@@ -10,7 +10,7 @@ export default function Technologies({ data: { title, repeater } }) {
                 <div className="title" dangerouslySetInnerHTML={{ __html: title }}></div>
                 <Repeater>
                     {repeater.map(el => (
-                        <Item >
+                        <Item key={el.text}>
                             <GatsbyImage className="image" image={el.img.localFile.childImageSharp.gatsbyImageData} alt={el.img.altText} />
                             <div dangerouslySetInnerHTML={{ __html: el.text }} />
                         </Item>

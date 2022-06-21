@@ -16,7 +16,7 @@ export default function AboutLCO2({ data: { title, leftText, rightText, repeater
                 </Content>
                 <Repeater>
                     {repeater.map(el => (
-                        <div className="item">
+                        <div key={el.title} className="item">
                             <div>
                                 <GatsbyImage className='image' image={el.img.localFile.childImageSharp.gatsbyImageData} alt={el.img.altText}/>
                             </div>

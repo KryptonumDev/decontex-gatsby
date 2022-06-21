@@ -32,7 +32,7 @@ export default function Content({ data: { title, text, link, repeater } }) {
                 <Table>
                     <Column>
                         {dividedArrays[0].map((el, index) => (
-                            <QuestionWrapper isOpen={index === 0}>
+                            <QuestionWrapper key={el.question} isOpen={index === 0}>
                                 <Question >
                                     <div dangerouslySetInnerHTML={{ __html: el.question }} />
                                 </Question>
@@ -44,7 +44,7 @@ export default function Content({ data: { title, text, link, repeater } }) {
                     </Column>
                     <Column>
                         {dividedArrays[1].map((el, index) => (
-                            <QuestionWrapper isOpen={index === 0}>
+                            <QuestionWrapper key={el.question} isOpen={index === 0}>
                                 <Question >
                                     <div dangerouslySetInnerHTML={{ __html: el.question }} />
                                 </Question>

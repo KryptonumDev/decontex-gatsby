@@ -74,7 +74,7 @@ export default function InteractiveMap({ data: { sectionTitle, text, country, ne
                 <Plate ref={itemEl} cord={cord} isOpened={isOpened} whichOpened={whichOpened}>
                     <Close tabIndex={isOpened ? '0' : '-1'} onClick={() => { setIsOpened(false) }} />
                     {country.map((el) => (
-                        <PlateItem isOpened={isOpened} index={el.countryCode} whichOpened={whichOpened}>
+                        <PlateItem key={el.countryCode} isOpened={isOpened} index={el.countryCode} whichOpened={whichOpened}>
                             <div className="mobile-flex">
                                 <h3>{el.countryName}</h3>
                                 <div>
