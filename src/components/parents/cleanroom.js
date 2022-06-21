@@ -46,7 +46,7 @@ export default function Cleanroom({ data: { brownPlateText, nextButton, cleanroo
                     <div>
                         <CardWrapper>
                             {cleanroom.map((el, index, arr) => (
-                                <Card index={index + 1} active={activeItem}>
+                                <Card isBrown={index + 1 === arr.length} index={index + 1} active={activeItem}>
                                     <div>
                                         <h3>{el.stepTitle}</h3>
                                         <div className="content">
@@ -59,20 +59,20 @@ export default function Cleanroom({ data: { brownPlateText, nextButton, cleanroo
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="buttons">
-                                        {index === 0
-                                            ? <span />
-                                            : <button aria-label="previously item" className="button" onClick={() => { setActiveItem(activeItem - 1) }}>
-                                                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M20 40L0 20L20 0L22.625 2.625L7.125 18.125H40V21.875H7.125L22.625 37.375L20 40Z" fill="#F3F3F3" />
-                                                </svg>
-                                            </button>}
-                                        {index === arr.length - 1
-                                            ? <span />
-                                            : <ButtonOutlined className="cta" as='button' onClick={() => { setActiveItem(activeItem + 1) }}>{nextButton}</ButtonOutlined>}
-                                    </div>
                                 </Card>
                             ))}
+                            <div className="buttons">
+                                {activeItem === 1
+                                    ? <span />
+                                    : <button tabIndex={activeItem === 1 ? '-1' : '0'} aria-label="previously item" className="button" onClick={() => { setActiveItem(activeItem === 1 ? activeItem : activeItem - 1) }}>
+                                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M20 40L0 20L20 0L22.625 2.625L7.125 18.125H40V21.875H7.125L22.625 37.375L20 40Z" fill="#F3F3F3" />
+                                        </svg>
+                                    </button>}
+                                {activeItem === arr.length + 1
+                                    ? <span />
+                                    : <ButtonOutlined tabIndex={cleanroom.length === activeItem ? '-1' : '0'} className="cta" as='button' onClick={() => { setActiveItem(cleanroom.length === activeItem ? activeItem : activeItem + 1) }}>{nextButton}</ButtonOutlined>}
+                            </div>
                         </CardWrapper>
                         <div className="brown">
                             {brownPlateText}
@@ -839,10 +839,45 @@ const CardWrapper = styled.div`
         min-height: 240px;
     }
 
+    .buttons{
+        position: absolute;
+        bottom: 16px;
+        left: 16px;
+        right: 16px;
+        height: 79px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .cta{
+            color: var(--color-white);
+            border-color: var(--color-white);
+        }
+
+        .button{
+            background-color: transparent;
+            border: none;
+            height: 40px;
+            width: 40px;
+        }
+
+        *{
+            margin: 0 !important;
+        }
+
+        @media (max-width: 480px) {
+            height: 54px;
+
+            .button{
+                transform: scale(0.8);
+            }
+        }
+    }
+
 `
 
 const Card = styled.div`
-    background-color: var(--color-blue);
+    background-color: ${props => props.isBrown ? 'var(--color-gold)' : 'var(--color-blue)'};
     padding: 36px 55px 48px 55px;
     box-sizing: border-box;
     width: 100%;
@@ -897,37 +932,6 @@ const Card = styled.div`
                 font-size: clamp(11px, ${12 / 768 * 100}vw, 13px);
                 line-height: 146%;
                 letter-spacing: 0.005em;
-            }
-        }
-    }
-
-    .buttons{
-        height: 79px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        .cta{
-            color: var(--color-white);
-            border-color: var(--color-white);
-        }
-
-        .button{
-            background-color: transparent;
-            border: none;
-            height: 40px;
-            width: 40px;
-        }
-
-        *{
-            margin: 0 !important;
-        }
-
-        @media (max-width: 480px) {
-            height: 54px;
-
-            .button{
-                transform: scale(0.8);
             }
         }
     }

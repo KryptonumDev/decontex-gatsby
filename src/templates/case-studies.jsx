@@ -47,6 +47,10 @@ export const query = graphql`
             heroCasestudies{
                 title
                 subTitle
+                links{
+                  link
+                  name
+                }
                 background {
                     altText
                     localFile {

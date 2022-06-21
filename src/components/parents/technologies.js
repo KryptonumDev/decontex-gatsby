@@ -64,7 +64,7 @@ const Item = styled.div`
     width: calc(${100 / 3}% - 27px);
     h1,h2,h3,h4,h5,h6,p{
         margin-top: 32px;
-        font-weight: 400;
+        font-weight: 700;
         font-size: clamp(17px, ${24 / 1140 * 100}vw, 32px);
         color: var(--color-white);
         line-height: 130%;

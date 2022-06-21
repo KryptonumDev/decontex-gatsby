@@ -1,9 +1,9 @@
 import { GatsbyImage } from "gatsby-plugin-image"
-import React, { useEffect, useRef } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import styled from "styled-components"
 import { Container } from "../../styles/style"
 
-const Card = ({ className, suit }) => {
+const Card = ({ className, suit, activeItem, setActiveItem }) => {
     const parent = useRef();
 
     const closeAll = (event) => {
@@ -21,6 +21,7 @@ const Card = ({ className, suit }) => {
                 })
 
                 parent.current.classList.add('active')
+                setActiveItem(className)
             }
         } else {
             document.querySelectorAll('.card').forEach(el => {
@@ -28,6 +29,7 @@ const Card = ({ className, suit }) => {
             })
 
             parent.current.classList.add('active')
+            setActiveItem(className)
         }
     }
 
@@ -45,9 +47,9 @@ const Card = ({ className, suit }) => {
     return (
         <div ref={parent} className={"card " + className + (className === 'overall' ? ' active' : '')}>
             <div>
-                <button onClick={(e) => { closeAll(e) }} />
                 <h3 tabIndex='0' onKeyDown={(key) => { addClass(key) }} onClick={addClass}>{suit.title}</h3>
                 <p>{suit.text}</p>
+                <button tabIndex={activeItem === className ? '0' : '-1'} onClick={(e) => { closeAll(e) }} />
             </div>
         </div>
     )
@@ -55,6 +57,7 @@ const Card = ({ className, suit }) => {
 }
 
 export default function SuitDescription({ data: { sectionTitle, text, suit } }) {
+    const [activeItem, setActiveItem] = useState('overall')
 
     return (
         <Wrapper>
@@ -63,13 +66,13 @@ export default function SuitDescription({ data: { sectionTitle, text, suit } }) 
                 <div className="text" dangerouslySetInnerHTML={{ __html: text }} />
                 <Suit>
                     <GatsbyImage className="image" image={suit.image.localFile.childImageSharp.gatsbyImageData} alt={suit.image.altText} />
-                    <Card className={'helmet'} suit={suit.helmet} />
-                    <Card className={'balaclava'} suit={suit.balaclava} />
-                    <Card className={'jacket'} suit={suit.jacket} />
-                    <Card className={'gloves'} suit={suit.gloves} />
-                    <Card className={'pants'} suit={suit.pants} />
-                    <Card className={'boots'} suit={suit.boots} />
-                    <Card className={'overall'} suit={suit.overall} />
+                    <Card className={'helmet'} suit={suit.helmet} activeItem={activeItem} setActiveItem={setActiveItem} />
+                    <Card className={'balaclava'} suit={suit.balaclava} activeItem={activeItem} setActiveItem={setActiveItem} />
+                    <Card className={'jacket'} suit={suit.jacket} activeItem={activeItem} setActiveItem={setActiveItem} />
+                    <Card className={'gloves'} suit={suit.gloves} activeItem={activeItem} setActiveItem={setActiveItem} />
+                    <Card className={'pants'} suit={suit.pants} activeItem={activeItem} setActiveItem={setActiveItem} />
+                    <Card className={'boots'} suit={suit.boots} activeItem={activeItem} setActiveItem={setActiveItem} />
+                    <Card className={'overall'} suit={suit.overall} activeItem={activeItem} setActiveItem={setActiveItem} />
                 </Suit>
             </Container>
         </Wrapper>
@@ -191,7 +194,7 @@ const Suit = styled.div`
             
             h3{
                 margin-right: 52px;
-                margin-bottom: clamp(16px, ${24/768*100}vw, 32px);
+                margin-bottom: clamp(16px, ${24 / 768 * 100}vw, 32px);
                 color: white;
                 font-weight: 700;
                 font-size: 32px;
@@ -199,14 +202,15 @@ const Suit = styled.div`
                 text-align: center;
                 white-space: nowrap;    
                 pointer-events: all;
+                cursor: pointer;
 
                 @media (max-width: 1024px) {
-                font-size: clamp(17px, ${24 / 768 * 100}vw, 24px);
+                    font-size: clamp(17px, ${24 / 768 * 100}vw, 24px);
                 }
 
                 @media (max-width: 450px) {
                     white-space: normal;
-            }
+                }
             }
 
             p{
@@ -217,14 +221,14 @@ const Suit = styled.div`
                 letter-spacing: 0.005em;
                 opacity: 0;
                 transition: opacity .3s linear;
-                    pointer-events: none;
+                pointer-events: none;
 
-                @media (max-width: 1024px) {
-                    font-size: clamp(11px, ${17 / 768 * 100}vw, 17px);
-                }
+            @media (max-width: 1024px) {
+                font-size: clamp(11px, ${17 / 768 * 100}vw, 17px);
             }
+        }
 
-            button{
+        button{
                 position: absolute;
                 z-index: 101;
                 right: 24px;
@@ -279,7 +283,7 @@ const Suit = styled.div`
                         top: 9px;
                     }
                 }
-            }
+        }
         }
 
 

@@ -40,5 +40,9 @@ const Wrapper = styled.section`
     .button{
         width: fit-content;
         margin:  0 auto;
+
+        a{
+            color: #E8D07B;
+        }
     }
 `

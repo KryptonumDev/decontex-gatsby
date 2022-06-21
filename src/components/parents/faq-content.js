@@ -137,6 +137,7 @@ const Column = styled.div`
             background-color: var(--color-yellow);
             margin-bottom: 24px;
             width: 100%;
+            cursor: pointer;
 
             ::-webkit-details-marker {
                 display:none;

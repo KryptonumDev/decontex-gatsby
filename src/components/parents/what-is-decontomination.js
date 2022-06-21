@@ -71,7 +71,7 @@ const Repeater = styled.div`
         }
         p{
             margin-top: 32px;
-            font-weight: 500;
+            font-weight: 700;
             font-size: clamp(13px, ${27 / 768 * 100}vw, 32px);
             line-height: 130%;
             color: var(--color-white);

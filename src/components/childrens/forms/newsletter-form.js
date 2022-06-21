@@ -81,7 +81,7 @@ export default function NewsletterForm({ lang, title, firstNamePlaceholder, emai
             <Plate className={isSended === 'success' ? 'active' : ''}>
                 <div className="main" dangerouslySetInnerHTML={{ __html: successfulSendTitle }} />
                 <div className="sub" dangerouslySetInnerHTML={{ __html: successfulSendText }} />
-                <ButtonBlue type="button" disabled={sendedCount >= 3} onClick={() => { changeIsSended(null) }} as='button'>{sendAgainButtonText}</ButtonBlue>
+                <ButtonBlue tabIndex={isSended === 'success' ? '0' : '-1'} type="button" disabled={sendedCount >= 3} onClick={() => { changeIsSended(null) }} as='button'>{sendAgainButtonText}</ButtonBlue>
             </Plate>
         </Wrapper>
     )

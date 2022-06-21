@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { ButtonBlue, ButtonOutlined, Container, ButtonOutlinedOuter, ButtonBlueOuter } from './../../styles/style'
 import { GatsbyImage } from 'gatsby-plugin-image'
 
-export default function     Hero({ data: { title, subTitle, background, links }, position, parent }) {
+export default function Hero({ data: { title, subTitle, background, links }, position, parent }) {
     return (
         <Wrapper>
             <Container>
@@ -103,6 +103,10 @@ const Content = styled.div`
             margin-top: clamp(12px, ${12 / 768 * 100}vw, 32px);
             max-width: 600px;
             color: var(--color-white);
+        }
+
+        p+p{
+            font-weight: 400;
         }
     }
 

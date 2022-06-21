@@ -46,8 +46,8 @@ const Item = styled.div`
     width: calc(${100 / 3}% - 27px);
     background-color: ${props => props.color === 'red' ? 'var(--color-red)' : 'var(--color-blue)'};
     padding: clamp(20px, ${42 / 768 * 100}vw, 64px);
-    h1,h2,h3,h4,h5,h6,p{
-        font-weight: 400;
+    h1,h2,h3,h4,h5,h6,p{    
+        font-weight: 700;
         font-size: clamp(13px, ${23 / 1140 * 100}vw, 32px);
         color: var(--color-white);
         line-height: 130%;
