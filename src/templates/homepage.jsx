@@ -10,7 +10,7 @@ import { toTop } from './../helpers/scrollToTop'
 import Seo from "../components/parents/seo"
 // import News from "../components/parents/news"
 // import Blog from "../components/parents/blog"
-// import InteractiveMap from "../components/parents/interactive-map"
+import InteractiveMap from "../components/parents/interactive-map"
 
 const IndexPage = ({ data: { allWpPage, alternates }, location }) => {
   let { homepage, language, seo } = allWpPage.nodes[0]
@@ -25,7 +25,7 @@ const IndexPage = ({ data: { allWpPage, alternates }, location }) => {
       <Hero data={homepage.heroHomepage} />
       <CleanerSaferHealthier data={homepage.cleanerSaferHealthier} />
       <DecontominationExperts data={homepage.decontominationExperts} />
-      {/* <InteractiveMap data={homepage.interactiveMap} /> */}
+      <InteractiveMap data={homepage.interactiveMap} />
       <Partners data={homepage.partners} />
       <Newsletter data={homepage.newsletter} lang={language.name}/>
       {/* <News data={homepage.news} />

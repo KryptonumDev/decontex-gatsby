@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import { ButtonBlue, ButtonOutlined, Container } from './../../styles/style'
+import { Container } from './../../styles/style'
 import { GatsbyImage } from 'gatsby-plugin-image'
 import { Link } from "gatsby"
 
@@ -10,7 +10,7 @@ export default function Hero({ data: { title, subTitle, link, backgroundImage } 
             <Container>
                 <Content>
                     <ButtonsWrapper>
-                        {link.map((el, index) => (
+                        {link.map((el) => (
                             <Item key={el.link} to={el.link} aria-label={el.ariaLabel}>
                                 <GatsbyImage className="image" image={el.image.localFile.childImageSharp.gatsbyImageData} alt={el.image.altText} />
                             </Item>
