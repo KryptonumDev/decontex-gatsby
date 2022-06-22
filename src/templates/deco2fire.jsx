@@ -163,7 +163,9 @@ export const query = graphql`
                 }
               }
               name
-              phone
+              phone{
+                text
+              }
               email
               address
             }

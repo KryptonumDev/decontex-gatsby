@@ -67,7 +67,9 @@ export const query = graphql`
             next
             country{
               countryName
-              countryPhone
+              countryPhone{
+                text
+              }
               countryEmail
               countryAddress
               countryCode
