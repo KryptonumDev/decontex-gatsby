@@ -141,6 +141,7 @@ const Country = styled.div`
         grid-template-columns: auto 1fr;
         align-items: center;
         grid-gap: 8px;
+        text-transform: unset !important;
 
         svg{
             width: 28px;
@@ -163,6 +164,7 @@ const Country = styled.div`
             font-size: clamp(14px, ${17 / 768 * 100}vw, 20px);
             line-height: 140%;
             letter-spacing: 0.005em;
+            text-transform: unset;
         }
     }
 `
