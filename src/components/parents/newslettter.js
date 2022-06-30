@@ -85,7 +85,7 @@ const Background = styled(GatsbyImage)`
         height: 400px;
     }
 `
-
+ 
 const Image = styled(GatsbyImage)`
     position: absolute;
     left: 0;
