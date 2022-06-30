@@ -25,7 +25,7 @@ const Wrapper = styled.section`
         margin-bottom: clamp(8px, ${32 / 768 * 100}vw, 64px);
         h1,h2,h3,h4,h5,h6,p{
             font-weight: 900;
-            font-size: clamp(27px, ${48 / 768 * 100}vw, 72px);
+            font-size: clamp(21px, ${48 / 768 * 100}vw, 56px);
             line-height: 130%;
             letter-spacing: -0.015em;
             text-transform: uppercase;
@@ -33,10 +33,10 @@ const Wrapper = styled.section`
     }    
 
     .subTitle{
-        margin-bottom: clamp(16px, ${64 / 768 * 100}vw, 128px);
+        margin-bottom: clamp(16px, ${56 / 768 * 100}vw, 96px);
         h1,h2,h3,h4,h5,h6,p{
             font-weight: 700;
-            font-size: clamp(27px, ${40 / 768 * 100}vw, 40px);
+            font-size: clamp(16px, ${40 / 768 * 100}vw, 28px);
             line-height: 130%;
         }
     }
@@ -58,7 +58,7 @@ const Content = styled.div`
     h1,h2,h3,h4,h5,h6,p{
         margin-bottom: clamp(16px, ${24 / 768 * 100}vw, 32px);
         font-weight: 500;
-        font-size: clamp(17px, ${17 / 768 * 100}vw, 32px);
+        font-size: clamp(14px, ${17 / 768 * 100}vw, 32px);
         line-height: 130%;
 
         &:last-child{

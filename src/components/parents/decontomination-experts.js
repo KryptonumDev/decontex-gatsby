@@ -70,7 +70,7 @@ const Flex = styled.div`
         min-width: 425px;
         li{
             font-weight: 500;
-            font-size: clamp(14px, ${25 / 768 * 100}vw, 32px);
+            font-size: clamp(14px, ${18 / 768 * 100}vw, 28px);
             line-height: 120%;
             padding-left: 50px;
             position: relative;
@@ -79,6 +79,22 @@ const Flex = styled.div`
                 position: absolute;
                 left: 0;
                 top: 0;
+
+                @media (max-width: 1100px) {
+                    top: -2px;
+                }
+
+                @media (max-width: 1024px) {
+                    top: -5px;
+                }
+
+                @media (max-width: 720px) {
+                    top: -8px !important;
+                }
+
+                @media (max-width: 580px) {
+                    top: -10px !important;
+                }
             }
         }
     }

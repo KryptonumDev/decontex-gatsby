@@ -53,7 +53,7 @@ const Item = styled.div`
         text-align: center;
         color: var(--color-white);
         font-weight: 400;
-        font-size: clamp(14px, ${17 / 1024 * 100}vw, 20px);
+        font-size: clamp(11px, ${14 / 1024 * 100}vw, 16px);
         line-height: 140%;
         text-align: center;
         letter-spacing: 0.005em;
@@ -70,7 +70,7 @@ const Item = styled.div`
         }
     }
 
-    @media (max-width: 860px) {
+    @media (max-width: 1024px) {
         width: calc(33% - ${80 / 3}px);
     }
 

@@ -93,9 +93,9 @@ const Wrapper = styled.section`
 
     .title{
         h1,h2,h3,h4,h5,h6,p{
-            margin-bottom: clamp(8px, ${44 / 768 * 100}vw, 80px);
+            margin-bottom: clamp(8px, ${34 / 768 * 100}vw, 50px);
             font-weight: 900;
-            font-size: clamp(27px, ${45 / 768 * 100}vw, 64px);
+            font-size: clamp(21px, ${48 / 768 * 100}vw, 56px);  
             line-height: 112%;
             letter-spacing: -0.015em;
             text-transform: uppercase;
@@ -105,6 +105,8 @@ const Wrapper = styled.section`
     }
 
     .text{
+        max-width: 800px;
+        margin: 0 auto;
         h1,h2,h3,h4,h5,h6,p{
             margin-bottom: clamp(60px, ${90 / 768 * 100}vw, 120px);
             font-weight: 700;

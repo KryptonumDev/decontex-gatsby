@@ -87,7 +87,7 @@ const Content = styled.div`
             color: var(--color-white);
             text-transform: uppercase;
             font-weight: 900;
-            font-size: clamp(21px, ${48 / 768 * 100}vw, 72px);
+            font-size: clamp(21px, ${48 / 768 * 100}vw, 56px);
             line-height: 130%;
             letter-spacing: -0.015em;
         }
@@ -96,7 +96,7 @@ const Content = styled.div`
     .subTitle{
         h1,h2,h3,h4,h5,h6,p{
             font-weight: 500;
-            font-size: clamp(17px, ${27 / 768 * 100}vw, 32px);
+            font-size: clamp(17px, ${27 / 768 * 100}vw, 28px);
             line-height: 130%;
             color: #F3F3F3;
             margin-top: clamp(12px, ${12 / 768 * 100}vw, 32px);

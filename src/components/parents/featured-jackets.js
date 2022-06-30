@@ -66,7 +66,7 @@ const Content = styled.div`
         max-width: 660px;
         h1,h2,h3,h4,h5,h6,p{
             font-weight: 700;
-            font-size: clamp(13px, ${21 / 768 * 100}vw, 32px);
+            font-size: clamp(13px, ${17 / 768 * 100}vw, 28px);
             line-height: 125%;
             color: var(--color-white);
         }
@@ -75,7 +75,7 @@ const Content = styled.div`
     .right{
         h1,h2,h3,h4,h5,h6,p{
             font-weight: 700;
-            font-size: clamp(13px, ${21 / 768 * 100}vw, 32px);
+            font-size: clamp(13px, ${17 / 768 * 100}vw, 28px);
             line-height: 125%;
             color: var(--color-white);
         }
@@ -87,7 +87,7 @@ const Content = styled.div`
             
             li{
                 font-weight: 700;
-                font-size: clamp(13px, ${21 / 768 * 100}vw, 32px);
+                font-size: clamp(13px, ${17 / 768 * 100}vw, 28px);
                 line-height: 125%;
                 color: var(--color-white);
 
@@ -102,11 +102,11 @@ const Content = styled.div`
                     content: url(${props => props.mark});
                     position: absolute;
                     left: 0;
-                    top: 3px;
+                    top: 0;
 
                     @media (max-width: 860px) {
                         transform: scale(0.8);
-                        top: -2px;
+                        top: -3px;
                     }
 
                     @media (max-width: 700px) {
@@ -148,11 +148,11 @@ const Jackets = styled.div`
         height: fit-content;
     }
 
-    .text{
+    .text{    
         margin-top: 18px;
         h1,h2,h3,h4,h5,h6,p{
             font-weight: 700;
-            font-size: clamp(14px, ${17 / 768 * 100}vw, 32px);
+            font-size: clamp(13px, ${17 / 768 * 100}vw, 28px);
             line-height: 125%;
             color: var(--color-white);
             text-align: center;

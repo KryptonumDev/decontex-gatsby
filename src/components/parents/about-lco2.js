@@ -44,7 +44,7 @@ const Content = styled.div`
         margin: 0 0 clamp(24px, ${40 / 768 * 100}vw, 64px) 0;
         h1,h2,h3,h4,h5,h6,p{
             font-weight: 900;
-            font-size: clamp(27px, ${48 / 1140 * 100}vw, 72px);
+            font-size: clamp(21px, ${36 / 768 * 100}vw, 48px);  
             line-height: 130%;
             letter-spacing: -0.015em;
             text-transform: uppercase;
@@ -56,7 +56,7 @@ const Content = styled.div`
         max-width: 700px;
         h1,h2,h3,h4,h5,h6,p{
             font-weight: 500;
-            font-size: clamp(17px, ${23 / 768 * 100}vw, 32px);
+            font-size: clamp(14px, ${19 / 768 * 100}vw, 23px);
             line-height: 130%;
         }
     }
@@ -92,6 +92,7 @@ const Repeater = styled.div`
         }
 
         .image{
+            min-width: fit-content;
             max-width: clamp(44px, ${44 / 768 * 100}vw, 84px);
         }
 
@@ -105,12 +106,12 @@ const Repeater = styled.div`
         margin-bottom: 12px;
         h1,h2,h3,h4,h5,h6,p{
             font-weight: 700;
-            font-size: clamp(17px, ${27 / 768 * 100}vw, 32px);
+            font-size: clamp(17px, ${23 / 768 * 100}vw, 28px);
             line-height: 130%;
             color: var(--color-white);
 
             @media (max-width: 1024px){
-                font-size: clamp(17px, ${27 / 768 * 100}vw, 17px);
+                font-size: clamp(16px, ${17 / 768 * 100}vw, 17px);
             }
         }
     }

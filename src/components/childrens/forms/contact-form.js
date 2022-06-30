@@ -233,10 +233,10 @@ const Wrapper = styled.form`
     }
 
     .form-title{
-        h1,h2,h3,h4,h5,h6,p{
+        h1,h2,h3,h4,h5,h6,p, span{
             color: var(--color-white);
             font-weight: 700;
-            font-size: clamp(21px, ${40 / 768 * 100}vw, 40px);
+            font-size: clamp(17px, ${17 / 768 * 100}vw, 32px);
             line-height: 130%;
             text-align: center;
             text-transform: unset;
@@ -368,6 +368,7 @@ const Wrapper = styled.form`
                 text-transform: uppercase;
                 padding: 0 34px 12px 34px;
                 display: block;
+                cursor: pointer;
 
                 @media (max-width: 768px) {
                     padding: 0 0 12px 0;

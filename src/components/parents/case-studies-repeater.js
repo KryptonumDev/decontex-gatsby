@@ -59,7 +59,7 @@ const Item = styled.div`
         margin-bottom: clamp(8px, ${8 / 768 * 100}vw, 40px);
         h1,h2,h3,h4,h5,h6,p{
             font-weight: 800;
-            font-size: clamp(21px, ${38 / 768 * 100}vw, 56px);
+            font-size: clamp(21px, ${32 / 768 * 100}vw, 44px);
             line-height: 114%;
             letter-spacing: -0.005em;
             text-transform: uppercase;
@@ -70,7 +70,7 @@ const Item = styled.div`
         margin-bottom: clamp(4px, ${12 / 768 * 100}vw, 24px);
         h1,h2,h3,h4,h5,h6,p{
             font-weight: 700;
-            font-size: clamp(17px, ${27 / 768 * 100}vw, 40px);
+            font-size: clamp(17px, ${24 / 768 * 100}vw, 32px);
             line-height: 120%;
         }
     }

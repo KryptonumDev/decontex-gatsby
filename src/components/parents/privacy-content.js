@@ -68,7 +68,7 @@ const Content = styled.div`
     }
 
     h1,h2,h3,h4,h5,h6{
-        font-weight: 600;
+        font-weight: 700;
         font-size: clamp(13px, ${17 / 768 * 100}vw, 32px);
         line-height: 130%;
     }
@@ -82,6 +82,7 @@ const Content = styled.div`
             line-height: inherit;
             color: var(--color-blue);
             word-break: break-word;
+            text-transform: unset !important;
         }
     }
 

@@ -101,7 +101,7 @@ export default function Header({ location }) {
             ? <ButtonOutlined className="cta" to={link.link}>{link.name}</ButtonOutlined>
             : <ButtonOutlinedOuter className="cta" href={link.link}>{link.name}</ButtonOutlinedOuter>}
 
-          <LangChoice isMenuOpened={isMenuOpened} desctop={true} currentPage={currentPage} isDark={isDark} isScrolled={isScrolled} isLangChangerOpened={isLangChangerOpened} data={data} locale={locale} changeIsLangChangerOpened={changeIsLangChangerOpened} />
+          <LangChoice changeIsMenuOpened={changeIsMenuOpened} isMenuOpened={isMenuOpened} desctop={true} currentPage={currentPage} isDark={isDark} isScrolled={isScrolled} isLangChangerOpened={isLangChangerOpened} data={data} locale={locale} changeIsLangChangerOpened={changeIsLangChangerOpened} />
 
           <Button aria-label='open or close mobile menu' isScrolled={isScrolled} isDark={isDark} isMenuOpened={isMenuOpened} onClick={() => { changeIsMenuOpened(!isMenuOpened) }}>
             <span />

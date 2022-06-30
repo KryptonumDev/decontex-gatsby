@@ -70,9 +70,14 @@ blockquote {
     letter-spacing: 0.005em;
 }
 
+strong{
+    font-size: inherit;
+    line-height: inherit;
+    color: inherit;
+}
+
 u,
 em,
-strong,
 span {
     font-size: inherit;
     font-weight: inherit;

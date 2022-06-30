@@ -33,6 +33,7 @@ export default function DecontominationBenefits({ data: { table, link } }) {
 
 const Wrapper = styled.div`
     padding-top: clamp(100px, 8.33vw, 160px);
+    overflow: hidden;
 `
 
 const LocContainer = styled(Container)`
@@ -48,6 +49,10 @@ const Table = styled.table`
 const Cell = styled.th`
     padding: clamp(9px, ${12 / 768 * 100}vw, 28px);
     text-align: left;
+
+    @media (max-width: 420px) {
+        padding: 6px;
+    }
 
     .top{
         white-space: unset;

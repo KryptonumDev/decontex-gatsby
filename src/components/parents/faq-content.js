@@ -66,11 +66,11 @@ const Wrapper = styled.section`
 
     .title{
         max-width: 1200px;
-        margin: 0 auto clamp(32px, ${48 / 768 * 100}vw, 64px) auto;
+        margin: 0 auto clamp(32px, ${48 / 768 * 100}vw, 48px) auto;
         h1,h2,h3,h4,h5,h6,p {
             text-align: center;
             font-weight: 700;
-            font-size: clamp(27px, ${48 / 768 * 100}vw, 64px);
+            font-size: clamp(21px, ${36 / 768 * 100}vw, 48px);
             line-height: 130%;
             letter-spacing: -0.005em;
             text-transform: uppercase;
@@ -78,11 +78,11 @@ const Wrapper = styled.section`
     }
 
     .text{
-        max-width: 1300px;
+        max-width: 960px;
         margin: 0 auto clamp(24px, ${36 / 768 * 100}vw, 48px) auto;
         h1,h2,h3,h4,h5,h6,p {
             font-weight: 700;
-            font-size: clamp(21px, ${27 / 768 * 100}vw, 48px);
+            font-size: clamp(21px, ${27 / 768 * 100}vw, 36px);
             line-height: 130%;
             text-align: center;
         }
@@ -157,7 +157,7 @@ const Column = styled.div`
 
                 h1,h2,h3,h4,h5,h6,p{
                     font-weight: 700;
-                    font-size: clamp(13px, ${17 / 1024 * 100}vw, 32px);
+                    font-size: clamp(13px, ${17 / 1024 * 100}vw, 28px);
                     line-height: 130%;
                     color: var(--color-white);
                     margin-bottom: 0;
@@ -201,7 +201,7 @@ const Column = styled.div`
 
             h1,h2,h3,h4,h5,h6,p{
                 font-weight: 500;
-                font-size: clamp(14px, ${17 / 1024 * 100}vw, 32px);
+                font-size: clamp(14px, ${17 / 1024 * 100}vw, 28px);
                 line-height: 130%;
                 color: #111315;
 
@@ -221,10 +221,11 @@ const Column = styled.div`
             ul, ol{
                 display: grid;
                 grid-gap: 32px;
+                margin-bottom: 16px;
                 li{
                     padding-left: 50px;
                     font-weight: 500;
-                    font-size: clamp(14px, ${17 / 1024 * 100}vw, 32px);
+                    font-size: clamp(14px, ${17 / 1024 * 100}vw, 28px);
                     line-height: 130%;
                     position: relative;
 
@@ -232,7 +233,7 @@ const Column = styled.div`
                         content: url(${Mark});
                         position: absolute;
                         left: 0;
-                        top: 6px;
+                        top: 1px;
 
                         @media (max-width: 1440px) {
                             top: 0;
@@ -242,6 +243,10 @@ const Column = styled.div`
                         @media (max-width: 1240px) {
                             transform: scale(.7);
                             top: -6px;
+                        }
+
+                        @media (max-width: 1024px) {
+                            top: -8px;
                         }
                     }
                 }

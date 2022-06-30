@@ -30,8 +30,8 @@ const Wrapper = styled.section`
     margin-top: var(--section-margin);
 
     .title{
-        margin-bottom: clamp(32px, ${60 / 768 * 100}vw, 80px);
-        h1,h2,h3,h4,h5,h6,p{
+        margin-bottom: clamp(32px, ${60 / 768 * 100}vw, 60px);
+        h1,h2,h3,h4,h5,h6,p{ 
             font-weight: 900;
             font-size: clamp(27px, ${48 / 768 * 100}vw, 64px);
             line-height: 112%;
@@ -51,7 +51,7 @@ const Wrapper = styled.section`
         margin-bottom: clamp(36px, ${46 / 768 * 100}vw, 56px);
         h1,h2,h3,h4,h5,h6,p{
             font-weight: 700;
-            font-size: clamp(17px, ${32 / 768 * 100}vw, 48px);
+            font-size: clamp(17px, ${32 / 768 * 100}vw, 32px);
             line-height: 120%;
             text-align: center;
 

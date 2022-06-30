@@ -149,7 +149,7 @@ const Country = styled.div`
 
         .main{
             font-weight: 700;
-            font-size: clamp(17px, ${24 / 768 * 100}vw, 32px);
+            font-size: clamp(17px, ${17 / 768 * 100}vw, 32px);
             line-height: 42px;
         }
 
@@ -832,7 +832,7 @@ const CardWrapper = styled.div`
     position: relative;
 
     @media (max-width: 1500px) {
-        min-height: 300px;
+        min-height: 360px;
         max-width: 750px;
         width: 100%;
         height: unset;
@@ -959,7 +959,7 @@ const Wrapper = styled.section`
 
         h1,h2,h3,h4,h5,h6,p{
             font-weight: 900;
-            font-size: clamp(26px, ${40 / 768 * 100}vw, 64px);
+            font-size: clamp(24px, ${48 / 768 * 100}vw, 56px);
             line-height: 112%;
             letter-spacing: -0.015em;
             text-transform: uppercase;

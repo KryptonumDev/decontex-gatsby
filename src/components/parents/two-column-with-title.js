@@ -26,7 +26,7 @@ const Wrapper = styled.section`
         margin-bottom: clamp(24px, ${52 / 768 * 100}vw, 80px);
         h1,h2,h3,h4,h5,h6,p{
             font-weight: 900;
-            font-size: clamp(27px, ${44 / 768 * 100}vw, 64px);
+            font-size: clamp(21px, ${48 / 768 * 100}vw, 56px);
             line-height: 112%;
             text-align: center;
             letter-spacing: -0.015em;
@@ -41,7 +41,7 @@ const Wrapper = styled.section`
     .text{
         h1,h2,h3,h4,h5,h6,p{
             font-weight: 500;
-            font-size: clamp(17px, ${17 / 768 * 100}vw, 32px);
+            font-size: clamp(14px, ${17 / 768 * 100}vw, 28px);
             line-height: 130%;
         }
 
