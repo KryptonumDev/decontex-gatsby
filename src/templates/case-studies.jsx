@@ -15,7 +15,7 @@ export default function CaseStudies({ data: { allWpPage, alternates }, location 
     return (
         <main>
             <Seo data={seo} lang={language.slug}  alternates={alternates} location={location}/>
-            <Hero data={caseStudies.heroCasestudies} position={'90%'} parent={'top: 20%;'} />
+            <Hero data={caseStudies.heroCasestudies} position={'100%'} parent={'top: 35%;'} />
             <CaseStudiesRepeater data={caseStudies.cases} />
         </main>
     )

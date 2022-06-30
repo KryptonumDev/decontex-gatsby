@@ -1,9 +1,10 @@
+import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
 import { Container } from "../../styles/style"
 import ContactForm from "../childrens/forms/contact-form"
 
-export default function Contact({ data: { title, text, form }, contactPage, lang }) {
+export default function Contact({ data: { title, text, form, background }, contactPage, lang }) {
     return (
         <Wrapper contactPage={contactPage} id='contact'>
             <Container>
@@ -17,6 +18,7 @@ export default function Contact({ data: { title, text, form }, contactPage, lang
                     </div>
                 </Content>
             </Container>
+            <GatsbyImage className="bg" image={background.localFile.childImageSharp.gatsbyImageData} alt={background.altText}/>
         </Wrapper>
     )
 }
@@ -28,11 +30,26 @@ const Wrapper = styled.div`
     padding-top:  ${props => props.contactPage ? `clamp(100px, ${200 / 768 * 100}vw, 300px)` : `clamp(36px, ${72 / 768 * 100}vw, 160px)`};
     padding-bottom: clamp(48px, ${120 / 768 * 100}vw, 160px);
     background-color: var(--color-black);
+    position: relative;
+
+    .bg{
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+
+        img{
+            mix-blend-mode: screen;
+        }
+    }
 `
 
 const Content = styled.div`
     display: flex;
     justify-content: space-between;
+    position: relative;
+    z-index: 2;
 
     .title{
         margin-bottom: clamp(32px, ${40 / 768 * 100}vw, 40px);
@@ -65,8 +82,13 @@ const Content = styled.div`
         display: block;
         text-align: center;
 
+        .title{
+            text-align: left;
+        }
+
         .other{
-            display: none;
+            text-align: left;
+            margin-bottom: 40px;
         }
 
         .form{

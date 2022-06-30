@@ -30,7 +30,7 @@ const Wrapper = styled.section`
         text-align: center;
         margin-bottom: 48px;
         h1,h2,h3,h4,h5,h6,p{
-            font-size: clamp(21px, ${39 / 768 * 100}vw, 39px);
+            font-size: clamp(16px, ${28 / 768 * 100}vw, 39px);
             font-weight: 700;
             line-height: 130%;
             color: var(--color-white);

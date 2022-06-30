@@ -31,6 +31,10 @@ const Wrapper = styled.section`
             text-align: center;
             letter-spacing: -0.015em;
             text-transform: uppercase;
+
+            @media (max-width: 480px) {
+                text-align: left;
+            }
         }
     }
 

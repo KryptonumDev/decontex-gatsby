@@ -22,7 +22,7 @@ const Title = styled.div`
     margin-bottom: clamp(32px, ${48 / 768 * 100}vw, 64px);
     h1,h2,h3,h4,h5,h6,p{
         font-weight: 900;
-        font-size: clamp(27px, ${48 / 768 * 100}vw, 64px);
+        font-size: clamp(16px, ${44 / 768 * 100}vw, 64px);
         line-height: 112%;
         letter-spacing: -0.015em;
         text-transform: uppercase;

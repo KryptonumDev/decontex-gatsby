@@ -120,15 +120,20 @@ export default function InteractiveMap({ data: { sectionTitle, text, country, ne
 }
 
 const Title = styled.div`
-     margin-bottom: clamp(16px, ${32 / 768 * 100}vw, 64px);
+    margin-bottom: clamp(16px, ${32 / 768 * 100}vw, 64px);
     h1,h2,h3,h4,h5,h6,p{
         font-weight: 900;
-        font-size: clamp(27px, ${44 / 768 * 100}vw,64px);
+        font-size: clamp(16px, ${44 / 768 * 100}vw, 64px);
         line-height: 112%;
         text-align: center;
         letter-spacing: -0.015em;
         text-transform: uppercase;
         color: var(--color-white);
+
+        @media (max-width: 480px) {
+            text-align: left;
+            padding: 0 16px;
+        }
     }
 `
 
@@ -348,7 +353,7 @@ const Wrapper = styled.section`
     max-width: 1920px;
     margin: 0 auto;
     margin-top: var(--section-margin);
-    padding-top: 64px;
+    padding-top: clamp(24px, ${44 / 768 * 100}vw, 64px);
     padding-bottom: clamp(40px, ${64 / 768 * 100}vw, 144px);
     background: var(--color-black);
     box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.35);
@@ -545,7 +550,7 @@ const BrownText = styled.div`
     padding: clamp(12px, ${24 / 768 * 100}vw, 44px) clamp(16px, ${40 / 768 * 100}vw, 64px);
     background-color: var(--color-gold);
     font-weight: 700;
-    font-size: clamp(17px, ${27 / 768 * 100}vw, 48px);
+    font-size: clamp(13px, ${27 / 768 * 100}vw, 48px);
     line-height: 117%;
     text-align: center;
     color: var(--color-white);

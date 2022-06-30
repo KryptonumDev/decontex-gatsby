@@ -38,6 +38,10 @@ const Wrapper = styled.section`
             text-align: center;
             letter-spacing: -0.015em;
             text-transform: uppercase;
+
+            @media (max-width: 480px) {
+                text-align: left;
+            }
         }
     }
 
@@ -50,6 +54,10 @@ const Wrapper = styled.section`
             font-size: clamp(17px, ${32 / 768 * 100}vw, 48px);
             line-height: 120%;
             text-align: center;
+
+            @media (max-width: 480px) {
+                text-align: left;
+            }
         }
 
     }

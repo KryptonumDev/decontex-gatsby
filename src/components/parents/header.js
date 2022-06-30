@@ -150,7 +150,7 @@ export default function Header({ location }) {
                 </li>
               ))}
             </ul>
-            <LangChoice isMenuOpened={isMenuOpened} desctop={false} currentPage={currentPage} isDark={isDark} isScrolled={isScrolled} isLangChangerOpened={isLangChangerOpened} data={data} locale={locale} changeIsLangChangerOpened={changeIsLangChangerOpened} />
+            <LangChoice changeIsMenuOpened={changeIsMenuOpened} isMenuOpened={isMenuOpened} desctop={false} currentPage={currentPage} isDark={isDark} isScrolled={isScrolled} isLangChangerOpened={isLangChangerOpened} data={data} locale={locale} changeIsLangChangerOpened={changeIsLangChangerOpened} />
           </Navigation>
         </Content>
       </LocContainer>
@@ -554,7 +554,7 @@ const Content = styled.div`
     }
 `
 
-const LangChoice = ({ isMenuOpened, desctop, currentPage, isDark, isScrolled, isLangChangerOpened, data, locale, changeIsLangChangerOpened }) => {
+const LangChoice = ({ changeIsMenuOpened, isMenuOpened, desctop, currentPage, isDark, isScrolled, isLangChangerOpened, data, locale, changeIsLangChangerOpened }) => {
   if (currentPage) {
     return (
       <LanguageChoice className={desctop ? 'desctop' : 'mobile'} isDark={isDark} isScrolled={isScrolled} isLangChangerOpened={isLangChangerOpened} >
@@ -575,7 +575,7 @@ const LangChoice = ({ isMenuOpened, desctop, currentPage, isDark, isScrolled, is
           <ul>
             {data.allWpPage.nodes.map(el => {
               if (el.language.slug !== locale) {
-                return <li key={el.language.slug}><Link tabIndex={isLangChangerOpened ? '0' : '-1'} to={currentPage[el.language.slug]} onClick={() => { changeIsLangChangerOpened(!isLangChangerOpened) }}><span />{el.language.name}</Link></li>
+                return <li key={el.language.slug}><Link tabIndex={isLangChangerOpened ? '0' : '-1'} to={currentPage[el.language.slug]} onClick={() => { changeIsLangChangerOpened(!isLangChangerOpened); changeIsMenuOpened(false) }}><span />{el.language.name}</Link></li>
               }
               return null
             })}

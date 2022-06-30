@@ -37,6 +37,10 @@ const Wrapper = styled.section`
             letter-spacing: -0.015em;
             text-transform: uppercase;
             word-break: break-word;
+
+            @media (max-width: 480px) {
+                text-align: left;
+            }
         }
     }
 
@@ -49,6 +53,10 @@ const Wrapper = styled.section`
             font-size: clamp(17px, ${24 / 768 * 100}vw, 32px);
             line-height: 125%;
             text-align: center;
+
+            @media (max-width: 480px) {
+                text-align: left;
+            }
         }
     }
 
@@ -62,6 +70,10 @@ const Wrapper = styled.section`
             font-size: clamp(13px, ${27 / 768 * 100}vw, 40px);
             line-height: 120%;
             text-align: center;
+
+            @media (max-width: 480px) {
+                text-align: left;
+            }
         }
     }
 `

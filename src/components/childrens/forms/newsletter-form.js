@@ -267,6 +267,11 @@ const Wrapper = styled.form`
 
                 p{
                     color: var(--color-white);
+
+                    @media (max-width: 480px) {
+                        font-size: 14px;
+                        line-height: 20px;
+                    }
                 }
 
                 a{

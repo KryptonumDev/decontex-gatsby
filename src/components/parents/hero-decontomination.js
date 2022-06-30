@@ -87,9 +87,8 @@ const Content = styled.div`
             color: var(--color-white);
             text-transform: uppercase;
             font-weight: 900;
-            font-size: clamp(27px, ${48 / 768 * 100}vw, 72px);
+            font-size: clamp(21px, ${48 / 768 * 100}vw, 72px);
             line-height: 130%;
-            word-break: break-word;
             letter-spacing: -0.015em;
         }
     }

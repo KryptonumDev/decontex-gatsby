@@ -171,7 +171,7 @@ const Suit = styled.div`
 
         div{
             position: absolute;
-            transform: translate(-50%, -100px);
+            transform: translate(-50%, -130px);
             left: 50%;
             padding: 36px;
             width: min-content;
@@ -184,12 +184,25 @@ const Suit = styled.div`
 
             @media (max-width: 1024px) {                
                 left: 50%;
-                transform: translate(-50%,-60px);
+                transform: translate(-50%,-95px);
                 padding: 16px;
-                min-width: 220px;
+                min-width: 320px;
+            }
+
+            @media (max-width: 768px) {
+                transform: translate(-50%,-85px);
+            }
+
+            @media (max-width: 560px) {
+                transform: translate(-50%,-75px);
             }
 
             @media (max-width: 450px) {
+                min-width: 260px;
+            }
+
+            @media (max-width:340px) {
+                min-width:220px;
             }
             
             h3{
@@ -199,13 +212,19 @@ const Suit = styled.div`
                 font-weight: 700;
                 font-size: 32px;
                 line-height: 125%;
-                text-align: center;
-                white-space: nowrap;    
+                text-align: center;   
                 pointer-events: all;
                 cursor: pointer;
 
+                height: 80px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
                 @media (max-width: 1024px) {
                     font-size: clamp(17px, ${24 / 768 * 100}vw, 24px);
+                    margin-bottom: 0;
+                    height: clamp(54px, ${70 / 768 * 100}vw, 80px);
                 }
 
                 @media (max-width: 450px) {
@@ -224,7 +243,7 @@ const Suit = styled.div`
                 pointer-events: none;
 
             @media (max-width: 1024px) {
-                font-size: clamp(11px, ${17 / 768 * 100}vw, 17px);
+                font-size: clamp(12px, ${17 / 768 * 100}vw, 17px);
             }
         }
 
@@ -393,7 +412,7 @@ const Suit = styled.div`
             @media (max-width: 1024px) {
                 left: 0px;
                 right: -12px;
-                top: 108px;
+                top: 120px;
             }
 
             @media (max-width: 480px){

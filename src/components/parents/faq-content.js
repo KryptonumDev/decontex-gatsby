@@ -122,6 +122,10 @@ const Column = styled.div`
                         @media (max-width: 1024px){
                             transform: translateY(-3px) rotateX(180deg) scale(.8);
                         }
+
+                        @media (max-width: 640px) {
+                            transform: translateY(-3px) rotateX(180deg) scale(.6);
+                        }
                     }
                 }
             }
@@ -132,7 +136,7 @@ const Column = styled.div`
             display: flex;
             align-items: center;
             list-style: none;
-            padding: 24px 32px;
+            padding: clamp(12px, ${18 / 768 * 100}vw, 24px) 32px;
             width: fit-content;
             background-color: var(--color-yellow);
             margin-bottom: 24px;
@@ -153,7 +157,7 @@ const Column = styled.div`
 
                 h1,h2,h3,h4,h5,h6,p{
                     font-weight: 700;
-                    font-size: clamp(17px, ${17 / 1024 * 100}vw, 32px);
+                    font-size: clamp(13px, ${17 / 1024 * 100}vw, 32px);
                     line-height: 130%;
                     color: var(--color-white);
                     margin-bottom: 0;
@@ -174,10 +178,19 @@ const Column = styled.div`
                         top: 0;
                         transform: rotateX(0) scale(.8);
                     }
+
+                    @media (max-width: 640px) {
+                        left: -16px;
+                        transform: rotateX(0) scale(.6);
+                    }
                 }
 
                 @media (max-width: 1024px) {
                     padding-left: 40px;
+                }
+
+                @media (max-width: 640px) {
+                    padding-left: 24px;
                 }
             }
         }
@@ -188,7 +201,7 @@ const Column = styled.div`
 
             h1,h2,h3,h4,h5,h6,p{
                 font-weight: 500;
-                font-size: clamp(17px, ${17 / 1024 * 100}vw, 32px);
+                font-size: clamp(14px, ${17 / 1024 * 100}vw, 32px);
                 line-height: 130%;
                 color: #111315;
 
@@ -211,7 +224,7 @@ const Column = styled.div`
                 li{
                     padding-left: 50px;
                     font-weight: 500;
-                    font-size: clamp(17px, ${17 / 1024 * 100}vw, 32px);
+                    font-size: clamp(14px, ${17 / 1024 * 100}vw, 32px);
                     line-height: 130%;
                     position: relative;
 

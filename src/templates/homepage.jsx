@@ -157,6 +157,14 @@ export const query = graphql`
             successfulSendText
             sendAgainButtonText
             errorSendText
+            image{
+              altText
+              localFile {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
+            }
             backgroundImage {
               altText
               localFile {
@@ -207,6 +215,14 @@ export const query = graphql`
               successfulSendText
               sendAgainButtonText
               errorSendText
+            }
+            background{
+              altText
+              localFile {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
             }
           }
         }

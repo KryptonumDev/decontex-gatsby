@@ -64,6 +64,14 @@ export const query = graphql`
               sendAgainButtonText
               errorSendText
             }
+            background{
+              altText
+              localFile {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
+            }
         }
       }
     }

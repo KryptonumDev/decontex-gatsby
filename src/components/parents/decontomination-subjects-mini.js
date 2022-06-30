@@ -29,8 +29,6 @@ const Wrapper = styled.section`
             letter-spacing: -0.015em;
             text-transform: uppercase;
             text-align: center;
-            word-break: break-word;
-            hyphens: auto;
         }
     }
 `

@@ -339,6 +339,11 @@ const Wrapper = styled.form`
                     letter-spacing: 0.005em;
                     color: var(--color-white);
 
+                    @media (max-width: 480px) {
+                        font-size: 14px;
+                        line-height: 20px;
+                    }
+
                     a{
                         color: var(--color-light-blue);
                         font-weight: inherit;

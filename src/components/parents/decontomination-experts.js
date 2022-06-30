@@ -39,6 +39,10 @@ const Wrapper = styled.section`
             text-align: center;
             letter-spacing: -0.015em;
             text-transform: uppercase;
+
+            @media (max-width: 480px) {
+                text-align: left;
+            }
         }
     }
 
@@ -130,7 +134,7 @@ const Buttons = styled.div`
         margin: 0 !important;
     }
 
-    @media (max-width: 520px) {
+    @media (max-width: 1024px) {
         flex-direction: column;
         gap: 24px;
     }

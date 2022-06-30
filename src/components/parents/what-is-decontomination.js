@@ -48,7 +48,7 @@ const Content = styled.div`
         margin: clamp(40px, ${60 / 768 * 100}vw, 60px) auto;
         h1,h2,h3,h4,h5,h6,p{
             font-weight: 700;
-            font-size: 40px;
+            font-size: clamp(13px, ${28 / 768 * 100}vw, 40px);
             line-height: 120%;
         }
 
@@ -72,7 +72,7 @@ const Repeater = styled.div`
         p{
             margin-top: 32px;
             font-weight: 700;
-            font-size: clamp(13px, ${27 / 768 * 100}vw, 32px);
+            font-size: clamp(13px, ${19 / 768 * 100}vw, 32px);
             line-height: 130%;
             color: var(--color-white);
         }
