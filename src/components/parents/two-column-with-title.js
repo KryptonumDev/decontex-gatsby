@@ -43,6 +43,10 @@ const Wrapper = styled.section`
             font-weight: 500;
             font-size: clamp(14px, ${17 / 768 * 100}vw, 28px);
             line-height: 130%;
+
+            span{
+                font-weight: 700;
+            }
         }
 
         p+p{

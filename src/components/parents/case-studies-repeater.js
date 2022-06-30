@@ -88,8 +88,11 @@ const Item = styled.div`
             font-weight: 500;
             font-size: clamp(14px, ${17 / 768 * 100}vw, 32px);
             line-height: 130%;
-            
             margin-top: clamp(16px, ${24 / 768 * 100}vw, 32px);
+
+            span{
+                font-weight: 700;
+            }
         }
     }
 `

@@ -58,6 +58,10 @@ const Content = styled.div`
             font-weight: 500;
             font-size: clamp(14px, ${19 / 768 * 100}vw, 23px);
             line-height: 130%;
+
+            span{
+                font-weight: 700;
+            }
         }
     }
 
@@ -85,7 +89,6 @@ const Repeater = styled.div`
         display: grid;
         grid-template-columns: auto 1fr;
         grid-gap: clamp(12px, ${30 / 768 * 100}vw, 48px);
-        min-height: 360px;
 
         &:first-child{
             background-color: var(--color-red);
