@@ -5,6 +5,10 @@ export const activeLanguage = (location) => {
         return 'de'
     }
 
+    if (location.pathname.includes('/es/')) {
+        return 'es'
+    }
+
     if (location.pathname.includes('/fr/')) {
         return 'fr'
     }

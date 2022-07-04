@@ -358,7 +358,9 @@ const Wrapper = styled.form`
 
         &.radio{
             position: relative;
-
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
             span{
                 color: var(--color-white);
                 font-weight: 700;
@@ -369,6 +371,7 @@ const Wrapper = styled.form`
                 padding: 0 34px 12px 34px;
                 display: block;
                 cursor: pointer;
+                text-align: center;
 
                 @media (max-width: 768px) {
                     padding: 0 0 12px 0;

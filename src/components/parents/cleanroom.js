@@ -800,13 +800,10 @@ const ItemWrapper = styled.div`
     }
 
     @media (max-width: 600px) {
-        width: calc(100vw + 40px);
-        transform: translateX(-20px);
+        max-width: 450px;
     }
 
     @media (max-width: 550px) {
-        width: calc(100% + 80px);
-        transform: translateX(-40px);
     }
 
     @media (max-width: 520px) {
@@ -841,10 +838,6 @@ const CardWrapper = styled.div`
 
     @media (max-width: 600px) {
         min-height: 250px;
-    }
-
-    @media (max-width: 480px) {
-        min-height: 240px;
     }
 
     .buttons{
@@ -909,7 +902,7 @@ const Card = styled.div`
         color: var(--color-white);
         margin-bottom: clamp(6px, ${11 / 768 * 100}vw, 16px);
         font-weight: 700;
-        font-size: clamp(17px, ${24 / 768 * 100}vw, 30px);
+        font-size: clamp(17px, ${24 / 768 * 100}vw, 24px);
         line-height: 125%;
     }
 

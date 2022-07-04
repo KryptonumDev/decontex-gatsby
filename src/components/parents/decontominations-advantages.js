@@ -67,6 +67,12 @@ const Cell = styled.th`
 
     .bottom{
         white-space: unset;
+        @media (max-width: 374px) {
+            font-size: 10px;
+        }
+        @media (max-width: 320px) {
+            font-size: 8px;
+        }
     }
 
     span{
@@ -77,6 +83,10 @@ const Cell = styled.th`
         text-align: left;
         display: block;
         text-align: center;
+        
+        @media (max-width: 374px) {
+            font-size: 10px;
+        }
 
         &.name{
             text-align: left;
@@ -93,7 +103,7 @@ const Cell = styled.th`
 
         span{
             font-weight: 400;
-            font-size: clamp(10px, ${13 / 768 * 100}vw, 20px);
+            font-size: clamp(8px, ${13 / 768 * 100}vw, 20px);
             line-height: 130%;
             letter-spacing: 0.005em;
             white-space: normal;
@@ -103,6 +113,7 @@ const Cell = styled.th`
     :nth-child(1){
         max-width: 300px;
         box-sizing: content-box;
+        word-break: unset;
     }
 
     :nth-child(n + 2){

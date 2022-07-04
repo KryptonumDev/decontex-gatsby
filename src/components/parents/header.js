@@ -51,7 +51,7 @@ export default function Header({ location }) {
         }
     `)
 
-  const whiteWersionPages = ['/', '/de/', '/fr/', '/nl/']
+  const whiteWersionPages = ['/', '/de/', '/fr/', '/nl/', '/es/']
 
   const locale = activeLanguage(location)
   const localeData = data.allWpPage.nodes.filter(el => el.language.slug === locale)
@@ -63,7 +63,6 @@ export default function Header({ location }) {
   const [isDark, changeIsDark] = useState(whiteWersionPages.includes(location.pathname))
   const [isLangChangerOpened, changeIsLangChangerOpened] = useState(false)
   const [currentPage, changeCurrentPage] = useState(getCurrentPage(location, locale))
-
   const [isScrolled, changeIsScroled] = useState(() => {
     if (isBrowser) {
       return window.scrollY > 0 ? true : false
@@ -187,6 +186,7 @@ const LanguageChoice = styled.ul`
       ul{
         border: unset;
         background-color: transparent;
+        gap: 0;
 
         a{
           width: fit-content;
@@ -270,6 +270,10 @@ const LanguageChoice = styled.ul`
 
     li{
         border-top: 2px solid black;
+
+        @media (max-width: 1024px) {
+          border: unset;
+        }
 
       &:nth-child(1){
         border-top: unset;

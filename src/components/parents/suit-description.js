@@ -177,7 +177,7 @@ const Suit = styled.div`
             left: 50%;
             padding: 36px;
             width: min-content;
-            min-width: 420px;
+            min-width: 510px;
             background-color: transparent;
             transition: background-color .3s linear;
             z-index: 3;
@@ -188,22 +188,23 @@ const Suit = styled.div`
                 left: 50%;
                 transform: translate(-50%,-95px);
                 padding: 16px;
-                min-width: 320px;
+                min-width: 380px;
             }
 
             @media (max-width: 768px) {
                 transform: translate(-50%,-85px);
+                min-width: 320px;
             }
 
             @media (max-width: 560px) {
                 transform: translate(-50%,-75px);
             }
 
-            @media (max-width: 450px) {
-                min-width: 260px;
+            @media (max-width: 450px) { 
+                min-width: 287px;
             }
 
-            @media (max-width:340px) {
+            @media (max-width:355px) {
                 min-width:220px;
             }
             
