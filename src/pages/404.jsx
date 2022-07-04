@@ -1,12 +1,13 @@
 import * as React from "react"
 import Hero from "../components/parents/hero-404"
 import { graphql } from "gatsby"
+import {urls} from './../constants/url'
 
 const NotFoundPage = ({ data: { allWpPage } }) => {
   let { errorPage } = allWpPage.nodes[0]
   return (
     <main>
-      <Hero data={errorPage}/>
+      <Hero data={errorPage} home={urls['Homepage'].en}/>
     </main>
   )
 }

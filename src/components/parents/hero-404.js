@@ -1,16 +1,16 @@
 import React from "react"
 import styled from "styled-components"
-import { ButtonBlue, ButtonOutlined, Container, ButtonOutlinedOuter, ButtonBlueOuter } from './../../styles/style'
+import { ButtonBlue, Container } from './../../styles/style'
 import { GatsbyImage } from 'gatsby-plugin-image'
 
-export default function Hero({ data: { pageTitle, text, backgroundImage, goHomeText } }) {
+export default function Hero({ data: { pageTitle, text, backgroundImage, goHomeText }, home }) {
     return (
         <Wrapper>
             <Container>
                 <Content>
                     <div className="title" dangerouslySetInnerHTML={{ __html: pageTitle }}></div>
                     <div className="subTitle" dangerouslySetInnerHTML={{ __html: text }}></div>
-                    <ButtonBlue to="/">{goHomeText}</ButtonBlue>
+                    <ButtonBlue to={home}>{goHomeText}</ButtonBlue>
                 </Content>
             </Container>
             <ImageWrapper imgClassName='image' image={backgroundImage.localFile.childImageSharp.gatsbyImageData} alt={backgroundImage.altText} />
