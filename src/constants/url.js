@@ -46,14 +46,14 @@ export const urls = {
         de: '/de/faq/', 
         fr: '/fr/faq/', 
         nl: '/nl/faq/',
-        es: '/es/pmf/'
+        es: '/es/faq/'
     },
     "Contact": { 
         en: '/contact/', 
         de: '/de/kontakt/', 
         fr: '/fr/contact/',
         nl: '/nl/contact/',
-        es: '/es/contact/'
+        es: '/es/contacto/'
     },
     "Freebies": { 
         en: '/download/', 
