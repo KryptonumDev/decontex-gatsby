@@ -413,7 +413,18 @@ const MapWrapper = styled.div`
     overflow: hidden;
     min-width: 420px;
     width: 100%;
-    aspect-ratio: 1.50785340314/1;
+        position: relative;
+
+        &::before {
+            float: left;
+            padding-top: 66.319444444%;
+            content: '';
+        }
+        &::after {
+            display: block;
+            content: '';
+            clear: both;
+        }
 
     .marks{
         position: absolute;
