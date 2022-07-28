@@ -57,18 +57,12 @@ export default function Header({ location }) {
   const localeData = data.allWpPage.nodes.filter(el => el.language.slug === locale)
   const { link, navigation, otherLinks, socialLinks } = localeData[0].header
 
-  const [isBrowser] = useState(typeof window !== "undefined")
 
   const [isMenuOpened, changeIsMenuOpened] = useState(false)
   const [isDark, changeIsDark] = useState(whiteWersionPages.includes(location.pathname))
   const [isLangChangerOpened, changeIsLangChangerOpened] = useState(false)
   const [currentPage, changeCurrentPage] = useState(getCurrentPage(location, locale))
-  const [isScrolled, changeIsScroled] = useState(() => {
-    if (isBrowser) {
-      return window.scrollY > 0 ? true : false
-    }
-    return false
-  })
+  const [isScrolled, changeIsScroled] = useState(0)
 
 
   useEffect(() => {
@@ -77,14 +71,13 @@ export default function Header({ location }) {
   }, [location])
 
   useEffect(() => {
-    if (isBrowser) {
-      changeIsScroled(window.scrollY > 0 ? true : false)
-      document.addEventListener('scroll', (e) => {
-        changeIsScroled(window.scrollY > 0 ? true : false)
-      })
+    if (typeof window !== `undefined`) {
+      window.onscroll = () => {
+        changeIsScroled(window.pageYOffset)
+      }
     }
     return null
-  }, [isBrowser])
+  }, [])
 
   return (
     <Wrapper isDark={isDark} isScrolled={isScrolled}>

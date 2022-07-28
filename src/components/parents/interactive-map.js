@@ -411,20 +411,22 @@ const LocContainer = styled(Container)`
 const MapWrapper = styled.div`
     position: relative;
     overflow: hidden;
-    min-width: 420px;
-    width: 100%;
-        position: relative;
 
-        &::before {
-            float: left;
-            padding-top: 66.319444444%;
-            content: '';
-        }
-        &::after {
-            display: block;
-            content: '';
-            clear: both;
-        }
+    width: clamp(420px, 100vw, 1440px);
+    height: clamp(278.5px, 66.319444444vw, 955px);
+
+    position: relative;
+
+    &::before {
+        float: left;
+        padding-top: 66.319444444%;
+        content: '';
+    }
+    &::after {
+        display: block;
+        content: '';
+        clear: both;
+    }
 
     .marks{
         position: absolute;
