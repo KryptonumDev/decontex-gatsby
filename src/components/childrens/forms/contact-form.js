@@ -48,12 +48,12 @@ export default function ContactForm({ data:
             <div className="form-title" dangerouslySetInnerHTML={{ __html: switchTitle }} />
             <div className="flex">
                 <label className="radio">
-                    <span>{switchVariant1}</span>
                     <input defaultChecked {...register("switch", { required: true })} type="radio" value={switchVariant1} />
+                    <span>{switchVariant1}</span>
                 </label>
                 <label className="radio">
-                    <span>{switchVariant2}</span>
                     <input {...register("switch", { required: true })} type="radio" value={switchVariant2} />
+                    <span>{switchVariant2}</span>
                 </label>
             </div>
             <label className="input">
@@ -372,6 +372,9 @@ const Wrapper = styled.form`
                 display: block;
                 cursor: pointer;
                 text-align: center;
+                width: 100%;
+                transition: border-color var(--animation-fast);
+                    border-bottom: 2px solid transparent;
 
                 @media (max-width: 768px) {
                     padding: 0 0 12px 0;
@@ -384,13 +387,12 @@ const Wrapper = styled.form`
                 left: 0;
                 bottom: 0;
                 right: 0;
-                height: 2px;
+                height: 0px;
                 background-color: transparent;
-                transition: background-color var(--animation-fast);
                 display: block;
 
-                &:checked{
-                    background-color: var(--color-blue);
+                &:checked + span{
+                    border-color: var(--color-blue);
                 }
             }
         }
