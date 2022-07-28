@@ -364,7 +364,7 @@ const Wrapper = styled.section`
     }
     .country{
         pointer-events: none;
-        height: fit-content;
+        height: auto;
         position: absolute;
         z-index: 10;
         path{
@@ -382,7 +382,7 @@ const Wrapper = styled.section`
     }
     .mark{
         position: absolute;
-        height: fit-content;
+        height: auto;
         pointer-events: none;
         z-index: 11;
         rect{
@@ -413,7 +413,7 @@ const MapWrapper = styled.div`
     overflow: hidden;
 
     width: clamp(420px, 100vw, 1440px);
-    height: clamp(278.5px, 66.319444444vw, 955px);
+    /* height: clamp(278.5px, 66.319444444vw, 955px); */
 
     position: relative;
 
@@ -431,7 +431,7 @@ const MapWrapper = styled.div`
     .marks{
         position: absolute;
         width: 72.8472222222%;
-        height: fit-content;
+        height: auto;
         left: 4.2%;
         top: 5.6%;
 
@@ -442,10 +442,10 @@ const MapWrapper = styled.div`
     }
 
     .map{
-        position: absolute;
+        /* position: absolute; */
         z-index: 0;
         width: 100%;
-        height: fit-content;
+        height: auto;
         display: block;
     }
 
