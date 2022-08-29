@@ -12,7 +12,7 @@ import Seo from "../components/parents/seo"
 // import Blog from "../components/parents/blog"
 import InteractiveMap from "../components/parents/interactive-map"
 
-const IndexPage = ({ data: { allWpPage, alternates }, location }) => {
+const IndexPage = ({ data: { allWpPage, alternates } }) => {
   let { homepage, language, seo } = allWpPage.nodes[0]
 
   React.useEffect(() => {
@@ -21,7 +21,7 @@ const IndexPage = ({ data: { allWpPage, alternates }, location }) => {
 
   return (
     <main>
-      <Seo data={seo} lang={language.slug} alternates={alternates} location={location}/>
+      <Seo data={seo} lang={language.slug} alternates={alternates} />
       <Hero data={homepage.heroHomepage} />
       <CleanerSaferHealthier data={homepage.cleanerSaferHealthier} />
       <DecontominationExperts data={homepage.decontominationExperts} />
@@ -58,7 +58,13 @@ export const query = graphql`
         }
         seo {
           title
-          fullHead
+          metaDesc
+          opengraphSiteName
+          opengraphImage {
+            localFile {
+              publicURL
+            }
+          }
         }
         homepage {
           interactiveMap{

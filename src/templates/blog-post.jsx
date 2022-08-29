@@ -26,7 +26,13 @@ export const query = graphql`
         }
         seo {
           title
-          fullHead
+          metaDesc
+          opengraphSiteName
+          opengraphImage {
+            localFile {
+              publicURL
+            }
+          }
         }
         id
       }

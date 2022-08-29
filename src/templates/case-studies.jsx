@@ -5,7 +5,7 @@ import CaseStudiesRepeater from "../components/parents/case-studies-repeater"
 import { toTop } from './../helpers/scrollToTop'
 import Seo from "../components/parents/seo"
 
-export default function CaseStudies({ data: { allWpPage, alternates }, location  }) {
+export default function CaseStudies({ data: { allWpPage, alternates } }) {
     let { caseStudies, language, seo } = allWpPage.nodes[0]
 
     React.useEffect(() => {
@@ -14,7 +14,7 @@ export default function CaseStudies({ data: { allWpPage, alternates }, location 
 
     return (
         <main>
-            <Seo data={seo} lang={language.slug}  alternates={alternates} location={location}/>
+            <Seo data={seo} lang={language.slug}  alternates={alternates} />
             <Hero data={caseStudies.heroCasestudies} position={'100%'} parent={'top: 35%;'} />
             <CaseStudiesRepeater data={caseStudies.cases} />
         </main>
@@ -40,8 +40,14 @@ export const query = graphql`
           slug
         }
         seo {
-            title
-            fullHead
+          title
+          metaDesc
+          opengraphSiteName
+          opengraphImage {
+            localFile {
+              publicURL
+            }
+          }
         }
         caseStudies{
             heroCasestudies{

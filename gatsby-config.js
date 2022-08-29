@@ -5,7 +5,7 @@ require('dotenv').config({
 module.exports = {
   siteMetadata: {
     title: `decontex-gatsby`,
-    siteUrl: `https://www.yourdomain.tld`
+    siteUrl: `https://decontex.com/`
   },
   plugins: [
     'gatsby-plugin-netlify',
@@ -20,7 +20,7 @@ module.exports = {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
         host: 'https://decontex.com/',
-        sitemap: 'https://decontex.com/sitemap.xml',
+        sitemap: 'https://decontex.com/sitemap/sitemap-0.xml',
         policy: [{ userAgent: '*', allow: '/' }],
       },
     },
@@ -42,6 +42,7 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-styled-components`,
+    'gatsby-plugin-sitemap',
     {
       resolve: "gatsby-plugin-google-tagmanager",
       options: {
@@ -50,5 +51,13 @@ module.exports = {
         defaultDataLayer: { platform: "gatsby" },
       },
     },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'images',
+        path: './src/resources/'
+      },
+      __key: 'images'
+    }
   ]
 }

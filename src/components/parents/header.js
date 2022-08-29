@@ -57,13 +57,17 @@ export default function Header({ location }) {
   const localeData = data.allWpPage.nodes.filter(el => el.language.slug === locale)
   const { link, navigation, otherLinks, socialLinks } = localeData[0].header
 
-
-  const [isMenuOpened, changeIsMenuOpened] = useState(false)
   const [isDark, changeIsDark] = useState(whiteWersionPages.includes(location.pathname))
-  const [isLangChangerOpened, changeIsLangChangerOpened] = useState(false)
   const [currentPage, changeCurrentPage] = useState(getCurrentPage(location, locale))
   const [isScrolled, changeIsScroled] = useState(0)
+  const [isMenuOpened, changeIsMenuOpened] = useState(false)
 
+  const [isLangChangerOpened, _changeIsLangChangerOpened] = useState(false)
+  const isLangChangerOpenedRef = React.useRef(isLangChangerOpened)
+  const changeIsLangChangerOpened = x => {
+    isLangChangerOpenedRef.current = x
+    _changeIsLangChangerOpened(x)
+  }
 
   useEffect(() => {
     changeIsDark(whiteWersionPages.includes(location.pathname))
@@ -75,6 +79,18 @@ export default function Header({ location }) {
       window.onscroll = () => {
         changeIsScroled(window.pageYOffset)
       }
+      document.addEventListener('click', (e) => {
+        if (isLangChangerOpenedRef.current && e.currentTarget.activeElement.id !== 'lang-schoice') {
+          changeIsLangChangerOpened(false)
+        }
+      })
+      document.onkeydown = function (evt) {
+        evt = evt || window.event
+        if (evt.key === "Escape" || evt.key === "Esc") {
+          changeIsLangChangerOpened(false)
+          changeIsMenuOpened(false)
+        }
+      };
     }
     return null
   }, [])
@@ -98,7 +114,7 @@ export default function Header({ location }) {
           <Button aria-label='open or close mobile menu' isScrolled={isScrolled} isDark={isDark} isMenuOpened={isMenuOpened} onClick={() => { changeIsMenuOpened(!isMenuOpened) }}>
             <span />
           </Button>
-
+          <NavOuter onClick={() => { changeIsMenuOpened(false) }} isMenuOpened={isMenuOpened} id='outer'></NavOuter>
           <Navigation isMenuOpened={isMenuOpened}>
             <div className="wrapper">
               <div>
@@ -295,7 +311,18 @@ const LanguageChoice = styled.ul`
   }
 `
 
+const NavOuter = styled.div`
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 100vh;
+  display: ${props => props.isMenuOpened ? 'block' : "none"};
+  z-index: 1; 
+`
+
 const Navigation = styled.nav`
+    z-index: 2; 
     overflow-y: scroll;
     -ms-overflow-style: none;
     scrollbar-width: none; 
@@ -558,7 +585,7 @@ const LangChoice = ({ changeIsMenuOpened, isMenuOpened, desctop, currentPage, is
         {data.allWpPage.nodes.map(el => {
           if (el.language.slug === locale) {
             return <li key={el.language.slug}>
-              <button tabIndex={(desctop || isMenuOpened) ? '0' : '-1'} onClick={() => { changeIsLangChangerOpened(!isLangChangerOpened) }}>
+              <button id='lang-schoice' tabIndex={(desctop || isMenuOpened) ? '0' : '-1'} onClick={() => { changeIsLangChangerOpened(!isLangChangerOpened) }}>
                 {el.language.name}
                 <svg width="24" height="15" viewBox="0 0 24 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M12 14.575L0 2.57499L2.15 0.424988L12 10.325L21.85 0.474987L24 2.62499L12 14.575Z" fill={(isScrolled || isDark) ? "#111315" : '#fff'} />
@@ -572,7 +599,7 @@ const LangChoice = ({ changeIsMenuOpened, isMenuOpened, desctop, currentPage, is
           <ul>
             {data.allWpPage.nodes.map(el => {
               if (el.language.slug !== locale) {
-                return <li key={el.language.slug}><Link tabIndex={isLangChangerOpened ? '0' : '-1'} to={currentPage[el.language.slug]} onClick={() => { changeIsLangChangerOpened(!isLangChangerOpened); changeIsMenuOpened(false) }}><span />{el.language.name}</Link></li>
+                return <li key={el.language.slug}><Link tabIndex={isLangChangerOpened ? '0' : '-1'} to={currentPage[el.language.slug]} onClick={() => { changeIsMenuOpened(false) }}><span />{el.language.name}</Link></li>
               }
               return null
             })}

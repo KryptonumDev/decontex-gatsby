@@ -5,7 +5,7 @@ import { toTop } from './../helpers/scrollToTop'
 import Content from "../components/parents/freebies-content"
 import Seo from "../components/parents/seo"
 
-export default function Freebies({ data: { allWpPage, alternates } , location }) {
+export default function Freebies({ data: { allWpPage, alternates } }) {
     let { freebies, language, seo } = allWpPage.nodes[0]
 
     React.useEffect(() => {
@@ -14,7 +14,7 @@ export default function Freebies({ data: { allWpPage, alternates } , location })
 
     return (
         <main>
-            <Seo data={seo} lang={language.slug}  alternates={alternates} location={location}/>
+            <Seo data={seo} lang={language.slug}  alternates={alternates} />
             <Hero data={freebies.heroFreebies} />
             <Content data={freebies.contentFreebies} />
         </main>
@@ -40,8 +40,14 @@ export const query = graphql`
           slug
         }
         seo {
-            title
-            fullHead
+          title
+          metaDesc
+          opengraphSiteName
+          opengraphImage {
+            localFile {
+              publicURL
+            }
+          }
         }
         freebies{
             heroFreebies{

@@ -5,7 +5,7 @@ import Hero from '../components/parents/hero-decontomination'
 import { toTop } from './../helpers/scrollToTop'
 import Seo from "../components/parents/seo"
 
-export default function Lco2({ data: { allWpPage, alternates }, location  }) {
+export default function Lco2({ data: { allWpPage, alternates } }) {
   let { lco2, language, seo } = allWpPage.nodes[0]
 
   React.useEffect(() => {
@@ -14,7 +14,7 @@ export default function Lco2({ data: { allWpPage, alternates }, location  }) {
 
   return (
     <main>
-      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} />
+      <Seo data={seo} lang={language.slug} alternates={alternates} />
       <Hero data={lco2.heroLco2} position={'60%'} />
       <AboutLCO2 data={lco2.aboutLco2} />
     </main>
@@ -41,7 +41,13 @@ export const query = graphql`
         }
         seo {
           title
-          fullHead
+          metaDesc
+          opengraphSiteName
+          opengraphImage {
+            localFile {
+              publicURL
+            }
+          }
         }
           lco2{
             heroLco2 {

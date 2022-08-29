@@ -4,7 +4,7 @@ import Content from "../components/parents/blog-archive-content"
 import { toTop } from './../helpers/scrollToTop'
 import Seo from "../components/parents/seo"
 
-export default function Archive({ data: { allWpPage, allWpPost, alternates }, location  }) {
+export default function Archive({ data: { allWpPage, allWpPost, alternates } }) {
   let { blogArchive, language, seo } = allWpPage.nodes[0]
   let posts = allWpPost.nodes
 
@@ -14,7 +14,7 @@ export default function Archive({ data: { allWpPage, allWpPost, alternates }, lo
 
   return (
     <main>
-      <Seo data={seo} lang={language.slug} alternates={alternates}  location={location}/>
+      <Seo data={seo} lang={language.slug} alternates={alternates} />
       <Content data={blogArchive} posts={posts} />
     </main>
   )
@@ -40,7 +40,13 @@ export const query = graphql`
         }
         seo {
           title
-          fullHead
+          metaDesc
+          opengraphSiteName
+          opengraphImage {
+            localFile {
+              publicURL
+            }
+          }
         }
         blogArchive {
             title

@@ -5,7 +5,7 @@ import Hero from "../components/parents/hero-decontomination"
 import { toTop } from './../helpers/scrollToTop'
 import Seo from "../components/parents/seo"
 
-export default function PrivacyPolice({ data: { allWpPage, alternates }, location  }) {
+export default function PrivacyPolice({ data: { allWpPage, alternates } }) {
   let { privacyPolice, language, seo } = allWpPage.nodes[0]
 
   React.useEffect(() => {
@@ -14,7 +14,7 @@ export default function PrivacyPolice({ data: { allWpPage, alternates }, locatio
 
   return (
     <main>
-      <Seo data={seo} lang={language.slug} alternates={alternates}  location={location}/>
+      <Seo data={seo} lang={language.slug} alternates={alternates}/>
       <Hero data={privacyPolice.heroPrivacy} position={'97%'} parent={'top: 30%;'} />
       <PrivacyContent data={privacyPolice} />
     </main>
@@ -41,7 +41,13 @@ export const query = graphql`
         }
         seo {
           title
-          fullHead
+          metaDesc
+          opengraphSiteName
+          opengraphImage {
+            localFile {
+              publicURL
+            }
+          }
         }
         privacyPolice{
             heroPrivacy{

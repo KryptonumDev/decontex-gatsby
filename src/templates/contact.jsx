@@ -4,7 +4,7 @@ import ContactForm from "../components/parents/contact"
 import { toTop } from './../helpers/scrollToTop'
 import Seo from "../components/parents/seo"
 
-export default function Contact({ data: { allWpPage, alternates }, location  }) {
+export default function Contact({ data: { allWpPage, alternates } }) {
   let { contact, language, seo } = allWpPage.nodes[0]
 
   React.useEffect(() => {
@@ -13,7 +13,7 @@ export default function Contact({ data: { allWpPage, alternates }, location  }) 
 
   return (
     <main>
-      <Seo data={seo} lang={language.slug}  alternates={alternates} location={location}/>
+      <Seo data={seo} lang={language.slug}  alternates={alternates} />
       <ContactForm data={contact} contactPage={true} lang={language.name}/>
     </main>
   )
@@ -40,7 +40,13 @@ export const query = graphql`
         }
         seo {
           title
-          fullHead
+          metaDesc
+          opengraphSiteName
+          opengraphImage {
+            localFile {
+              publicURL
+            }
+          }
         }
         contact{
             title

@@ -7,7 +7,7 @@ import Technologies from "../components/parents/technologies"
 import { toTop } from './../helpers/scrollToTop'
 import Seo from "../components/parents/seo"
 
-export default function About({ data: { allWpPage, alternates }, location  }) {
+export default function About({ data: { allWpPage, alternates } }) {
   let { about, language, seo } = allWpPage.nodes[0]
 
   React.useEffect(() => {
@@ -16,7 +16,7 @@ export default function About({ data: { allWpPage, alternates }, location  }) {
 
   return (
     <main>
-      <Seo data={seo} lang={language.slug} alternates={alternates}  location={location}/>
+      <Seo data={seo} lang={language.slug} alternates={alternates} />
       <Hero data={about.hero} position={'90%'} parent={'top: 30%;'} />
       <TwoColumnWithTitleAndImage data={about.twoColumnWithTitle} />
       <DecontominationSubjectsMini data={about.decontominationSubjects} />
@@ -45,7 +45,13 @@ export const query = graphql`
         }
         seo {
           title
-          fullHead
+          metaDesc
+          opengraphSiteName
+          opengraphImage {
+            localFile {
+              publicURL
+            }
+          }
         }
         about {
             hero {
