@@ -3,9 +3,10 @@ import { graphql } from "gatsby"
 import ContactForm from "../components/parents/contact"
 import { toTop } from './../helpers/scrollToTop'
 import Seo from "../components/parents/seo"
+import JobOffer from "../components/parents/job-offer"
 
 export default function Contact({ data: { allWpPage, alternates } }) {
-  let { contact, language, seo } = allWpPage.nodes[0]
+  let { jobOffer, contact, language, seo } = allWpPage.nodes[0]
 
   React.useEffect(() => {
     toTop()
@@ -13,8 +14,11 @@ export default function Contact({ data: { allWpPage, alternates } }) {
 
   return (
     <main>
-      <Seo data={seo} lang={language.slug}  alternates={alternates} />
-      <ContactForm data={contact} contactPage={true} lang={language.name}/>
+      <Seo data={seo} lang={language.slug} alternates={alternates} />
+      <ContactForm data={contact} contactPage={true} lang={language.name} />
+      {jobOffer.jobTitle
+        ? <JobOffer data={jobOffer} />
+        : null}
     </main>
   )
 }
@@ -46,6 +50,33 @@ export const query = graphql`
             localFile {
               publicURL
             }
+          }
+        }
+        jobOffer {
+          jobTitle
+          jobPlace
+          textParts {
+            partTitle
+            partContent
+          }
+          divider {
+            title
+            text
+          }
+          submitForm {
+            title
+            firstNamePlaceholder
+            emailPlaceholder
+            emailErrorText
+            phonePlaceholder
+            agreementText
+            agreementErrorText
+            attachmentPlaceholder
+            submitText
+            successfulSendTitle
+            successfulSendText
+            sendAgainButtonText
+            errorSendText
           }
         }
         contact{

@@ -1,7 +1,7 @@
 import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
-import { ButtonBlack, Container } from "../../styles/style"
+import { Container } from "../../styles/style"
 
 export default function Technologies({ data: { title, repeater } }) {
     return (
