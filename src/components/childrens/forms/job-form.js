@@ -271,7 +271,7 @@ const Plate = styled.div`
     h6,
     p {
       font-weight: 900;
-      font-size: clamp(27px, ${(44 / 768) * 100}vw, 64px);
+      font-size: clamp(21px, ${(44 / 768) * 100}vw, 64px);
       line-height: 112%;
       letter-spacing: -0.015em;
       text-transform: uppercase;
@@ -289,6 +289,9 @@ const Plate = styled.div`
     h6,
     p {
       font-weight: 700;
+      @media (max-width: 640px) {
+        font-weight: 600;
+      }
       font-size: clamp(17px, ${(24 / 768) * 100}vw, 40px);
       line-height: 120%;
       color: var(--color-white);
@@ -445,7 +448,7 @@ const Wrapper = styled.form`
 
     &.input {
       margin-bottom: clamp(
-        16px,
+        32px,
         ${(32 / 768) * 100}vw,
         40px
       );
@@ -455,7 +458,7 @@ const Wrapper = styled.form`
       }
 
       input {
-        padding: 16px
+        padding: clamp(10px, ${(12 / 768) * 100}vw, 16px)
           clamp(16px, ${(40 / 768) * 100}vw, 40px);
         font-weight: 400;
         font-size: clamp(14px, ${(17 / 768) * 100}vw, 20px);
@@ -482,6 +485,9 @@ const Wrapper = styled.form`
 
     &.checkbox {
       margin-bottom: 48px;
+      @media (max-width: 640px) {
+        margin-bottom: 32px;
+      }
       display: flex;
       align-items: center;
 
@@ -493,6 +499,10 @@ const Wrapper = styled.form`
         padding: 0;
         min-width: 40px;
         height: 40px;
+        @media (max-width: 640px) {
+          min-width: 28px;
+          height: 28px;
+        }
 
         &.error {
           background-color: #ffc5c5;

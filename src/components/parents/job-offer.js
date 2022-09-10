@@ -116,13 +116,17 @@ const Form = styled.div`
   }
 
   .title {
-    margin-bottom: clamp(40px, ${(70 / 768) * 100}vw, 80px);
+    margin-bottom: clamp(32px, ${(70 / 768) * 100}vw, 80px);
     * {
       text-align: center;
       font-weight: 700;
-      font-size: clamp(24px, ${(36 / 768) * 100}vw, 64px);
+      font-size: clamp(17px, ${(36 / 768) * 100}vw, 64px);
       line-height: 112%;
       letter-spacing: -0.015em;
+      @media (max-width: 640px) {
+        font-weight: 600;
+        letter-spacing: 0;
+      }
       text-transform: uppercase;
       color: #f3f3f3;
     }
@@ -133,25 +137,32 @@ const Divider = styled.div`
   padding: clamp(40px, ${(70 / 768) * 100}vw, 80px) 0
     clamp(40px, ${(70 / 768) * 100}vw, 64px) 0;
   .title {
-    margin-bottom: clamp(40px, ${(70 / 768) * 100}vw, 64px);
+    margin-bottom: clamp(24px, ${(70 / 768) * 100}vw, 64px);
     * {
       font-weight: 700;
-      font-size: clamp(27px, ${(36 / 768) * 100}vw, 64px);
+      font-size: clamp(21px, ${(36 / 768) * 100}vw, 64px);
       line-height: 112%;
       letter-spacing: -0.015em;
       text-transform: uppercase;
       text-align: center;
       color: #f3f3f3;
+      @media (max-width: 640px) {
+        text-align: left;
+      }
     }
   }
 
   .text {
     * {
       font-weight: 600;
-      font-size: clamp(16px, ${(24 / 768) * 100}vw, 40px);
+      font-size: clamp(17px, ${(24 / 768) * 100}vw, 40px);
       line-height: 120%;
       text-align: center;
       color: #f3f3f3;
+      @media (max-width: 640px) {
+        text-align: left;
+        line-height: 140%;
+      }
     }
     a {
       text-transform: lowercase;
@@ -164,7 +175,10 @@ const Wrapper = styled.section`
   background: #111315;
 
   .section-title {
-    font-weight: 900;
+    font-weight: 800;
+    @media (max-width: 640px) {
+      font-weight: 700;
+    }
     font-size: clamp(27px, ${(44 / 768) * 100}vw, 64px);
     line-height: 114%;
     text-align: center;
@@ -177,6 +191,9 @@ const Wrapper = styled.section`
   .main-text {
     * {
       font-weight: 600;
+      @media (max-width: 640px) {
+        font-weight: 700;
+      }
       font-size: clamp(27px, ${(44 / 768) * 100}vw, 56px);
       line-height: 114%;
       text-align: center;
@@ -200,7 +217,10 @@ const Wrapper = styled.section`
     }
     * {
       font-weight: 500;
-      font-size: clamp(16px, ${(30 / 768) * 100}vw, 40px);
+      @media (max-width: 640px) {
+        font-weight: 600;
+      }
+      font-size: clamp(17px, ${(30 / 768) * 100}vw, 40px);
       line-height: 120%;
       color: #f3f3f3;
     }
@@ -216,10 +236,17 @@ const Item = styled.div`
     * {
       color: #f3f3f3;
       font-weight: 600;
-      font-size: clamp(27px, ${(44 / 768) * 100}vw, 56px);
+      font-size: clamp(21px, ${(44 / 768) * 100}vw, 56px);
       line-height: 114%;
       letter-spacing: -0.005em;
       text-transform: uppercase;
+    }
+    @media (max-width: 640px) {
+      margin-bottom: 24px;
+      * {
+        font-weight: 700;
+        text-align: left;
+      }
     }
   }
 
@@ -233,6 +260,9 @@ const Item = styled.div`
 
     p {
       margin-bottom: 32px;
+      @media (max-width: 640px) {
+        margin-bottom: 16px;
+      }
       break-inside: avoid;
       font-weight: 400;
 
@@ -250,6 +280,10 @@ const Item = styled.div`
       li {
         margin-bottom: 32px;
         padding-left: 49px;
+        @media (max-width: 640px) {
+          margin-bottom: 16px;
+          padding-left: 36px;
+        }
         position: relative;
         break-inside: avoid;
         font-weight: 400;
@@ -263,9 +297,6 @@ const Item = styled.div`
           }
           @media (max-width: 776px) {
             top: -4px;
-          }
-          @media (max-width: 640px) {
-            top: -6px;
           }
         }
       }
