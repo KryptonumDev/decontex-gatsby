@@ -53,11 +53,13 @@ export const query = graphql`
           }
         }
         jobOffer {
+          jobOfferSectionTitle
           jobTitle
           jobPlace
           textParts {
             partTitle
             partContent
+            iconColourInList
           }
           divider {
             title
