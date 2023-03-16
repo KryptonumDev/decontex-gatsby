@@ -13,7 +13,7 @@ module.exports = {
     {
       resolve: "gatsby-source-wordpress",
       options: {
-        url: 'http://decontex.adamchrapek.pl/graphql'
+        url: 'https://decontex.headlesshub.com/graphql'
       },
     },
     {
