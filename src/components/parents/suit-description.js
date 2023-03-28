@@ -46,7 +46,6 @@ const Card = ({
         })
       }
     })
-    return null
   }, [])
 
   return (
