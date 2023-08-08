@@ -21,8 +21,7 @@ export default function Seo({ data, lang, alternates, type, template }) {
 
     return (
         <Helmet htmlAttributes={{ lang: lang }}>
-            <meta name="google-site-verification" content="6ECIlKWTKRV13uT8My_fm4eN2kHfjUuz74nBH7kNXjE" />
-
+            <meta name="google-site-verification" content="EtGmcYV6733iDsmHERtgThHcy1yo9UQRKKw9-YSu8h4" />
             {canonical
                 ? <meta property="og:url" content={canonical} />
                 : null}
