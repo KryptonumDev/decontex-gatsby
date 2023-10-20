@@ -86,14 +86,22 @@ const Content = styled.div`
     h3,
     h4,
     h5,
-    h6,
-    p {
+    h6
+    {
       font-weight: 900;
       font-size: clamp(27px, ${(48 / 768) * 100}vw, 72px);
       line-height: 130%;
       letter-spacing: -0.015em;
       text-transform: uppercase;
       color: var(--color-white);
+    }
+
+    p{
+      font-weight: 500;
+      font-size: clamp(20px, ${(20 / 768) * 100}vw, 32px);
+      line-height: 130%;
+      color: var(--color-white);
+      margin-top: 16px;
     }
   }
   .other {

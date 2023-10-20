@@ -21,7 +21,7 @@ const Wrapper = styled.section`
     margin-top: var(--section-margin);
 
     .title{
-        margin-bottom: clamP(26px, ${60 / 768 * 100}vw, 96px);
+        margin-bottom: clamp(26px, ${60 / 768 * 100}vw, 96px);
         h1,h2,h3,h4,h5,h6,p{
             font-weight: 900;
             font-size: clamp(18px, ${48 / 1140 * 100}vw, 56px);

@@ -462,6 +462,36 @@ exports.createPages = async ({
       },
     });
   });
+
+  // APPLICATIONS
+
+  const { data: { allWpPage: { ApplicationNodes } } } = await graphql(`
+  query {
+    allWpPage(filter: {template: {templateName: {eq: "Applications"}}}) {
+      ApplicationNodes: nodes {
+        id
+        language {
+          slug
+        }
+        template {
+          templateName
+        }
+      }
+    }
+  }
+`);
+
+ApplicationNodes.forEach(({ id, language: { slug }, template: {templateName} }) => {
+    createPage({
+      path: urls["Applications"][slug],
+      component: resolve('src/templates/applications.jsx'),
+      context: {
+        id,
+        slug,
+        templateName
+      },
+    });
+  });
 }
 
 

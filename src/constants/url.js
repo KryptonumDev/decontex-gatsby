@@ -34,63 +34,72 @@ export const urls = {
         nl: '/nl/case-studies/',
         es: '/es/estudios-caso/'
     },
-    "Lco2": { 
-        en: '/pressurized-co2/', 
-        de: '/de/druck-co2/', 
-        fr: '/fr/pressurized-co2/', 
+    "Lco2": {
+        en: '/pressurized-co2/',
+        de: '/de/druck-co2/',
+        fr: '/fr/pressurized-co2/',
         nl: '/nl/pressurized-co2/',
         es: '/es/co2-presurizado/'
     },
-    "Faq": { 
-        en: '/faq/', 
-        de: '/de/faq/', 
-        fr: '/fr/faq/', 
+    "Faq": {
+        en: '/faq/',
+        de: '/de/faq/',
+        fr: '/fr/faq/',
         nl: '/nl/faq/',
         es: '/es/faq/'
     },
-    "Contact": { 
-        en: '/contact/', 
-        de: '/de/kontakt/', 
+    "Contact": {
+        en: '/contact/',
+        de: '/de/kontakt/',
         fr: '/fr/contact/',
         nl: '/nl/contact/',
         es: '/es/contacto/'
     },
-    "Freebies": { 
-        en: '/download/', 
-        de: '/de/download/', 
-        fr: '/fr/download/', 
+    "Freebies": {
+        en: '/download/',
+        de: '/de/download/',
+        fr: '/fr/download/',
         nl: '/nl/download/',
         es: '/es/descargar/'
     },
 
-    "Privacy-police": { 
-        en: '/cookie-policy/', 
-        de: '/de/cookie-richtlinie/', 
-        fr: '/fr/cookie-policy/', 
+    "Privacy-police": {
+        en: '/cookie-policy/',
+        de: '/de/cookie-richtlinie/',
+        fr: '/fr/cookie-policy/',
         nl: '/nl/cookie-policy/',
         es: '/es/cookie-policy/'
     },
-    "Terms And Conditions": { 
-        en: '/privacy-statement/', 
-        de: '/de/datenschutzerklaerung/', 
-        fr: '/fr/privacy-statement/', 
+    "Terms And Conditions": {
+        en: '/privacy-statement/',
+        de: '/de/datenschutzerklaerung/',
+        fr: '/fr/privacy-statement/',
         nl: '/nl/privacy-statement/',
         es: '/es/privacy-statement/'
     },
 
-    "Blog-archive": { 
-        en: '/blog/', 
-        de: '/de/blog/', 
-        fr: '/fr/blog/', 
+    "Blog-archive": {
+        en: '/blog/',
+        de: '/de/blog/',
+        fr: '/fr/blog/',
         nl: '/nl/blog/',
         es: '/es/blog/'
     },
 
-    "News-archive": { 
-        en: '/news/', 
-        de: '/de/nachrichten/', 
-        fr: '/fr/news/', 
+    "News-archive": {
+        en: '/news/',
+        de: '/de/nachrichten/',
+        fr: '/fr/news/',
         nl: '/nl/news/',
         es: '/es/notitias/'
     },
+
+    'Applications': {
+        en: '/applications/',
+        de: '/de/applications/',
+        fr: '/fr/applications',
+        nl: '/nl/applications/',
+        es: '/es/applications/'
+    }
+
 }
