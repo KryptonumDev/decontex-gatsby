@@ -6,13 +6,13 @@ import Contact from "../components/parents/contact"
 import Hero from "../components/parents/hero-decontomination"
 import Grid from "../components/parents/applications-grid"
 
-export default function About({ data: { allWpPage, alternates } }) {
+export default function Applications({ data: { allWpPage, alternates } }) {
     let { applications, language, seo } = allWpPage.nodes[0]
 
     React.useEffect(() => {
         toTop()
     }, [])
-    debugger
+
     return (
         <main>
             <Seo data={seo} lang={language.slug} alternates={alternates} />

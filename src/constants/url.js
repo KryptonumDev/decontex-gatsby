@@ -100,6 +100,14 @@ export const urls = {
         fr: '/fr/applications',
         nl: '/nl/applications/',
         es: '/es/applications/'
+    },
+
+    'Guarantee': {
+        en: '/guarantee/',
+        de: '/de/guarantee/',
+        fr: '/fr/guarantee/',
+        nl: '/nl/guarantee/',
+        es: '/es/guarantee/'
     }
 
 }

@@ -481,7 +481,7 @@ exports.createPages = async ({
   }
 `);
 
-ApplicationNodes.forEach(({ id, language: { slug }, template: {templateName} }) => {
+  ApplicationNodes.forEach(({ id, language: { slug }, template: {templateName} }) => {
     createPage({
       path: urls["Applications"][slug],
       component: resolve('src/templates/applications.jsx'),
@@ -492,6 +492,36 @@ ApplicationNodes.forEach(({ id, language: { slug }, template: {templateName} }) 
       },
     });
   });
+
+   // GUARANTEE
+
+    const { data: { allWpPage: { GuaranteeNodes } } } = await graphql(`
+    query {
+      allWpPage(filter: {template: {templateName: {eq: "Guarantee"}}}) {
+        GuaranteeNodes: nodes {
+          id
+          language {
+            slug
+          }
+          template {
+            templateName
+          }
+        }
+      }
+    }
+  `);
+  
+  GuaranteeNodes.forEach(({ id, language: { slug }, template: {templateName} }) => {
+      createPage({
+        path: urls["Guarantee"][slug],
+        component: resolve('src/templates/guarantee.jsx'),
+        context: {
+          id,
+          slug,
+          templateName
+        },
+      });
+    });
 }
 
 
