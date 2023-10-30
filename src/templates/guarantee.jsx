@@ -3,6 +3,7 @@ import { graphql } from "gatsby"
 import { toTop } from './../helpers/scrollToTop'
 import Seo from "../components/parents/seo"
 import Hero from "../components/parents/hero-decontomination"
+import Charts from "../components/parents/charts"
 
 export default function Guarantee({ data: { allWpPage, alternates } }) {
     let { guarantee, language, seo } = allWpPage.nodes[0]
@@ -15,6 +16,7 @@ export default function Guarantee({ data: { allWpPage, alternates } }) {
         <main>
             <Seo data={seo} lang={language.slug} alternates={alternates} />
             <Hero data={guarantee.heroGuarantee} position={'70%'} parent={'top: 20%;'} />
+            <Charts data={guarantee.chartsSection}/>
         </main>
     )
 }
@@ -60,6 +62,24 @@ query GuaranteePageQuery($id: String!, $templateName: String!){
                                 }
                             }
                         }
+                    }
+                    chartsSection{
+                        title
+                        text
+                        charts{
+                            chartTitle
+                            chart{
+                                altText
+                                localFile {
+                                    childImageSharp {
+                                        gatsbyImageData
+                                    }
+                                }
+                            }
+                            chartText
+                        }
+                        leftTextUnderCharts
+                        rightTextUnderCharts
                     }
                 }
             }
