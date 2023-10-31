@@ -37,6 +37,7 @@ export default function Charts({ data: { title, text, charts, leftTextUnderChart
 }
 
 const Wrapper = styled.section`
+  padding-top: clamp( 64px, calc(96vw/7.68), 192px);
   .title {
       h1,
       h2,
@@ -45,11 +46,6 @@ const Wrapper = styled.section`
       h5,
       h6,
       p {
-        padding-top: clamp(
-          120px,
-          ${(220 / 768) * 100}vw,
-          320px
-        );
         text-transform: uppercase;
         font-weight: 900;
         font-size: clamp(24px, ${(40 / 768) * 100}vw, 56px);
