@@ -19,7 +19,7 @@ export default function Deco2fire({ data: { allWpPage, alternates } }) {
   return (
     <main>
       <Seo data={seo} lang={language.slug} alternates={alternates}/>
-      <Hero data={deco2fire.heroDeco2fire} position={'50%'} />
+      <Hero data={deco2fire.heroDeco2fire} position={'60%'} />
       <SuitDescription data={deco2fire.suitDescription} />
       <DecontominationBenefits data={deco2fire.decontominationBenefits} />
       <Cleanroom data={deco2fire.decontexCleanroom} />
@@ -178,12 +178,37 @@ export const query = graphql`
           }
           featuredOneColumn{
             text
-            link{
-              link
-              name
+            platesUnderTitle{
+              icon{
+                altText
+                localFile {
+                  publicURL
+                }
+              }
+              textUnderIcon
             }
           }
           otherTechnologies{
+            cleanerSaferHealthier{
+              title
+              text
+              items{
+                itemName
+                itemImage{
+                  altText
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData
+                    }
+                  }
+                }
+              }
+              contactText
+              link{
+                url
+                text
+              }
+            }
             link{
               image{
                 altText

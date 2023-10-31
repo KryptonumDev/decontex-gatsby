@@ -4,7 +4,6 @@ import Hero from "../components/parents/hero-homepage"
 import Newsletter from "../components/parents/newslettter"
 import Contact from "../components/parents/contact"
 import Partners from "../components/parents/partners"
-import CleanerSaferHealthier from "../components/parents/cleaner-safer-healthier"
 import DecontominationExperts from "../components/parents/decontomination-experts"
 import { toTop } from './../helpers/scrollToTop'
 import Seo from "../components/parents/seo"
@@ -23,7 +22,6 @@ const IndexPage = ({ data: { allWpPage, alternates } }) => {
     <main>
       <Seo data={seo} lang={language.slug} alternates={alternates} />
       <Hero data={homepage.heroHomepage} />
-      <CleanerSaferHealthier data={homepage.cleanerSaferHealthier} />
       <DecontominationExperts data={homepage.decontominationExperts} />
       <InteractiveMap data={homepage.interactiveMap} />
       <Partners data={homepage.partners} />
@@ -101,26 +99,6 @@ export const query = graphql`
                   gatsbyImageData
                 }
               }
-            }
-          }
-          cleanerSaferHealthier{
-            title
-            text
-            items{
-              itemName
-              itemImage{
-                altText
-                localFile {
-                  childImageSharp {
-                    gatsbyImageData
-                  }
-                }
-              }
-            }
-            contactText
-            link{
-              url
-              text
             }
           }
           decontominationExperts{
