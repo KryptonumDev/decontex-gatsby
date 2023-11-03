@@ -17,7 +17,7 @@ export default function About({ data: { allWpPage, alternates } }) {
   return (
     <main>
       <Seo data={seo} lang={language.slug} alternates={alternates} />
-      <Hero data={about.hero} position={'90%'} parent={'top: 30%;'} />
+      <Hero data={about.hero} position={'100%'} parent={'top: 20%;'} />
       <TwoColumnWithTitleAndImage data={about.twoColumnWithTitle} />
       <DecontominationSubjectsMini data={about.decontominationSubjects} />
       <Technologies data={about.technologies} />
@@ -81,9 +81,15 @@ export const query = graphql`
             }
             decontominationSubjects {
               title
-              repeater {
-                text
-                backgroundColor
+              partners {
+                partnerLogo{
+                  altText
+                  localFile {
+                    childImageSharp {
+                        gatsbyImageData
+                    }
+                  }
+                }
               }
             }
             technologies {

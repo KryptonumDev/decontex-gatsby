@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ButtonBlack, Container } from '../../styles/style'
+import { Container } from '../../styles/style'
 
 export default function FeaturedOneColumn({
   data: { text, platesUnderTitle }
@@ -12,7 +12,7 @@ export default function FeaturedOneColumn({
           className='title'
           dangerouslySetInnerHTML={{ __html: text }}></div>
         <div className='flex'>
-          {platesUnderTitle.map(el => (
+          {platesUnderTitle?.map(el => (
             <div className='item'>
               <img src={el.icon.localFile.publicURL} alt={el.icon.altText}/>
               <p>{el.textUnderIcon}</p>

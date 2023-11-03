@@ -11005,6 +11005,11 @@ swap-case@^2.0.2:
   dependencies:
     tslib "^2.0.3"
 
+swiper@^11.0.3:
+  version "11.0.3"
+  resolved "https://registry.yarnpkg.com/swiper/-/swiper-11.0.3.tgz#9c325154db2a4431f508b7e8e300621365eb4c3d"
+  integrity sha512-MyV9ooQsriAe2EibeamqewLjgCfSvl2xoyratl6S3ln5BXDL4BzlO6mxcbLMCzQL6Z60b/u0AS/nKrepL0+TAg==
+
 symbol-observable@^1.0.4:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.2.0.tgz#c22688aed4eab3cdc2dfeacbb561660560a00804"

@@ -3,13 +3,15 @@ import { graphql } from "gatsby"
 import Hero from "../components/parents/hero-homepage"
 import Newsletter from "../components/parents/newslettter"
 import Contact from "../components/parents/contact"
-import Partners from "../components/parents/partners"
 import DecontominationExperts from "../components/parents/decontomination-experts"
 import { toTop } from './../helpers/scrollToTop'
 import Seo from "../components/parents/seo"
 // import News from "../components/parents/news"
 // import Blog from "../components/parents/blog"
 import InteractiveMap from "../components/parents/interactive-map"
+import Guarantee from "../components/parents/decontext-guarantee"
+import Raport from "../components/parents/decontex-raport"
+import DecontominationSubjectsMini from "../components/parents/decontomination-subjects-mini"
 
 const IndexPage = ({ data: { allWpPage, alternates } }) => {
   let { homepage, language, seo } = allWpPage.nodes[0]
@@ -23,8 +25,10 @@ const IndexPage = ({ data: { allWpPage, alternates } }) => {
       <Seo data={seo} lang={language.slug} alternates={alternates} />
       <Hero data={homepage.heroHomepage} />
       <DecontominationExperts data={homepage.decontominationExperts} />
+      <Guarantee data={homepage.guaranteeHomepage}/>
+      <Raport data={homepage.raportSection}/>
       <InteractiveMap data={homepage.interactiveMap} />
-      <Partners data={homepage.partners} />
+      <DecontominationSubjectsMini data={homepage.partners}/>
       <Newsletter data={homepage.newsletter} lang={language.name}/>
       {/* <News data={homepage.news} />
       <Blog data={homepage.blog} /> */}
@@ -103,7 +107,8 @@ export const query = graphql`
           }
           decontominationExperts{
             title
-            image{
+            citeUnderTitle
+            citeBackground{
               altText
               localFile {
                 childImageSharp {
@@ -111,20 +116,81 @@ export const query = graphql`
                 }
               }
             }
-            list
-            textAboveButtons
-            buttons{
-              text
+            subSectionTitle
+            link{
+              title
               url
             }
+            subSectionPlates{
+              plateIcon{
+                altText
+                localFile {
+                  publicURL
+                }
+              }
+              plateContent
+              patentedIcon{
+                altText
+                localFile {
+                  publicURL
+                }
+              }
+            }
           }
-          partners{
-            title
-            partners{
+          guaranteeHomepage{
+            sectionTitle
+            text
+            link{
+              title
+              url
+            }
+            backgroundImage{
               altText
               localFile {
                 childImageSharp {
                   gatsbyImageData
+                }
+              }
+            }
+          }
+          raportSection{
+            title
+            text
+            image{
+              altText
+              localFile {
+                childImageSharp {
+                  gatsbyImageData(quality: 100)
+                }
+              }
+            }
+            textUnderImage
+            downloadRaportText
+            downloadRaportFileButtonText
+            raportFile{
+              altText
+              localFile {
+                publicURL
+              }
+            }
+            raportImage{
+              altText
+              localFile {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
+            }
+          }
+          partners{
+            title
+            partners: partnersH {
+              partnerLogo{
+                altText
+                localFile {
+                  childImageSharp {
+                      gatsbyImageData
+                  }
                 }
               }
             }

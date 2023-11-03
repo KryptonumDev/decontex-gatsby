@@ -17,13 +17,9 @@ export default function AboutLCO2({ data: { title, leftText, rightText, repeater
                 <Repeater>
                     {repeater.map(el => (
                         <div key={el.title} className="item">
-                            <div>
-                                <GatsbyImage className='image' image={el.img.localFile.childImageSharp.gatsbyImageData} alt={el.img.altText}/>
-                            </div>
-                            <div>
-                                <div className="title" dangerouslySetInnerHTML={{ __html: el.title }}></div>
-                                <div className="text" dangerouslySetInnerHTML={{ __html: el.text }}></div>
-                            </div>
+                            <img className='image' src={el.img.localFile.publicURL} alt={el.img.altText} />
+                            <div className="title" dangerouslySetInnerHTML={{ __html: el.title }}></div>
+                            <div className="text" dangerouslySetInnerHTML={{ __html: el.text }}></div>
                         </div>
                     ))}
                 </Repeater>
@@ -79,33 +75,41 @@ const Content = styled.div`
 `
 
 const Repeater = styled.div`
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 32px;
 
     .item{
-        padding: clamp(20px, ${30 / 768 * 100}vw, 40px) clamp(28px, ${46 / 768 * 100}vw, 60px);
+        width: 31%;
+        padding: 32px;
         background-color: var(--color-blue);
-        display: grid;
-        grid-template-columns: auto 1fr;
         grid-gap: clamp(12px, ${30 / 768 * 100}vw, 48px);
 
-        &:first-child{
-            background-color: var(--color-red);
-        }
-
         .image{
-            min-width: fit-content;
-            max-width: clamp(44px, ${44 / 768 * 100}vw, 84px);
+            width: clamp(56px, ${56 / 768 * 100}vw, 74px);
+            height: auto;
+            margin: 0 auto;
+            display: block;
         }
 
         @media (max-width: 1024px) {
             padding: 20px 30px;
             min-height: unset;
         }
+
+        @media (max-width: 768px) {
+            width: 47%;
+        }
+
+        @media (max-width: 540px) {
+            width: 100%;
+        }
     }
 
     .title{
+        text-align: center;
+        margin-top: 20px;
         margin-bottom: 12px;
         h1,h2,h3,h4,h5,h6,p{
             font-weight: 700;
@@ -120,6 +124,7 @@ const Repeater = styled.div`
     }
 
     .text{
+        text-align: center;
         h1,h2,h3,h4,h5,h6,p{
             font-weight: 500;
             font-size: clamp(11px, ${16 / 768 * 100}vw, 20px);

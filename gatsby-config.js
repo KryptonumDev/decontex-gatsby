@@ -36,7 +36,14 @@ module.exports = {
         icon: `src/resources/icon.png`,
       },
     },
-    "gatsby-plugin-sharp",
+    {
+      resolve: `gatsby-plugin-sharp`,
+      options: {
+        defaults: {
+          quality: 90,
+        },
+      },
+    },
     "gatsby-plugin-react-helmet",
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,

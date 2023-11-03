@@ -15,7 +15,7 @@ export default function Lco2({ data: { allWpPage, alternates } }) {
   return (
     <main>
       <Seo data={seo} lang={language.slug} alternates={alternates} />
-      <Hero data={lco2.heroLco2} position={'60%'} />
+      <Hero data={lco2.heroLco2} position={'30%'} />
       <AboutLCO2 data={lco2.aboutLco2} />
     </main>
   )
@@ -72,9 +72,7 @@ export const query = graphql`
                     img{
                         altText
                         localFile{
-                          childImageSharp{
-                            gatsbyImageData
-                          }
+                          publicURL
                         }
                     }
                 }

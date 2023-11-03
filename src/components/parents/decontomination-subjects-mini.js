@@ -1,17 +1,22 @@
 import React from "react"
 import styled from "styled-components"
 import { Container } from "../../styles/style"
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { GatsbyImage } from "gatsby-plugin-image";
+import 'swiper/css';
 
-export default function DecontominationSubjectsMini({ data: { title, repeater } }) {
+export default function DecontominationSubjectsMini({ data: { title, partners } }) {
     return (
         <Wrapper>
             <Container>
                 <div className="title" dangerouslySetInnerHTML={{ __html: title }}></div>
-                <Repeater>
-                    {repeater.map(el => (
-                        <Item key={el.text} color={el.backgroundColor} dangerouslySetInnerHTML={{ __html: el.text }} />
+                <Swiper slidesPerView={'auto'}>
+                    {partners?.map(el => (
+                        <SwiperSlide>
+                            <GatsbyImage className="image" image={el.partnerLogo.localFile.childImageSharp.gatsbyImageData} alt={el.partnerLogo.altText} />
+                        </SwiperSlide>
                     ))}
-                </Repeater>
+                </Swiper>
             </Container>
         </Wrapper>
     )
@@ -22,7 +27,7 @@ const Wrapper = styled.section`
 
     .title{
         margin-bottom: clamp(26px, ${60 / 768 * 100}vw, 96px);
-        h1,h2,h3,h4,h5,h6,p{
+        h1,h2,h3,h4,h5,h6{
             font-weight: 900;
             font-size: clamp(18px, ${48 / 1140 * 100}vw, 56px);
             line-height: 130%;
@@ -30,36 +35,28 @@ const Wrapper = styled.section`
             text-transform: uppercase;
             text-align: center;
         }
-    }
-`
 
-const Repeater = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: clamp(16px, ${20 / 768 * 100}vw, 40px);
-`
-
-const Item = styled.div`
-    width: calc(${100 / 3}% - 27px);
-    background-color: ${props => props.color === 'red' ? 'var(--color-red)' : 'var(--color-blue)'};
-    padding: clamp(20px, ${32 / 768 * 100}vw, 64px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    h1,h2,h3,h4,h5,h6,p{    
-        font-weight: 700;
-        font-size: clamp(12px, ${16 / 1024 * 100}vw, 23px);
-        color: var(--color-white);
-        line-height: 130%;
-        text-align: center;
+        p{
+            text-align: center;
+            font-size: clamp(17px, calc(27vw/7.68), 36px);
+            font-weight: 700;
+            line-height: 133.333%;
+            margin-top: clamp(32px, calc(64vw/7.68), 64px);
+        }
     }
 
-    @media (max-width: 800px) {
-        width: calc(${100 / 2}% - clamp(16px, ${20 / 768 * 100}vw, 40px));
-    }
-
-    @media (max-width: 420px) {
+    .image{
         width: 100%;
+        height: 100%;
+        max-width: clamp(150px, calc(150vw/7.68), 300px);
+    }
+    
+    .swiper-wrapper {
+      align-items: center;
+    }
+
+    .swiper-slide{
+        width: fit-content;
+        margin-right: clamp(24px, calc(48vw/7.68), 96px);
     }
 `
