@@ -3,12 +3,11 @@ import React from "react"
 import styled from "styled-components"
 import { Container } from "../../styles/style"
 
-export default function TwoColumnWithTitleAndImage({ data: { title, subTitle, text, img } }) {
+export default function TwoColumnWithTitleAndImage({ data: { title, text, img } }) {
     return (
         <Wrapper>
             <Container>
                 <div className="title" dangerouslySetInnerHTML={{ __html: title }} />
-                <div className="subTitle" dangerouslySetInnerHTML={{ __html: subTitle }} />
                 <Content>
                     <GatsbyImage className="image" image={img.localFile.childImageSharp.gatsbyImageData} />
                     <div dangerouslySetInnerHTML={{ __html: text }} /> 
@@ -31,16 +30,6 @@ const Wrapper = styled.section`
             text-transform: uppercase;
         }
     }    
-
-    .subTitle{
-        margin-bottom: clamp(16px, ${56 / 768 * 100}vw, 96px);
-        h1,h2,h3,h4,h5,h6,p{
-            font-weight: 700;
-            font-size: clamp(16px, ${40 / 768 * 100}vw, 28px);
-            line-height: 130%;
-        }
-    }
-
 `
 
 const Content = styled.div`

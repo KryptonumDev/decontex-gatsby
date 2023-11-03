@@ -68,7 +68,6 @@ export const query = graphql`
             }
             twoColumnWithTitle {
               title
-              subTitle
               text
               img {
                   altText

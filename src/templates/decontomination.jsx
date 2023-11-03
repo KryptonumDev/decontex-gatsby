@@ -8,6 +8,7 @@ import TwoColumnWithTitle from '../components/parents/two-column-with-title'
 import FeaturedJackets from '../components/parents/featured-jackets'
 import { toTop } from './../helpers/scrollToTop'
 import Seo from '../components/parents/seo'
+import DecontominationExperts from '../components/parents/decontomination-experts'
 
 export default function Decontomination({ data: { allWpPage, alternates } }) {
   let { decontomination, language, seo } = allWpPage.nodes[0]
@@ -21,6 +22,7 @@ export default function Decontomination({ data: { allWpPage, alternates } }) {
       <Seo data={seo} lang={language.slug}  alternates={alternates} />
       <Hero data={decontomination.heroDecontomination} position={'50%'} />
       <WhatIsDecontomination data={decontomination.decontexTechnology} />
+      <DecontominationExperts data={decontomination.decontominationExpertsDecontex}/>
       <DecontomiantionBenefits data={decontomination.decontominationBenefitsDecon} />
       <TwoColumnWithTitle data={decontomination.twoColumnsWithTitle} />
       <DecontominationBenefits data={decontomination.decontominationAdvantages} />
@@ -74,6 +76,43 @@ export const query = graphql`
                     }
                 }
             }
+            decontominationExpertsDecontex{
+              title
+              citeUnderTitle
+              citeBackground{
+                altText
+                localFile {
+                  childImageSharp {
+                    gatsbyImageData
+                  }
+                }
+              }
+              subSectionTitle
+              link{
+                title
+                url
+              }
+              subSectionPlates{
+                plateIcon{
+                  altText
+                  localFile {
+                    publicURL
+                  }
+                }
+                plateContent
+                patentedIcon{
+                  altText
+                  localFile {
+                    publicURL
+                  }
+                }
+              }
+              compareTitle
+              compare{
+                groupContent
+                groupName
+              }
+            }
             decontexTechnology{
               title
               image{
@@ -83,18 +122,6 @@ export const query = graphql`
                         gatsbyImageData
                     }
                 }
-              }
-              benefitsTitle
-              repeater{
-                img{
-                    altText
-                    localFile {
-                        childImageSharp {
-                            gatsbyImageData
-                        }
-                    }
-                }
-                title
               }
             }
             decontominationAdvantages{
