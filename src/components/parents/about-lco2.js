@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { Container } from "../../styles/style"
 import { GatsbyImage } from "gatsby-plugin-image"
 
-export default function AboutLCO2({ data: { title, leftText, rightText, repeater } }) {
+export default function AboutLCO2({ data: { title, leftText, rightText, repeater, repeaterTitle } }) {
     return (
         <Wrapper>
             <Container>
@@ -14,6 +14,9 @@ export default function AboutLCO2({ data: { title, leftText, rightText, repeater
                         <div className="text" dangerouslySetInnerHTML={{ __html: rightText }}></div>
                     </div>
                 </Content>
+                {repeaterTitle && (
+                    <h3 className="sub">{repeaterTitle}</h3>
+                )}
                 <Repeater>
                     {repeater.map(el => (
                         <div key={el.title} className="item">
@@ -31,6 +34,15 @@ export default function AboutLCO2({ data: { title, leftText, rightText, repeater
 const Wrapper = styled.section`
     margin-top: var(--section-margin);
     margin-bottom: var(--section-margin);
+
+    .sub{
+        color: var(--black-700, #111315);
+        text-align: center;
+        font-size: clamp(17px, calc(27vw/7.68), 36px);
+        font-weight: 700;
+        line-height: 133.333%;
+        margin-bottom: clamp(32px, calc(48vw/7.68), 64px);
+    }
 `
 
 const Content = styled.div`

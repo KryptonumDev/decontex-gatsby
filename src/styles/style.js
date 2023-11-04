@@ -130,7 +130,8 @@ export const ButtonOutlined = styled(Link)`
     box-sizing: border-box;
     display: block;
     width: fit-content;
-    transition: border .12s linear,  padding .12s linear;
+    transition: border .12s cubic-bezier(0.785, 0.135, 0.15, 0.86),  padding .12s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+
     &:hover{
         border: 6px solid var(--color-black);
         padding: 19px 96px;

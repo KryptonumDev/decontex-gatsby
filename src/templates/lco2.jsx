@@ -66,6 +66,7 @@ export const query = graphql`
                 title
                 leftText
                 rightText
+                repeaterTitle
                 repeater{
                     title
                     text

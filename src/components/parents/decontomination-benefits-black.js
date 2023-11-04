@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { Container } from '../../styles/style'
 
 export default function DecontomiantionBenefits({
-  data: { benefit }
+  data: { sectionTitle, benefit }
 }) {
   return (
     <Wrapper>

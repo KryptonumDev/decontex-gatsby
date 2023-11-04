@@ -24,25 +24,12 @@ export default function Header({ location }) {
                         isouter
                       }
                       navigation {
-                        navigationItem {
-                          link
-                          name
-                        }
-                      }
-                      otherLinks {
-                        link
-                        name
-                      }
-                      socialLinks {
-                        link
-                        ariaLabel
-                        icon {
-                          altText
-                          localFile {
-                            childImageSharp {
-                              gatsbyImageData
-                            }
-                          }
+                        linkName
+                        linkUrl
+                        onlyInMobileMenu
+                        dropdown{
+                          linkName
+                          linkUrl
                         }
                       }
                     }
@@ -55,7 +42,7 @@ export default function Header({ location }) {
 
   const locale = activeLanguage(location)
   const localeData = data.allWpPage.nodes.filter(el => el.language.slug === locale)
-  const { link, navigation, otherLinks, socialLinks } = localeData[0].header
+  const { link, navigation } = localeData[0].header
 
   const [isDark, changeIsDark] = useState(whiteWersionPages.includes(location.pathname))
   const [currentPage, changeCurrentPage] = useState(getCurrentPage(location, locale))
@@ -94,7 +81,6 @@ export default function Header({ location }) {
     }
     return null
   }, [])
-
   return (
     <Wrapper isDark={isDark} isScrolled={isScrolled}>
       <LocContainer>
@@ -105,6 +91,31 @@ export default function Header({ location }) {
               : <LogoWhite />}
           </Link>
 
+          <Navigation isDark={isDark} isScrolled={isScrolled} isMenuOpened={isMenuOpened}>
+            <LangChoice changeIsMenuOpened={changeIsMenuOpened} isMenuOpened={isMenuOpened} desctop={false} currentPage={currentPage} isDark={isDark} isScrolled={isScrolled} isLangChangerOpened={isLangChangerOpened} data={data} locale={locale} changeIsLangChangerOpened={changeIsLangChangerOpened} />
+            {navigation?.map((el, i) => (
+              <div className={el.onlyInMobileMenu ? "item mobile" : "item"} key={i}>
+                <NavLink isDark={isDark} isScrolled={isScrolled} as={!el.linkUrl ? 'div' : null} to={el.linkUrl} className={el?.dropdown?.length > 0 ? 'div' : 'a'}>
+                  {el.linkName}
+                  {el?.dropdown?.length > 0 && (
+                    <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M19.7148 15.5L12.7148 9.5L5.71484 15.5" stroke={isDark ? "#111315" : "#fff"} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  )}
+                </NavLink>
+                {el?.dropdown?.length > 0 && (
+                  <div className="dropdown">
+                    {el?.dropdown?.map(el => (
+                      <NavLink className={'a'} isDark={isDark} isScrolled={isScrolled} to={el.linkUrl}>
+                        {el.linkName}
+                      </NavLink>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </Navigation>
+
           {link.isouter === null
             ? <ButtonOutlined className="cta" to={link.link}>{link.name}</ButtonOutlined>
             : <ButtonOutlinedOuter className="cta" href={link.link}>{link.name}</ButtonOutlinedOuter>}
@@ -114,57 +125,71 @@ export default function Header({ location }) {
           <Button aria-label='open or close mobile menu' isScrolled={isScrolled} isDark={isDark} isMenuOpened={isMenuOpened} onClick={() => { changeIsMenuOpened(!isMenuOpened) }}>
             <span />
           </Button>
+
           <NavOuter onClick={() => { changeIsMenuOpened(false) }} isMenuOpened={isMenuOpened} id='outer'></NavOuter>
-          <Navigation isMenuOpened={isMenuOpened}>
-            <div className="wrapper">
-              <div>
-                {navigation.map(el => (
-                  <ul>
-                    {el.navigationItem.map(innerEl => (
-                      <li key={innerEl.name}>
-                        <Link tabIndex={isMenuOpened ? '0' : '-1'} onClick={() => { changeIsMenuOpened(false) }} to={innerEl.link}>
-                          {innerEl.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                ))}
-                <ul className="small">
-                  {otherLinks.map(el => (
-                    <li key={el.name}>
-                      <Link tabIndex={isMenuOpened ? '0' : '-1'} onClick={() => { changeIsMenuOpened(false) }} className="small" to={el.link}>
-                        {el.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <ul className="social">
-                {socialLinks.map(el => (
-                  <li key={el.link}>
-                    <Link tabIndex={isMenuOpened ? '0' : '-1'} to={el.link} aria-label={el.ariaLabel} target="_blank">
-                      <GatsbyImage className="image" image={el.icon.localFile.childImageSharp.gatsbyImageData} alt={el.icon.altText} />
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <ul className="small mobile">
-              {otherLinks.map(el => (
-                <li key={el.name}>
-                  <Link tabIndex={isMenuOpened ? '0' : '-1'} onClick={() => { changeIsMenuOpened(false) }} className="small" to={el.link}>
-                    {el.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            <LangChoice changeIsMenuOpened={changeIsMenuOpened} isMenuOpened={isMenuOpened} desctop={false} currentPage={currentPage} isDark={isDark} isScrolled={isScrolled} isLangChangerOpened={isLangChangerOpened} data={data} locale={locale} changeIsLangChangerOpened={changeIsLangChangerOpened} />
-          </Navigation>
         </Content>
       </LocContainer>
     </Wrapper>
   )
 }
+
+const NavLink = styled(Link)`
+  color: var(--black-700, #111315);
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 155.556%;
+  letter-spacing: 0.09px;
+  text-transform: unset;
+  padding: 12px 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  transition: color .2s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+
+  svg{
+    transition: transform .3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    
+    @media (max-width: 1440px) {
+      display: none;
+    }
+
+    path{
+      transition: stroke .3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    }
+  }
+
+  @media (max-width: 1440px) {
+
+    &.div{
+      margin-top: 40px;
+    }
+
+    &.a{
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 133.333%;
+    }
+  }
+
+
+  &:hover{
+    color: #177BC3;
+    
+    @media (max-width: 1440px) {
+      color: #111315;
+    }
+  }
+
+  color: var(--color-white);
+
+  ${props => (props.isScrolled || props.isDark) ? `
+      color: var(--color-black) ;
+    ` : null}
+
+`
 
 const LanguageChoice = styled.ul`
   position: relative;
@@ -173,12 +198,14 @@ const LanguageChoice = styled.ul`
       display: none;
     }
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1440px) {
     &.desctop{
       display: none;
     }
     &.mobile{
       display: block !important;
+      margin-bottom: 40px;
+      margin-top: 0 !important;
 
       svg{
         
@@ -188,18 +215,15 @@ const LanguageChoice = styled.ul`
       }
 
       a,button{
-        color: var(--color-white);
         text-transform: uppercase;
       }
 
       ul{
-        border: unset;
-        background-color: transparent;
         gap: 0;
+        z-index: 4;
 
         a{
-          width: fit-content;
-          padding: 6px 0;
+          width: 100%;
           font-size: clamp(13px,3.125vw,24px);
         }
 
@@ -273,16 +297,8 @@ const LanguageChoice = styled.ul`
 
     border: 2px solid black;
 
-    @media (max-width: 1024px) {
-      position: relative;
-    }
-
     li{
         border-top: 2px solid black;
-
-        @media (max-width: 1024px) {
-          border: unset;
-        }
 
       &:nth-child(1){
         border-top: unset;
@@ -322,6 +338,12 @@ const NavOuter = styled.div`
 `
 
 const Navigation = styled.nav`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 48px;
+
+  @media (max-width: 1440px) {
     z-index: 2; 
     overflow-y: scroll;
     -ms-overflow-style: none;
@@ -330,6 +352,7 @@ const Navigation = styled.nav`
       display: none;
     }
 
+    display: block;
     max-width: 700px;
     width: 100%;
     min-height: 100vh;
@@ -342,85 +365,91 @@ const Navigation = styled.nav`
     transition: transform .2s cubic-bezier(0.215, 0.610, 0.355, 1);
     transform: ${props => props.isMenuOpened ? 'translateX(0%)' : "translateX(100%)"};
 
-    padding: clamp(80px, ${120 / 768 * 100}vw, 160px) clamp(16px, ${68 / 768 * 100}vw, 120px) clamp(40px, ${50 / 768 * 100}vw, 60px) clamp(16px, ${68 / 768 * 100}vw, 120px);
+    padding: clamp(40px, ${52 / 768 * 100}vw, 53px) clamp(16px, ${68 / 768 * 100}vw, 120px) clamp(40px, ${50 / 768 * 100}vw, 60px) clamp(16px, ${68 / 768 * 100}vw, 120px);
+  }
 
-    @media (max-width: 480px) {
-      .wrapper{
-        display: flex;
-        justify-content: space-between;
-        margin-right: 68px;
-
-        .social{
-          flex-direction: column;
-
-          .image{
-            max-width: 32px;
-          }
-        }
-
-        .small{
-          display: none;
-        }
-      }
-
-      .small.mobile{
-        display: grid;
-        text-align: end;
-        margin-bottom: 0;
-      }
-    }
-
+    
+  @media (max-width: 1440px) {
     .mobile{
+      margin-top: 40px;
+    }
+
+    .mobile+.mobile{
+      margin-top: 0;
+    }
+  }
+
+  .item{
+    position: relative;
+
+    &.mobile{
       display: none;
-    }
-
-    ul{
-      display: grid;
-      grid-gap: 16px;
-      height: fit-content;
-
-      margin-bottom: clamp(16px, ${28 / 768 * 100}vw, 40px);
-
-      &:last-child{
-        margin-bottom: clamp(32px, ${42 / 768 * 100}vw, 55px);
-      }
-
-      &.small{
-        grid-gap: 8px;
-
-        li{
-
-        }
-      }
-
-      &.social{
+    
+      @media (max-width: 1440px) {
         display: flex;
-        gap: 32px;
-
-        .image{
-          max-width: 40px;
-          width: fit-content;
-          height: fit-content;
-        }
-      }
-
-      li{
-        a{
-          color: var(--color-white);
-          font-weight: 700;
-          font-size: clamp(13px, ${24 / 768 * 100}vw, 32px);
-          line-height: 130%;
-          text-transform: unset;
-
-          &.small{
-            font-weight: 400;
-            font-size: clamp(11px, ${16 / 768 * 100}vw, 20px);
-            line-height: 140%;
-            letter-spacing: 0.005em;
-          }
-        }
       }
     }
+
+    &:hover{
+      svg{
+        transform: rotateZ(180deg);
+
+        path{
+          stroke: #177BC3;
+        }
+      }
+
+      .div{
+        color: #177BC3;
+    
+        @media (max-width: 1440px) {
+          color: #fff;
+        }
+      }
+
+      .dropdown{
+        opacity: 1;
+        pointer-events: all;
+      }
+    }
+  }
+
+  .dropdown{
+    position: absolute;
+    left: -32px;
+    top: 100%;
+    background-color: var(--white-50, #FEFEFE);
+    padding: 16px 48px 32px 48px;
+    
+
+  ${props => (props.isScrolled) ? null : `
+      background-color: transparent;
+    `  }
+
+    display: grid;
+
+    transition: all .2s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    opacity: 0;
+    pointer-events: none;
+
+    &:hover{
+      opacity: 1;
+      pointer-events: all;  
+    }
+
+    a{
+      min-width: max-content;
+    }
+    
+    @media (max-width: 1440px) {
+      background-color: transparent !important;
+      position: static;
+      padding: 0;
+      opacity: 1;
+      pointer-events: all;
+      margin-bottom: 40px;
+    }
+  }
 `
 
 const Button = styled.button`
@@ -430,6 +459,12 @@ const Button = styled.button`
     background-color: transparent;
     border: none;
     z-index: 10;
+
+    display: none;
+
+    @media (max-width: 1440px) {
+      display: block;
+    }
 
     --color: ${props => props.isMenuOpened ? 'var(--color-white)' : props.isScrolled ? 'var(--color-black)' : props.isDark ? 'var(--color-black)' : 'var(--color-white)'};
 
@@ -539,7 +574,7 @@ const Wrapper = styled.header`
     padding: ${props => props.isScrolled ? '12px' : 'clamp(20px, 6.25vw, 48px)'} 0;
     transition: background-color .3s cubic-bezier(0.39, 0.575, 0.565, 1), padding .3s cubic-bezier(0.39, 0.575, 0.565, 1), box-shadow .5s cubic-bezier(0.39, 0.575, 0.565, 1);
     background-color: ${props => props.isScrolled ? 'var(--color-white)' : 'transparent'};
-    box-shadow: ${props => props.isScrolled ? '4px 4px 7px rgba(0, 0, 0, 0.35)' : 'unset'};
+    filter: drop-shadow(4px 4px 7px rgba(0,0,0,0.05));
 
     .cta{
       border-color: var(--color-white) !important;
@@ -586,7 +621,7 @@ const LangChoice = ({ changeIsMenuOpened, isMenuOpened, desctop, currentPage, is
           if (el.language.slug === locale) {
             return <li key={el.language.slug}>
               <button id='lang-schoice' tabIndex={(desctop || isMenuOpened) ? '0' : '-1'} onClick={() => { changeIsLangChangerOpened(!isLangChangerOpened) }}>
-                {el.language.name}
+                {el.language.slug}
                 <svg width="24" height="15" viewBox="0 0 24 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M12 14.575L0 2.57499L2.15 0.424988L12 10.325L21.85 0.474987L24 2.62499L12 14.575Z" fill={(isScrolled || isDark) ? "#111315" : '#fff'} />
                 </svg>
