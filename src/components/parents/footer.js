@@ -283,10 +283,8 @@ const SecondFlex = styled.div`
 
   .small {
     display: flex;
+    gap: 24px;
     flex-wrap: wrap;
-    li {
-      margin-left: 30px;
-    }
 
     a {
       font-weight: 400;

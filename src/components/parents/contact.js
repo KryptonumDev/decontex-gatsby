@@ -74,6 +74,7 @@ const Wrapper = styled.div`
 
 const Content = styled.div`
   display: flex;
+  gap: 24px;
   justify-content: space-between;
   position: relative;
   z-index: 2;
@@ -89,7 +90,7 @@ const Content = styled.div`
     h6
     {
       font-weight: 900;
-      font-size: clamp(27px, ${(48 / 768) * 100}vw, 72px);
+      font-size: clamp(24px, ${(40 / 768) * 100}vw, 60px);
       line-height: 130%;
       letter-spacing: -0.015em;
       text-transform: uppercase;

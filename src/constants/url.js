@@ -97,7 +97,7 @@ export const urls = {
     'Applications': {
         en: '/applications/',
         de: '/de/applications/',
-        fr: '/fr/applications',
+        fr: '/fr/applications/',
         nl: '/nl/applications/',
         es: '/es/applications/'
     },
