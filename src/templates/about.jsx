@@ -81,12 +81,10 @@ export const query = graphql`
             decontominationSubjects {
               title
               partners {
-                partnerLogo{
-                  altText
-                  localFile {
-                    childImageSharp {
-                        gatsbyImageData
-                    }
+                altText
+                localFile {
+                  childImageSharp {
+                      gatsbyImageData
                   }
                 }
               }

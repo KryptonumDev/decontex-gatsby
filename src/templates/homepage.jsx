@@ -184,13 +184,11 @@ export const query = graphql`
           }
           partners{
             title
-            partners: partnersH {
-              partnerLogo{
-                altText
-                localFile {
-                  childImageSharp {
-                      gatsbyImageData
-                  }
+            partners {
+              altText
+              localFile {
+                childImageSharp {
+                    gatsbyImageData
                 }
               }
             }
