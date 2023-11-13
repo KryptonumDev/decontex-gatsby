@@ -1,33 +1,19 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Container } from './../../styles/style'
+import { ButtonBlue, Container } from './../../styles/style'
 import { GatsbyImage } from 'gatsby-plugin-image'
 import { Link } from 'gatsby'
 
 export default function Hero({
-  data: { title, subTitle, link, backgroundImage }
+  data: { pageTitle, textUnderTitle, link, backgroundImage }
 }) {
   return (
     <Wrapper>
       <Container>
         <Content>
-          <ButtonsWrapper>
-            {link.map((el) => (
-              <Item
-                key={el.link}
-                to={el.link}
-                aria-label={el.ariaLabel}>
-                <GatsbyImage
-                  className='image'
-                  image={
-                    el.image.localFile.childImageSharp
-                      .gatsbyImageData
-                  }
-                  alt={el.image.altText}
-                />
-              </Item>
-            ))}
-          </ButtonsWrapper>
+          <div className='title' dangerouslySetInnerHTML={{ __html: pageTitle }} />
+          <div className='subTitle' dangerouslySetInnerHTML={{ __html: textUnderTitle }} />
+          <ButtonBlue to={link.url}>{link.title}</ButtonBlue>
         </Content>
       </Container>
       <ImageWrapper
@@ -54,7 +40,7 @@ const Wrapper = styled.div`
 `
 
 const Content = styled.div`
-  max-width: 750px;
+  max-width: 950px;
   position: relative;
   z-index: 1;
 
@@ -71,12 +57,11 @@ const Content = styled.div`
         ${(220 / 768) * 100}vw,
         320px
       );
-      color: var(--color-white);
       text-transform: uppercase;
       font-weight: 900;
-      font-size: clamp(27px, ${(48 / 768) * 100}vw, 72px);
+      font-size: clamp(24px, ${(40 / 768) * 100}vw, 60px);
       line-height: 130%;
-      letter-spacing: -0.015em;
+      letter-spacing: -0.9px;
     }
   }
 
@@ -89,47 +74,17 @@ const Content = styled.div`
     h6,
     p {
       font-weight: 500;
-      font-size: clamp(17px, ${(27 / 768) * 100}vw, 32px);
+      font-size: clamp(17px, ${(27 / 768) * 100}vw, 36px);
       line-height: 130%;
-      color: #f3f3f3;
       margin-top: clamp(12px, ${(12 / 768) * 100}vw, 32px);
-      max-width: 600px;
-      color: var(--color-white);
+      color: var(--black-700, #111315);
     }
   }
 
-  @media (max-width: 768px) {
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    p {
-      margin: 0 auto;
-      text-align: center;
-    }
+  a{
+    margin-top: clamp(32px, calc(48vw/7.68), 64px);
+    margin-left: 0;
   }
-`
-
-const ButtonsWrapper = styled.div`
-  margin-top: clamp(100px, ${(210 / 768) * 100}vw, 320px);
-  margin-bottom: 220px;
-  display: flex;
-  gap: clamp(18px, ${(18 / 768) * 100}vw, 48px);
-
-  @media (max-width: 768px) {
-    margin-bottom: 0;
-    a {
-      padding: clamp(16px, ${(18 / 768) * 100}vw, 18px) 0;
-      width: 100%;
-    }
-  }
-`
-
-const Item = styled(Link)`
-  max-width: 500px;
-  width: 100%;
 `
 
 const ImageWrapper = styled(GatsbyImage)`
@@ -142,5 +97,23 @@ const ImageWrapper = styled(GatsbyImage)`
 
   .image {
     object-position: 100%;
+  }
+
+  @media (max-width: 1440px) {
+    top: unset;
+    left: unset;
+    width: 100%;
+  }
+
+  @media (max-width: 1024px) {
+    width: 130%;
+  }
+
+  @media (max-width: 768px) {
+    width: 150%;
+  }
+
+  @media (max-width: 480px) {
+    width: 160%;
   }
 `

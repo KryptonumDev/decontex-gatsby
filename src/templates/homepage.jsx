@@ -84,17 +84,11 @@ export const query = graphql`
             }
           }
           heroHomepage {
-            link {
-              image{
-                altText
-                localFile {
-                  childImageSharp {
-                    gatsbyImageData
-                  }
-                }
-              }
-              ariaLabel
-              link 
+            pageTitle
+            textUnderTitle
+            link{
+              title
+              url
             }
             backgroundImage {
               altText

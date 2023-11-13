@@ -175,17 +175,6 @@ const Content = styled.div`
       font-weight: 400;
     }
   }
-
-  @media (max-width: 768px) {
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    p {
-    }
-  }
 `
 
 const ImageWrapper = styled(GatsbyImage)`
