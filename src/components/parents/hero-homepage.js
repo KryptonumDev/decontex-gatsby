@@ -59,7 +59,7 @@ const Content = styled.div`
     p {
       text-transform: uppercase;
       font-weight: 900;
-      font-size: clamp(24px, ${(40 / 768) * 100}vw, 60px);
+      font-size: clamp(24px, ${(60 / 1440) * 100}vw, 60px);
       line-height: 130%;
       letter-spacing: -0.9px;
     }

@@ -297,6 +297,7 @@ const LanguageChoice = styled.ul`
 
   ul{
     position: absolute;
+    right: 0;
     margin: 10px 0; 
     transition: .2s cubic-bezier(0.39, 0.575, 0.565, 1);
     opacity: 0;
