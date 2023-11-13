@@ -189,6 +189,10 @@ const NavLink = styled(Link)`
       color: var(--color-black) ;
     ` : null}
 
+  @media (max-width: 1440px) {
+    color: var(--color-white);
+  }
+
 `
 
 const LanguageChoice = styled.ul`
@@ -266,6 +270,10 @@ const LanguageChoice = styled.ul`
     ${props => (props.isScrolled || props.isDark) ? `
         color: var(--color-black) ;
       ` : null}
+    
+    @media (max-width: 1440px) {
+      color: var(--color-white);
+    }
   }
 
   a{
@@ -421,10 +429,9 @@ const Navigation = styled.nav`
     background-color: var(--white-50, #FEFEFE);
     padding: 16px 48px 32px 48px;
     
-
-  ${props => (props.isScrolled) ? null : `
+    ${props => (props.isScrolled) ? null : `
       background-color: transparent;
-    `  }
+    `}
 
     display: grid;
 
