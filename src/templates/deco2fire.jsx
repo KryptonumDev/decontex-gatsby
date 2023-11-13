@@ -63,6 +63,7 @@ export const query = graphql`
                 links{
                   link
                   name
+                  isouter
                 }
                 background {
                     altText

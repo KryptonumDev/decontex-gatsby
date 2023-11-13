@@ -73,7 +73,7 @@ query ApplicationsPageQuery($id: String!, $templateName: String!){
                                 altText
                                 localFile{
                                     childImageSharp{
-                                        gatsbyImageData
+                                        gatsbyImageData(quality: 100)
                                     }
                                 }
                             }

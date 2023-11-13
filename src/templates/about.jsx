@@ -17,7 +17,7 @@ export default function About({ data: { allWpPage, alternates } }) {
   return (
     <main>
       <Seo data={seo} lang={language.slug} alternates={alternates} />
-      <Hero data={about.hero} position={'100%'} parent={'top: 20%;'} />
+      <Hero data={about.hero} position={'100%'} parent={'top: 40%; bottom: -10%; min-width: 350px;'} />
       <TwoColumnWithTitleAndImage data={about.twoColumnWithTitle} />
       <DecontominationSubjectsMini data={about.decontominationSubjects} />
       <Technologies data={about.technologies} />
@@ -65,6 +65,11 @@ export const query = graphql`
                     }
                   }
               }
+              links{
+                link
+                name
+                isouter
+              }
             }
             twoColumnWithTitle {
               title
@@ -84,7 +89,7 @@ export const query = graphql`
                 altText
                 localFile {
                   childImageSharp {
-                      gatsbyImageData
+                      gatsbyImageData(placeholder: BLURRED, quality: 100)
                   }
                 }
               }

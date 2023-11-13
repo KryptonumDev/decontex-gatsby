@@ -45,6 +45,11 @@ const Content = styled.div`
   z-index: 1;
 
   .title {
+      padding-top: clamp(
+        120px,
+        ${(220 / 1124) * 100}vw,
+        320px
+      );
     h1,
     h2,
     h3,
@@ -52,11 +57,6 @@ const Content = styled.div`
     h5,
     h6,
     p {
-      padding-top: clamp(
-        120px,
-        ${(220 / 768) * 100}vw,
-        320px
-      );
       text-transform: uppercase;
       font-weight: 900;
       font-size: clamp(24px, ${(40 / 768) * 100}vw, 60px);
@@ -106,14 +106,10 @@ const ImageWrapper = styled(GatsbyImage)`
   }
 
   @media (max-width: 1024px) {
-    width: 130%;
+    width: 140%;
   }
 
   @media (max-width: 768px) {
-    width: 150%;
-  }
-
-  @media (max-width: 480px) {
     width: 160%;
   }
 `

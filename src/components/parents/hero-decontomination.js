@@ -133,6 +133,11 @@ const Content = styled.div`
   z-index: 1;
 
   .title {
+    padding-top: clamp(
+      120px,
+      ${(220 / 1124) * 100}vw,
+      320px
+    );
     h1,
     h2,
     h3,
@@ -140,11 +145,6 @@ const Content = styled.div`
     h5,
     h6,
     p {
-      padding-top: clamp(
-        120px,
-        ${(220 / 768) * 100}vw,
-        320px
-      );
       color: var(--color-white);
       text-transform: uppercase;
       font-weight: 900;

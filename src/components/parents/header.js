@@ -152,7 +152,7 @@ const NavLink = styled(Link)`
   svg{
     transition: transform .3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
     
-    @media (max-width: 1440px) {
+    @media (max-width: 1365px) {
       display: none;
     }
 
@@ -161,14 +161,15 @@ const NavLink = styled(Link)`
     }
   }
 
-  @media (max-width: 1440px) {
+  @media (max-width: 1365px) {
 
     &.div{
-      margin-top: 40px;
+      margin-top: clamp(20px, calc(40vw/7.68), 40px);
+      font-size: clamp(13px, calc(18vw/7.68), 18px);
     }
 
     &.a{
-      font-size: 24px;
+      font-size: clamp(17px, calc(24vw/7.68), 24px);
       font-weight: 700;
       line-height: 133.333%;
     }
@@ -178,7 +179,7 @@ const NavLink = styled(Link)`
   &:hover{
     color: #177BC3;
     
-    @media (max-width: 1440px) {
+    @media (max-width: 1365px) {
       color: #111315;
     }
   }
@@ -189,7 +190,7 @@ const NavLink = styled(Link)`
       color: var(--color-black) ;
     ` : null}
 
-  @media (max-width: 1440px) {
+  @media (max-width: 1365px) {
     color: var(--color-white);
   }
 
@@ -202,7 +203,7 @@ const LanguageChoice = styled.ul`
       display: none;
     }
 
-  @media (max-width: 1440px) {
+  @media (max-width: 1365px) {
     &.desctop{
       display: none;
     }
@@ -271,7 +272,7 @@ const LanguageChoice = styled.ul`
         color: var(--color-black) ;
       ` : null}
     
-    @media (max-width: 1440px) {
+    @media (max-width: 1365px) {
       color: var(--color-white);
     }
   }
@@ -351,7 +352,7 @@ const Navigation = styled.nav`
   align-items: center;
   gap: 48px;
 
-  @media (max-width: 1440px) {
+  @media (max-width: 1365px) {
     z-index: 2; 
     overflow-y: scroll;
     -ms-overflow-style: none;
@@ -374,10 +375,14 @@ const Navigation = styled.nav`
     transform: ${props => props.isMenuOpened ? 'translateX(0%)' : "translateX(100%)"};
 
     padding: clamp(40px, ${52 / 768 * 100}vw, 53px) clamp(16px, ${68 / 768 * 100}vw, 120px) clamp(40px, ${50 / 768 * 100}vw, 60px) clamp(16px, ${68 / 768 * 100}vw, 120px);
+
+    @media (max-width: 768px) {
+      max-width: 80%;
+    }
   }
 
     
-  @media (max-width: 1440px) {
+  @media (max-width: 1365px) {
     .mobile{
       margin-top: 40px;
     }
@@ -393,7 +398,7 @@ const Navigation = styled.nav`
     &.mobile{
       display: none;
     
-      @media (max-width: 1440px) {
+      @media (max-width: 1365px) {
         display: flex;
       }
     }
@@ -410,7 +415,7 @@ const Navigation = styled.nav`
       .div{
         color: #177BC3;
     
-        @media (max-width: 1440px) {
+        @media (max-width: 1365px) {
           color: #fff;
         }
       }
@@ -448,13 +453,13 @@ const Navigation = styled.nav`
       min-width: max-content;
     }
     
-    @media (max-width: 1440px) {
+    @media (max-width: 1365px) {
       background-color: transparent !important;
       position: static;
       padding: 0;
       opacity: 1;
       pointer-events: all;
-      margin-bottom: 40px;
+      margin-bottom: clamp(20px, calc(40vw/7.68), 40px);
     }
   }
 `
@@ -469,7 +474,7 @@ const Button = styled.button`
 
     display: none;
 
-    @media (max-width: 1440px) {
+    @media (max-width: 1365px) {
       display: block;
     }
 
