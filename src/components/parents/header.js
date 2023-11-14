@@ -365,7 +365,7 @@ const Navigation = styled.nav`
     display: block;
     max-width: 700px;
     width: 100%;
-    min-height: 100vh;
+    height: 112vh;
     box-sizing: border-box;
     position: absolute;
     background-color: var(--color-blue);

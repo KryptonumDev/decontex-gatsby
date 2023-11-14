@@ -66,6 +66,7 @@ const Content = styled.div`
   }
 
   .subTitle {
+    max-width: 800px;
     h1,
     h2,
     h3,
