@@ -46,10 +46,19 @@ const Content = styled.div`
 
   .title {
       padding-top: clamp(
-        120px,
-        ${(220 / 1124) * 100}vw,
+        160px,
+        ${(180 / 1124) * 100}vw,
         320px
       );
+
+      @media(max-width: 1024px) {
+        padding-top: clamp(
+          120px,
+          ${(220 / 1124) * 100}vw,
+          320px
+        );
+      }
+
     h1,
     h2,
     h3,
