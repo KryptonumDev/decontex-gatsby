@@ -44,6 +44,10 @@ const Content = styled.div`
   position: relative;
   z-index: 1;
 
+  @media (max-width: 1600px) {
+    max-width: 1200px;
+  }
+
   .title {
       padding-top: clamp(
         160px,
@@ -68,9 +72,13 @@ const Content = styled.div`
     p {
       text-transform: uppercase;
       font-weight: 900;
-      font-size: clamp(24px, ${(60 / 1440) * 100}vw, 60px);
       line-height: 130%;
       letter-spacing: -0.9px;
+      font-size: clamp(24px, ${(48 / 1440) * 100}vw, 60px);
+
+      @media(max-width: 1024px) {
+        font-size: clamp(24px, ${(60 / 1440) * 100}vw, 60px);
+      }
     }
   }
 

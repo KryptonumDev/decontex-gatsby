@@ -157,9 +157,13 @@ const Content = styled.div`
       color: var(--color-white);
       text-transform: uppercase;
       font-weight: 900;
-      font-size: clamp(21px, ${(48 / 768) * 100}vw, 56px);
       line-height: 130%;
       letter-spacing: -0.015em;
+      font-size: clamp(24px, ${(48 / 1440) * 100}vw, 60px);
+
+      @media(max-width: 1024px) {
+        font-size: clamp(24px, ${(60 / 1440) * 100}vw, 60px);
+      }
     }
   }
 
