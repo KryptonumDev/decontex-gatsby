@@ -37,6 +37,14 @@ const Wrapper = styled.div`
   position: relative;
   overflow: hidden;
   min-height: clamp(640px, ${(1080 / 768) * 100}vw, 1080px);
+
+  @media (max-width: 1440px) {
+    min-height: clamp(640px, ${(1080 / 768) * 100}vw, 900px);
+  }
+
+  @media (max-width: 1024px) {
+    min-height: clamp(640px, ${(1080 / 768) * 100}vw, 1020px);
+  }
 `
 
 const Content = styled.div`

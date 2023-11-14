@@ -94,10 +94,6 @@ const Wrapper = styled.section`
   overflow: hidden;
   min-height: clamp(640px, ${(1080 / 768) * 100}vw, 1080px);
 
-  @media (max-width: 1440px) {
-    min-height: clamp(640px, ${(1080 / 768) * 100}vw, 960px);
-  }
-
   /* &::after{
         content: '';
         position: absolute;
