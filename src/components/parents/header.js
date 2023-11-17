@@ -157,6 +157,11 @@ const NavLink = styled(Link)`
 
     path{
       transition: stroke .3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+      
+
+      ${props => (props.isScrolled) ? `
+          stroke: var(--color-black) ;
+        ` : null}
     }
   }
 
@@ -433,10 +438,10 @@ const Navigation = styled.nav`
     left: -32px;
     top: 100%;
     background-color: var(--white-50, #FEFEFE);
-    padding: 16px 48px 32px 48px;
+    padding: 16px 48px 16px 48px;
     
     ${props => (props.isScrolled) ? null : `
-      background-color: transparent;
+      background-color: ${props.isDark ? '#f3f3f3' : 'var(--color-black)'};
     `}
 
     display: grid;
@@ -587,7 +592,11 @@ const Wrapper = styled.header`
     padding: ${props => props.isScrolled ? '12px' : 'clamp(20px, 6.25vw, 48px)'} 0;
     transition: background-color .3s cubic-bezier(0.39, 0.575, 0.565, 1), padding .3s cubic-bezier(0.39, 0.575, 0.565, 1), box-shadow .5s cubic-bezier(0.39, 0.575, 0.565, 1);
     background-color: ${props => props.isScrolled ? 'var(--color-white)' : 'transparent'};
-    filter: drop-shadow(4px 4px 7px rgba(0,0,0,0.05));
+    
+
+    ${props => (props.isScrolled) ? `
+      filter: drop-shadow(4px 4px 7px rgba(0,0,0,0.05));
+    ` : null}
 
     .cta{
       border-color: var(--color-white) !important;
