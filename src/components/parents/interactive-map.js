@@ -484,6 +484,10 @@ const Wrapper = styled.section`
   background: var(--color-black);
   box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.35);
 
+  @media (max-width: 1440px) {
+    zoom: 1.25;
+  }
+
   .map {
     pointer-events: none;
     aspect-ratio: 1.5141955836/1;

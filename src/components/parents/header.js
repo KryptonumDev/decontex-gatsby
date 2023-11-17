@@ -3,7 +3,6 @@ import styled from "styled-components"
 import { ButtonOutlined, ButtonOutlinedOuter, Container } from "../../styles/style"
 import { graphql, Link, useStaticQuery } from "gatsby"
 import { activeLanguage } from "../../helpers/activeLanguage"
-import { GatsbyImage } from "gatsby-plugin-image"
 import { urls } from "../../constants/url"
 import { getCurrentPage } from "../../helpers/getCurrentPage"
 
@@ -354,6 +353,7 @@ const Navigation = styled.nav`
   gap: 48px;
 
   @media (max-width: 1365px) {
+    zoom: 1.25;
     z-index: 2; 
     overflow-y: scroll;
     -ms-overflow-style: none;
@@ -365,7 +365,7 @@ const Navigation = styled.nav`
     display: block;
     max-width: 700px;
     width: 100%;
-    height: 112vh;
+    height: 100vh;
     box-sizing: border-box;
     position: absolute;
     background-color: var(--color-blue);

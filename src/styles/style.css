@@ -20,6 +20,12 @@ html {
     scroll-behavior: smooth;
 }
 
+@media (max-width: 1440px) {
+    html{
+        zoom: 0.8;
+    }
+}
+
 .h1 {
     font-weight: 800;
     font-size: 72px;
