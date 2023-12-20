@@ -27,7 +27,6 @@ export default function FeaturedOneColumn({
 const Wrapper = styled.section`
   max-width: 2560px;
   margin: 0 auto;
-  margin-top: var(--section-margin);
   padding-top: clamp(40px, ${(80 / 768) * 100}vw, 100px);
   padding-bottom: clamp(48px, ${(90 / 768) * 100}vw, 90px);
   background-color: var(--color-blue);
@@ -68,6 +67,10 @@ const Wrapper = styled.section`
       display: grid;
       grid-template-rows: auto 1fr;
       gap: clamp(8px, calc(16vw/7.68), 16px);
+
+      &:first-child{
+        background: var(--Blue-900, #07438A);
+      }
 
       @media (max-width: 580px) {
         grid-template-columns: auto 1fr;

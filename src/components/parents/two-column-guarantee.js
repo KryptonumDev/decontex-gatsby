@@ -3,10 +3,10 @@ import styled from "styled-components"
 import { Container } from "../../styles/style"
 import { GatsbyImage } from "gatsby-plugin-image"
 
-export default function TwoColumns({ data }) {
+export default function TwoColumns({ data, last }) {
   return (
     <Wrapper>
-      <Container className="container">
+      <Container className={`container ${last ? 'last' : ''}`}>
         {data.map((el, i) => (
           <Flex className={i % 2 === 0 ? 'alt' : ''} key={i}>
             <GatsbyImage className="image" alt={el.image.altText} image={el.image.localFile.childImageSharp.gatsbyImageData} />
@@ -19,10 +19,14 @@ export default function TwoColumns({ data }) {
 }
 
 const Wrapper = styled.section`
-  padding-top: clamp( 64px, calc(96vw/7.68), 192px);
+  padding-top: var(--section-margin);
   .container{
     display: grid;
     gap: clamp(64px, calc(128vw/7.68), 128px);
+  }
+
+  .last{
+    padding-bottom: var(--section-margin);
   }
 
   .title {

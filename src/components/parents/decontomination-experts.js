@@ -102,11 +102,11 @@ const Wrapper = styled.section`
 `
 
 const Cite = styled.div`
-    margin-top: clamp(24px, calc(48vw/7.68), 64px);
+    margin: clamp(24px, calc(48vw/7.68), 64px) -40px 0 -40px;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     position: relative;
     overflow: hidden;
-    background: var(--black-700, #111315);
+    background: #000;
 
     @media (max-width: 480px) {
         margin: 0 -16px;

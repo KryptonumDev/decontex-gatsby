@@ -112,6 +112,7 @@ export default function Footer({ location }) {
               {socialLinks.map((el) => (
                 <li key={el.ariaLabel}>
                   <Link
+                    className='social-link'
                     aria-label={el.ariaLabel}
                     to={el.link}>
                     {el.icon.localFile.childImageSharp
@@ -278,6 +279,14 @@ const SecondFlex = styled.div`
 
     li {
       width: fit-content;
+    }
+
+    .social-link {
+
+      img{
+        width: 40px;
+        height: 40px;
+      }
     }
   }
 

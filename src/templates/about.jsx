@@ -3,9 +3,9 @@ import { graphql } from "gatsby"
 import Hero from "../components/parents/hero-decontomination"
 import TwoColumnWithTitleAndImage from "../components/parents/two-column-with-title-image"
 import DecontominationSubjectsMini from "../components/parents/decontomination-subjects-mini"
-import Technologies from "../components/parents/technologies"
 import { toTop } from './../helpers/scrollToTop'
 import Seo from "../components/parents/seo"
+import PillarsOfDecontex from "../components/parents/pillars-of-decontex"
 
 export default function About({ data: { allWpPage, alternates } }) {
   let { about, language, seo } = allWpPage.nodes[0]
@@ -20,7 +20,9 @@ export default function About({ data: { allWpPage, alternates } }) {
       <Hero data={about.hero} position={'100%'} parent={'top: 40%; bottom: -10%; min-width: 350px;'} />
       <TwoColumnWithTitleAndImage data={about.twoColumnWithTitle} />
       <DecontominationSubjectsMini data={about.decontominationSubjects} />
-      <Technologies data={about.technologies} />
+      {about.pillarsOfDecontex.sectionTitle && (
+        <PillarsOfDecontex data={about.pillarsOfDecontex} />
+      )}
     </main>
   )
 }
@@ -71,6 +73,30 @@ export const query = graphql`
                 isouter
               }
             }
+            pillarsOfDecontex{
+              sectionTitle
+              linkOnTheRight{
+                title
+                url
+              }
+              cards{
+                cardTitle
+                cardBackground{
+                  altText
+                  localFile {
+                    childImageSharp {
+                        gatsbyImageData
+                    }
+                  }
+                }
+                cardIcon{
+                  altText
+                  localFile {
+                    publicURL
+                  }
+                }
+              }
+            }
             twoColumnWithTitle {
               title
               text
@@ -90,20 +116,6 @@ export const query = graphql`
                 localFile {
                   childImageSharp {
                       gatsbyImageData(placeholder: BLURRED, quality: 100)
-                  }
-                }
-              }
-            }
-            technologies {
-              title
-              repeater {
-                text
-                img{
-                  altText
-                  localFile {
-                    childImageSharp {
-                        gatsbyImageData
-                    }
                   }
                 }
               }

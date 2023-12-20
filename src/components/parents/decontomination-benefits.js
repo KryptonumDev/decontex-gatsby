@@ -2,26 +2,111 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
 import { Container } from "../../styles/style"
+import { Link } from "gatsby"
 
-export default function DecontominationBenefits({ data: { sectionTitle, text, textBenefits, benefits } }) {
+export default function DecontominationBenefits({ data: { link, sectionTitle, text, textBenefits, benefits } }) {
     return (
         <Wrapper>
             <Container>
-                <div className="title" dangerouslySetInnerHTML={{__html: sectionTitle}}/>
-                <div className="text" dangerouslySetInnerHTML={{__html: text}}/>
+                <div className="title" dangerouslySetInnerHTML={{ __html: sectionTitle }} />
+                <div className="text" dangerouslySetInnerHTML={{ __html: text }} />
                 <Grid>
                     {benefits.map(el => (
                         <Item key={el.benefitText}>
-                            <GatsbyImage className="image" image={el.benefitIcon.localFile.childImageSharp.gatsbyImageData} alt={el.benefitIcon.altText}/>
+                            <GatsbyImage className="image" image={el.benefitIcon.localFile.childImageSharp.gatsbyImageData} alt={el.benefitIcon.altText} />
                             <h3>{el.benefitText}</h3>
                         </Item>
                     ))}
                 </Grid>
-                <div className="sub" dangerouslySetInnerHTML={{__html: textBenefits}}/>
+                <div className="sub" dangerouslySetInnerHTML={{ __html: textBenefits }} />
+                <Links>
+                    {link.map(el => (
+                        <Link key={el.link.url} to={el.link.url} aria-label={el.ariaLabel}>
+                            <GatsbyImage image={el.image.localFile.childImageSharp.gatsbyImageData} alt={el.image.altText} />
+                            <div className="content">
+                                <p>{el.cardTitle}</p>
+                                <span>
+                                    <span>{el.link.title}</span>
+                                &nbsp;
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M8.14453 3L15.8588 12L8.14453 21" stroke="#177BC3" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </span>
+                            </div>
+                        </Link>
+                    ))}
+                </Links>
             </Container>
         </Wrapper>
     )
 }
+
+const Links = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: fit-content;
+    grid-gap: clamp(20px, ${40 / 768 * 100}vw, 60px);
+    margin: clamp(48px, calc(104vw/7.68), 132px) auto;
+
+    a{
+        border: 4px solid var(--White-50, #FEFEFE);
+        background: var(--White-50, #FEFEFE);
+        max-width: 500px;
+
+        &:hover{
+            svg{
+            transform: translateX(8px);
+            }
+        }
+
+        .content{
+            padding: clamp(8px, calc(16vw/7.68), 64px) clamp(8px, calc(16vw/7.68), 18px) clamp(8px, calc(16vw/7.68), 48px) clamp(8px, calc(16vw/7.68), 18px);
+            text-align: center;
+
+            p{
+                color: var(--Black-700, #111315);
+                font-size: clamp(21px, calc(40vw/7.68), 64px);
+                font-weight: 900;
+                line-height: 112.5%;
+                letter-spacing: -0.96px;
+                text-transform: uppercase;
+                margin-bottom: clamp(12px, calc(12vw/7.68), 24px);
+                word-break: break-word;
+            }
+
+            >span{
+                color: var(--Blue-700, #177BC3);
+                font-size: clamp(14px, calc(21vw/7.68), 36px);
+                font-weight: 700;
+                line-height: 150%;
+                text-decoration-line: underline;
+                display: block;
+
+                >span{
+                    word-break: break-word;
+                }
+
+                svg{
+                    height: 24px;
+
+                    @media (max-width: 1024px) {
+                        height: 20px;
+                    }
+
+                    @media (max-width: 768px) {
+                        height: 16px;
+                    }
+
+                    @media (max-width: 640px) {
+                        height: 12px;
+                    }
+
+                    transition: transform .3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+                }
+            }
+        }
+    }
+`
 
 const Wrapper = styled.section`
     margin-top: var(--section-margin);

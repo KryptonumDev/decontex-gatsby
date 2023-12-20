@@ -2,13 +2,16 @@ import * as React from 'react'
 import { graphql } from "gatsby"
 import Hero from '../components/parents/hero-decontomination'
 import WhatIsDecontomination from '../components/parents/what-is-decontomination'
-import DecontominationBenefits from "../components/parents/decontominations-advantages" // new
+import DecontominationBenefits from "../components/parents/decontominations-advantages"
 import DecontomiantionBenefits from '../components/parents/decontomination-benefits-black'
 import TwoColumnWithTitle from '../components/parents/two-column-with-title'
-import FeaturedJackets from '../components/parents/featured-jackets'
 import { toTop } from './../helpers/scrollToTop'
 import Seo from '../components/parents/seo'
-import DecontominationExperts from '../components/parents/decontomination-experts'
+import DecontominationExpertsAlt from '../components/parents/decontomination-experts-alt'
+import PatentedPlates from '../components/parents/patented-plates'
+import PerformanceCompare from '../components/parents/performance-compare'
+import TwoColumns from '../components/parents/two-column-guarantee'
+import CarcinogenicCompounds from '../components/parents/carcinogenic-compounds'
 
 export default function Decontomination({ data: { allWpPage, alternates } }) {
   let { decontomination, language, seo } = allWpPage.nodes[0]
@@ -19,14 +22,17 @@ export default function Decontomination({ data: { allWpPage, alternates } }) {
 
   return (
     <main>
-      <Seo data={seo} lang={language.slug}  alternates={alternates} />
+      <Seo data={seo} lang={language.slug} alternates={alternates} />
       <Hero data={decontomination.heroDecontomination} position={'50%'} />
       <WhatIsDecontomination data={decontomination.decontexTechnology} />
-      <DecontominationExperts data={decontomination.decontominationExpertsDecontex}/>
+      <DecontominationExpertsAlt data={decontomination.decontominationExpertsDecontex} />
+      <PatentedPlates data={decontomination.patentedPlates} />
+      <PerformanceCompare data={decontomination.performanceCompare} />
+      <CarcinogenicCompounds data={decontomination.carcinogenicCompounds}/>
       <DecontomiantionBenefits data={decontomination.decontominationBenefitsDecon} />
       <TwoColumnWithTitle data={decontomination.twoColumnsWithTitle} />
       <DecontominationBenefits data={decontomination.decontominationAdvantages} />
-      <FeaturedJackets data={decontomination.featuredWithJackets} />
+      <TwoColumns last={true} data={decontomination.twoColumnRepeaterDecontamination} />
     </main>
   )
 }
@@ -60,6 +66,30 @@ export const query = graphql`
           }
         }
         decontomination {
+          carcinogenicCompounds{
+            sectionTitle
+            textUnderTitle
+            imageUnderText{
+              altText
+              localFile {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
+            
+            }
+          }
+          twoColumnRepeaterDecontamination{
+              image{
+                  altText
+                  localFile{
+                      childImageSharp {
+                          gatsbyImageData
+                      }
+                  }
+              }
+              content
+          }
           heroDecontomination {
                 title
                 links{
@@ -87,12 +117,28 @@ export const query = graphql`
                   }
                 }
               }
-              subSectionTitle
+              partTitle
+              leftTextUnderTitle
+              rightTextUnderTitle
+              subTitleAbovePlates
+              plates{
+                plateIcon{
+                  altText
+                  localFile {
+                    publicURL
+                  }
+                }
+                plateContent
+              }
+              textUnderPlates
+            }
+            patentedPlates{
+              title
               link{
                 title
                 url
               }
-              subSectionPlates{
+              plates{
                 plateIcon{
                   altText
                   localFile {
@@ -107,6 +153,8 @@ export const query = graphql`
                   }
                 }
               }
+            }
+            performanceCompare{
               compareTitle
               compare{
                 groupContent
@@ -166,28 +214,6 @@ export const query = graphql`
               button{
                 url
                 name
-              }
-            }
-            featuredWithJackets{
-              leftText
-              rightText
-              textFirst
-              textSecond
-              firstJacket{
-                altText
-                localFile {
-                    childImageSharp {
-                        gatsbyImageData(quality: 100)
-                    }
-                }
-              }
-              secondJacket{
-                altText
-                localFile {
-                    childImageSharp {
-                        gatsbyImageData(quality: 100)
-                    }
-                }
               }
             }
         }

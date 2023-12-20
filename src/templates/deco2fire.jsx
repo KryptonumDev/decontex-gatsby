@@ -18,12 +18,12 @@ export default function Deco2fire({ data: { allWpPage, alternates } }) {
 
   return (
     <main>
-      <Seo data={seo} lang={language.slug} alternates={alternates}/>
+      <Seo data={seo} lang={language.slug} alternates={alternates} />
       <Hero data={deco2fire.heroDeco2fire} position={'60%'} />
-      <SuitDescription data={deco2fire.suitDescription} />
-      <DecontominationBenefits data={deco2fire.decontominationBenefits} />
-      <Cleanroom data={deco2fire.decontexCleanroom} />
       <FeaturedOneColumn data={deco2fire.featuredOneColumn} />
+      <DecontominationBenefits data={deco2fire.decontominationBenefits} />
+      <SuitDescription data={deco2fire.suitDescription} />
+      <Cleanroom data={deco2fire.decontexCleanroom} />
       <OtherTechnologies data={deco2fire.otherTechnologies} />
     </main>
   )
@@ -131,6 +131,21 @@ export const query = graphql`
                 }
               }
             }
+            link{
+              image{
+                altText
+                localFile {
+                  childImageSharp {
+                    gatsbyImageData
+                  }
+                }
+              }
+              link{
+                title
+                url
+              }
+              cardTitle
+            }
           }
           decontexCleanroom{
             sectionTitle
@@ -159,22 +174,6 @@ export const query = graphql`
                   }
                 }
               }
-            }
-            headquarters{
-              countryFlag{
-                altText
-                localFile {
-                  childImageSharp {
-                    gatsbyImageData
-                  }
-                }
-              }
-              name
-              phone{
-                text
-              }
-              email
-              address
             }
           }
           featuredOneColumn{
@@ -209,18 +208,6 @@ export const query = graphql`
                 url
                 text
               }
-            }
-            link{
-              image{
-                altText
-                localFile {
-                  childImageSharp {
-                    gatsbyImageData
-                  }
-                }
-              }
-              link
-              ariaLabel
             }
             image{
               altText

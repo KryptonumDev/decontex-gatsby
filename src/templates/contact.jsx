@@ -3,6 +3,7 @@ import { graphql } from "gatsby"
 import ContactForm from "../components/parents/contact"
 import { toTop } from './../helpers/scrollToTop'
 import Seo from "../components/parents/seo"
+import Headquarters from "../components/parents/headquarters"
 // import JobOffer from "../components/parents/job-offer"
 
 export default function Contact({ data: { allWpPage, alternates } }) {
@@ -16,6 +17,7 @@ export default function Contact({ data: { allWpPage, alternates } }) {
     <main>
       <Seo data={seo} lang={language.slug} alternates={alternates} />
       <ContactForm data={contact} contactPage={true} lang={language.name} />
+      <Headquarters headquarters={contact.headquarters} />
       {/* {jobOffer.jobTitle
         ? <JobOffer data={jobOffer} />
         : null} */}
@@ -82,6 +84,22 @@ export const query = graphql`
                   gatsbyImageData
                 }
               }
+            }
+            headquarters{
+              countryFlag{
+                altText
+                localFile {
+                  childImageSharp {
+                    gatsbyImageData
+                  }
+                }
+              }
+              name
+              phone{
+                text
+              }
+              email
+              address
             }
         }
       }
