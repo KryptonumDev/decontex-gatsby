@@ -13,13 +13,15 @@ export default function PillarsOfDecontex({ data: {
     <Wrapper>
       <Container>
         <div className="flex">
-          <div className="title" dangerouslySetInnerHTML={{ __html: sectionTitle }} />
-          <Link className="link" to={linkOnTheRight.url}>
-            {linkOnTheRight.title}
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M8.14453 3L15.8588 12L8.14453 21" stroke="#177BC3" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </Link>
+          <div className={linkOnTheRight?.url ? "title" : 'long title'} dangerouslySetInnerHTML={{ __html: sectionTitle }} />
+          {linkOnTheRight?.url && (
+            <Link className="link" to={linkOnTheRight.url}>
+              {linkOnTheRight.title}
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8.14453 3L15.8588 12L8.14453 21" stroke="#177BC3" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </Link>
+          )}
         </div>
         <Grid>
           {cards.map(el => (
@@ -57,6 +59,10 @@ const Wrapper = styled.section`
         line-height: 120%;
         letter-spacing: -0.9px;
         text-transform: uppercase;
+    }
+
+    &.long{
+      max-width: 1060px;
     }
   }
 

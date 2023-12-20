@@ -11,14 +11,14 @@ import 'swiper/css';
 import Left from './../../resources/left.svg'
 import Right from './../../resources/right.svg'
 
-export default function DecontominationSubjectsMini({ data: { title, partners } }) {
+export default function DecontominationSubjectsMini({ last, data: { title, partners } }) {
     return (
-        <Wrapper>
+        <Wrapper className={last ? 'last' : ''}>
             <Container>
                 <div className="title" dangerouslySetInnerHTML={{ __html: title }}></div>
                 <Swiper
                     slidesPerView={'auto'}
-                    modules={[Navigation, A11y ]}
+                    modules={[Navigation, A11y]}
                     navigation={true}
                 >
                     {partners?.map(el => (
@@ -34,6 +34,10 @@ export default function DecontominationSubjectsMini({ data: { title, partners } 
 
 const Wrapper = styled.section`
     margin-top: var(--section-margin);
+
+    &.last{
+        margin-bottom: var(--section-margin);
+    }
 
     .title{
         margin-bottom: clamp(26px, ${60 / 768 * 100}vw, 96px);

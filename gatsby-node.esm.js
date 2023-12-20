@@ -522,6 +522,36 @@ exports.createPages = async ({
         },
       });
     });
+
+    // Social-responsibility
+
+    const { data: { allWpPage: { SocialNodes } } } = await graphql(`
+    query {
+      allWpPage(filter: {template: {templateName: {eq: "Social-responsibility"}}}) {
+        SocialNodes: nodes {
+          id
+          language {
+            slug
+          }
+          template {
+            templateName
+          }
+        }
+      }
+    }
+  `);
+  
+  SocialNodes.forEach(({ id, language: { slug }, template: {templateName} }) => {
+      createPage({
+        path: urls["Social-responsibility"][slug],
+        component: resolve('src/templates/social-responsibility.jsx'),
+        context: {
+          id,
+          slug,
+          templateName
+        },
+      });
+    });
 }
 
 

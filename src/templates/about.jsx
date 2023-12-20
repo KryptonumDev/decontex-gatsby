@@ -19,8 +19,8 @@ export default function About({ data: { allWpPage, alternates } }) {
       <Seo data={seo} lang={language.slug} alternates={alternates} />
       <Hero data={about.hero} position={'100%'} parent={'top: 40%; bottom: -10%; min-width: 350px;'} />
       <TwoColumnWithTitleAndImage data={about.twoColumnWithTitle} />
-      <DecontominationSubjectsMini data={about.decontominationSubjects} />
-      {about.pillarsOfDecontex.sectionTitle && (
+      <DecontominationSubjectsMini last={!about.pillarsOfDecontex?.sectionTitle} data={about.decontominationSubjects} />
+      {about.pillarsOfDecontex?.sectionTitle && (
         <PillarsOfDecontex data={about.pillarsOfDecontex} />
       )}
     </main>

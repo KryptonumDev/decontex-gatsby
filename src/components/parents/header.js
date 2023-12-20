@@ -230,6 +230,8 @@ const LanguageChoice = styled.ul`
       ul{
         gap: 0;
         z-index: 4;
+        left: 0 !important;
+        right: unset !important;
 
         a{
           width: 100%;

@@ -108,6 +108,14 @@ export const urls = {
         fr: '/fr/guarantee/',
         nl: '/nl/guarantee/',
         es: '/es/guarantee/'
+    },
+
+    'Social-responsibility': {
+        en: '/social-responsibility/',
+        de: '/de/social-responsibility/',
+        fr: '/fr/social-responsibility/',
+        nl: '/nl/social-responsibility/',
+        es: '/es/social-responsibility/'
     }
 
 }

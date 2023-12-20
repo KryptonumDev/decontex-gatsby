@@ -10,12 +10,13 @@ import {
 import { GatsbyImage } from 'gatsby-plugin-image'
 
 export default function Hero({
+  alt,
   data: { title, subTitle, background, links },
   position,
   parent
 }) {
   return (
-    <Wrapper>
+    <Wrapper >
       <Container>
         <Content>
           <div
@@ -25,7 +26,7 @@ export default function Hero({
             }}></div>
           {subTitle ? (
             <div
-              className='subTitle'
+              className={alt ? 'altSubTitle' : 'subTitle'}
               dangerouslySetInnerHTML={{
                 __html: subTitle
               }}></div>
@@ -75,11 +76,12 @@ export default function Hero({
       <ImageWrapper
         parent={parent}
         position={position}
-        imgClassName='image'
+        imgClassName={alt ? 'alt image' : 'image'}
         image={
           background.localFile.childImageSharp
             .gatsbyImageData
         }
+        className={alt ? 'alt' : ''}
         alt={background.altText}
       />
     </Wrapper>
@@ -188,6 +190,23 @@ const Content = styled.div`
       font-weight: 400;
     }
   }
+
+  .altSubTitle{
+    margin-top: clamp(12px, ${(12 / 768) * 100}vw, 32px);
+    max-width: 700px;
+
+    >* {
+      font-weight: 500;
+      font-size: clamp(17px, ${(24 / 768) * 100}vw, 26px);
+      line-height: 130%;
+      color: #f3f3f3;
+      color: var(--color-white);
+    }
+
+    >* + * {
+      margin-top: 24px;
+    }
+  }
 `
 
 const ImageWrapper = styled(GatsbyImage)`
@@ -200,6 +219,18 @@ const ImageWrapper = styled(GatsbyImage)`
 
   @media (max-width: 1800px) {
     ${(props) => props.parent}
+  }
+
+  @media (max-width: 480px) {
+    &.alt{
+        top: 27%;
+    }
+  }
+
+  @media (max-width:380px) {
+    &.alt{
+        top: 35%;
+    }
   }
 
   .image {
