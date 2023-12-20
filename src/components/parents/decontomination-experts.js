@@ -10,13 +10,17 @@ export default function DecontominationExperts({ data: { title, citeUnderTitle, 
         <Wrapper>
             <Container>
                 <div className="title" dangerouslySetInnerHTML={{ __html: title }} />
-                <Cite>
-                    <svg width="135" height="114" viewBox="0 0 135 114" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M135 0V31.5458C135 47.9351 133.04 61.4962 129.12 72.229C125.2 82.8168 118.376 91.8092 108.648 99.2061C99.0652 106.458 88.1758 111.389 75.9797 114V88.5458C84.546 83.7595 89.4099 77.2328 90.5715 68.9657H75.9797V0H135ZM59.0203 0V31.5458C59.0203 47.9351 57.0602 61.4962 53.14 72.229C49.2199 82.8168 42.3959 91.8092 32.668 99.2061C23.0854 106.458 12.1961 111.389 0 114V88.5458C8.71148 83.7595 13.648 77.2328 14.8095 68.9657H0V0H59.0203Z" fill="#33383D" />
-                    </svg>
+            </Container>
+            <Cite>
+                <svg width="135" height="114" viewBox="0 0 135 114" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M135 0V31.5458C135 47.9351 133.04 61.4962 129.12 72.229C125.2 82.8168 118.376 91.8092 108.648 99.2061C99.0652 106.458 88.1758 111.389 75.9797 114V88.5458C84.546 83.7595 89.4099 77.2328 90.5715 68.9657H75.9797V0H135ZM59.0203 0V31.5458C59.0203 47.9351 57.0602 61.4962 53.14 72.229C49.2199 82.8168 42.3959 91.8092 32.668 99.2061C23.0854 106.458 12.1961 111.389 0 114V88.5458C8.71148 83.7595 13.648 77.2328 14.8095 68.9657H0V0H59.0203Z" fill="#33383D" />
+                </svg>
+                <Container>
                     <div className="content" dangerouslySetInnerHTML={{ __html: citeUnderTitle }} />
-                    <GatsbyImage className="image" image={citeBackground.localFile.childImageSharp.gatsbyImageData} alt={citeBackground.altText} />
-                </Cite>
+                </Container>
+                <GatsbyImage className="image" image={citeBackground.localFile.childImageSharp.gatsbyImageData} alt={citeBackground.altText} />
+            </Cite>
+            <Container>
                 <SubSection>
                     <div>
                         <div className="sub-title" dangerouslySetInnerHTML={{ __html: subSectionTitle }} />
@@ -56,7 +60,7 @@ export default function DecontominationExperts({ data: { title, citeUnderTitle, 
                     </Compare>
                 )}
             </Container>
-        </Wrapper>
+        </Wrapper >
     )
 }
 
@@ -102,15 +106,14 @@ const Wrapper = styled.section`
 `
 
 const Cite = styled.div`
-    margin: clamp(24px, calc(48vw/7.68), 64px) -40px 0 -40px;
+    margin: clamp(24px, calc(48vw/7.68), 64px) auto 0 auto;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     position: relative;
     overflow: hidden;
     background: #000;
-
-    @media (max-width: 480px) {
-        margin: 0 -16px;
-    }
+    max-width: 1920px;
+    width: 100%;
+    background-color: #080808;
 
     svg{
         left: clamp(16px, calc(40vw/7.68), 64px);
@@ -127,7 +130,9 @@ const Cite = styled.div`
         right: 0;
         top: 0;
         bottom: 0;
-        left: 20%;
+        width: 100%;
+        min-width: 1024px;
+        mix-blend-mode: lighten;
 
         img{
             object-position: top;
@@ -135,8 +140,11 @@ const Cite = styled.div`
 
         @media (max-width: 480px) {
             position: relative;
-            inset: unset;
-            
+            left: 100%;
+            transform: translateX(-100%);
+        }
+        @media (max-width: 360px) {
+            min-width: 840px;
         }
     }
 
@@ -154,8 +162,17 @@ const Cite = styled.div`
             line-height:  160%;
         }
 
+        @media (max-width: 864px) {
+            max-width: 70%;
+        }
+
+        @media (max-width: 540px) {
+            max-width: 85%;
+        }
+
         @media (max-width: 480px) {
             padding: 48px 16px 16px 40px;
+            max-width: 100%;
         }
     }
 `
