@@ -4,38 +4,40 @@ import styled from "styled-components"
 import Mark from './../../resources/list-mark-white.svg'
 
 export default function PatentedPlates({ data: { title, plates, link } }) {
-  return (
+    return (
 
-    <Wrapper>
-      <Container>
-        <Section>
-          <div>
-            <div className="sub-title" dangerouslySetInnerHTML={{ __html: title }} />
-            <ButtonBlue to={link.url}>
-              {link.title}
-            </ButtonBlue>
-          </div>
-          <div className="plates">
-            <div className="lines">
-              <span />
-              <span />
-              <span />
-              <span />
-            </div>
-            <div className="grid">
-              {plates.map((plate, index) => (
-                <div className="item">
-                  <img src={plate.plateIcon.localFile.publicURL} alt={plate.plateIcon.altText} />
-                  <div dangerouslySetInnerHTML={{ __html: plate.plateContent }} />
-                  <img className="pattent" src={plate.patentedIcon.localFile.publicURL} alt={plate.patentedIcon.altText} />
-                </div>
-              ))}
-            </div>
-          </div>
-        </Section>
-      </Container>
-    </Wrapper>
-  )
+        <Wrapper>
+            <Container>
+                <Section>
+                    <div>
+                        <div className="sub-title" dangerouslySetInnerHTML={{ __html: title }} />
+                        {link && (
+                            <ButtonBlue to={link.url}>
+                                {link.title}
+                            </ButtonBlue>
+                        )}
+                    </div>
+                    <div className="plates">
+                        <div className="lines">
+                            <span />
+                            <span />
+                            <span />
+                            <span />
+                        </div>
+                        <div className="grid">
+                            {plates.map((plate, index) => (
+                                <div className="item">
+                                    <img src={plate.plateIcon.localFile.publicURL} alt={plate.plateIcon.altText} />
+                                    <div dangerouslySetInnerHTML={{ __html: plate.plateContent }} />
+                                    <img className="pattent" src={plate.patentedIcon.localFile.publicURL} alt={plate.patentedIcon.altText} />
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </Section>
+            </Container>
+        </Wrapper>
+    )
 }
 
 const Wrapper = styled.section`
