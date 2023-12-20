@@ -7,12 +7,16 @@ export default function Raport({ data: { title, text, image, textUnderImage, dow
   return (
     <Wrapper>
       <Container>
-        <div className="flex">
-          <div className="title" dangerouslySetInnerHTML={{ __html: title }} />
-          <div className="text" dangerouslySetInnerHTML={{ __html: text }} />
-        </div>
-        <GatsbyImage className="image" image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
-        <div className="sub-title" dangerouslySetInnerHTML={{ __html: textUnderImage }} />
+        {(title && text && image) && (
+          <>
+            <div className="flex">
+              <div className="title" dangerouslySetInnerHTML={{ __html: title }} />
+              <div className="text" dangerouslySetInnerHTML={{ __html: text }} />
+            </div>
+            <GatsbyImage className="image" image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
+            <div className="sub-title" dangerouslySetInnerHTML={{ __html: textUnderImage }} />
+          </>
+        )}
         <RaportPart>
           <div className="content">
             <div dangerouslySetInnerHTML={{ __html: downloadRaportText }} />
@@ -20,7 +24,7 @@ export default function Raport({ data: { title, text, image, textUnderImage, dow
               {downloadRaportFileButtonText}
             </ButtonBlue>
           </div>
-          <GatsbyImage layout='fixed' className="rap" image={raportImage.localFile.childImageSharp.gatsbyImageData} alt={raportImage.altText}/>
+          <GatsbyImage layout='fixed' className="rap" image={raportImage.localFile.childImageSharp.gatsbyImageData} alt={raportImage.altText} />
         </RaportPart>
       </Container>
     </Wrapper>
