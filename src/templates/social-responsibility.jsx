@@ -5,6 +5,7 @@ import Hero from "../components/parents/hero-decontomination"
 import PillarsOfDecontex from "../components/parents/pillars-of-decontex"
 import HowWeDoIt from "../components/parents/how-we-do-it"
 import PillarsExtense from "../components/parents/pilars-extense"
+import Cite from "../components/parents/cite"
 
 export default function About({ data: { allWpPage, alternates } }) {
   let { socialResponsibility, language, seo } = allWpPage.nodes[0]
@@ -19,6 +20,7 @@ export default function About({ data: { allWpPage, alternates } }) {
       <HowWeDoIt data={socialResponsibility.howWeDoIt} />
       <PillarsOfDecontex data={socialResponsibility.pillarsOfDecontexSocialResponsibility} />
       <PillarsExtense data={socialResponsibility.pillarsExtense} />
+      <Cite data={socialResponsibility.citeSection}/>
     </main>
   )
 }
@@ -52,6 +54,9 @@ export const query = graphql`
           }
         }
         socialResponsibility{
+          citeSection{
+            cite
+          }
           pillarsExtense{
             image{
               altText

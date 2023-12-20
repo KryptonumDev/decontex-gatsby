@@ -10,9 +10,9 @@ export default function PillarsExtense({ data }) {
       {data?.map((el, index) => (
         <Wrapper key={index}>
           <Container>
-            <Flex>
+            <Flex className={index % 2 === 0 ? 'reversed areas' : 'areas'}>
               <GatsbyImage className="image" image={el.image.localFile.childImageSharp.gatsbyImageData} alt={el.image.altText} />
-              <div className="content" dangerouslySetInnerHTML={{ __html: el.content }} />
+              <div className="content area" dangerouslySetInnerHTML={{ __html: el.content }} />
             </Flex>
             <Flex>
               <div className="content" dangerouslySetInnerHTML={{ __html: el.leftText }} />
@@ -41,6 +41,33 @@ const Flex = styled.div`
 
   @media (max-width: 864px) {
     grid-template-columns: 1fr;
+  }
+
+
+  &.areas{
+    grid-template-areas: 'left right';
+
+    &.reversed{
+      grid-template-areas: 'right left';
+    }
+
+    @media (max-width: 864px) {
+      grid-template-areas: unset !important;
+    }
+
+    .image{
+      grid-area: left;
+      @media (max-width: 864px) {
+        grid-area: unset !important;
+      }
+    }
+
+    .area{
+      grid-area: right;
+      @media (max-width: 864px) {
+        grid-area: unset !important;
+      }
+    }
   }
 
   &:first-child{

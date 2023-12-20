@@ -27,7 +27,7 @@ export default function PillarsOfDecontex({ data: {
           {cards.map(el => (
             <div className={`item ${el.cardBackground ? 'background' : ''}`} key={el.cardTitle}>
               <div>
-                {el.cardIcon && <img src={el.cardIcon.localFile.publicURL} alt={el.cardIcon.altText} />}
+                {el.cardIcon && <img className="icon" src={el.cardIcon.localFile.publicURL} alt={el.cardIcon.altText} />}
               </div>
               {el.cardBackground && <GatsbyImage className="image" image={el.cardBackground.localFile.childImageSharp.gatsbyImageData} alt={el.cardBackground.altText} />}
 
@@ -112,6 +112,12 @@ const Grid = styled.div`
     justify-content: space-between;
     position: relative;
     aspect-ratio: 326/371;
+
+    .icon{
+      margin: 0 auto;
+      display: block;
+      width: clamp(48px, calc(96vw/7.68), 96px);
+    }
 
     /* @media (max-width: 380px) {
       grid-template-columns: 1fr;

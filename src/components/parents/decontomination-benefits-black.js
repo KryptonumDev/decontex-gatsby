@@ -9,6 +9,7 @@ export default function DecontomiantionBenefits({
   return (
     <Wrapper>
       <Container>
+        <div className='main-title' dangerouslySetInnerHTML={{ __html: sectionTitle }} />
         <Grid>
           {benefit.map((el) => (
             <Item key={el.title}>
@@ -31,12 +32,24 @@ export default function DecontomiantionBenefits({
 }
 
 const Wrapper = styled.section`
-  padding: clamp(48px, ${(66 / 768) * 100}vw, 144px) 0
+  padding: clamp(32px, ${(64 / 768) * 100}vw, 128px) 0
     clamp(45px, ${(45 / 768) * 100}vw, 90px) 0;
   background-color: var(--color-black);
   max-width: 2560px;
   margin: 0 auto;
   margin-top: var(--section-margin);
+
+  .main-title{
+    margin-bottom: clamp(32px, calc(64vw/7.68), 96px);
+    >*{
+      text-align: center;
+      color: var(--color-white);
+      font-weight: 700;
+      font-size: clamp(24px, ${(40 / 1024) * 100}vw, 60px);
+      line-height: 130%;
+      letter-spacing: -0.6px;
+    }
+  }
 `
 
 const Grid = styled.div`
