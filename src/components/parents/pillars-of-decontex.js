@@ -30,7 +30,6 @@ export default function PillarsOfDecontex({ data: {
                 {el.cardIcon && <img className="icon" src={el.cardIcon.localFile.publicURL} alt={el.cardIcon.altText} />}
               </div>
               {el.cardBackground && <GatsbyImage className="image" image={el.cardBackground.localFile.childImageSharp.gatsbyImageData} alt={el.cardBackground.altText} />}
-
               <h3>{el.cardTitle}</h3>
             </div>
           ))}
@@ -127,6 +126,7 @@ const Grid = styled.div`
     h3{
       font-size: clamp(17px, calc(28vw/7.68), 28px);
       font-weight: 700;
+      text-align: center;
     }
 
     &.background{

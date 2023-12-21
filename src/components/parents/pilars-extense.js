@@ -14,10 +14,12 @@ export default function PillarsExtense({ data }) {
               <GatsbyImage className="image" image={el.image.localFile.childImageSharp.gatsbyImageData} alt={el.image.altText} />
               <div className="content area" dangerouslySetInnerHTML={{ __html: el.content }} />
             </Flex>
-            <Flex>
-              <div className="content" dangerouslySetInnerHTML={{ __html: el.leftText }} />
-              <div className="content" dangerouslySetInnerHTML={{ __html: el.rightText }} />
-            </Flex>
+            {(el.leftText || el.rightText) && (
+              <Flex>
+                <div className="content" dangerouslySetInnerHTML={{ __html: el.leftText }} />
+                <div className="content" dangerouslySetInnerHTML={{ __html: el.rightText }} />
+              </Flex>
+            )}
           </Container>
         </Wrapper>
       ))}
