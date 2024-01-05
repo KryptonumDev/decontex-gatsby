@@ -21,10 +21,8 @@ html {
     
 }
 
-@media (max-width: 1440px) {
-    html{
-        zoom: 0.8;
-    }
+html{
+    zoom: 0.8;
 }
 
 .h1 {
