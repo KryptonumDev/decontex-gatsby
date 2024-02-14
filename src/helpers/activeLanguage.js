@@ -17,5 +17,9 @@ export const activeLanguage = (location) => {
         return 'nl'
     }
 
+    if (location.pathname.includes('/nb/')) {
+        return 'nb'
+    }
+
     return defLocale
 }
