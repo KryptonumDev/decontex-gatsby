@@ -1,6 +1,4 @@
-const fs = require('fs');
 const { resolve } = require('path');
-const { get } = require('https');
 
 import { urls } from './src/constants/url'
 
