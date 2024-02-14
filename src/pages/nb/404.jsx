@@ -21,7 +21,7 @@ const NotFoundPage = ({ data: { allWpPage } }) => {
 export default NotFoundPage
 
 export const query = graphql`
-  query ErrorEsPageQuery{
+  query ErrorNbPageQuery{
     allWpPage(filter: {id: {eq: "cG9zdDozNzU4"}}) {
       nodes {
         seo {
