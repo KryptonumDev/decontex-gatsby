@@ -22,7 +22,7 @@ export default NotFoundPage
 
 export const query = graphql`
   query ErrorNlPageQuery{
-    allWpPage(filter: {id: {eq: ""}}) {
+    allWpPage(filter: {id: {eq: "cG9zdDozODM0"}}) {
       nodes {
         seo {
           title
