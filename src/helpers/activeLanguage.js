@@ -21,5 +21,13 @@ export const activeLanguage = (location) => {
         return 'nb'
     }
 
+    if (location.pathname.includes('/fi/')) {
+        return 'fi'
+    }
+
+    if (location.pathname.includes('/pt/')) {
+        return 'pt'
+    }
+
     return defLocale
 }

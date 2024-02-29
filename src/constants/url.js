@@ -6,6 +6,8 @@ export const urls = {
         nl: '/nl/',
         es: '/es/',
         nb: '/nb/',
+        fi: '/fi/',
+        pt: '/pt/',
     },
     "Deco2fire": {
         en: '/deco2fire/',
@@ -14,6 +16,8 @@ export const urls = {
         nl: '/nl/deco2fire/',
         es: '/es/deco2fire/',
         nb: '/nb/deco2fire/',
+        fi: '/fi/deco2fire/',
+        pt: '/pt/deco2fire/',
     },
     "Decontomination": {
         en: '/decon-solution/',
@@ -22,6 +26,8 @@ export const urls = {
         nl: '/nl/decon-solution/',
         es: '/es/decon-solucion/',
         nb: '/nb/decon-solution/',
+        fi: '/fi/decon-solution/',
+        pt: '/pt/decon-solution/',
     },
     "About": {
         en: '/about-us/',
@@ -30,6 +36,8 @@ export const urls = {
         nl: '/nl/about-us/',
         es: '/es/sobre-nosotros/',
         nb: '/nb/about-us/',
+        fi: '/fi/about-us/',
+        pt: '/pt/about-us/',
     },
     "Case Studies": {
         en: '/case-studies/',
@@ -38,6 +46,8 @@ export const urls = {
         nl: '/nl/case-studies/',
         es: '/es/estudios-caso/',
         nb: '/nb/case-studies/',
+        fi: '/fi/case-studies/',
+        pt: '/pt/case-studies/',
     },
     "Lco2": {
         en: '/pressurized-co2/',
@@ -46,6 +56,8 @@ export const urls = {
         nl: '/nl/pressurized-co2/',
         es: '/es/co2-presurizado/',
         nb: '/nb/pressurized-co2/',
+        fi: '/fi/pressurized-co2/',
+        pt: '/pt/pressurized-co2/',
     },
     "Faq": {
         en: '/faq/',
@@ -54,6 +66,8 @@ export const urls = {
         nl: '/nl/faq/',
         es: '/es/faq/',
         nb: '/nb/faq/',
+        fi: '/fi/faq/',
+        pt: '/pt/faq/',
     },
     "Contact": {
         en: '/contact/',
@@ -62,6 +76,8 @@ export const urls = {
         nl: '/nl/contact/',
         es: '/es/contacto/',
         nb: '/nb/contact/',
+        fi: '/fi/contact/',
+        pt: '/pt/contact/',
     },
     "Freebies": {
         en: '/download/',
@@ -70,6 +86,8 @@ export const urls = {
         nl: '/nl/download/',
         es: '/es/descargar/',
         nb: '/nb/download/',
+        fi: '/fi/download/',
+        pt: '/pt/download/',
     },
 
     "Privacy-police": {
@@ -79,6 +97,8 @@ export const urls = {
         nl: '/nl/cookie-policy/',
         es: '/es/cookie-policy/',
         nb: '/nb/cookie-policy/',
+        fi: '/fi/cookie-policy/',
+        pt: '/pt/cookie-policy/',
     },
     "Terms And Conditions": {
         en: '/privacy-statement/',
@@ -87,6 +107,8 @@ export const urls = {
         nl: '/nl/privacy-statement/',
         es: '/es/privacy-statement/',
         nb: '/nb/privacy-statement/',
+        fi: '/fi/privacy-statement/',
+        pt: '/pt/privacy-statement/',
     },
 
     "Blog-archive": {
@@ -96,6 +118,8 @@ export const urls = {
         nl: '/nl/blog/',
         es: '/es/blog/',
         nb: '/nb/blog/',
+        fi: '/fi/blog/',
+        pt: '/pt/blog/',
     },
 
     "News-archive": {
@@ -105,6 +129,8 @@ export const urls = {
         nl: '/nl/news/',
         es: '/es/notitias/',
         nb: '/nb/news/',
+        fi: '/fi/news/',
+        pt: '/pt/news/',
     },
 
     'Applications': {
@@ -114,6 +140,8 @@ export const urls = {
         nl: '/nl/applications/',
         es: '/es/applications/',
         nb: '/nb/applications/',
+        fi: '/fi/applications/',
+        pt: '/pt/applications/',
     },
 
     'Guarantee': {
@@ -123,6 +151,8 @@ export const urls = {
         nl: '/nl/guarantee/',
         es: '/es/guarantee/',
         nb: '/nb/guarantee/',
+        fi: '/fi/guarantee/',
+        pt: '/pt/guarantee/',
     },
 
     'Social-responsibility': {
@@ -132,6 +162,7 @@ export const urls = {
         nl: '/nl/social-responsibility/',
         es: '/es/social-responsibility/',
         nb: '/nb/social-responsibility/',
-    }
-
+        fi: '/fi/social-responsibility/',
+        pt: '/pt/social-responsibility/',
+    },
 }
