@@ -8,7 +8,7 @@ import { toTop } from './../helpers/scrollToTop'
 import Seo from "../components/parents/seo"
 // import News from "../components/parents/news"
 // import Blog from "../components/parents/blog"
-import InteractiveMap from "../components/parents/interactive-map"
+// import InteractiveMap from "../components/parents/interactive-map"
 import Guarantee from "../components/parents/decontext-guarantee"
 import Raport from "../components/parents/decontex-raport"
 import DecontominationSubjectsMini from "../components/parents/decontomination-subjects-mini"
@@ -29,8 +29,8 @@ const IndexPage = ({ data: { allWpPage, alternates } }) => {
       <Guarantee data={homepage.guaranteeHomepage}/>
       <Raport data={homepage.raportSection}/>
       
-      <InteractiveMap data={homepage.interactiveMap} />
-      {/* <LeafletMap/> */}
+      {/* <InteractiveMap data={homepage.interactiveMap} /> */}
+      <LeafletMap/>
       
       <DecontominationSubjectsMini data={homepage.partners}/>
       <Newsletter data={homepage.newsletter} lang={language.name}/>

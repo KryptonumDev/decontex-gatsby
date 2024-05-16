@@ -13,9 +13,10 @@ export default function MapMarker({
   let popupRef = useRef();
 
   useEffect(() => {
-    //    if (isActive && popupRef?.current) {
-    //      popupRef.current.openOn(map.current);
-    //    }
+    if (isActive && popupRef?.current) {
+      debugger
+      popupRef.current.openOn(map.current);
+    }
   }, [isActive, map, popupRef]);
 
   if (isNaN(data.lat) || isNaN(data.lng)) {

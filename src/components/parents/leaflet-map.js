@@ -263,6 +263,10 @@ const Wrapper = styled.section`
     z-index: 0;
     background: #262626;
 
+    @media (max-width: 480px) {
+      height: 100%;
+    }
+
     a {
       font-size: 14px;
       font-weight: 400;
@@ -434,6 +438,13 @@ const Wrapper = styled.section`
 
 const MapWrapper = styled.div`
   position: relative;
+
+  @media (max-width: 480px) {
+    display: flex;
+    flex-direction: column-reverse;
+
+    height: calc(100vh - 103px);
+  }
 `;
 
 const SideBar = styled.div`
@@ -450,6 +461,11 @@ const SideBar = styled.div`
   flex-direction: column;
   gap: 48px;
 
+  @media (max-width: 480px) {
+    position: relative;
+    max-height: 50%;
+  }
+
   &.open {
     .flex {
       h3 {
@@ -463,6 +479,8 @@ const SideBar = styled.div`
 
     h4 {
       display: block;
+      font-size: clamp(19px, calc(19vw / 7.68), 20px);
+      margin-bottom: clamp(8px, calc(16vw / 7.68), 20px);
     }
 
     .item {
@@ -474,7 +492,7 @@ const SideBar = styled.div`
         display: flex;
         align-items: center;
         gap: 8px;
-        margin-bottom: 20px;
+        margin-bottom: clamp(12px, calc(20vw / 7.68), 20px);
 
         span {
           padding: 0;
@@ -484,7 +502,7 @@ const SideBar = styled.div`
           display: block;
           color: #fff;
           text-transform: none;
-          font-size: 20px;
+          font-size: clamp(13px, calc(19vw / 7.68), 20px);
           font-weight: 600;
           line-height: 160%;
         }
@@ -498,9 +516,9 @@ const SideBar = styled.div`
           display: grid;
           align-items: center;
           grid-template-columns: 20px auto;
-          gap: 12px;
+          gap: clamp(6px, calc(8vw / 7.68), 12px);
           color: #fff;
-          font-size: 14px;
+          font-size: clamp(12px, calc(14vw / 7.68), 14px);
           font-weight: 400;
           text-align: left;
           text-transform: none;
@@ -512,7 +530,7 @@ const SideBar = styled.div`
   .country-list {
     overflow: auto;
     display: grid;
-    gap: 48px;
+    gap: 32px;
   }
 
   .item {
