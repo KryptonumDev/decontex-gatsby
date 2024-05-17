@@ -14,7 +14,6 @@ export default function MapMarker({
 
   useEffect(() => {
     if (isActive && popupRef?.current) {
-      debugger
       popupRef.current.openOn(map.current);
     }
   }, [isActive, map, popupRef]);
@@ -42,7 +41,7 @@ export default function MapMarker({
       position={[data.lat, data.lng]}
       eventHandlers={{
         click: () => {
-          markerClick(index);
+          markerClick(data.id);
         },
       }}
     >

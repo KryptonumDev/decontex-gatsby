@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Container } from "../../styles/style";
 import styled from "styled-components";
 import { MapContainer, TileLayer, GeoJSON } from "react-leaflet";
@@ -110,14 +110,36 @@ export default function LeafletMap() {
 
   const markerClick = (index) => {
     setActiveDot(index);
-    // const offset = document.getElementById('map-item-' + index).offsetTop
-    // document.getElementById('map-content').scrollTo(0, offset)
   };
+
+  useEffect(() => {
+    if (activeDot !== null) {
+      const instance = countryList
+        .map((el) => el.instances)
+        .flat()
+        .find((instance) => instance.id === activeDot);
+      map.current.setView([instance.lat, instance.lng], 5);
+
+      const offset = document.getElementById('map-item-' + activeDot).offsetTop
+      document.getElementById('map-content').scrollTo(0, offset - 70)
+    }
+  }, [activeDot])
 
   return (
     <Wrapper>
       <MapWrapper>
         <SideBar className={isSidebarOpen ? "open" : ""}>
+          <div className='mobile-shortcut'>
+            {countryList.map((el, index) => (
+              <div className="array" key={index}>
+                {el.instances.map((instance, i) => (
+                  <span
+                    dangerouslySetInnerHTML={{ __html: instance.flag }}
+                  />
+                ))}
+              </div>
+            ))}
+          </div>
           <div className="flex">
             <h3>Decontex centers</h3>
             <button
@@ -138,13 +160,13 @@ export default function LeafletMap() {
               </svg>
             </button>
           </div>
-          <div className="country-list">
+          <div id='map-content' className="country-list">
             {countryList.map((el, index) => (
               <div>
                 <h4>{el.name}</h4>
                 <div className="list" key={index}>
                   {el.instances.map((instance, i) => (
-                    <button className="item" key={i}>
+                    <button id={`map-item-${instance.id}`} onClick={() => setActiveDot(instance.id)} data-active={instance.id === activeDot} className="item" key={i}>
                       <div className="item-flex">
                         <span
                           dangerouslySetInnerHTML={{ __html: instance.flag }}
@@ -217,21 +239,19 @@ export default function LeafletMap() {
           minZoom={2}
           maxZoom={6}
           scrollWheelZoom={false}
-          whenCreated={(mapInstance) => {
-            map.current = mapInstance;
-          }}
+          ref={map}
         >
           <TileLayer
             subdomains="abcd"
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
             url="https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png"
           />
-          <GeoJSON data={filteredCountries} style={{ color: "#53A4DB" }} />
+          <GeoJSON onEachFeature={(feature, layer) => { layer.on('click', (e) => setActiveDot(e.target.feature.id)) }} data={filteredCountries} style={{ color: "#53A4DB" }} />
           <MarkerClusterGroup chunkedLoading>
             {filteredCountries.features?.map((el, index) => (
               <MapMarker
                 key={el.id}
-                isActive={activeDot === index}
+                isActive={activeDot === el.id}
                 map={map}
                 data={countryList
                   .find((country) => {
@@ -262,8 +282,9 @@ const Wrapper = styled.section`
     max-height: calc(100vh - 103px);
     z-index: 0;
     background: #262626;
+    width: 100%;
 
-    @media (max-width: 480px) {
+    @media (max-width: 640px) {
       height: 100%;
     }
 
@@ -374,6 +395,11 @@ const Wrapper = styled.section`
     margin-bottom: 0;
     min-width: 380px;
 
+    @media(max-width: 400px){
+      min-width: unset;
+      width: 95vw;
+    }
+
     .leaflet-popup-content-wrapper {
       color: #fff;
       background-color: transparent;
@@ -438,8 +464,9 @@ const Wrapper = styled.section`
 
 const MapWrapper = styled.div`
   position: relative;
+  display: flex;
 
-  @media (max-width: 480px) {
+  @media (max-width: 640px) {
     display: flex;
     flex-direction: column-reverse;
 
@@ -448,22 +475,72 @@ const MapWrapper = styled.div`
 `;
 
 const SideBar = styled.div`
-  position: absolute;
+  position: relative;
   z-index: 1;
   left: 0;
   bottom: 0;
   top: 0;
   background: var(--Black-300, #33383d);
   padding: 32px 18px;
-  max-height: 100%;
+  height: 1024px;
+  max-height: calc(100vh - 103px);
 
   display: flex;
   flex-direction: column;
   gap: 48px;
 
-  @media (max-width: 480px) {
+  .mobile-shortcut{
+    display: none;
+  }
+
+  &.open{
+    width: 100%;
+  }
+
+  @media (max-width: 640px) {
     position: relative;
-    max-height: 50%;
+    max-height: 42%;
+    height: auto;
+    padding: 16px 9px;
+    gap: 9px;
+
+    .mobile-shortcut{
+      display: flex;
+      gap: 16px;
+      position: absolute;
+      top: 0;
+      left: 14px;
+      transform: translateY(-50%);
+
+      .array{
+        display: flex;
+
+        span{
+          border: 2px solid #33383D;
+          border-radius: 50%;
+          display: block;
+          margin-left: -8px;
+
+          svg{
+            display: block;
+          }
+        }
+      }
+    }
+
+    .country-list{
+      display: none !important;
+    }
+
+    &.open{
+      .country-list{
+        display: grid !important;
+      }
+
+      .flex{
+        border-bottom: 1px solid #697075;
+      }
+    }
   }
 
   &.open {
@@ -474,6 +551,10 @@ const SideBar = styled.div`
 
       svg {
         transform: rotateZ(180deg);
+
+        @media (max-width: 640px) {
+          transform: rotateZ(270deg);
+        }
       }
     }
 
@@ -487,6 +568,11 @@ const SideBar = styled.div`
       background: var(--Black-700, #111315);
       padding: 16px 16px 20px 16px;
       width: 100%;
+        border: 2px solid transparent;
+      
+      &[data-active='true']{
+        border: 2px solid #53A4DB;
+      }
 
       .item-flex {
         display: flex;
@@ -511,6 +597,10 @@ const SideBar = styled.div`
       .links {
         display: grid;
         gap: 12px;
+
+        @media(max-width: 640px){
+          gap: 8px;
+        }
 
         > div {
           display: grid;
@@ -568,10 +658,20 @@ const SideBar = styled.div`
     h3 {
       color: #fff;
       display: none;
+
+      font-size: clamp(13px, calc(21vw/7.68), 28px);
+
+      @media (max-width: 640px) {
+        display: flex;
+      }
     }
 
     svg {
       display: block;
+
+      @media (max-width: 640px) {
+        transform: rotateZ(90deg);
+      }
     }
   }
 
