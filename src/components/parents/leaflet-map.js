@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Container } from "../../styles/style";
 import styled from "styled-components";
 import { MapContainer, TileLayer, GeoJSON } from "react-leaflet";
 import countries from "./../../resources/countries.json";

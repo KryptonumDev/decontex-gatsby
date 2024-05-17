@@ -12,7 +12,11 @@ import Seo from "../components/parents/seo"
 import Guarantee from "../components/parents/decontext-guarantee"
 import Raport from "../components/parents/decontex-raport"
 import DecontominationSubjectsMini from "../components/parents/decontomination-subjects-mini"
-import LeafletMap from "../components/parents/leaflet-map"
+import styled from "styled-components"
+
+const LeafletMap = React.lazy(() =>
+  import("../components/parents/leaflet-map")
+)
 
 const IndexPage = ({ data: { allWpPage, alternates } }) => {
   let { homepage, language, seo } = allWpPage.nodes[0]
@@ -21,27 +25,40 @@ const IndexPage = ({ data: { allWpPage, alternates } }) => {
     toTop()
   }, [])
 
+
+  const isSSR = typeof window === "undefined"
+
   return (
     <main>
       <Seo data={seo} lang={language.slug} alternates={alternates} />
       <Hero data={homepage.heroHomepage} />
       <DecontominationExperts data={homepage.decontominationExperts} />
-      <Guarantee data={homepage.guaranteeHomepage}/>
-      <Raport data={homepage.raportSection}/>
-      
+      <Guarantee data={homepage.guaranteeHomepage} />
+      <Raport data={homepage.raportSection} />
+
       {/* <InteractiveMap data={homepage.interactiveMap} /> */}
-      <LeafletMap/>
-      
-      <DecontominationSubjectsMini data={homepage.partners}/>
-      <Newsletter data={homepage.newsletter} lang={language.name}/>
+
+      {!isSSR && (
+        <React.Suspense fallback={<MapPlaceholder />}>
+          <LeafletMap />
+        </React.Suspense>
+      )}
+
+      <DecontominationSubjectsMini data={homepage.partners} />
+      <Newsletter data={homepage.newsletter} lang={language.name} />
 
       {/* <News data={homepage.news} />
       <Blog data={homepage.blog} /> */}
 
-      <Contact data={homepage.contact} lang={language.name}/>
+      <Contact data={homepage.contact} lang={language.name} />
     </main>
   )
 }
+
+const MapPlaceholder = styled.div`
+  height: 1024px;
+  max-height: calc(100vh - 103px);
+`
 
 export default IndexPage
 
