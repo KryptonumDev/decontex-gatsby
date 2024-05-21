@@ -9,6 +9,7 @@ export default function MapMarker({
   index,
   map,
   el,
+  clickHandler,
 }) {
   let popupRef = useRef();
 
@@ -41,11 +42,16 @@ export default function MapMarker({
       position={[data.lat, data.lng]}
       eventHandlers={{
         click: () => {
-          markerClick(data.id);
+          clickHandler(data.id);
         },
       }}
     >
-      <Popup ref={popupRef}>
+      <Popup
+        autoPan={false}
+        closeOnClick={false}
+        closeOnEscapeKey={false}
+        ref={popupRef}
+      >
         <div className="flex">
           <span dangerouslySetInnerHTML={{ __html: data.flag }} /> {data.title}
         </div>
@@ -67,7 +73,7 @@ export default function MapMarker({
               {data.address}
             </div>
           )}
-          {data.phone && (
+          {data.phone?.map((el) => (
             <div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -81,9 +87,9 @@ export default function MapMarker({
                   fill="#ECECEC"
                 />
               </svg>{" "}
-              {data.phone}
+              {el}
             </div>
-          )}
+          ))}
           {data.email && (
             <div>
               <svg
