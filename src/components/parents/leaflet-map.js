@@ -421,6 +421,7 @@ const Wrapper = styled.section`
     background-color: #0864a6 !important;
     display: block !important;
     padding: 0 !important;
+    border-radius: 50%;
 
     &::before {
       display: none;
@@ -433,8 +434,8 @@ const Wrapper = styled.section`
     > div {
       background-color: transparent;
       margin: 0 !important;
-      width: 44px !important;
-      height: 44px !important;
+      width: 66px !important;
+      height: 66px !important;
       display: flex;
       align-items: center;
       justify-content: center;
