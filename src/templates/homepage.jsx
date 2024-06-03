@@ -8,15 +8,15 @@ import { toTop } from './../helpers/scrollToTop'
 import Seo from "../components/parents/seo"
 // import News from "../components/parents/news"
 // import Blog from "../components/parents/blog"
-import InteractiveMap from "../components/parents/interactive-map"
+// import InteractiveMap from "../components/parents/interactive-map"
 import Guarantee from "../components/parents/decontext-guarantee"
 import Raport from "../components/parents/decontex-raport"
 import DecontominationSubjectsMini from "../components/parents/decontomination-subjects-mini"
 import styled from "styled-components"
 
-// const LeafletMap = React.lazy(() =>
-//   import("../components/parents/leaflet-map")
-// )
+const LeafletMap = React.lazy(() =>
+  import("../components/parents/leaflet-map")
+)
 
 const IndexPage = ({ data: { allWpPage, alternates } }) => {
   let { homepage, language, seo } = allWpPage.nodes[0]
@@ -36,13 +36,13 @@ const IndexPage = ({ data: { allWpPage, alternates } }) => {
       <Guarantee data={homepage.guaranteeHomepage} />
       <Raport data={homepage.raportSection} />
 
-      <InteractiveMap data={homepage.interactiveMap} />
+      {/* <InteractiveMap data={homepage.interactiveMap} /> */}
 
-      {/* {!isSSR && (
+      {!isSSR && (
         <React.Suspense fallback={<MapPlaceholder />}>
           <LeafletMap />
         </React.Suspense>
-      )} */}
+      )}
 
       <DecontominationSubjectsMini data={homepage.partners} />
       <Newsletter data={homepage.newsletter} lang={language.name} />
