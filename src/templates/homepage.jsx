@@ -92,20 +92,6 @@ export const query = graphql`
           }
         }
         homepage {
-          interactiveMap{
-            sectionTitle
-            text
-            next
-            country{
-              countryName
-              countryPhone{
-                text
-              }
-              countryEmail
-              countryAddress
-              countryCode
-            }
-          }
           heroHomepage {
             pageTitle
             textUnderTitle
