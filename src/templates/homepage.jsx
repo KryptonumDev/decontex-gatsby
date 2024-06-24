@@ -1,32 +1,31 @@
-import * as React from "react"
-import { graphql } from "gatsby"
-import Hero from "../components/parents/hero-homepage"
-import Newsletter from "../components/parents/newslettter"
-import Contact from "../components/parents/contact"
-import DecontominationExperts from "../components/parents/decontomination-experts"
-import { toTop } from './../helpers/scrollToTop'
-import Seo from "../components/parents/seo"
+import * as React from "react";
+import { graphql } from "gatsby";
+import Hero from "../components/parents/hero-homepage";
+import Newsletter from "../components/parents/newslettter";
+import Contact from "../components/parents/contact";
+import DecontominationExperts from "../components/parents/decontomination-experts";
+import { toTop } from "./../helpers/scrollToTop";
+import Seo from "../components/parents/seo";
 // import News from "../components/parents/news"
 // import Blog from "../components/parents/blog"
 // import InteractiveMap from "../components/parents/interactive-map"
-import Guarantee from "../components/parents/decontext-guarantee"
-import Raport from "../components/parents/decontex-raport"
-import DecontominationSubjectsMini from "../components/parents/decontomination-subjects-mini"
-import styled from "styled-components"
+import Guarantee from "../components/parents/decontext-guarantee";
+import Raport from "../components/parents/decontex-raport";
+import DecontominationSubjectsMini from "../components/parents/decontomination-subjects-mini";
+import styled from "styled-components";
 
 const LeafletMap = React.lazy(() =>
   import("../components/parents/leaflet-map")
-)
+);
 
 const IndexPage = ({ data: { allWpPage, alternates } }) => {
-  let { homepage, language, seo } = allWpPage.nodes[0]
+  let { homepage, language, seo } = allWpPage.nodes[0];
 
   React.useEffect(() => {
-    toTop()
-  }, [])
+    toTop();
+  }, []);
 
-
-  const isSSR = typeof window === "undefined"
+  const isSSR = typeof window === "undefined";
 
   return (
     <main>
@@ -36,11 +35,11 @@ const IndexPage = ({ data: { allWpPage, alternates } }) => {
       <Guarantee data={homepage.guaranteeHomepage} />
       <Raport data={homepage.raportSection} />
 
-      {/* <InteractiveMap data={homepage.interactiveMap} /> */}
+      {/* <InteractiveMap  */}
 
       {!isSSR && (
         <React.Suspense fallback={<MapPlaceholder />}>
-          <LeafletMap />
+          <LeafletMap countryList={homepage.interactiveMap.groups} />
         </React.Suspense>
       )}
 
@@ -52,19 +51,21 @@ const IndexPage = ({ data: { allWpPage, alternates } }) => {
 
       <Contact data={homepage.contact} lang={language.name} />
     </main>
-  )
-}
+  );
+};
 
 const MapPlaceholder = styled.div`
   height: 1024px;
   max-height: calc(100vh - 103px);
-`
+`;
 
-export default IndexPage
+export default IndexPage;
 
 export const query = graphql`
-  query HomePageQuery($id: String!, $templateName: String!){
-    alternates : allWpPage(filter: {template: {templateName: {eq: $templateName}}}) {
+  query HomePageQuery($id: String!, $templateName: String!) {
+    alternates: allWpPage(
+      filter: { template: { templateName: { eq: $templateName } } }
+    ) {
       nodes {
         language {
           slug
@@ -75,7 +76,7 @@ export const query = graphql`
         }
       }
     }
-    allWpPage(filter: {id: {eq: $id}}) {
+    allWpPage(filter: { id: { eq: $id } }) {
       nodes {
         language {
           slug
@@ -92,10 +93,34 @@ export const query = graphql`
           }
         }
         homepage {
+          interactiveMap {
+            groups {
+              name
+              instances {
+                id
+                title
+                phone {
+                  phone
+                }
+                email {
+                  email
+                }
+                address
+                lat
+                lng
+                flag {
+                  altText
+                  localFile {
+                    publicURL
+                  }
+                }
+              }
+            }
+          }
           heroHomepage {
             pageTitle
             textUnderTitle
-            link{
+            link {
               title
               url
             }
@@ -108,10 +133,10 @@ export const query = graphql`
               }
             }
           }
-          decontominationExperts{
+          decontominationExperts {
             title
             citeUnderTitle
-            citeBackground{
+            citeBackground {
               altText
               localFile {
                 childImageSharp {
@@ -120,19 +145,19 @@ export const query = graphql`
               }
             }
             subSectionTitle
-            link{
+            link {
               title
               url
             }
-            subSectionPlates{
-              plateIcon{
+            subSectionPlates {
+              plateIcon {
                 altText
                 localFile {
                   publicURL
                 }
               }
               plateContent
-              patentedIcon{
+              patentedIcon {
                 altText
                 localFile {
                   publicURL
@@ -140,14 +165,14 @@ export const query = graphql`
               }
             }
           }
-          guaranteeHomepage{
+          guaranteeHomepage {
             sectionTitle
             text
-            link{
+            link {
               title
               url
             }
-            backgroundImage{
+            backgroundImage {
               altText
               localFile {
                 childImageSharp {
@@ -156,10 +181,10 @@ export const query = graphql`
               }
             }
           }
-          raportSection{
+          raportSection {
             title
             text
-            image{
+            image {
               altText
               localFile {
                 childImageSharp {
@@ -170,13 +195,13 @@ export const query = graphql`
             textUnderImage
             downloadRaportText
             downloadRaportFileButtonText
-            raportFile{
+            raportFile {
               altText
               localFile {
                 publicURL
               }
             }
-            raportImage{
+            raportImage {
               altText
               localFile {
                 childImageSharp {
@@ -185,13 +210,13 @@ export const query = graphql`
               }
             }
           }
-          partners{
+          partners {
             title
             partners {
               altText
               localFile {
                 childImageSharp {
-                    gatsbyImageData (placeholder: BLURRED, quality: 100)
+                  gatsbyImageData(placeholder: BLURRED, quality: 100)
                 }
               }
             }
@@ -208,7 +233,7 @@ export const query = graphql`
             successfulSendText
             sendAgainButtonText
             errorSendText
-            image{
+            image {
               altText
               localFile {
                 childImageSharp {
@@ -267,7 +292,7 @@ export const query = graphql`
               sendAgainButtonText
               errorSendText
             }
-            background{
+            background {
               altText
               localFile {
                 childImageSharp {
@@ -280,4 +305,4 @@ export const query = graphql`
       }
     }
   }
-`
+`;

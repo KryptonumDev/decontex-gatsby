@@ -32,7 +32,7 @@ export default function MapMarker({
       iconUrl: "data:image/svg+xml;base64," + btoa(data.flag),
       iconRetinaUrl: "data:image/svg+xml;base64," + btoa(data.flag),
       className: "",
-      html: `${data.flag} <p>${data.title}</p>`,
+      html: `<img src="${data.flag.localFile.publicURL}" alt="${data.flag.altText}" /> <p>${data.title}</p>`,
     });
   }
 
@@ -53,7 +53,8 @@ export default function MapMarker({
         ref={popupRef}
       >
         <div className="flex">
-          <span dangerouslySetInnerHTML={{ __html: data.flag }} /> {data.title}
+          <img src={data.flag.localFile.publicURL} alt={data.flag.altText} />{" "}
+          {data.title}
         </div>
         <div className="list">
           {data.address && (
@@ -87,10 +88,10 @@ export default function MapMarker({
                   fill="#ECECEC"
                 />
               </svg>{" "}
-              {el}
+              {el.phone}
             </div>
           ))}
-          {data.email && (
+          {data.email?.map((el) => (
             <div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -104,9 +105,9 @@ export default function MapMarker({
                   fill="#ECECEC"
                 />
               </svg>{" "}
-              {data.email}
+              {el.email}
             </div>
-          )}
+          ))}
         </div>
       </Popup>
     </Marker>

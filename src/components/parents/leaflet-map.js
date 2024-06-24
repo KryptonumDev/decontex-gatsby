@@ -7,175 +7,10 @@ import MarkerClusterGroup from "react-leaflet-cluster";
 import "leaflet/dist/leaflet.css";
 import x from "./../../resources/x.svg";
 
-export default function LeafletMap() {
+export default function LeafletMap({ countryList }) {
   const [activeDot, setActiveDot] = useState(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const map = useRef();
-
-  const countryList = [
-    {
-      name: "Europe",
-      instances: [
-        {
-          id: "AUT",
-          title: "Austria",
-          email: "kundendienst@decontex.com",
-          phone: ["+49 221 747 40 035"],
-          address: "Decontex Germany GmbH, Berlin",
-          lat: 48.2081,
-          lng: 16.3713,
-          flag: `
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512"><mask id="a"><circle cx="256" cy="256" r="256" fill="#fff"/></mask><g mask="url(#a)"><path fill="#d80027" d="M0 0h512v167l-23.2 89.7L512 345v167H0V345l29.4-89L0 167z"/><path fill="#eee" d="M0 167h512v178H0z"/></g></svg>
-          `,
-        },
-        {
-          id: "BEL",
-          title: "Belgium",
-          email: "gde@decontex.com",
-          phone: ["+32 51 80 69 10"],
-          address: "Decontex Benelux NV, Brussels",
-          lat: 50.8476,
-          lng: 4.3572,
-          flag: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512"><mask id="a"><circle cx="256" cy="256" r="256" fill="#fff"/></mask><g mask="url(#a)"><path fill="#333" d="M0 0h167l38.2 252.6L167 512H0z"/><path fill="#d80027" d="M345 0h167v512H345l-36.7-256z"/><path fill="#ffda44" d="M167 0h178v512H167z"/></g></svg>`,
-        },
-        {
-          id: "FIN",
-          title: "Finland",
-          email: "teknosafe@decontex.com",
-          phone: ["+358 5 680 7700"],
-          address: "Decontex Finland, Imatra",
-          lat: 60.6699,
-          lng: 24.9384,
-          flag: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512"><mask id="a"><circle cx="256" cy="256" r="256" fill="#fff"/></mask><g mask="url(#a)"><path fill="#eee" d="M0 0h133.6l35.3 16.7L200.3 0H512v222.6l-22.6 31.7 22.6 35.1V512H200.3l-32-19.8-34.7 19.8H0V289.4l22.1-33.3L0 222.6z"/><path fill="#0052b4" d="M133.6 0v222.6H0v66.8h133.6V512h66.7V289.4H512v-66.8H200.3V0h-66.7z"/></g></svg>`,
-        },
-        {
-          id: "FRA",
-          title: "France",
-          email: "gya@decontex.com",
-          phone: ["+33 6 28 03 20 17"],
-          address: "Decontex France SARL, Paris",
-          lat: 48.8566,
-          lng: 2.3522,
-          flag: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512"><mask id="a"><circle cx="256" cy="256" r="256" fill="#fff"/></mask><g mask="url(#a)"><path fill="#eee" d="M167 0h178l25.9 252.3L345 512H167l-29.8-253.4z"/><path fill="#0052b4" d="M0 0h167v512H0z"/><path fill="#d80027" d="M345 0h167v512H345z"/></g></svg>`,
-        },
-        {
-          id: "DEU",
-          title: "Germany",
-          email: "kundendienst@decontex.com",
-          phone: ["+49 221 747 40 035"],
-          address: "Decontex Germany GmbH, Berlin",
-          lat: 52.52,
-          lng: 13.405,
-          flag: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512"><mask id="a"><circle cx="256" cy="256" r="256" fill="#fff"/></mask><g mask="url(#a)"><path fill="#ffda44" d="m0 345 256.7-25.5L512 345v167H0z"/><path fill="#d80027" d="m0 167 255-23 257 23v178H0z"/><path fill="#333" d="M0 0h512v167H0z"/></g></svg>`,
-        },
-        {
-          id: "LUX",
-          title: "Luxembourg",
-          email: "gde@decontex.com",
-          phone: ["+32 51 80 69 10"],
-          address: "Decontex Benelux NV, Tielt",
-          lat: 50.1153,
-          lng: 6.3696,
-          flag: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512"><mask id="a"><circle cx="256" cy="256" r="256" fill="#fff"/></mask><g mask="url(#a)"><path fill="#eee" d="m0 167 253.8-19.3L512 167v178l-254.9 32.3L0 345z"/><path fill="#d80027" d="M0 0h512v167H0z"/><path fill="#338af3" d="M0 345h512v167H0z"/></g></svg>`,
-        },
-        {
-          id: "NLD",
-          title: "Netherlands",
-          email: "ebr@decontex.com",
-          phone: ["+31 (0)616130295"],
-          address: "Decontex Benelux NV, Tielt",
-          lat: 52.3676,
-          lng: 4.9041,
-          flag: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512"><mask id="a"><circle cx="256" cy="256" r="256" fill="#fff"/></mask><g mask="url(#a)"><path fill="#eee" d="m0 167 253.8-19.3L512 167v178l-254.9 32.3L0 345z"/><path fill="#a2001d" d="M0 0h512v167H0z"/><path fill="#0052b4" d="M0 345h512v167H0z"/></g></svg>`,
-        },
-        {
-          id: "NOR",
-          title: "Norway",
-          email: "kho@decontex.com",
-          phone: ["+47 908 72 047"],
-          address: "Decontex, Vågsallmenningen",
-          lat: 59.9139,
-          lng: 10.7522,
-          flag: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512"><mask id="a"><circle cx="256" cy="256" r="256" fill="#fff"/></mask><g mask="url(#a)"><path fill="#d80027" d="M0 0h100.2l66.1 53.5L233.7 0H512v189.3L466.3 257l45.7 65.8V512H233.7l-68-50.7-65.5 50.7H0V322.8l51.4-68.5-51.4-65z"/><path fill="#eee" d="M100.2 0v189.3H0v33.4l24.6 33L0 289.5v33.4h100.2V512h33.4l30.6-26.3 36.1 26.3h33.4V322.8H512v-33.4l-24.6-33.7 24.6-33v-33.4H233.7V0h-33.4l-33.8 25.3L133.6 0z"/><path fill="#0052b4" d="M133.6 0v222.7H0v66.7h133.6V512h66.7V289.4H512v-66.7H200.3V0z"/></g></svg>`,
-        },
-        {
-          id: "SWE",
-          title: "Sweden",
-          email: "kho@decontex.com",
-          phone: ["+47 908 72 047"],
-          address: "Decontex, Vågsallmenningen",
-          lat: 59.5293,
-          lng: 17.8686,
-          flag: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512"><mask id="a"><circle cx="256" cy="256" r="256" fill="#fff"/></mask><g mask="url(#a)"><path fill="#0052b4" d="M0 0h133.6l35.3 16.7L200.3 0H512v222.6l-22.6 31.7 22.6 35.1V512H200.3l-32-19.8-34.7 19.8H0V289.4l22.1-33.3L0 222.6z"/><path fill="#ffda44" d="M133.6 0v222.6H0v66.8h133.6V512h66.7V289.4H512v-66.8H200.3V0z"/></g></svg>`,
-        },
-        {
-          id: "POL",
-          title: "Poland",
-          email: "mzi@decontex.com",
-          phone: ["+48 726 411 811"],
-          address: "Decontex Poland Sp.z.o.o , Warsaw",
-          lat: 52.2297,
-          lng: 21.0122,
-          flag: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512"><mask id="a"><circle cx="256" cy="256" r="256" fill="#fff"/></mask><g mask="url(#a)"><path fill="#d80027" d="m0 256 256.4-44.3L512 256v256H0z"/><path fill="#eee" d="M0 0h512v256H0z"/></g></svg>`,
-        },
-        {
-          id: "ESP",
-          title: "Spain",
-          email: "ventas.espana@decontex.com",
-          phone: ["+34 699 97 78 95", "+34 91 6293512"],
-          address: "IGS – International Global Supply Ltd.",
-          lat: 40.4168,
-          lng: -3.7038,
-          flag: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512"><mask id="a"><circle cx="256" cy="256" r="256" fill="#fff"/></mask><g mask="url(#a)"><path fill="#ffda44" d="m0 128 256-32 256 32v256l-256 32L0 384Z"/><path fill="#d80027" d="M0 0h512v128H0zm0 384h512v128H0z"/><g fill="#eee"><path d="M144 304h-16v-80h16zm128 0h16v-80h-16z"/><ellipse cx="208" cy="296" rx="48" ry="32"/></g><g fill="#d80027"><rect width="16" height="24" x="128" y="192" rx="8"/><rect width="16" height="24" x="272" y="192" rx="8"/><path d="M208 272v24a24 24 0 0 0 24 24 24 24 0 0 0 24-24v-24h-24z"/></g><rect width="32" height="16" x="120" y="208" fill="#ff9811" ry="8"/><rect width="32" height="16" x="264" y="208" fill="#ff9811" ry="8"/><rect width="32" height="16" x="120" y="304" fill="#ff9811" rx="8"/><rect width="32" height="16" x="264" y="304" fill="#ff9811" rx="8"/><path fill="#ff9811" d="M160 272v24c0 8 4 14 9 19l5-6 5 10a21 21 0 0 0 10 0l5-10 5 6c6-5 9-11 9-19v-24h-9l-5 8-5-8h-10l-5 8-5-8z"/><path d="M122 252h172m-172 24h28m116 0h28"/><path fill="#d80027" d="M122 248a4 4 0 0 0-4 4 4 4 0 0 0 4 4h172a4 4 0 0 0 4-4 4 4 0 0 0-4-4zm0 24a4 4 0 0 0-4 4 4 4 0 0 0 4 4h28a4 4 0 0 0 4-4 4 4 0 0 0-4-4zm144 0a4 4 0 0 0-4 4 4 4 0 0 0 4 4h28a4 4 0 0 0 4-4 4 4 0 0 0-4-4z"/><path fill="#eee" d="M196 168c-7 0-13 5-15 11l-5-1c-9 0-16 7-16 16s7 16 16 16c7 0 13-4 15-11a16 16 0 0 0 17-4 16 16 0 0 0 17 4 16 16 0 1 0 10-20 16 16 0 0 0-27-5c-3-4-7-6-12-6zm0 8c5 0 8 4 8 8 0 5-3 8-8 8-4 0-8-3-8-8 0-4 4-8 8-8zm24 0c5 0 8 4 8 8 0 5-3 8-8 8-4 0-8-3-8-8 0-4 4-8 8-8zm-44 10 4 1 4 8c0 4-4 7-8 7s-8-3-8-8c0-4 4-8 8-8zm64 0c5 0 8 4 8 8 0 5-3 8-8 8-4 0-8-3-8-7l4-8z"/><path fill="none" d="M220 284v12c0 7 5 12 12 12s12-5 12-12v-12z"/><path fill="#ff9811" d="M200 160h16v32h-16z"/><path fill="#eee" d="M208 224h48v48h-48z"/><path fill="#d80027" d="m248 208-8 8h-64l-8-8c0-13 18-24 40-24s40 11 40 24zm-88 16h48v48h-48z"/><rect width="20" height="32" x="222" y="232" fill="#d80027" rx="10" ry="10"/><path fill="#ff9811" d="M168 232v8h8v16h-8v8h32v-8h-8v-16h8v-8zm8-16h64v8h-64z"/><g fill="#ffda44"><circle cx="186" cy="202" r="6"/><circle cx="208" cy="202" r="6"/><circle cx="230" cy="202" r="6"/></g><path fill="#d80027" d="M169 272v43a24 24 0 0 0 10 4v-47h-10zm20 0v47a24 24 0 0 0 10-4v-43h-10z"/><g fill="#338af3"><circle cx="208" cy="272" r="16"/><rect width="32" height="16" x="264" y="320" ry="8"/><rect width="32" height="16" x="120" y="320" ry="8"/></g></g></svg>`,
-        },
-        {
-          id: "CHE",
-          title: "Switzerland",
-          email: "kundendienst@decontex.com",
-          phone: ["+49 174 3276290"],
-          address: "Decontex Germany GmbH, Köln",
-          lat: 46.948,
-          lng: 7.4474,
-          flag: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512"><mask id="a"><circle cx="256" cy="256" r="256" fill="#fff"/></mask><g mask="url(#a)"><path fill="#d80027" d="M0 0h512v512H0z"/><path fill="#eee" d="M389.6 211.5h-89v-89h-89.1v89h-89v89h89v89h89v-89h89z"/></g></svg>`,
-        },
-      ],
-    },
-    {
-      name: "America",
-      instances: [
-        {
-          id: "BRA",
-          title: "Brazil",
-          email: "kbl@decontex.com",
-          phone: null,
-          address: "Decontex Brazil, São Paulo",
-          lat: -15.7975,
-          lng: -47.8919,
-          flag: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512"><mask id="a"><circle cx="256" cy="256" r="256" fill="#fff"/></mask><g mask="url(#a)"><path fill="#6da544" d="M0 0h512v512H0z"/><path fill="#ffda44" d="M256 100.2 467.5 256 256 411.8 44.5 256z"/><path fill="#eee" d="M174.2 221a87 87 0 0 0-7.2 36.3l162 49.8a88.5 88.5 0 0 0 14.4-34c-40.6-65.3-119.7-80.3-169.1-52z"/><path fill="#0052b4" d="M255.7 167a89 89 0 0 0-41.9 10.6 89 89 0 0 0-39.6 43.4 181.7 181.7 0 0 1 169.1 52.2 89 89 0 0 0-9-59.4 89 89 0 0 0-78.6-46.8zM212 250.5a149 149 0 0 0-45 6.8 89 89 0 0 0 10.5 40.9 89 89 0 0 0 120.6 36.2 89 89 0 0 0 30.7-27.3A151 151 0 0 0 212 250.5z"/></g></svg>`,
-        },
-        {
-          id: "CAN",
-          title: "Canada",
-          email: "est@decontex.com",
-          phone: ["+1 438 373-3357"],
-          address: "Decontex Canada, Montreal",
-          lat: 45.4201,
-          lng: -75.70003,
-          flag: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512"><mask id="a"><circle cx="256" cy="256" r="256" fill="#fff"/></mask><g mask="url(#a)"><path fill="#d80027" d="M0 0v512h144l112-64 112 64h144V0H368L256 64 144 0Z"/><path fill="#eee" d="M144 0h224v512H144Z"/><path fill="#d80027" d="m301 289 44-22-22-11v-22l-45 22 23-44h-23l-22-34-22 33h-23l23 45-45-22v22l-22 11 45 22-12 23h45v33h22v-33h45z"/></g></svg>`,
-        },
-        {
-          id: "USA",
-          title: "United States",
-          email: "est@decontex.com",
-          phone: ["+1 438 373-3357"],
-          address: "Decontex USA, North Carolina",
-          lat: 38.9072,
-          lng: -77.0369,
-          flag: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512"><mask id="a"><circle cx="256" cy="256" r="256" fill="#fff"/></mask><g mask="url(#a)"><path fill="#eee" d="M256 0h256v64l-32 32 32 32v64l-32 32 32 32v64l-32 32 32 32v64l-256 32L0 448v-64l32-32-32-32v-64z"/><path fill="#d80027" d="M224 64h288v64H224Zm0 128h288v64H256ZM0 320h512v64H0Zm0 128h512v64H0Z"/><path fill="#0052b4" d="M0 0h256v256H0Z"/><path fill="#eee" d="m187 243 57-41h-70l57 41-22-67zm-81 0 57-41H93l57 41-22-67zm-81 0 57-41H12l57 41-22-67zm162-81 57-41h-70l57 41-22-67zm-81 0 57-41H93l57 41-22-67zm-81 0 57-41H12l57 41-22-67Zm162-82 57-41h-70l57 41-22-67Zm-81 0 57-41H93l57 41-22-67zm-81 0 57-41H12l57 41-22-67Z"/></g></svg>`,
-        },
-      ],
-    },
-  ];
 
   let filteredCountries = {
     type: "FeatureCollection",
@@ -210,7 +45,10 @@ export default function LeafletMap() {
             {countryList.map((el, index) => (
               <div className="array" key={index}>
                 {el.instances.map((instance, i) => (
-                  <span dangerouslySetInnerHTML={{ __html: instance.flag }} />
+                  <img
+                    src={instance.flag.localFile.publicURL}
+                    alt={instance.flag.altText}
+                  />
                 ))}
               </div>
             ))}
@@ -249,8 +87,9 @@ export default function LeafletMap() {
                       key={i}
                     >
                       <div className="item-flex">
-                        <span
-                          dangerouslySetInnerHTML={{ __html: instance.flag }}
+                        <img
+                          src={instance.flag.localFile.publicURL}
+                          alt={instance.flag.altText}
                         />
                         <p>{instance.title}</p>
                       </div>
@@ -286,10 +125,10 @@ export default function LeafletMap() {
                                 fill="#ECECEC"
                               />
                             </svg>{" "}
-                            {el}
+                            {el.phone}
                           </div>
                         ))}
-                        {instance.email && (
+                        {instance.email?.map((el) => (
                           <div>
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
@@ -303,9 +142,9 @@ export default function LeafletMap() {
                                 fill="#ECECEC"
                               />
                             </svg>{" "}
-                            {instance.email}
+                            {el.email}
                           </div>
-                        )}
+                        ))}
                       </div>
                     </button>
                   ))}
