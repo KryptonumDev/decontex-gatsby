@@ -10,6 +10,7 @@ const urls = {
       nb: '/nb/',
       fi: '/fi/',
       pt: '/pt/',
+      pl: '/pl/'
   },
   "Deco2fire": {
       en: '/deco2fire/',
@@ -20,6 +21,7 @@ const urls = {
       nb: '/nb/deco2fire/',
       fi: '/fi/deco2fire/',
       pt: '/pt/deco2fire/',
+      pl: '/pl/deco2fire/'
   },
   "Decontomination": {
       en: '/decon-solution/',
@@ -30,6 +32,7 @@ const urls = {
       nb: '/nb/decon-solution/',
       fi: '/fi/decon-solution/',
       pt: '/pt/decon-solution/',
+      pl: '/pl/decon-solution/',
   },
   "About": {
       en: '/about-us/',
@@ -40,6 +43,7 @@ const urls = {
       nb: '/nb/about-us/',
       fi: '/fi/about-us/',
       pt: '/pt/about-us/',
+      pl: '/pl/about-us/',
   },
   "Case Studies": {
       en: '/case-studies/',
@@ -50,6 +54,7 @@ const urls = {
       nb: '/nb/case-studies/',
       fi: '/fi/case-studies/',
       pt: '/pt/case-studies/',
+      pl: '/pl/case-studies/',
   },
   "Lco2": {
       en: '/pressurized-co2/',
@@ -60,6 +65,7 @@ const urls = {
       nb: '/nb/pressurized-co2/',
       fi: '/fi/pressurized-co2/',
       pt: '/pt/pressurized-co2/',
+      pl: '/pl/pressurized-co2/',
   },
   "Faq": {
       en: '/faq/',
@@ -70,6 +76,7 @@ const urls = {
       nb: '/nb/faq/',
       fi: '/fi/faq/',
       pt: '/pt/faq/',
+      pl: '/pl/faq/',
   },
   "Contact": {
       en: '/contact/',
@@ -80,6 +87,7 @@ const urls = {
       nb: '/nb/contact/',
       fi: '/fi/contact/',
       pt: '/pt/contact/',
+      pl: '/pl/contact/',
   },
   "Freebies": {
       en: '/download/',
@@ -90,6 +98,7 @@ const urls = {
       nb: '/nb/download/',
       fi: '/fi/download/',
       pt: '/pt/download/',
+      pl: '/pl/download/',
   },
 
   "Privacy-police": {
@@ -101,6 +110,7 @@ const urls = {
       nb: '/nb/cookie-policy/',
       fi: '/fi/cookie-policy/',
       pt: '/pt/cookie-policy/',
+      pl: '/pl/cookie-policy/',
   },
   "Terms And Conditions": {
       en: '/privacy-statement/',
@@ -111,6 +121,7 @@ const urls = {
       nb: '/nb/privacy-statement/',
       fi: '/fi/privacy-statement/',
       pt: '/pt/privacy-statement/',
+      pl: '/pl/privacy-statement/',
   },
 
   "Blog-archive": {
@@ -122,6 +133,7 @@ const urls = {
       nb: '/nb/blog/',
       fi: '/fi/blog/',
       pt: '/pt/blog/',
+      pl: '/pl/blog/',
   },
 
   "News-archive": {
@@ -133,6 +145,7 @@ const urls = {
       nb: '/nb/news/',
       fi: '/fi/news/',
       pt: '/pt/news/',
+      pl: '/pl/news/',
   },
 
   'Applications': {
@@ -144,6 +157,7 @@ const urls = {
       nb: '/nb/applications/',
       fi: '/fi/applications/',
       pt: '/pt/applications/',
+      pl: '/pl/applications/',
   },
 
   'Guarantee': {
@@ -155,6 +169,7 @@ const urls = {
       nb: '/nb/guarantee/',
       fi: '/fi/guarantee/',
       pt: '/pt/guarantee/',
+      pl: '/pl/guarantee/',
   },
 
   'Social-responsibility': {
@@ -166,6 +181,7 @@ const urls = {
       nb: '/nb/social-responsibility/',
       fi: '/fi/social-responsibility/',
       pt: '/pt/social-responsibility/',
+      pl: '/pl/social-responsibility/',
   },
 }
 

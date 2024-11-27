@@ -29,5 +29,9 @@ export const activeLanguage = (location) => {
         return 'pt'
     }
 
+    if (location.pathname.includes('/pl/')) {
+        return 'pl'
+    }
+
     return defLocale
 }
