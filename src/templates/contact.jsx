@@ -16,7 +16,7 @@ export default function Contact({ data: { allWpPage, alternates } }) {
   return (
     <main>
       <Seo data={seo} lang={language.slug} alternates={alternates} />
-      <ContactForm data={contact} contactPage={true} lang={language.name} />
+      <ContactForm data={contact} contactPage={true} lang={language.slug} />
       <Headquarters headquarters={contact.headquarters} />
       {/* {jobOffer.jobTitle
         ? <JobOffer data={jobOffer} />
