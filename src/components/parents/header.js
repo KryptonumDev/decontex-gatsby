@@ -7,15 +7,15 @@ import { urls } from "../../constants/url"
 import { getCurrentPage } from "../../helpers/getCurrentPage"
 
 export const warningMessages = {
-  en: "Dear Customers, our Teams are experiencing issues with Microsoft Office and have limited access. Please contact your support team by phone. We apologize for any inconvenience and are working on a solution.",
-  de: "Sehr geehrte Kunden, unsere Teams haben Probleme mit Microsoft Office und nur eingeschränkten Zugang. Bitte kontaktieren Sie unser Support-Team telefonisch. Wir entschuldigen uns für die Unannehmlichkeiten und arbeiten an einer Lösung.",
-  es: "Estimados Clientes, nuestros equipos están experimentando problemas con Microsoft Office y tienen acceso limitado. Por favor, contacte a nuestro equipo de soporte por teléfono. Nos disculpamos por cualquier inconveniente y estamos trabajando en una solución.",
-  fr: "Chers Clients, nos équipes rencontrent des problèmes avec Microsoft Office et ont un accès limité. Veuillez contacter notre équipe de support par téléphone. Nous vous prions de nous excuser pour ce désagrément et travaillons actuellement sur une solution.",
-  nl: "Geachte Klanten, onze teams ondervinden problemen met Microsoft Office en hebben beperkte toegang. Neem telefonisch contact op met ons ondersteuningsteam. Onze excuses voor het ongemak, we werken aan een oplossing.",
-  nb: "Kjære Kunder, våre team opplever problemer med Microsoft Office og har begrenset tilgang. Vennligst kontakt vår støttegruppe på telefon. Vi beklager ulempen og arbeider med en løsning.",
-  fi: "Hyvät Asiakkaat, tiimimme kohtaa ongelmia Microsoft Officen kanssa ja heillä on rajoitettu käyttöoikeus. Ottakaa yhteyttä tukitiimeemme puhelimitse. Pahoittelemme aiheutunutta haittaa ja työskentelemme ratkaisun parissa.",
-  pt: "Caros Clientes, nossas equipes estão enfrentando problemas com o Microsoft Office e têm acesso limitado. Por favor, entre em contato com nossa equipe de suporte por telefone. Pedimos desculpas por qualquer inconveniente e estamos trabalhando em uma solução.",
-  pl: "Szanowni Klienci, nasze zespoły mają problemy z Microsoft Office i ograniczony dostęp. Prosimy o kontakt telefoniczny z naszym zespołem wsparcia. Przepraszamy za wszelkie niedogodności i pracujemy nad rozwiązaniem."
+  en: "Dear Customers, our Teams are experiencing issues with Microsoft Office and have limited access. Please reach your responsible via telephone. Our apologies for any inconvenience, we are working on a solution.",
+  de: "Sehr geehrte Kunden, unsere Teams haben Probleme mit Microsoft Office und nur eingeschränkten Zugang. Bitte erreichen Sie Ihren Verantwortlichen telefonisch. Wir entschuldigen uns für die Unannehmlichkeiten und arbeiten an einer Lösung.",
+  es: "Estimados Clientes, nuestros equipos están experimentando problemas con Microsoft Office y tienen acceso limitado. Por favor, contacte a su responsable por teléfono. Nos disculpamos por cualquier inconveniente y estamos trabajando en una solución.",
+  fr: "Chers Clients, nos équipes rencontrent des problèmes avec Microsoft Office et ont un accès limité. Veuillez joindre votre responsable par téléphone. Nous vous prions de nous excuser pour ce désagrément et travaillons actuellement sur une solution.",
+  nl: "Geachte Klanten, onze teams ondervinden problemen met Microsoft Office en hebben beperkte toegang. Bereik uw verantwoordelijke telefonisch. Onze excuses voor het ongemak, we werken aan een oplossing.",
+  nb: "Kjære Kunder, våre team opplever problemer med Microsoft Office og har begrenset tilgang. Vennligst nå din ansvarlige på telefon. Vi beklager ulempen og arbeider med en løsning.",
+  fi: "Hyvät Asiakkaat, tiimimme kohtaa ongelmia Microsoft Officen kanssa ja heillä on rajoitettu käyttöoikeus. Tavoittakaa vastuuhenkilönne puhelimitse. Pahoittelemme aiheutunutta haittaa ja työskentelemme ratkaisun parissa.",
+  pt: "Caros Clientes, nossas equipes estão enfrentando problemas com o Microsoft Office e têm acesso limitado. Por favor, entre em contato com seu responsável por telefone. Pedimos desculpas por qualquer inconveniente e estamos trabalhando em uma solução.",
+  pl: "Szanowni Klienci, nasze zespoły mają problemy z Microsoft Office i ograniczony dostęp. Prosimy o kontakt telefoniczny z odpowiedzialnym pracownikiem. Przepraszamy za wszelkie niedogodności, pracujemy nad rozwiązaniem."
 };
 
 export default function Header({ location }) {
