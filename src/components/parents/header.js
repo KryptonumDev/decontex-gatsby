@@ -151,12 +151,12 @@ export default function Header({ location }) {
 }
 
 const WarningMessage = styled.aside`
-  padding: 1rem 0;
+  padding: 1.25rem 0;
   background-color: #fcf4d6;
   border-bottom: 1px solid #f1c21b;
   text-align: center;
   p {
-    font-size: 0.875rem;
+    font-size: 1rem;
     line-height: 1.55;
   }
 `
