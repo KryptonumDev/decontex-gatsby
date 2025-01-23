@@ -6,8 +6,19 @@ import { activeLanguage } from "../../helpers/activeLanguage"
 import { urls } from "../../constants/url"
 import { getCurrentPage } from "../../helpers/getCurrentPage"
 
-export default function Header({ location }) {
+export const warningMessages = {
+  en: "Dear Customers, our Teams are experiencing issues with Microsoft Office and have limited access. Please contact your support team by phone. We apologize for any inconvenience and are working on a solution.",
+  de: "Sehr geehrte Kunden, unsere Teams haben Probleme mit Microsoft Office und nur eingeschränkten Zugang. Bitte kontaktieren Sie unser Support-Team telefonisch. Wir entschuldigen uns für die Unannehmlichkeiten und arbeiten an einer Lösung.",
+  es: "Estimados Clientes, nuestros equipos están experimentando problemas con Microsoft Office y tienen acceso limitado. Por favor, contacte a nuestro equipo de soporte por teléfono. Nos disculpamos por cualquier inconveniente y estamos trabajando en una solución.",
+  fr: "Chers Clients, nos équipes rencontrent des problèmes avec Microsoft Office et ont un accès limité. Veuillez contacter notre équipe de support par téléphone. Nous vous prions de nous excuser pour ce désagrément et travaillons actuellement sur une solution.",
+  nl: "Geachte Klanten, onze teams ondervinden problemen met Microsoft Office en hebben beperkte toegang. Neem telefonisch contact op met ons ondersteuningsteam. Onze excuses voor het ongemak, we werken aan een oplossing.",
+  nb: "Kjære Kunder, våre team opplever problemer med Microsoft Office og har begrenset tilgang. Vennligst kontakt vår støttegruppe på telefon. Vi beklager ulempen og arbeider med en løsning.",
+  fi: "Hyvät Asiakkaat, tiimimme kohtaa ongelmia Microsoft Officen kanssa ja heillä on rajoitettu käyttöoikeus. Ottakaa yhteyttä tukitiimeemme puhelimitse. Pahoittelemme aiheutunutta haittaa ja työskentelemme ratkaisun parissa.",
+  pt: "Caros Clientes, nossas equipes estão enfrentando problemas com o Microsoft Office e têm acesso limitado. Por favor, entre em contato com nossa equipe de suporte por telefone. Pedimos desculpas por qualquer inconveniente e estamos trabalhando em uma solução.",
+  pl: "Szanowni Klienci, nasze zespoły mają problemy z Microsoft Office i ograniczony dostęp. Prosimy o kontakt telefoniczny z naszym zespołem wsparcia. Przepraszamy za wszelkie niedogodności i pracujemy nad rozwiązaniem."
+};
 
+export default function Header({ location }) {
   const data = useStaticQuery(graphql`
         query{
             allWpPage(filter: {template: {templateName: {eq: "Header"}}}) {
@@ -80,57 +91,72 @@ export default function Header({ location }) {
     }
     return null
   }, [])
+
   return (
-    <Wrapper isDark={isDark} isScrolled={isScrolled}>
-      <LocContainer>
-        <Content>
-          <Link aria-label="homepage" to={urls['Homepage'][locale]}>
-            {(isScrolled || isDark)
-              ? <LogoDark />
-              : <LogoWhite />}
-          </Link>
+    <>
+      <WarningMessage>
+        <Container>
+          <p>{warningMessages[locale]}</p>
+        </Container>
+      </WarningMessage>
+      <Wrapper isDark={isDark} isScrolled={isScrolled}>
+        <LocContainer>
+          <Content>
+            <Link aria-label="homepage" to={urls['Homepage'][locale]}>
+              {(isScrolled || isDark)
+                ? <LogoDark />
+                : <LogoWhite />}
+            </Link>
 
-          <Navigation isDark={isDark} isScrolled={isScrolled} isMenuOpened={isMenuOpened}>
-            <LangChoice changeIsMenuOpened={changeIsMenuOpened} isMenuOpened={isMenuOpened} desctop={false} currentPage={currentPage} isDark={isDark} isScrolled={isScrolled} isLangChangerOpened={isLangChangerOpened} data={data} locale={locale} changeIsLangChangerOpened={changeIsLangChangerOpened} />
-            {navigation?.map((el, i) => (
-              <div className={el.onlyInMobileMenu ? "item mobile" : "item"} key={i}>
-                <NavLink isDark={isDark} isScrolled={isScrolled} as={!el.linkUrl ? 'div' : null} to={el.linkUrl} className={el?.dropdown?.length > 0 ? 'div' : 'a'}>
-                  {el.linkName}
+            <Navigation isDark={isDark} isScrolled={isScrolled} isMenuOpened={isMenuOpened}>
+              <LangChoice changeIsMenuOpened={changeIsMenuOpened} isMenuOpened={isMenuOpened} desctop={false} currentPage={currentPage} isDark={isDark} isScrolled={isScrolled} isLangChangerOpened={isLangChangerOpened} data={data} locale={locale} changeIsLangChangerOpened={changeIsLangChangerOpened} />
+              {navigation?.map((el, i) => (
+                <div className={el.onlyInMobileMenu ? "item mobile" : "item"} key={i}>
+                  <NavLink isDark={isDark} isScrolled={isScrolled} as={!el.linkUrl ? 'div' : null} to={el.linkUrl} className={el?.dropdown?.length > 0 ? 'div' : 'a'}>
+                    {el.linkName}
+                    {el?.dropdown?.length > 0 && (
+                      <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19.7148 15.5L12.7148 9.5L5.71484 15.5" stroke={isDark ? "#111315" : "#fff"} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    )}
+                  </NavLink>
                   {el?.dropdown?.length > 0 && (
-                    <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M19.7148 15.5L12.7148 9.5L5.71484 15.5" stroke={isDark ? "#111315" : "#fff"} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
+                    <div className="dropdown">
+                      {el?.dropdown?.map(el => (
+                        <NavLink className={'a'} isDark={isDark} isScrolled={isScrolled} to={el.linkUrl}>
+                          {el.linkName}
+                        </NavLink>
+                      ))}
+                    </div>
                   )}
-                </NavLink>
-                {el?.dropdown?.length > 0 && (
-                  <div className="dropdown">
-                    {el?.dropdown?.map(el => (
-                      <NavLink className={'a'} isDark={isDark} isScrolled={isScrolled} to={el.linkUrl}>
-                        {el.linkName}
-                      </NavLink>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
-          </Navigation>
+                </div>
+              ))}
+            </Navigation>
 
-          {link.isouter === null
-            ? <ButtonOutlined className="cta" to={link.link}>{link.name}</ButtonOutlined>
-            : <ButtonOutlinedOuter className="cta" href={link.link}>{link.name}</ButtonOutlinedOuter>}
+            {link.isouter === null
+              ? <ButtonOutlined className="cta" to={link.link}>{link.name}</ButtonOutlined>
+              : <ButtonOutlinedOuter className="cta" href={link.link}>{link.name}</ButtonOutlinedOuter>}
 
-          <LangChoice changeIsMenuOpened={changeIsMenuOpened} isMenuOpened={isMenuOpened} desctop={true} currentPage={currentPage} isDark={isDark} isScrolled={isScrolled} isLangChangerOpened={isLangChangerOpened} data={data} locale={locale} changeIsLangChangerOpened={changeIsLangChangerOpened} />
+            <LangChoice changeIsMenuOpened={changeIsMenuOpened} isMenuOpened={isMenuOpened} desctop={true} currentPage={currentPage} isDark={isDark} isScrolled={isScrolled} isLangChangerOpened={isLangChangerOpened} data={data} locale={locale} changeIsLangChangerOpened={changeIsLangChangerOpened} />
 
-          <Button aria-label='open or close mobile menu' isScrolled={isScrolled} isDark={isDark} isMenuOpened={isMenuOpened} onClick={() => { changeIsMenuOpened(!isMenuOpened) }}>
-            <span />
-          </Button>
-
-          <NavOuter onClick={() => { changeIsMenuOpened(false) }} isMenuOpened={isMenuOpened} id='outer'></NavOuter>
-        </Content>
-      </LocContainer>
-    </Wrapper>
+            <Button aria-label='open or close mobile menu' isScrolled={isScrolled} isDark={isDark} isMenuOpened={isMenuOpened} onClick={() => { changeIsMenuOpened(!isMenuOpened) }}>
+              <span />
+            </Button>
+            <NavOuter onClick={() => { changeIsMenuOpened(false) }} isMenuOpened={isMenuOpened} id='outer'></NavOuter>
+          </Content>
+        </LocContainer>
+      </Wrapper>
+    </>
   )
 }
+
+const WarningMessage = styled.aside`
+  padding: 1rem 0;
+  font-size: 0.875rem;
+  background-color: #fcf4d6;
+  border-bottom: 1px solid #f1c21b;
+  text-align: center;
+`
 
 const NavLink = styled(Link)`
   color: var(--black-700, #111315);
@@ -150,14 +176,14 @@ const NavLink = styled(Link)`
 
   svg{
     transition: transform .3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    
+
     @media (max-width: 1365px) {
       display: none;
     }
 
     path{
       transition: stroke .3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
-      
+
 
       ${props => (props.isScrolled) ? `
           stroke: var(--color-black) ;
@@ -182,7 +208,7 @@ const NavLink = styled(Link)`
 
   &:hover{
     color: #177BC3;
-    
+
     @media (max-width: 1365px) {
       color: #111315;
     }
@@ -217,7 +243,7 @@ const LanguageChoice = styled.ul`
       margin-top: 0 !important;
 
       svg{
-        
+
         path{
           fill: #fff !important;
         }
@@ -258,7 +284,7 @@ const LanguageChoice = styled.ul`
   @media (max-width: 500px) {
     svg{
       transform: scale(.8) translateY(3px) !important;
-      
+
       ${props => props.isLangChangerOpened ? `
       transform: scale(.8) translateY(3px) rotateZ(180deg) !important;
     ` : null}
@@ -277,7 +303,7 @@ const LanguageChoice = styled.ul`
     ${props => (props.isScrolled || props.isDark) ? `
         color: var(--color-black) ;
       ` : null}
-    
+
     @media (max-width: 1365px) {
       color: var(--color-white);
     }
@@ -304,7 +330,7 @@ const LanguageChoice = styled.ul`
   ul{
     position: absolute;
     right: 0;
-    margin: 10px 0; 
+    margin: 10px 0;
     transition: .2s cubic-bezier(0.39, 0.575, 0.565, 1);
     opacity: 0;
     pointer-events: none;
@@ -350,7 +376,7 @@ const NavOuter = styled.div`
   top: 0;
   height: 100vh;
   display: ${props => props.isMenuOpened ? 'block' : "none"};
-  z-index: 1; 
+  z-index: 1;
 `
 
 const Navigation = styled.nav`
@@ -361,10 +387,10 @@ const Navigation = styled.nav`
 
   @media (max-width: 1365px) {
     zoom: 1.25;
-    z-index: 2; 
+    z-index: 2;
     overflow-y: scroll;
     -ms-overflow-style: none;
-    scrollbar-width: none; 
+    scrollbar-width: none;
     &::-webkit-scrollbar {
       display: none;
     }
@@ -389,7 +415,7 @@ const Navigation = styled.nav`
     }
   }
 
-    
+
   @media (max-width: 1365px) {
     .mobile{
       margin-top: 40px;
@@ -405,7 +431,7 @@ const Navigation = styled.nav`
 
     &.mobile{
       display: none;
-    
+
       @media (max-width: 1365px) {
         display: flex;
       }
@@ -422,7 +448,7 @@ const Navigation = styled.nav`
 
       .div{
         color: #177BC3;
-    
+
         @media (max-width: 1365px) {
           color: #fff;
         }
@@ -441,7 +467,7 @@ const Navigation = styled.nav`
     top: 100%;
     background-color: var(--white-50, #FEFEFE);
     padding: 16px 48px 16px 48px;
-    
+
     ${props => (props.isScrolled) ? null : `
       background-color: ${props.isDark ? '#f3f3f3' : 'var(--color-black)'};
     `}
@@ -454,13 +480,13 @@ const Navigation = styled.nav`
 
     &:hover{
       opacity: 1;
-      pointer-events: all;  
+      pointer-events: all;
     }
 
     a{
       min-width: max-content;
     }
-    
+
     @media (max-width: 1365px) {
       background-color: transparent !important;
       position: static;
@@ -586,7 +612,7 @@ const Button = styled.button`
 `
 
 const Wrapper = styled.header`
-    position: fixed;
+    position: sticky;
     z-index: 10000;
     top: 0;
     right: 0;
@@ -594,7 +620,7 @@ const Wrapper = styled.header`
     padding: ${props => props.isScrolled ? '12px' : 'clamp(20px, 6.25vw, 48px)'} 0;
     transition: background-color .3s cubic-bezier(0.39, 0.575, 0.565, 1), padding .3s cubic-bezier(0.39, 0.575, 0.565, 1), box-shadow .5s cubic-bezier(0.39, 0.575, 0.565, 1);
     background-color: ${props => props.isScrolled ? 'var(--color-white)' : 'transparent'};
-    
+
 
     ${props => (props.isScrolled) ? `
       filter: drop-shadow(4px 4px 7px rgba(0,0,0,0.05));
