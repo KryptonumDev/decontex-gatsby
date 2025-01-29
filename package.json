@@ -49,6 +49,5 @@
     "react-leaflet-cluster": "^2.1.0",
     "styled-components": "^5.3.5",
     "swiper": "^11.0.3"
-  },
-  "devDependencies": {}
+  }
 }
