@@ -589,7 +589,7 @@ const Button = styled.button`
 `
 
 const Wrapper = styled.header`
-    position: sticky;
+    position: fixed;
     z-index: 10000;
     top: 0;
     right: 0;
