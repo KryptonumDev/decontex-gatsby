@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
-import { ButtonBlue } from '../../../styles/style'
-import { useForm } from 'react-hook-form'
-import { motion } from 'framer-motion'
-import axios from 'axios'
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { ButtonBlue } from '../../../styles/style';
+import { useForm } from 'react-hook-form';
+import { motion } from 'framer-motion';
+import axios from 'axios';
 
 export default function ContactForm({
   data: {
@@ -23,73 +23,68 @@ export default function ContactForm({
     successfulSendTitle,
     successfulSendText,
     sendAgainButtonText,
-    errorSendText
+    errorSendText,
   },
-  lang
+  lang,
 }) {
   const {
     register,
     handleSubmit,
     reset,
-    formState: { errors }
-  } = useForm()
-  const [isSended, changeIsSended] = useState(null)
-  const [sendedCount, changeSendedCount] = useState(0)
+    formState: { errors },
+  } = useForm();
+  const [isSended, changeIsSended] = useState(null);
+  const [sendedCount, changeSendedCount] = useState(0);
 
   const onSubmit = (data) => {
     axios
-      .post(
-        'https://hook.eu1.make.com/ztq7nnfn16qimbgi3qsqaf2uwgax5c14',
-        {
-          name: data.firstName,
-          phone: data.phone,
-          email: data.email,
-          type: data.switch,
-          message: data.message,
-          language: lang
-        }
-      )
+      .post('https://hook.eu1.make.com/ztq7nnfn16qimbgi3qsqaf2uwgax5c14', {
+        name: data.firstName,
+        phone: data.phone,
+        email: data.email,
+        type: data.switch,
+        message: data.message,
+        language: lang,
+      })
       .then((res) => {
         if (res.status === 200) {
-          changeIsSended('success')
-          changeSendedCount(sendedCount + 1)
-          reset()
+          changeIsSended('success');
+          changeSendedCount(sendedCount + 1);
+          reset();
         } else {
-          changeIsSended('error')
-          changeSendedCount(sendedCount + 1)
-          reset()
+          changeIsSended('error');
+          changeSendedCount(sendedCount + 1);
+          reset();
         }
-      })
-
-    console.log(data)
-  }
+      });
+  };
 
   return (
     <Wrapper onSubmit={handleSubmit(onSubmit)}>
       <div
-        className='form-title'
+        className="form-title"
         dangerouslySetInnerHTML={{ __html: switchTitle }}
       />
-      <div className='flex'>
-        <label className='radio'>
+      <div className="flex">
+        <label className="radio">
           <input
             defaultChecked
             {...register('switch', { required: true })}
-            type='radio'
+            type="radio"
             value={switchVariant1}
           />
           <span>{switchVariant1}</span>
         </label>
-        <label className='radio'>
+        <label className="radio">
           <input
             {...register('switch', { required: true })}
-            type='radio'
+            type="radio"
             value={switchVariant2}
           />
           <span>{switchVariant2}</span>
         </label>
       </div>
-      <label className='input'>
+      <label className="input">
         <span>First name</span>
         <input
           className={errors.firstName ? 'error' : null}
@@ -102,28 +97,29 @@ export default function ContactForm({
             animate={{ opacity: 1, bottom: 0 }}
             exit={{ opacity: 1, bottom: -6 }}
             transition={{ type: 'spring', duration: 0.4 }}
-            className='errorText'>
+            className="errorText"
+          >
             {firstNameErrorText}
           </motion.p>
         )}
       </label>
-      <label className='input'>
+      <label className="input">
         <span>Phone</span>
         <input
-          type='tel'
+          type="tel"
           {...register('phone')}
           placeholder={phonePlaceholder}
         />
       </label>
-      <label className='input'>
+      <label className="input">
         <span>Email Adress</span>
         <input
-          type='email'
+          type="email"
           className={errors.email ? 'error' : null}
           {...register('email', {
             required: true,
             pattern:
-              /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+              /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
           })}
           placeholder={emailPlaceholder}
         />
@@ -133,16 +129,17 @@ export default function ContactForm({
             animate={{ opacity: 1, bottom: 0 }}
             exit={{ opacity: 1, bottom: -6 }}
             transition={{ type: 'spring', duration: 0.4 }}
-            className='errorText'>
+            className="errorText"
+          >
             {emailErrorText}
           </motion.p>
         )}
       </label>
-      <label className='text-area'>
+      <label className="text-area">
         <span>Message</span>
         <textarea
           className={errors.message ? 'error' : null}
-          rows='6'
+          rows="6"
           {...register('message', { required: true })}
           placeholder={messagePlaceholder}
         />
@@ -152,20 +149,21 @@ export default function ContactForm({
             animate={{ opacity: 1, bottom: 0 }}
             exit={{ opacity: 1, bottom: -6 }}
             transition={{ type: 'spring', duration: 0.4 }}
-            className='errorText'>
+            className="errorText"
+          >
             {messageErrorText}
           </motion.p>
         )}
       </label>
-      <label className='checkbox'>
+      <label className="checkbox">
         <input
           className={errors.checkbox ? 'error' : null}
-          type='checkbox'
+          type="checkbox"
           {...register('checkbox', { required: true })}
         />
         <span
           dangerouslySetInnerHTML={{
-            __html: agreementText
+            __html: agreementText,
           }}
         />
         {errors.checkbox && (
@@ -174,12 +172,13 @@ export default function ContactForm({
             animate={{ opacity: 1, bottom: 0 }}
             exit={{ opacity: 1, bottom: -6 }}
             transition={{ type: 'spring', duration: 0.4 }}
-            className='errorText'>
+            className="errorText"
+          >
             {agreementErrorText}
           </motion.p>
         )}
       </label>
-      <Button as='button' type='submit'>
+      <Button as="button" type="submit">
         {submitText}
       </Button>
       {isSended === 'error' ? (
@@ -188,37 +187,38 @@ export default function ContactForm({
           animate={{ opacity: 1, bottom: 0 }}
           exit={{ opacity: 1, bottom: -6 }}
           transition={{ type: 'spring', duration: 0.4 }}
-          className='errorText submit'>
+          className="errorText submit"
+        >
           {errorSendText}
         </motion.p>
       ) : null}
-      <Plate
-        className={isSended === 'success' ? 'active' : ''}>
+      <Plate className={isSended === 'success' ? 'active' : ''}>
         <div
-          className='main'
+          className="main"
           dangerouslySetInnerHTML={{
-            __html: successfulSendTitle
+            __html: successfulSendTitle,
           }}
         />
         <div
-          className='sub'
+          className="sub"
           dangerouslySetInnerHTML={{
-            __html: successfulSendText
+            __html: successfulSendText,
           }}
         />
         <ButtonBlue
           tabIndex={isSended === 'success' ? '0' : '-1'}
-          type='button'
+          type="button"
           disabled={sendedCount >= 3}
           onClick={() => {
-            changeIsSended(null)
+            changeIsSended(null);
           }}
-          as='button'>
+          as="button"
+        >
           {sendAgainButtonText}
         </ButtonBlue>
       </Plate>
     </Wrapper>
-  )
+  );
 }
 
 const Plate = styled.div`
@@ -295,11 +295,11 @@ const Plate = styled.div`
       margin: 0 auto !important;
     }
   }
-`
+`;
 
 const Button = styled(ButtonBlue)`
   margin-left: 0 !important;
-`
+`;
 
 const Wrapper = styled.form`
   width: 100%;
@@ -353,19 +353,14 @@ const Wrapper = styled.form`
     position: relative;
 
     &.input {
-      margin-bottom: clamp(
-        16px,
-        ${(32 / 768) * 100}vw,
-        40px
-      );
+      margin-bottom: clamp(16px, ${(32 / 768) * 100}vw, 40px);
 
       span {
         display: none;
       }
 
       input {
-        padding: 16px
-          clamp(16px, ${(40 / 768) * 100}vw, 40px);
+        padding: 16px clamp(16px, ${(40 / 768) * 100}vw, 40px);
         font-weight: 400;
         font-size: clamp(14px, ${(17 / 768) * 100}vw, 20px);
         line-height: 130%;
@@ -378,11 +373,7 @@ const Wrapper = styled.form`
 
         &::placeholder {
           font-weight: 400;
-          font-size: clamp(
-            14px,
-            ${(17 / 768) * 100}vw,
-            20px
-          );
+          font-size: clamp(14px, ${(17 / 768) * 100}vw, 20px);
           line-height: 130%;
           color: #697075;
         }
@@ -418,8 +409,7 @@ const Wrapper = styled.form`
           position: absolute;
           left: 50%;
           top: 50%;
-          transform: translateX(-50%) translateY(-50%)
-            scale(0);
+          transform: translateX(-50%) translateY(-50%) scale(0);
           border-radius: 3px;
           font-weight: 700;
           z-index: 3;
@@ -427,8 +417,7 @@ const Wrapper = styled.form`
 
         &:checked {
           &::after {
-            transform: translateX(-50%) translateY(-50%)
-              scale(2.5);
+            transform: translateX(-50%) translateY(-50%) scale(2.5);
           }
         }
       }
@@ -450,11 +439,7 @@ const Wrapper = styled.form`
         h6,
         p {
           font-weight: 400;
-          font-size: clamp(
-            14px,
-            ${(17 / 768) * 100}vw,
-            20px
-          );
+          font-size: clamp(14px, ${(17 / 768) * 100}vw, 20px);
           line-height: 130%;
           letter-spacing: 0.005em;
           color: var(--color-white);
@@ -525,8 +510,7 @@ const Wrapper = styled.form`
       }
 
       textarea {
-        padding: 16px
-          clamp(16px, ${(40 / 768) * 100}vw, 40px);
+        padding: 16px clamp(16px, ${(40 / 768) * 100}vw, 40px);
         font-weight: 400;
         font-size: clamp(14px, ${(17 / 768) * 100}vw, 20px);
         line-height: 130%;
@@ -539,11 +523,7 @@ const Wrapper = styled.form`
 
         &::placeholder {
           font-weight: 400;
-          font-size: clamp(
-            14px,
-            ${(17 / 768) * 100}vw,
-            20px
-          );
+          font-size: clamp(14px, ${(17 / 768) * 100}vw, 20px);
           line-height: 130%;
           color: #697075;
         }
@@ -561,4 +541,4 @@ const Wrapper = styled.form`
       }
     }
   }
-`
+`;
