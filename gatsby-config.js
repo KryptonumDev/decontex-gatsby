@@ -13,7 +13,10 @@ module.exports = {
     {
       resolve: "gatsby-source-wordpress",
       options: {
-        url: 'https://decontex.headlesshub.com/graphql'
+        url: 'https://decontex.headlesshub.com/graphql',
+        schema: {
+          timeout: 100000,
+        },
       },
     },
     {
