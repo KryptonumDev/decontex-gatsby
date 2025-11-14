@@ -8,7 +8,8 @@ import Seo from "../components/parents/seo"
 export default function Impressum({ data: { allWpPage, alternates } }) {
   const pageNode = allWpPage.nodes[0]
   const { language, seo } = pageNode
-  const pageData = pageNode.impressum || pageNode.privacyPolice
+  const pageData = pageNode.impressum
+  const heroData = pageData?.heroPrivacy
 
   React.useEffect(() => {
     toTop()
@@ -21,7 +22,9 @@ export default function Impressum({ data: { allWpPage, alternates } }) {
   return (
     <main>
       <Seo data={seo} lang={language.slug} alternates={alternates}/>
-      <Hero data={pageData.heroPrivacy} position={'100%'} parent={'top: 25%;'} />
+      {heroData?.background?.localFile?.childImageSharp?.gatsbyImageData ? (
+        <Hero data={heroData} position={'100%'} parent={'top: 25%;'} />
+      ) : null}
       <PrivacyContent data={pageData} />
     </main>
   )
@@ -56,28 +59,6 @@ export const query = graphql`
           }
         }
         impressum{
-            heroPrivacy{
-                title
-                subTitle
-                background {
-                    altText
-                    localFile {
-                        childImageSharp {
-                            gatsbyImageData
-                        }
-                    }
-                }
-            }
-            columns{
-                leftColumn
-                rightColumn
-            }
-            contactPrivacy{
-              contactText
-              contactMail
-            }
-        }
-        privacyPolice{
             heroPrivacy{
                 title
                 subTitle
