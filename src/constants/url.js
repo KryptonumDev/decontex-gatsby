@@ -99,6 +99,11 @@ export const urls = {
     pl: "/pl/download/",
   },
 
+  Impressum: {
+    en: "/impressum/",
+    de: "/de/impressum/",
+  },
+
   "Privacy-police": {
     en: "/cookie-policy/",
     de: "/de/cookie-richtlinie/",

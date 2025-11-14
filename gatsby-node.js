@@ -101,6 +101,11 @@ const urls = {
     pl: '/pl/download/',
   },
 
+  "Impressum": {
+    en: '/impressum/',
+    de: '/de/impressum/',
+  },
+
   "Privacy-police": {
     en: '/cookie-policy/',
     de: '/de/cookie-richtlinie/',
@@ -486,6 +491,36 @@ exports.createPages = async ({
     createPage({
       path: urls["Privacy-police"][slug],
       component: resolve('src/templates/privacy-police.jsx'),
+      context: {
+        id,
+        slug,
+        templateName
+      },
+    });
+  });
+
+  // IMPRESSUM
+
+  const { data: { allWpPage: { impressumNodes } } } = await graphql(`
+  query {
+    allWpPage(filter: {template: {templateName: {eq: "Impressum"}}}) {
+      impressumNodes: nodes {
+        id
+        language {
+          slug
+        }
+        template {
+          templateName
+        }
+      }
+    }
+  }
+`);
+
+  impressumNodes.forEach(({ id, language: { slug }, template: { templateName } }) => {
+    createPage({
+      path: urls["Impressum"][slug],
+      component: resolve('src/templates/impressum.jsx'),
       context: {
         id,
         slug,
