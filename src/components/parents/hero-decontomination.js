@@ -15,6 +15,9 @@ export default function Hero({
   position,
   parent
 }) {
+  const imageData =
+    background?.localFile?.childImageSharp?.gatsbyImageData
+
   return (
     <Wrapper >
       <Container>
@@ -73,17 +76,16 @@ export default function Hero({
           ) : null}
         </Content>
       </Container>
-      <ImageWrapper
-        parent={parent}
-        position={position}
-        imgClassName={alt ? 'alt image' : 'image'}
-        image={
-          background.localFile.childImageSharp
-            .gatsbyImageData
-        }
-        className={alt ? 'alt' : ''}
-        alt={background.altText}
-      />
+      {imageData ? (
+        <ImageWrapper
+          parent={parent}
+          position={position}
+          imgClassName={alt ? 'alt image' : 'image'}
+          image={imageData}
+          className={alt ? 'alt' : ''}
+          alt={background?.altText || ''}
+        />
+      ) : null}
     </Wrapper>
   )
 }
